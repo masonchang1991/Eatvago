@@ -145,6 +145,12 @@ class LoginViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if error == nil {
+                // 計算認證信, 細部過程待補 note
+                user?.sendEmailVerification() {
+                    error in if let error = error {
+                        print(error)
+                    }
+                }
                 print("Successfully register")
                 
                 self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)

@@ -19,7 +19,6 @@ class LoadingViewController: UIViewController {
 
     var window: UIWindow?
     var loginSuccess: Bool = false
-    var loadingInt = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         

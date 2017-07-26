@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3D618EF2A4B9A4883A992048 /* Pods_Eatvago.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */; };
+		9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300866C1F28ED5000BEA223 /* NearbyViewController.swift */; };
 		930144331F27986700CEC11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144321F27986700CEC11A /* AppDelegate.swift */; };
-		930144351F27986700CEC11A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144341F27986700CEC11A /* ViewController.swift */; };
 		930144381F27986700CEC11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930144361F27986700CEC11A /* Main.storyboard */; };
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
 		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
@@ -20,9 +20,9 @@
 
 /* Begin PBXFileReference section */
 		2368AA98FF231B9792B4005E /* Pods-Eatvago.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.debug.xcconfig"; sourceTree = "<group>"; };
+		9300866C1F28ED5000BEA223 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		9301442F1F27986700CEC11A /* Eatvago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatvago.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930144321F27986700CEC11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		930144341F27986700CEC11A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		930144371F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		930144391F27986700CEC11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9301443C1F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,10 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				930144321F27986700CEC11A /* AppDelegate.swift */,
-				930144341F27986700CEC11A /* ViewController.swift */,
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
+				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
 				9301443B1F27986700CEC11A /* LaunchScreen.storyboard */,
 				9301443E1F27986700CEC11A /* Info.plist */,
@@ -238,7 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
-				930144351F27986700CEC11A /* ViewController.swift in Sources */,
+				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 			);
