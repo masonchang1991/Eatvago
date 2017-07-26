@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y9w-Ra-oNU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Loading View Controller-->
+        <scene sceneID="tCj-ak-e39">
+            <objects>
+                <viewController id="Y9w-Ra-oNU" customClass="LoadingViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ch3-E8-pEp"/>
+                        <viewControllerLayoutGuide type="bottom" id="1O2-7N-F9q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RSl-pA-ftJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-image" translatesAutoresizingMaskIntoConstraints="NO" id="HIE-DO-Aze">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="NQb-nE-apL"/>
+                                    <constraint firstAttribute="height" constant="100" id="OQS-YF-iB1"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGm-SK-Ama">
+                                <rect key="frame" x="87" y="416" width="10" height="20"/>
+                                <color key="backgroundColor" red="1" green="0.30337847239999999" blue="0.2231326173" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="48R-EM-e7o"/>
+                                    <constraint firstAttribute="height" constant="20" id="9BD-Mz-JGK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HIE-DO-Aze" firstAttribute="centerX" secondItem="RSl-pA-ftJ" secondAttribute="centerX" id="21N-X5-JG7"/>
+                            <constraint firstItem="HIE-DO-Aze" firstAttribute="centerY" secondItem="RSl-pA-ftJ" secondAttribute="centerY" id="5tv-40-VRf"/>
+                            <constraint firstItem="cGm-SK-Ama" firstAttribute="leading" secondItem="RSl-pA-ftJ" secondAttribute="leadingMargin" constant="71" id="K8g-18-FHi"/>
+                            <constraint firstItem="cGm-SK-Ama" firstAttribute="top" secondItem="HIE-DO-Aze" secondAttribute="bottom" constant="32.5" id="YXD-6z-WEg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appleImage" destination="HIE-DO-Aze" id="tH2-oN-6qq"/>
+                        <outlet property="loadingView" destination="cGm-SK-Ama" id="Ha2-g8-dKJ"/>
+                        <outlet property="loadingViewWidthConstrain" destination="48R-EM-e7o" id="yv0-qX-4MM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ro-GI-SYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-727.20000000000005" y="-129.08545727136433"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -179,4 +227,7 @@
             <point key="canvasLocation" x="201" y="355"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="apple-image" width="1000" height="1000"/>
+    </resources>
 </document>

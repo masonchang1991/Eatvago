@@ -111,6 +111,9 @@ class LoginViewController: UIViewController {
             if error == nil {
                 print("Success Login")
                 
+                UserDefaults.standard.setValue(email, forKey: "UserLoginEmail")
+                UserDefaults.standard.setValue(password, forKey: "UserLoginPassword")
+                
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "mainNavigationController")
                 self.present(nextVC, animated: true, completion: nil)

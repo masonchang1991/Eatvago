@@ -15,6 +15,7 @@
 		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
 		9301444C1F288AD700CEC11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301444B1F288AD700CEC11A /* GoogleService-Info.plist */; };
+		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9301443E1F27986700CEC11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9301444B1F288AD700CEC11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 			children = (
 				930144321F27986700CEC11A /* AppDelegate.swift */,
 				930144341F27986700CEC11A /* ViewController.swift */,
+				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
@@ -237,6 +240,7 @@
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				930144351F27986700CEC11A /* ViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
+				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
