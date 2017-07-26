@@ -7,5 +7,8 @@ target 'Eatvago' do
 
   # Pods for Eatvago
   pod 'SwiftLint'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
   
 end
