@@ -41,7 +41,7 @@ class LoadingViewController: UIViewController {
 
         appleImage.tintColor = UIColor.red
         
-        UIView.animate(withDuration: 5.0, animations: {
+        UIView.animate(withDuration: 2.0, animations: {
             self.loadingViewWidthConstrain.constant = 200
             self.appleImage.alpha = 1.0
             if UserDefaults.standard.value(forKey: "UserLoginEmail") != nil && UserDefaults.standard.value(forKey: "UserLoginPassword") != nil {

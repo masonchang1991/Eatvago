@@ -10,56 +10,100 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class NearbyViewController: UIViewController {
+class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var mapTableView: UITableView!
     var window: UIWindow?
-    
+    //Declare the location manager, current location, map view, places client, and default zoom level at the class level
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 15.0
     
-    // Add a pair of UILabels in Interface Builder, and connect the outlets to these variables.
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var addressLabel: UILabel!
+    // An array to hold the list of likely places.
+    var likelyPlaces: [GMSPlace] = []
+    
+    // The currently selected place.
+    var selectedPlace: GMSPlace?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // 配置 locationManager
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
-//        let camera = GMSCameraPosition.camera(withLatitude: 25.042476, longitude: 121.564882, zoom: 20)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//        view = mapView
-//        
-//        let currentLocation = CLLocationCoordinate2DMake(25.042476, 121.564882)
-//        let marker = GMSMarker(position: currentLocation)
-//        marker.title = "AppWorks"
-//        marker.map = mapView
         
-    }
-    
-    // Add a UIButton in Interface Builder, and connect the action to this function.
-    @IBAction func getCurrentPlace(_ sender: UIButton) {
+        //設置初始點
+        let camera = GMSCameraPosition.camera(withLatitude: 25.042476, longitude: 121.564882, zoom: 20)
+        googleMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        googleMapView.settings.myLocationButton = true
+        googleMapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        googleMapView.isMyLocationEnabled = true
         
-        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            self.nameLabel.text = "No current place"
-            self.addressLabel.text = ""
-            
-            if let placeLikelihoodList = placeLikelihoodList {
-                let place = placeLikelihoodList.likelihoods.first?.place
-                if let place = place {
-                    self.nameLabel.text = place.name
-                    self.addressLabel.text = place.formattedAddress?.components(separatedBy: ", ")
-                        .joined(separator: "\n")
-                }
-            }
-        })
+        // Add the map to the view, hide it until we've got a location update.
+        mapView.addSubview(googleMapView)
+        googleMapView.isHidden = true
+        mapView.isHidden = true
+
+        mapTableView.delegate = self
+        mapTableView.dataSource = self
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return likelyPlaces.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
+            return UITableViewCell()
+        }
+        let collectionItem = likelyPlaces[indexPath.row]
+        
+        cell.mapTextLabel.text = collectionItem.name
+    
+        return cell
+    }
+    
+    // Show only the first five items in the table (scrolling is disabled in IB).
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.mapTableView.frame.size.height/5
+    }
+    
+    // Make table rows display at proper height if there are less than 5 items.
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if (section == tableView.numberOfSections - 1) {
+            return 1
+        }
+        return 0
+    }
+
+    
+    @IBAction func changTableViewAndMap(_ sender: UIButton) {
+        if mapTableView.isHidden == true {
+            mapTableView.isHidden = false
+            mapView.isHidden = true
+            sender.setTitle("Map", for: .normal)
+        } else {
+            mapView.isHidden = false
+            mapTableView.isHidden = true
+            sender.setTitle("Table", for: .normal)
+        }
+        
+        
+    }
+    
 
     @IBAction func logout(_ sender: UIButton) {
         // 消去 UserDefaults內使用者的帳號資訊
@@ -74,3 +118,5 @@ class NearbyViewController: UIViewController {
     }
 
 }
+
+
