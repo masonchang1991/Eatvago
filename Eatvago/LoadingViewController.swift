@@ -24,7 +24,6 @@ class LoadingViewController: UIViewController {
         
         appleImage.tintColor = UIColor.white
         appleImage.alpha = 0.0
-
     
     }
     
@@ -37,8 +36,6 @@ class LoadingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
     func loading() {
 
@@ -53,13 +50,14 @@ class LoadingViewController: UIViewController {
                         print("At appdelegate , can't get email or password")
                         return
                 }
-                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
                     if error == nil {
 
                         print("Success Login")
                         self.loginSuccess = true
                         
                     } else {
+                        print(error)
                         self.loginSuccess = false
                     }
                     
@@ -85,6 +83,5 @@ class LoadingViewController: UIViewController {
         }
 
     }
-    
 
    }

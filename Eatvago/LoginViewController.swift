@@ -107,7 +107,7 @@ class LoginViewController: UIViewController {
                 print("Form is not valid")
                 return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
             if error == nil {
                 print("Success Login")
                 
@@ -132,7 +132,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    
     func registerHandler() {
         guard let email = emailTextField.text,
                 let password = passwordTextField.text,
@@ -146,7 +145,7 @@ class LoginViewController: UIViewController {
             
             if error == nil {
                 // 計算認證信, 細部過程待補 note
-                user?.sendEmailVerification() {
+                user?.sendEmailVerification {
                     error in if let error = error {
                         print(error)
                     }
@@ -219,7 +218,5 @@ class LoginViewController: UIViewController {
         }
 
     }
-
-
 
 }
