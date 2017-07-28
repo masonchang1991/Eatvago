@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-
+import GooglePlacePicker
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var mapView: UIView!
@@ -24,6 +24,9 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
+    var mostLikelyPlace : GMSPlace?
+    //附近的地點 base on mostLikelyPlace
+    var aroundPlace: [GMSPlace] = []
     
     // The currently selected place.
     var selectedPlace: GMSPlace?
@@ -53,7 +56,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
 
         mapTableView.delegate = self
         mapTableView.dataSource = self
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,14 +64,14 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likelyPlaces.count
+        return aroundPlace.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
             return UITableViewCell()
         }
-        let collectionItem = likelyPlaces[indexPath.row]
+        let collectionItem = aroundPlace[indexPath.row]
         
         cell.mapTextLabel.text = collectionItem.name
     
