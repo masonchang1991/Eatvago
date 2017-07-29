@@ -21,23 +21,18 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
-    
-    // An array to hold the list of likely places.
-    var likelyPlaces: [GMSPlace] = []
-    var mostLikelyPlace: GMSPlace?
+
     // 建立搜尋地點的manager
     var fetchNearbyLocationManager = FetchNearbyLocationManager()
-    
-    //附近的地點 base on mostLikelyPlace
-    var aroundPlace: [GMSPlace] = []
+
+    //附近的地點 base on mylocation
     var locations: [Location] = []
-    
-    // The currently selected place.
-    var selectedPlace: GMSPlace?
     
     //建立呼叫fetchNearbyLocation使用的location 用途：避免重複互叫fetchNearbyLocationManager
     var locationOfFetchNearby: CLLocation?
     
+    //建立location的字典 座標是key 值是location struct  目的: 改善地點間交集的狀況
+    var nearbyLocationDictionary: [String : Location ] = [:]
     
     
     override func viewDidLoad() {

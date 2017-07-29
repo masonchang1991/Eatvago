@@ -33,10 +33,9 @@ extension NearbyViewController: CLLocationManagerDelegate {
         if self.googleMapView.myLocation != nil && locationOfFetchNearby != self.googleMapView.myLocation {
             // 第一個進來的location設為 currentLocation
             self.locationOfFetchNearby = self.googleMapView.myLocation
-            
-            
             self.locations = []
             // 座標更新後呼叫拿取附近的地點
+            print(self.locationOfFetchNearby)
             fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 100)
         }
     }
@@ -63,101 +62,30 @@ extension NearbyViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
     }
-    
-    // Populate the array with the list of likely places.
-    func listLikelyPlaces() {
-        // Clean up from previous sessions.
-        likelyPlaces.removeAll()
-        
-        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
-            if let error = error {
-                // TODO: Handle the error.
-                print("Current Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            // Get likely places and add to the list.
-            if let likelihoodList = placeLikelihoods {
-                var compareLikelihood = 0.0
-                
-                for likelihood in likelihoodList.likelihoods {
-                    
-                    let probability = likelihood.likelihood
-                    let place = likelihood.place
-                    
-                    // 透過回傳的可能性去找出最有可能的place
-                    if probability > compareLikelihood {
-                        compareLikelihood = probability
-//                        self.mostLikelyPlace = place
-                    }
-                    self.likelyPlaces.append(place)
-                }
-            }
-        })
-    }
-    
-    func showAroundPlacePicker() {
-
-        
-        guard let position = mostLikelyPlace else {
-            print("mostLikelyPlace == nil")
-            return
-        }
-        
-        let center = CLLocationCoordinate2DMake(position.coordinate.latitude, position.coordinate.longitude)
-        let northEast = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
-        let southWest = CLLocationCoordinate2DMake(center.latitude - 0.001, center.longitude - 0.001)
-        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
-        let config = GMSPlacePickerConfig(viewport: viewport)
-        let placePicker = GMSPlacePickerViewController(config: config)
-        
-        // 2
-        placePicker.delegate = self
-        self.addChildViewController(placePicker)
-        self.mapView.addSubview(placePicker.view)
-    }
-    
 }
 
-extension NearbyViewController: GMSPlacePickerViewControllerDelegate {
-    
-    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
-        print(place)
-        self.aroundPlace.append(place)
-        let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-        let marker = GMSMarker(position: coordinates)
-        marker.title = place.name
-        marker.map = self.googleMapView
-        self.googleMapView.animate(toLocation: coordinates)
-        self.mapTableView.reloadData()
-    }
-    
-    func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {
-        print("Error occurred: \(error.localizedDescription)")
-    }
-    
-    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
-        NSLog("The place picker was canceled by the user")
-        
-        // Dismiss the place picker.
-        viewController.dismiss(animated: true, completion: nil)
-    }
-
-}
 
 extension NearbyViewController: FetchLocationDelegate {
 
     func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?) {
         
-        self.locations.append(contentsOf: locations)
         for location in locations {
-            
+  
             let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-            let marker = GMSMarker(position: coordinates)
-            marker.title = location.name
-            marker.map = self.googleMapView
-            self.googleMapView.animate(toLocation: coordinates)
-            self.mapTableView.reloadData()
+            
+            if nearbyLocationDictionary["\(coordinates)"] == nil {
+                
+                let marker = GMSMarker(position: coordinates)
+                marker.title = location.name
+                marker.map = self.googleMapView
+                self.googleMapView.animate(toLocation: coordinates)
+                self.mapTableView.reloadData()
+                self.locations.append(location)
+                
+                nearbyLocationDictionary["\(coordinates)"] = location
+            } else {
+                print("已經出現過")
+            }
             
         }
         
@@ -166,7 +94,7 @@ extension NearbyViewController: FetchLocationDelegate {
                 return
             }
             let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
-            //fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+           // fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
         } else {
             print("there is no other page")
         }

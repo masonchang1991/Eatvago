@@ -31,24 +31,15 @@ class FetchNearbyLocationManager {
     func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double) {
 
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&key=\(googleMapAPIKey)"
-        
-        print(urlString)
-        
+
         fetchRequestHandler(urlString: urlString)
     }
     
     func fetchRequestHandler(urlString: String) {
         //清空之前的陣列
-        locations = []
-       var a = 0
-        var b = 0
-        a += 1
-       print("a=======\(a)")
-        
+
         Alamofire.request(urlString).responseJSON { (response) in
-            b += 1
-            print("b=======\(b)")
-            
+
             let json = response.result.value
             guard let localJson = json as? [String: Any] else {
                 self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
@@ -78,7 +69,7 @@ class FetchNearbyLocationManager {
                     return
                 }
                 
-                print(location)
+                print(name)
                 
                 guard let latitude = location["lat"] as? CLLocationDegrees,
                     let longitude = location["lng"] as? CLLocationDegrees else {
@@ -90,7 +81,7 @@ class FetchNearbyLocationManager {
                 
                 self.locations.append(locationData)
             }
-            print(self.locations.count)
+            print("delegate~~~~~~~~~~~~")
             self.delegate?.manager(self, didGet: self.locations, nextPageToken: pageToken)
                         
         }
