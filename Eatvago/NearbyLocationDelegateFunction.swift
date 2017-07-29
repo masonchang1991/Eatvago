@@ -15,7 +15,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        //print("Location: \(location)")
+        print("Location: \(location)")
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
@@ -27,16 +27,53 @@ extension NearbyViewController: CLLocationManagerDelegate {
         } else {
             googleMapView.animate(to: camera)
         }
-        
-        let fetchNearbyLocationManager = FetchNearbyLocationManager()
-        fetchNearbyLocationManager.delegate = self
+    
         if self.googleMapView.myLocation != nil && locationOfFetchNearby != self.googleMapView.myLocation {
-            // 第一個進來的location設為 currentLocation
-            self.locationOfFetchNearby = self.googleMapView.myLocation
-            self.locations = []
-            // 座標更新後呼叫拿取附近的地點
-            print(self.locationOfFetchNearby)
-            fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 100)
+            
+            if self.locationOfFetchNearby != nil {
+                guard let location = self.locationOfFetchNearby,
+                    let myLocation = self.googleMapView.myLocation else {
+                        return
+                }
+                //1公尺約0.00000900900901度
+                // 如果超過一定範圍則重置字典
+                if Double((location.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
+                    || Double((location.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
+                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
+                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
+
+                    self.nearbyLocationDictionary = [:]
+                    
+                    let fetchNearbyLocationManager = FetchNearbyLocationManager()
+                    fetchNearbyLocationManager.delegate = self
+                    // 第一個進來的location設為 currentLocation
+                    self.locationOfFetchNearby = self.googleMapView.myLocation
+                    // 將原本locations（會show在tableview上面的）清除
+                    self.locations = []
+                    // 座標更新後呼叫拿取附近的地點
+                    fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 500)
+                    
+                    
+                } else {
+                    print("不用更新")
+                }
+                
+            } else {
+                let fetchNearbyLocationManager = FetchNearbyLocationManager()
+                fetchNearbyLocationManager.delegate = self
+                // 第一個進來的location設為 currentLocation
+                self.locationOfFetchNearby = self.googleMapView.myLocation
+                // 將原本locations（會show在tableview上面的）清除
+                self.locations = []
+                // 座標更新後呼叫拿取附近的地點
+                fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 500)
+            }
+            
+    
+
+            
+            
+            
         }
     }
     
@@ -64,25 +101,22 @@ extension NearbyViewController: CLLocationManagerDelegate {
     }
 }
 
-
 extension NearbyViewController: FetchLocationDelegate {
 
     func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?) {
         
+        print(locations.count)
         for location in locations {
-  
-            let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-            
-            if nearbyLocationDictionary["\(coordinates)"] == nil {
-                
+
+            if nearbyLocationDictionary["\(location.id)"] == nil {
+                let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
                 let marker = GMSMarker(position: coordinates)
                 marker.title = location.name
                 marker.map = self.googleMapView
                 self.googleMapView.animate(toLocation: coordinates)
-                self.mapTableView.reloadData()
                 self.locations.append(location)
-                
-                nearbyLocationDictionary["\(coordinates)"] = location
+                self.mapTableView.reloadData()
+                nearbyLocationDictionary["\(location.id)"] = location
             } else {
                 print("已經出現過")
             }
@@ -94,20 +128,16 @@ extension NearbyViewController: FetchLocationDelegate {
                 return
             }
             let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
-           // fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+            let fetchNearbyLocationManager = FetchNearbyLocationManager()
+            fetchNearbyLocationManager.delegate = self
+            fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
         } else {
             print("there is no other page")
         }
-
-        
-        
     }
     func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error) {
         
         print(error)
         
     }
-    
-    
-
 }

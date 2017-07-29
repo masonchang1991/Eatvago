@@ -20,17 +20,19 @@ enum FetchError: Error {
     case invalidFormatted
 }
 
-
 class FetchNearbyLocationManager {
+    
+    static let shared = FetchNearbyLocationManager()
     
     weak var delegate: FetchLocationDelegate?
     //獲取地圖資訊的陣列
     var locations: [Location] = []
-    var nextPageToken = ""
     
     func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double) {
 
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&key=\(googleMapAPIKey)"
+        
+        print(urlString)
 
         fetchRequestHandler(urlString: urlString)
     }
@@ -47,7 +49,6 @@ class FetchNearbyLocationManager {
             }
             guard let results = localJson["results"] as? [[String: Any]],
                 let pageToken = localJson["next_page_token"] as? String? else {
-                    print(localJson["next_page_token"])
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
             }
@@ -68,15 +69,11 @@ class FetchNearbyLocationManager {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
                 }
-                
-                print(name)
-                
                 guard let latitude = location["lat"] as? CLLocationDegrees,
                     let longitude = location["lng"] as? CLLocationDegrees else {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                 }
-                
                 let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, openingHours: openingHours, placeId: placeId, types: types)
                 
                 self.locations.append(locationData)
@@ -85,10 +82,5 @@ class FetchNearbyLocationManager {
             self.delegate?.manager(self, didGet: self.locations, nextPageToken: pageToken)
                         
         }
-
-        
-        
     }
-    
-    
 }

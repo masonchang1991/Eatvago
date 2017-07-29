@@ -34,7 +34,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     //建立location的字典 座標是key 值是location struct  目的: 改善地點間交集的狀況
     var nearbyLocationDictionary: [String : Location ] = [:]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +51,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         googleMapView.settings.myLocationButton = true
         googleMapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         googleMapView.isMyLocationEnabled = true
-        
         
         // Add the map to the view, hide it until we've got a location update.
         mapView.addSubview(googleMapView)
