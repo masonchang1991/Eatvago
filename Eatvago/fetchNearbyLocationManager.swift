@@ -12,7 +12,7 @@ import GoogleMaps
 import GooglePlaces
 
 protocol FetchLocationDelegate: class {
-    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location])
+    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?)
     func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error)
 }
 
@@ -24,28 +24,42 @@ enum FetchError: Error {
 class FetchNearbyLocationManager {
     
     weak var delegate: FetchLocationDelegate?
-    
+    //獲取地圖資訊的陣列
     var locations: [Location] = []
     var nextPageToken = ""
     
     func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double) {
-        
+
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&key=\(googleMapAPIKey)"
+        
         print(urlString)
+        
+        fetchRequestHandler(urlString: urlString)
+    }
+    
+    func fetchRequestHandler(urlString: String) {
+        //清空之前的陣列
+        locations = []
+       var a = 0
+        var b = 0
+        a += 1
+       print("a=======\(a)")
+        
         Alamofire.request(urlString).responseJSON { (response) in
-            debugPrint(response)
+            b += 1
+            print("b=======\(b)")
+            
             let json = response.result.value
             guard let localJson = json as? [String: Any] else {
                 self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                 return
             }
             guard let results = localJson["results"] as? [[String: Any]],
-                let pageToken = localJson["next_page_token"] as? String else {
+                let pageToken = localJson["next_page_token"] as? String? else {
+                    print(localJson["next_page_token"])
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
             }
-            self.nextPageToken = pageToken
-            
             for result in results {
                 // 不是所有都有opening_hours所以特別拿出來
                 let openingHours = result["opening_hours"] as? [String: Any] ?? nil
@@ -76,11 +90,14 @@ class FetchNearbyLocationManager {
                 
                 self.locations.append(locationData)
             }
-            self.delegate?.manager(self, didGet: self.locations)
-            
-            
+            print(self.locations.count)
+            self.delegate?.manager(self, didGet: self.locations, nextPageToken: pageToken)
+                        
         }
+
+        
         
     }
+    
     
 }

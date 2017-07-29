@@ -28,7 +28,17 @@ extension NearbyViewController: CLLocationManagerDelegate {
             googleMapView.animate(to: camera)
         }
         
-        listLikelyPlaces()
+        let fetchNearbyLocationManager = FetchNearbyLocationManager()
+        fetchNearbyLocationManager.delegate = self
+        if self.googleMapView.myLocation != nil && locationOfFetchNearby != self.googleMapView.myLocation {
+            // 第一個進來的location設為 currentLocation
+            self.locationOfFetchNearby = self.googleMapView.myLocation
+            
+            
+            self.locations = []
+            // 座標更新後呼叫拿取附近的地點
+            fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 100)
+        }
     }
     
     // Handle authorization for the location manager.
@@ -83,9 +93,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     self.likelyPlaces.append(place)
                 }
             }
-            let fetchNearbyLocationManger = FetchNearbyLocationManager()
-            fetchNearbyLocationManger.delegate = self
-            fetchNearbyLocationManger.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 100)
         })
     }
     
@@ -140,7 +147,7 @@ extension NearbyViewController: GMSPlacePickerViewControllerDelegate {
 
 extension NearbyViewController: FetchLocationDelegate {
 
-    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location]) {
+    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?) {
         
         self.locations.append(contentsOf: locations)
         for location in locations {
@@ -153,6 +160,17 @@ extension NearbyViewController: FetchLocationDelegate {
             self.mapTableView.reloadData()
             
         }
+        
+        if nextPageToken != nil {
+            guard let pageToken = nextPageToken else {
+                return
+            }
+            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
+            //fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+        } else {
+            print("there is no other page")
+        }
+
         
         
     }

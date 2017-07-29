@@ -10,12 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
-            timestampString = "522941390.07292"
+            timestampString = "523005726.351601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "manager(_:didGet:)"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "manager(_:didGet:nextPageToken:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
+            timestampString = "523005726.351601"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "manager(_:didGet:nextPageToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/fetchNearbyLocationManager.swift"
-            timestampString = "522943834.578737"
+            timestampString = "523004584.272697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "requestNearbyLocation(coordinate:radius:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "fetchRequestHandler(urlString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/fetchNearbyLocationManager.swift"
-            timestampString = "522943834.578737"
+            timestampString = "523004063.893544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "requestNearbyLocation(coordinate:radius:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -57,13 +73,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Eatvago/fetchNearbyLocationManager.swift"
-            timestampString = "522943834.578737"
+            filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
+            timestampString = "523005726.351601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "requestNearbyLocation(coordinate:radius:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
+            timestampString = "523005784.844303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

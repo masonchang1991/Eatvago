@@ -35,6 +35,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     // The currently selected place.
     var selectedPlace: GMSPlace?
     
+    //建立呼叫fetchNearbyLocation使用的location 用途：避免重複互叫fetchNearbyLocationManager
+    var locationOfFetchNearby: CLLocation?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
