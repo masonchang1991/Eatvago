@@ -18,6 +18,8 @@
 		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
+		9380CA8C1F2B341500629C0A /* fetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* fetchNearbyLocationManager.swift */; };
+		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		9301443E1F27986700CEC11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9380CA8B1F2B341500629C0A /* fetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fetchNearbyLocationManager.swift; sourceTree = "<group>"; };
+		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +77,8 @@
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
 				930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */,
 				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
+				9380CA8B1F2B341500629C0A /* fetchNearbyLocationManager.swift */,
+				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
 			);
 			name = NearBy;
 			sourceTree = "<group>";
@@ -251,10 +257,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9380CA8C1F2B341500629C0A /* fetchNearbyLocationManager.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				930086781F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift in Sources */,
+				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
 			);

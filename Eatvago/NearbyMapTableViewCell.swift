@@ -12,5 +12,4 @@ class NearbyMapTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mapTextLabel: UILabel!
 
-
 }

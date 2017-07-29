@@ -17,7 +17,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
         let location: CLLocation = locations.last!
         //print("Location: \(location)")
         
-        
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
                                               zoom: zoomLevel)
@@ -55,7 +54,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
     
-    
     // Populate the array with the list of likely places.
     func listLikelyPlaces() {
         // Clean up from previous sessions.
@@ -80,20 +78,19 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     // 透過回傳的可能性去找出最有可能的place
                     if probability > compareLikelihood {
                         compareLikelihood = probability
-                        self.mostLikelyPlace = place
+//                        self.mostLikelyPlace = place
                     }
                     self.likelyPlaces.append(place)
-                    self.mapTableView.reloadData()
                 }
-                self.showAroundPlacePicker()
             }
-
-            
+            let fetchNearbyLocationManger = FetchNearbyLocationManager()
+            fetchNearbyLocationManger.delegate = self
+            fetchNearbyLocationManger.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 100)
         })
     }
-
     
     func showAroundPlacePicker() {
+
         
         guard let position = mostLikelyPlace else {
             print("mostLikelyPlace == nil")
@@ -113,13 +110,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         self.mapView.addSubview(placePicker.view)
     }
     
-    
-    
-
-    
-    
 }
-
 
 extension NearbyViewController: GMSPlacePickerViewControllerDelegate {
     
@@ -145,5 +136,32 @@ extension NearbyViewController: GMSPlacePickerViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension NearbyViewController: FetchLocationDelegate {
+
+    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location]) {
+        
+        self.locations.append(contentsOf: locations)
+        for location in locations {
+            
+            let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            let marker = GMSMarker(position: coordinates)
+            marker.title = location.name
+            marker.map = self.googleMapView
+            self.googleMapView.animate(toLocation: coordinates)
+            self.mapTableView.reloadData()
+            
+        }
+        
+        
+    }
+    func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error) {
+        
+        print(error)
+        
+    }
+    
+    
 
 }

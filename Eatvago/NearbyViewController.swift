@@ -24,9 +24,13 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
-    var mostLikelyPlace : GMSPlace?
+    var mostLikelyPlace: GMSPlace?
+    // 建立搜尋地點的manager
+    var fetchNearbyLocationManager = FetchNearbyLocationManager()
+    
     //附近的地點 base on mostLikelyPlace
     var aroundPlace: [GMSPlace] = []
+    var locations: [Location] = []
     
     // The currently selected place.
     var selectedPlace: GMSPlace?
@@ -49,6 +53,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         googleMapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         googleMapView.isMyLocationEnabled = true
         
+        
         // Add the map to the view, hide it until we've got a location update.
         mapView.addSubview(googleMapView)
         googleMapView.isHidden = true
@@ -56,6 +61,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
 
         mapTableView.delegate = self
         mapTableView.dataSource = self
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,14 +70,14 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return aroundPlace.count
+        return locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
             return UITableViewCell()
         }
-        let collectionItem = aroundPlace[indexPath.row]
+        let collectionItem = locations[indexPath.row]
         
         cell.mapTextLabel.text = collectionItem.name
     
@@ -90,7 +96,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         }
         return 0
     }
-
     
     @IBAction func changTableViewAndMap(_ sender: UIButton) {
         if mapTableView.isHidden == true {
@@ -103,9 +108,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             sender.setTitle("Table", for: .normal)
         }
         
-        
     }
-    
 
     @IBAction func logout(_ sender: UIButton) {
         // 消去 UserDefaults內使用者的帳號資訊
@@ -120,5 +123,3 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
 }
-
-

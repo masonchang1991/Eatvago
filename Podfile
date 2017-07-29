@@ -13,4 +13,5 @@ target 'Eatvago' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
+  pod 'Alamofire'
 end
