@@ -29,7 +29,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var locations: [Location] = []
     
     //建立呼叫fetchNearbyLocation使用的location 用途：避免重複互叫fetchNearbyLocationManager
-    var locationOfFetchNearby: CLLocation?
+    var locationOfFetchNearby: CLLocation? = nil
     
     //建立location的字典 座標是key 值是location struct  目的: 改善地點間交集的狀況
     var nearbyLocationDictionary: [String : Location ] = [:]
@@ -37,13 +37,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 配置 locationManager
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-        placesClient = GMSPlacesClient.shared()
         
         //設置初始點
         let camera = GMSCameraPosition.camera(withLatitude: 25.042476, longitude: 121.564882, zoom: 20)
@@ -61,6 +54,20 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         mapTableView.dataSource = self
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        
+        self.locationOfFetchNearby = nil
+        
+        // 配置 locationManager
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        placesClient = GMSPlacesClient.shared()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

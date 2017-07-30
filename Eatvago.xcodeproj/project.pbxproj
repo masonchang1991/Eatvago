@@ -20,6 +20,7 @@
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
+		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
+		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
+				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
 				930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */,
 				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
 				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */,
+				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,

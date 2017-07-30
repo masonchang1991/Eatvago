@@ -27,7 +27,8 @@ extension NearbyViewController: CLLocationManagerDelegate {
         } else {
             googleMapView.animate(to: camera)
         }
-    
+        //下面這些判斷 主要是因為locationManager會一直丟location給我 但我不想一直呼叫我的FetchNearbyLocationManager
+        //所以做了一些限制條件讓他只會在真正需要的時候call
         if self.googleMapView.myLocation != nil && locationOfFetchNearby != self.googleMapView.myLocation {
             
             if self.locationOfFetchNearby != nil {
@@ -107,22 +108,11 @@ extension NearbyViewController: FetchLocationDelegate {
         
         print(locations.count)
         for location in locations {
-
-            if nearbyLocationDictionary["\(location.id)"] == nil {
-                let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-                let marker = GMSMarker(position: coordinates)
-                marker.title = location.name
-                marker.map = self.googleMapView
-                self.googleMapView.animate(toLocation: coordinates)
-                self.locations.append(location)
-                self.mapTableView.reloadData()
-                nearbyLocationDictionary["\(location.id)"] = location
-            } else {
-                print("已經出現過")
-            }
-            
+            //每個地點delegate去獲取詳細資訊
+            let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
+            fetchPlaceIdDetailManager.delegate = self
+            fetchPlaceIdDetailManager.requestPlaceIdDetail(placeId: location.placeId, locationWithoutDetail: location)
         }
-        
         if nextPageToken != nil {
             guard let pageToken = nextPageToken else {
                 return
@@ -141,3 +131,30 @@ extension NearbyViewController: FetchLocationDelegate {
         
     }
 }
+
+extension NearbyViewController: FetchPlaceIdDetailDelegate {
+    
+    func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location) {
+        
+        if nearbyLocationDictionary["\(placeId)"] == nil {
+            let coordinates = CLLocationCoordinate2DMake(locationWithDetail.latitude, locationWithDetail.longitude)
+            let marker = GMSMarker(position: coordinates)
+            marker.title = locationWithDetail.name
+            marker.map = self.googleMapView
+            self.googleMapView.animate(toLocation: coordinates)
+            nearbyLocationDictionary["\(placeId)"] = locationWithDetail
+            self.locations.append(locationWithDetail)
+            self.mapTableView.reloadData()
+            
+        } else {
+            print("已經出現過")
+        }
+    }
+    
+    func manager(_ manager: FetchPlaceIdDetailManager, didFailWith error: Error) {
+        
+        
+        
+    }
+}
+

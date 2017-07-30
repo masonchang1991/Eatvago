@@ -30,8 +30,9 @@ class FetchNearbyLocationManager {
     
     func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double) {
 
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&key=\(googleMapAPIKey)"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&keyword=&key=\(googleMapAPIKey)"
         
+
         print(urlString)
 
         fetchRequestHandler(urlString: urlString)
@@ -53,8 +54,25 @@ class FetchNearbyLocationManager {
                     return
             }
             for result in results {
-                // 不是所有都有opening_hours所以特別拿出來
-                let openingHours = result["opening_hours"] as? [String: Any] ?? nil
+                // 不是所有都有priceLevel, rating所以特別拿出來
+                // priceLevel = -1.0 代表此資料沒提供priceLevel
+                var priceLevel = -1.0
+                if result["price_level"] != nil {
+                    guard let plevel = result["price_level"] as? Double else {
+                        return
+                    }
+                    priceLevel = plevel
+                }
+                var rating = -1.0
+                if result["rating"] != nil {
+                    guard let rlevel = result["rating"] as? Double else {
+                        return
+                    }
+                    rating = rlevel
+                }
+                
+                print("priceLevel ==== \(priceLevel)")
+                print("rating ===\(rating)")
                 
                 guard let geometry = result["geometry"] as? [String:Any],
                     let id = result["id"] as? String,
@@ -74,11 +92,10 @@ class FetchNearbyLocationManager {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                 }
-                let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, openingHours: openingHours, placeId: placeId, types: types)
+                let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, placeId: placeId, types: types, priceLevel: priceLevel, rating: rating)
                 
                 self.locations.append(locationData)
             }
-            print("delegate~~~~~~~~~~~~")
             self.delegate?.manager(self, didGet: self.locations, nextPageToken: pageToken)
                         
         }
