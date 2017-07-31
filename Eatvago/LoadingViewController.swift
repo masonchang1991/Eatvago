@@ -57,7 +57,7 @@ class LoadingViewController: UIViewController {
                         self.loginSuccess = true
                         
                     } else {
-                        print(error)
+                        print(error ?? nil)
                         self.loginSuccess = false
                     }
                     

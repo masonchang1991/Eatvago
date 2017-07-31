@@ -77,11 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
-				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
 				930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */,
 				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
-				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
+				9380CA911F2DE46200629C0A /* FetchManagers */,
 			);
 			name = NearBy;
 			sourceTree = "<group>";
@@ -118,6 +117,15 @@
 				930086741F29E9FE00BEA223 /* GoogleService-Info.plist */,
 			);
 			path = Eatvago;
+			sourceTree = "<group>";
+		};
+		9380CA911F2DE46200629C0A /* FetchManagers */ = {
+			isa = PBXGroup;
+			children = (
+				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
+				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
+			);
+			name = FetchManagers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

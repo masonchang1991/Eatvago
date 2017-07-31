@@ -38,5 +38,4 @@ struct Location {
         self.website = ""
     }
     
-    
 }

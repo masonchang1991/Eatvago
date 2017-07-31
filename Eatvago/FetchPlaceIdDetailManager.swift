@@ -14,7 +14,6 @@ protocol FetchPlaceIdDetailDelegate: class {
     func manager(_ manager: FetchPlaceIdDetailManager, didFailWith error: Error)
 }
 
-
 class FetchPlaceIdDetailManager {
     
      weak var delegate: FetchPlaceIdDetailDelegate?
@@ -41,7 +40,7 @@ class FetchPlaceIdDetailManager {
             var formattedPhoneNumber = ""
             
             if result["formatted_phone_number"] != nil {
-                guard let phoneNumber = result["formatted_phone_number"] as? String else{
+                guard let phoneNumber = result["formatted_phone_number"] as? String else {
                     return
                 }
                 formattedPhoneNumber = phoneNumber
@@ -78,8 +77,6 @@ class FetchPlaceIdDetailManager {
 
         }
         
-        
     }
-    
     
 }

@@ -36,7 +36,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         //設置初始點
         let camera = GMSCameraPosition.camera(withLatitude: 25.042476, longitude: 121.564882, zoom: 20)
@@ -61,13 +60,12 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         // 配置 locationManager
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,6 +83,18 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let collectionItem = locations[indexPath.row]
         
         cell.mapTextLabel.text = collectionItem.name
+        cell.locationPhoneNumber.text = "Phone: \(collectionItem.formattedPhoneNumber)"
+        if collectionItem.priceLevel == -1.0 {
+            cell.locationPriceLevel.text = "Price: 不知"
+            
+        } else {
+            guard let priceLevel = collectionItem.priceLevel else {
+                return cell
+            }
+            cell.locationPriceLevel.text = "Price: \(priceLevel)"
+        }
+        
+        
     
         return cell
     }

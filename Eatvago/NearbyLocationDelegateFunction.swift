@@ -29,7 +29,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         }
         //下面這些判斷 主要是因為locationManager會一直丟location給我 但我不想一直呼叫我的FetchNearbyLocationManager
         //所以做了一些限制條件讓他只會在真正需要的時候call
-        if self.googleMapView.myLocation != nil && locationOfFetchNearby != self.googleMapView.myLocation {
+        if self.googleMapView.myLocation != nil && (locationOfFetchNearby != self.googleMapView.myLocation || locationOfFetchNearby == nil) {
             
             if self.locationOfFetchNearby != nil {
                 guard let location = self.locationOfFetchNearby,
@@ -54,7 +54,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     // 座標更新後呼叫拿取附近的地點
                     fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 500)
                     
-                    
                 } else {
                     print("不用更新")
                 }
@@ -69,11 +68,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
                 // 座標更新後呼叫拿取附近的地點
                 fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake((self.googleMapView.myLocation?.coordinate.latitude)!, (self.googleMapView.myLocation?.coordinate.longitude)!), radius: 500)
             }
-            
-    
-
-            
-            
             
         }
     }
@@ -153,8 +147,5 @@ extension NearbyViewController: FetchPlaceIdDetailDelegate {
     
     func manager(_ manager: FetchPlaceIdDetailManager, didFailWith error: Error) {
         
-        
-        
     }
 }
-
