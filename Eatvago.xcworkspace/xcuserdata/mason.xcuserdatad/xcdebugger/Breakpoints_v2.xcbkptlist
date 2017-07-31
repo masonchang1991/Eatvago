@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchPlaceIdDetailManager.swift"
-            timestampString = "523100410.962771"
+            timestampString = "523173842.200151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "requestPlaceIdDetail(placeId:locationWithoutDetail:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/NearbyViewController.swift"
-            timestampString = "523126632.80477"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "requestPlaceIdDetail(placeId:locationWithoutDetail:myLocation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

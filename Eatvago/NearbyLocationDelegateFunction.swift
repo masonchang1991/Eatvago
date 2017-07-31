@@ -99,13 +99,17 @@ extension NearbyViewController: CLLocationManagerDelegate {
 extension NearbyViewController: FetchLocationDelegate {
 
     func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?) {
+        //單純解除optional 為了傳遞給fetchplacedetailManager
+        guard let mylocation = self.googleMapView.myLocation else {
+            return
+        }
         
         print(locations.count)
         for location in locations {
             //每個地點delegate去獲取詳細資訊
             let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
             fetchPlaceIdDetailManager.delegate = self
-            fetchPlaceIdDetailManager.requestPlaceIdDetail(placeId: location.placeId, locationWithoutDetail: location)
+            fetchPlaceIdDetailManager.requestPlaceIdDetail(placeId: location.placeId, locationWithoutDetail: location, myLocation: mylocation)
         }
         if nextPageToken != nil {
             guard let pageToken = nextPageToken else {

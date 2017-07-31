@@ -21,7 +21,8 @@ struct Location {
     var formattedPhoneNumber: String
     var reviewsText: [String]
     var website: String
-    
+    var distanceText: String
+    var durationText: String
     //一開始先找nearby使用的init
     init(latitude: Double, longitude: Double, name: String, id: String, placeId: String, types: [String], priceLevel: Double?, rating: Double?) {
         self.latitude = latitude
@@ -36,6 +37,8 @@ struct Location {
         self.formattedPhoneNumber = ""
         self.reviewsText = []
         self.website = ""
+        self.distanceText = ""
+        self.durationText = ""
     }
     
 }

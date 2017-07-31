@@ -13,6 +13,7 @@ import GoogleMaps
 import GooglePlaces
 
 var googleMapAPIKey = "AIzaSyAIm_Vg-SizaqaPwLf4SlUfSpZBxUNs1X0"
+var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

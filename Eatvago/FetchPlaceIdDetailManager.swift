@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import GoogleMaps
 
 protocol FetchPlaceIdDetailDelegate: class {
     func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location)
@@ -18,7 +19,7 @@ class FetchPlaceIdDetailManager {
     
      weak var delegate: FetchPlaceIdDetailDelegate?
     
-    func requestPlaceIdDetail(placeId: String, locationWithoutDetail: Location) {
+    func requestPlaceIdDetail(placeId: String, locationWithoutDetail: Location, myLocation: CLLocation) {
         
         var location = locationWithoutDetail
         
@@ -73,10 +74,64 @@ class FetchPlaceIdDetailManager {
             location.openingHours = openingHours
             location.website = website
             
-            self.delegate?.manager(self, searchBy: placeId, didGet: location)
+            
+            let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(locationWithoutDetail.latitude),\(locationWithoutDetail.longitude)&key=\(googleMapDistanceMatrixAPIKey)"
+            
+            Alamofire.request(urlStringForDistance).responseJSON { (response) in
+                
+                let jsonOfDistance = response.result.value
+                
+                guard let localJsonOfDistance = jsonOfDistance as? [String: Any] else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                    return
+                }
+                
+                guard let rowsOfElements = localJsonOfDistance["rows"] as? [[String:Any]] else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                    return
+                }
+                let rowOfElement = rowsOfElements[0]
+                guard let elements = rowOfElement["elements"] as? [[String:Any]] else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                    return
+                }
+                let element = elements[0]
+                
+                guard let distance = element["distance"] as? [String: Any],
+                        let duration = element["duration"] as? [String:Any] else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                        return
+                }
+                
+                guard let distanceText = distance["text"] as? String,
+                        let durationText = duration["text"] as? String else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                        return
+                }
+                
+                location.distanceText = distanceText
+                location.durationText = durationText
+                
+                self.delegate?.manager(self, searchBy: placeId, didGet: location)
+                
+            }
 
         }
         
     }
+    
+}
+
+//建立抓取距離的function
+extension FetchPlaceIdDetailManager {
+
+    func fetchDistanceBetweenIAndLocation() {
+        
+        
+        
+        
+    }
+    
+    
     
 }

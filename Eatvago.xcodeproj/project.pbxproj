@@ -18,6 +18,7 @@
 		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
+		9308F2961F2EDF8B00819B03 /* FetchDistanceBetweenIAndLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F2951F2EDF8B00819B03 /* FetchDistanceBetweenIAndLocation.swift */; };
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
@@ -37,6 +38,7 @@
 		9301443E1F27986700CEC11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9308F2951F2EDF8B00819B03 /* FetchDistanceBetweenIAndLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDistanceBetweenIAndLocation.swift; sourceTree = "<group>"; };
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
+				9308F2951F2EDF8B00819B03 /* FetchDistanceBetweenIAndLocation.swift */,
 				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
 			);
 			name = FetchManagers;
@@ -277,6 +280,7 @@
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
+				9308F2961F2EDF8B00819B03 /* FetchDistanceBetweenIAndLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
