@@ -15,4 +15,5 @@ target 'Eatvago' do
   pod 'GooglePlacePicker'
   pod 'Alamofire'
   pod 'SDWebImage', '~> 4.0'
+  pod 'NVActivityIndicatorView'
 end

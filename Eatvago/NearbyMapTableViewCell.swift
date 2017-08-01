@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class NearbyMapTableViewCell: UITableViewCell {
+class NearbyMapTableViewCell: UITableViewCell, NVActivityIndicatorViewable {
 
     @IBOutlet weak var mapTextLabel: UILabel!
 
@@ -17,7 +18,11 @@ class NearbyMapTableViewCell: UITableViewCell {
     
     @IBOutlet weak var durationText: UILabel!
     
+    @IBOutlet weak var storePhotoView: NVActivityIndicatorView!
+    
     @IBOutlet weak var storePhotoImageView: UIImageView!
+    
+    
     
     @IBOutlet weak var showStoreDetailButton: UIButton!
     

@@ -99,40 +99,24 @@ extension NearbyViewController: FetchLocationDelegate {
     func manager(_ manager: FetchNearbyLocationManager, didGet nearLocations: [Location], nextPageToken: String?) {
 
         print(nearLocations.count)
-  
-            //每個地點delegate去獲取詳細資訊
-        for location in nearLocations {
-            if nearbyLocationDictionary["\(location.placeId)"] == nil {
-                
-                let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
-                let marker = GMSMarker(position: coordinates)
-                marker.title = location.name
-                marker.map = self.googleMapView
-                self.googleMapView.animate(toLocation: coordinates)
-                
-                nearbyLocationDictionary["\(location.placeId)"] = location
-                self.locations.append(location)
-                print(self.locations.count)
-                self.mapTableView.reloadData()
-                
-                fetchPlaceImageManager.fetchImage(locationPhotoReference: location.photoReference, imageOfIndexPathRow: (self.locations.count - 1))
-
-            } else {
-                print("已經出現過", location.name)
-            }
+        
+        guard let myLocation = self.googleMapView.myLocation else {
+            return
         }
+        
+        fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
 
-//        if nextPageToken != nil {
-//            guard let pageToken = nextPageToken else {
-//                return
-//            }
-//            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
-//
-//                self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
-//            
-//        } else {
-//            print("there is no other page")
-//        }
+        if nextPageToken != nil {
+            guard let pageToken = nextPageToken else {
+                return
+            }
+            self.nextPageToken = pageToken
+            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
+                self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+            
+        } else {
+            print("there is no other page")
+        }
     }
     
     func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error) {
@@ -166,13 +150,19 @@ extension NearbyViewController: FetchPlaceIdDetailDelegate {
 
 extension NearbyViewController: FetchPlaceImageDelegate {
     
-    func manager(_ manager: FetchPlaceImageManager, fetch image: UIImageView, imageOfIndexPathRow: Int) {
+    func manager(_ manager: FetchPlaceImageManager, fetch imageView: UIImageView, imageOfIndexPathRow: Int) {
         
         print(imageOfIndexPathRow)
         DispatchQueue.main.async {
-            self.locations[imageOfIndexPathRow].photo = image
-            let indexPath = NSIndexPath(row: imageOfIndexPathRow, section: 0)
-            self.mapTableView.reloadRows(at: [indexPath as IndexPath], with: .middle)
+            
+            print("imageOfIndexPathRow", imageOfIndexPathRow)
+            
+//            let cell = self.mapTableView.cellForRow(at: IndexPath(row: imageOfIndexPathRow, section: 0)) as? NearbyMapTableViewCell
+            
+//            cell?.storePhotoImageView.image = image.image
+            
+            self.locations[imageOfIndexPathRow].photo = imageView
+            self.mapTableView.reloadData()
         }
 
         //            print("index path", imageOfIndexPathRow, "!!!!!!!!!!!!!!!!!!!!")
@@ -184,8 +174,41 @@ extension NearbyViewController: FetchPlaceImageDelegate {
         
     }
     
+}
+
+
+extension NearbyViewController: FetchDistanceDelegate {
     
+    func manager(_ manager: FetchDistanceManager, didGet nearLocationsWithDistance: [Location]) {
+        
+        //每個地點delegate去獲取詳細資訊
+        for location in nearLocationsWithDistance {
+            if nearbyLocationDictionary["\(location.placeId)"] == nil {
+                
+                let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                let marker = GMSMarker(position: coordinates)
+                marker.title = location.name
+                marker.map = self.googleMapView
+                self.googleMapView.animate(toLocation: coordinates)
+                
+                nearbyLocationDictionary["\(location.placeId)"] = location
+                self.locations.append(location)
+                fetchPlaceImageManager.fetchImage(locationPhotoReference: location.photoReference, imageOfIndexPathRow: (self.locations.count - 1))
+                
+            } else {
+                print("已經出現過", location.name)
+            }
+        }
+        self.mapTableView.reloadData()
+
+        
+        
+    }
     
+    func manager(_ manager: FetchDistanceManager, didFailWith error: Error) {
+        
+        
+    }
     
     
 }

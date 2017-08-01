@@ -22,7 +22,7 @@ class FetchPlaceImageManager {
         
         //下載圖片
 
-            let requestImgUrl = URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=\(photoReference)&key=\(googleMapAPIKey)")
+            let requestImgUrl = URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=\(photoReference)&key=\(googleMapAPIKey)")
             
             
             guard let url = requestImgUrl else {

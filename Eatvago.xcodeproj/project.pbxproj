@@ -21,6 +21,7 @@
 		9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F2971F2F215800819B03 /* UIImage+Gif.swift */; };
 		9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9308F29A1F2F21B000819B03 /* loadingGIF.gif */; };
 		9308F29D1F2F2D2600819B03 /* FetchPlaceImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */; };
+		9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329D9D11F306A6800415697 /* FetchDistanceManager.swift */; };
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
@@ -43,6 +44,7 @@
 		9308F2971F2F215800819B03 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		9308F29A1F2F21B000819B03 /* loadingGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingGIF.gif; sourceTree = "<group>"; };
 		9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceImageManager.swift; sourceTree = "<group>"; };
+		9329D9D11F306A6800415697 /* FetchDistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDistanceManager.swift; sourceTree = "<group>"; };
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
+				9329D9D11F306A6800415697 /* FetchDistanceManager.swift */,
 				9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */,
 				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
 			);
@@ -293,6 +296,7 @@
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				930086781F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift in Sources */,
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
+				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
 				9308F29D1F2F2D2600819B03 /* FetchPlaceImageManager.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,

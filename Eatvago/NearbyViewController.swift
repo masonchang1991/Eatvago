@@ -9,8 +9,9 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import NVActivityIndicatorView
 
-class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapTableView: UITableView!
@@ -22,7 +23,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
 
-
+    
 
     //附近的地點 base on mylocation
     var locations: [Location] = []
@@ -36,8 +37,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     let fetchNearbyLocationManager = FetchNearbyLocationManager()
     let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
     let fetchPlaceImageManager = FetchPlaceImageManager()
-
-    var nextPageToken: String?
+    let fetchDistanceManager = FetchDistanceManager()
+    var nextPageToken = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         fetchNearbyLocationManager.delegate = self
         fetchPlaceIdDetailManager.delegate = self
         fetchPlaceImageManager.delegate = self
+        fetchDistanceManager.delegate = self
+        
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -86,9 +89,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        return UITableViewAutomaticDimension
+        return 110.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,12 +99,25 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let location = locations[indexPath.row]
         
         cell.mapTextLabel.text = location.name
-
+        
         if location.photo?.image == nil {
-            cell.storePhotoImageView.loadGif(name: "loadingGIF")
-        } else  {
-            cell.storePhotoImageView.image = location.photo?.image
+            cell.storePhotoView.startAnimating()
+            cell.storePhotoImageView.isHidden = true
+            
+        } else {
+            cell.storePhotoView.stopAnimating()
+            
+            guard let storeImage = location.photo else {
+                return UITableViewCell()
+            }
+            cell.storePhotoView.isHidden = true
+            cell.storePhotoImageView.isHidden = false
+            cell.storePhotoImageView.contentMode = .scaleToFill
+            cell.storePhotoImageView.image = storeImage.image
+            cell.storePhotoImageView.contentMode = .scaleToFill
         }
+        
+        
         
         cell.distanceText.text = location.distanceText
         cell.durationText.text = location.durationText
