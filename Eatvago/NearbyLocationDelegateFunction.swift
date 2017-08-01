@@ -135,9 +135,39 @@ extension NearbyViewController: FetchLocationDelegate {
 
 extension NearbyViewController: FetchPlaceIdDetailDelegate {
     
-    func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location) {
+    func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location, senderTag: Int) {
         
         nearbyLocationDictionary["\(placeId)"] = locationWithDetail
+        
+        self.locations[senderTag] = locationWithDetail
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 15)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 10)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("OK") {
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        let subTextView = UITextView(frame: CGRect(x: 0, y: 0, width: 216, height: 70))
+        let x = (subTextView.frame.width - 180) / 2
+        
+        let textView = UITextView(frame: CGRect(x: x, y: 10, width: 180, height: 50))
+        textView.text = "電話號碼為 \(self.locations[senderTag].formattedPhoneNumber)"
+        textView.layer.borderColor = UIColor.blue.cgColor
+        textView.layer.borderWidth = 1.5
+        textView.layer.cornerRadius = 5
+        subTextView.addSubview(textView)
+        alert.customSubview = subTextView
+        
+        
+        alert.showTitle("\(self.locations[senderTag].name)", subTitle: "", style: .success)
+        
         
     }
     
@@ -153,18 +183,13 @@ extension NearbyViewController: FetchPlaceImageDelegate {
         print(imageOfIndexPathRow)
         DispatchQueue.main.async {
             
-            print("imageOfIndexPathRow", imageOfIndexPathRow)
             
-//            let cell = self.mapTableView.cellForRow(at: IndexPath(row: imageOfIndexPathRow, section: 0)) as? NearbyMapTableViewCell
-            
-//            cell?.storePhotoImageView.image = image.image
             
             self.locations[imageOfIndexPathRow].photo = imageView
             self.mapTableView.reloadData()
         }
-
-        //            print("index path", imageOfIndexPathRow, "!!!!!!!!!!!!!!!!!!!!")
-
+        
+        
     }
     
     func manager(_ manager: FetchPlaceImageManager, didFailWith error: Error) {
@@ -203,9 +228,14 @@ extension NearbyViewController: FetchDistanceDelegate {
             return
         }
         
+      
+        self.lastPageToken = self.nextPageToken
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(self.nextPageToken)&key=\(googleMapAPIKey)"
         self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
-        self.lastPageToken = self.nextPageToken
+
+    
+        
+
         
         
     }

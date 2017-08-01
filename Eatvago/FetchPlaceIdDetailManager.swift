@@ -11,7 +11,7 @@ import Alamofire
 import GoogleMaps
 
 protocol FetchPlaceIdDetailDelegate: class {
-    func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location)
+    func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location, senderTag: Int)
     func manager(_ manager: FetchPlaceIdDetailManager, didFailWith error: Error)
 }
 
@@ -19,24 +19,16 @@ class FetchPlaceIdDetailManager {
     
      weak var delegate: FetchPlaceIdDetailDelegate?
     
-    func requestPlaceIdDetail(locationsWithoutDetail: [Location]) {
+    func requestPlaceIdDetail(locationsWithoutDetail: Location, senderTag: Int) {
 
-        
-        for location in locationsWithoutDetail {
             
-            let placeId = location.placeId
+            let placeId = locationsWithoutDetail .placeId
             
             let urlString = "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeId)&key=\(googleMapAPIKey)"
             
-            print("🔴")
-            print(urlString)
-            
             Alamofire.request(urlString).responseJSON { (response) in
                 
-                print("🔵")
-                print(urlString)
-                
-                var locationWithDetail = location
+                var locationWithDetail = locationsWithoutDetail
                 
                 let json = response.result.value
                 guard let localJson = json as? [String: Any] else {
@@ -45,8 +37,6 @@ class FetchPlaceIdDetailManager {
                 }
                 
                 guard let result = localJson["result"] as? [String: Any] else {
-                    print(localJson["result"])
-                    print(urlString)
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
                 }
@@ -95,18 +85,17 @@ class FetchPlaceIdDetailManager {
                         
                     }
                 }
-                
-                print("⚫️")
+
                 
                 //剩餘解optional的放入location
                 locationWithDetail.formattedPhoneNumber = formattedPhoneNumber
                 locationWithDetail.openingHours = openingHours
                 locationWithDetail.website = website
                 locationWithDetail.photoReference = photoReference
-                self.delegate?.manager(self, searchBy: placeId, didGet: locationWithDetail)
+                self.delegate?.manager(self, searchBy: placeId, didGet: locationWithDetail, senderTag: senderTag)
                 
                 
-            }
+            
         }
     }
     

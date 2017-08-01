@@ -11,6 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import NVActivityIndicatorView
 
+
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var mapView: UIView!
@@ -147,6 +148,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func showStoreDetail(_ sender: UIButton) {
+        
+        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
         
         
         
