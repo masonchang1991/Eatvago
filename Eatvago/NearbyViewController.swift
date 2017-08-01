@@ -100,7 +100,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         cell.mapTextLabel.text = location.name
 
         if location.photo?.image == nil {
-            cell.storePhotoImageView.image = UIImage(named: "image")
+            cell.storePhotoImageView.loadGif(name: "loadingGIF")
         } else  {
             cell.storePhotoImageView.image = location.photo?.image
         }

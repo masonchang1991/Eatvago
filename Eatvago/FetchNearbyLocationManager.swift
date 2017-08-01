@@ -86,8 +86,8 @@ class FetchNearbyLocationManager {
                     let id = result["id"] as? String,
                     let name = result["name"] as? String,
                     let placeId = result["place_id"] as? String,
-                    let types = result["types"] as? [String] else {
-                        
+                    let types = result["types"] as? [String],
+                    let photos = result["photos"] as? [[String:Any]] else {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                 }
@@ -100,8 +100,15 @@ class FetchNearbyLocationManager {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                 }
-                let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, placeId: placeId, types: types, priceLevel: priceLevel, rating: rating)
+                let photo = photos[0]
                 
+                guard let photoReference = photo["photo_reference"] as? String else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                    return
+                }
+
+                let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, placeId: placeId, types: types, priceLevel: priceLevel, rating: rating, photoReference: photoReference)
+
                 self.locations.append(locationData)
             }
             self.delegate?.manager(self, didGet: self.locations, nextPageToken: pageToken)
