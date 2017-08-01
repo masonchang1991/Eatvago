@@ -12,8 +12,9 @@ import GoogleMaps
 import GooglePlaces
 
 protocol FetchLocationDelegate: class {
-    func manager(_ manager: FetchNearbyLocationManager, didGet locations: [Location], nextPageToken: String?)
+    func manager(_ manager: FetchNearbyLocationManager, didGet nearLocations: [Location], nextPageToken: String?)
     func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error)
+    func manager(_ manager: FetchNearbyLocationManager, didFailWith noDataIn: String)
 }
 
 enum FetchError: Error {
@@ -22,9 +23,8 @@ enum FetchError: Error {
 
 class FetchNearbyLocationManager {
     
-    static let shared = FetchNearbyLocationManager()
-    
     weak var delegate: FetchLocationDelegate?
+    
     //獲取地圖資訊的陣列
     var locations: [Location] = []
     
@@ -38,6 +38,8 @@ class FetchNearbyLocationManager {
     }
     
     func fetchRequestHandler(urlString: String) {
+        
+        locations = []
         //清空之前的陣列
 
         Alamofire.request(urlString).responseJSON { (response) in
@@ -52,12 +54,20 @@ class FetchNearbyLocationManager {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
             }
+            print("next", pageToken)
+            if results.count == 0 {
+                self.delegate?.manager(self, didFailWith: "請重新呼叫LocationManager")
+                return
+            }
+            
             for result in results {
                 // 不是所有都有priceLevel, rating所以特別拿出來
                 // priceLevel = -1.0 代表此資料沒提供priceLevel
                 var priceLevel = -1.0
                 if result["price_level"] != nil {
                     guard let plevel = result["price_level"] as? Double else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+
                         return
                     }
                     priceLevel = plevel
@@ -65,13 +75,12 @@ class FetchNearbyLocationManager {
                 var rating = -1.0
                 if result["rating"] != nil {
                     guard let rlevel = result["rating"] as? Double else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+
                         return
                     }
                     rating = rlevel
                 }
-                
-                print("priceLevel ==== \(priceLevel)")
-                print("rating ===\(rating)")
                 
                 guard let geometry = result["geometry"] as? [String:Any],
                     let id = result["id"] as? String,

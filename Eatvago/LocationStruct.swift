@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Ｍason Chang iOS#4. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Location {
     var latitude: Double
@@ -21,8 +21,11 @@ struct Location {
     var formattedPhoneNumber: String
     var reviewsText: [String]
     var website: String
+    var photoReference: String
+    var photo: UIImageView?
     var distanceText: String
     var durationText: String
+
     //一開始先找nearby使用的init
     init(latitude: Double, longitude: Double, name: String, id: String, placeId: String, types: [String], priceLevel: Double?, rating: Double?) {
         self.latitude = latitude
@@ -37,6 +40,7 @@ struct Location {
         self.formattedPhoneNumber = ""
         self.reviewsText = []
         self.website = ""
+        self.photoReference = ""
         self.distanceText = ""
         self.durationText = ""
     }

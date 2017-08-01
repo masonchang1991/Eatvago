@@ -12,7 +12,16 @@ class NearbyMapTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mapTextLabel: UILabel!
 
-    @IBOutlet weak var locationPhoneNumber: UILabel!
     
-    @IBOutlet weak var locationPriceLevel: UILabel!
+    @IBOutlet weak var distanceText: UILabel!
+    
+    @IBOutlet weak var durationText: UILabel!
+    
+    @IBOutlet weak var storePhotoImageView: UIImageView!
+    
+    @IBOutlet weak var showStoreDetailButton: UIButton!
+    
+    @IBOutlet weak var addStoreDetailButton: UIButton!
+    
+    
 }

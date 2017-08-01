@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-import GooglePlacePicker
+
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var mapView: UIView!
@@ -22,17 +22,22 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
 
-    // 建立搜尋地點的manager
-    var fetchNearbyLocationManager = FetchNearbyLocationManager()
+
 
     //附近的地點 base on mylocation
     var locations: [Location] = []
     
     //建立呼叫fetchNearbyLocation使用的location 用途：避免重複互叫fetchNearbyLocationManager
-    var locationOfFetchNearby: CLLocation? = nil
+    var lastLocation: CLLocation?
     
     //建立location的字典 座標是key 值是location struct  目的: 改善地點間交集的狀況
     var nearbyLocationDictionary: [String : Location ] = [:]
+    
+    let fetchNearbyLocationManager = FetchNearbyLocationManager()
+    let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
+    let fetchPlaceImageManager = FetchPlaceImageManager()
+
+    var nextPageToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +56,16 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
 
         mapTableView.delegate = self
         mapTableView.dataSource = self
+        
+        fetchNearbyLocationManager.delegate = self
+        fetchPlaceIdDetailManager.delegate = self
+        fetchPlaceImageManager.delegate = self
 
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
-        self.locationOfFetchNearby = nil
+        self.lastLocation = nil
         
         // 配置 locationManager
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -76,28 +85,37 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         return locations.count
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        return UITableViewAutomaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
             return UITableViewCell()
         }
-        let collectionItem = locations[indexPath.row]
+        let location = locations[indexPath.row]
         
-        cell.mapTextLabel.text = collectionItem.name
-        cell.locationPhoneNumber.text = "Phone: \(collectionItem.formattedPhoneNumber)"
-        if collectionItem.priceLevel == -1.0 {
-            cell.locationPriceLevel.text = "Price: 不知"
-            
-        } else {
-            guard let priceLevel = collectionItem.priceLevel else {
-                return cell
-            }
-            cell.locationPriceLevel.text = "Price: \(priceLevel)"
+        cell.mapTextLabel.text = location.name
+
+        if location.photo?.image == nil {
+            cell.storePhotoImageView.image = UIImage(named: "image")
+        } else  {
+            cell.storePhotoImageView.image = location.photo?.image
         }
+        
+        cell.distanceText.text = location.distanceText
+        cell.durationText.text = location.durationText
         
         
     
         return cell
     }
+    
+    
+    
+
     
     // Show only the first five items in the table (scrolling is disabled in IB).
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

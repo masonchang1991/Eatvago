@@ -98,6 +98,7 @@ extension UIImage {
         return delay
     }
 
+//swiftlint:disable identifier_name
     internal class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
         var a = a
         var b = b

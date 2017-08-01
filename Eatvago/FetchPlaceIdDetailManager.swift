@@ -25,6 +25,9 @@ class FetchPlaceIdDetailManager {
         
         let urlString = "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeId)&key=\(googleMapAPIKey)"
         
+        var i = 0
+        
+        
         Alamofire.request(urlString).responseJSON { (response) in
             
             let json = response.result.value
@@ -42,6 +45,7 @@ class FetchPlaceIdDetailManager {
             
             if result["formatted_phone_number"] != nil {
                 guard let phoneNumber = result["formatted_phone_number"] as? String else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
                 }
                 formattedPhoneNumber = phoneNumber
@@ -49,18 +53,31 @@ class FetchPlaceIdDetailManager {
             var website = ""
             if result["website"] != nil {
                 guard let web = result["website"] as? String else {
+                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
                 }
                 website = web
             }
             guard let openingHours = result["opening_hours"] as? [String: Any],
                     let reviews = result["reviews"] as? [[String:Any]] else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                 return
             }
             
+            guard let photos = result["photos"] as? [[String:Any]] else {
+                self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                return
+            }
+            let photo = photos[0]
+            
+            guard let photoReference = photo["photo_reference"] as? String else {
+                self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                return
+            }
             for review in reviews {
                 if review["text"] != nil {
                     guard let text = review["text"] as? String else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                     }
                     location.reviewsText.append(text)
@@ -68,11 +85,13 @@ class FetchPlaceIdDetailManager {
                     
                 }
             }
+            print("00")
 
             //剩餘解optional的放入location
             location.formattedPhoneNumber = formattedPhoneNumber
             location.openingHours = openingHours
             location.website = website
+            location.photoReference = photoReference
             
             
             let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(locationWithoutDetail.latitude),\(locationWithoutDetail.longitude)&key=\(googleMapDistanceMatrixAPIKey)"
@@ -122,16 +141,3 @@ class FetchPlaceIdDetailManager {
     
 }
 
-//建立抓取距離的function
-extension FetchPlaceIdDetailManager {
-
-    func fetchDistanceBetweenIAndLocation() {
-        
-        
-        
-        
-    }
-    
-    
-    
-}

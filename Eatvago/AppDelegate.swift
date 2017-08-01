@@ -12,7 +12,7 @@ import FirebaseAuth
 import GoogleMaps
 import GooglePlaces
 
-var googleMapAPIKey = "AIzaSyAIm_Vg-SizaqaPwLf4SlUfSpZBxUNs1X0"
+var googleMapAPIKey = "AIzaSyCB5YF23lT_BZV0J0u5Ks97ytl0k6GjVIQ"
 var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
 
 @UIApplicationMain
