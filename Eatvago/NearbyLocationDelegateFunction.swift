@@ -29,31 +29,44 @@ extension NearbyViewController: CLLocationManagerDelegate {
         //下面這些判斷 主要是因為locationManager會一直丟location給我 但我不想一直呼叫我的FetchNearbyLocationManager
         //所以做了一些限制條件讓他只會在真正需要的時候call
         if self.googleMapView.myLocation != nil {
-            
             //與前次地點相同則不摳
-            if self.lastLocation == self.googleMapView.myLocation {
-
-                //1公尺約0.00000900900901度
-                // 如果超過一定範圍則重置字典
+            if self.lastLocation != nil {
                 
+                guard let location = self.lastLocation,
+                    let myLocation = self.googleMapView.myLocation else {
+                        print("lastLocation or current location guard let fail")
+                        return
+                }
+                       //1公尺約0.00000900900901度
+                    // 如果超過一定範圍則重置字典
+                if Double((location.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
+                    || Double((location.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
+                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
+                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
+                    
+                    self.nearbyLocationDictionary = [:]
+                    
+                    self.locations = []
+                    
+                    self.lastLocation = self.googleMapView.myLocation
+                    
+                    if let myLocation = self.googleMapView.myLocation {
+                        self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
+                    }
+
+                    
+                    
+                }
             } else {
                 // 第一個進來的location設為 currentLocation
                 self.lastLocation = self.googleMapView.myLocation
-                // 將原本locations（會show在tableview上面的）清除
-                self.locations = []
+                
                 // 座標更新後呼叫拿取附近的地點
                 if let myLocation = self.googleMapView.myLocation {
                     self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
                 }
-                
             }
-            
-        } else {
-//            locationManager.stopUpdatingLocation()
-//            self.locations = []
-//            locationManager.startUpdatingLocation()
         }
-        
         
     }
     
@@ -89,22 +102,21 @@ extension NearbyViewController: FetchLocationDelegate {
             return
         }
         print(nearLocations.count)
-        for location in nearLocations {
+  
             //每個地點delegate去獲取詳細資訊
-            fetchPlaceIdDetailManager.requestPlaceIdDetail(placeId: location.placeId, locationWithoutDetail: location, myLocation: mylocation)
+        fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: nearLocations, myLocation: mylocation)
+        if nextPageToken != nil {
+            guard let pageToken = nextPageToken else {
+                return
+            }
+            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
+            DispatchQueue.global().async {
+                self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+            }
+            
+        } else {
+            print("there is no other page")
         }
-//        if nextPageToken != nil {
-//            guard let pageToken = nextPageToken else {
-//                return
-//            }
-//            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
-//            DispatchQueue.global().async {
-//                self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
-//            }
-//            
-//        } else {
-//            print("there is no other page")
-//        }
     }
     func manager(_ manager: FetchNearbyLocationManager, didFailWith error: Error) {
         
