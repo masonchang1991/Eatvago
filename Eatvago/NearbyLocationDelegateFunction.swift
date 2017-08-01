@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import SCLAlertView
 
 extension NearbyViewController: CLLocationManagerDelegate {
     
@@ -145,7 +146,6 @@ extension NearbyViewController: FetchPlaceIdDetailDelegate {
     }
 }
 
-
 extension NearbyViewController: FetchPlaceImageDelegate {
     
     func manager(_ manager: FetchPlaceImageManager, fetch imageView: UIImageView, imageOfIndexPathRow: Int) {
@@ -205,6 +205,7 @@ extension NearbyViewController: FetchDistanceDelegate {
         
         let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(self.nextPageToken)&key=\(googleMapAPIKey)"
         self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
+        self.lastPageToken = self.nextPageToken
         
         
     }

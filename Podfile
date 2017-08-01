@@ -16,4 +16,5 @@ target 'Eatvago' do
   pod 'Alamofire'
   pod 'SDWebImage', '~> 4.0'
   pod 'NVActivityIndicatorView'
+  pod 'SCLAlertView'
 end

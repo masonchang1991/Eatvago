@@ -54,7 +54,6 @@ class FetchNearbyLocationManager {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
             }
-            print("next", pageToken)
             if results.count == 0 {
                 self.delegate?.manager(self, didFailWith: "請重新呼叫LocationManager")
                 return
