@@ -39,6 +39,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     let fetchPlaceImageManager = FetchPlaceImageManager()
     let fetchDistanceManager = FetchDistanceManager()
     var nextPageToken = ""
+    var lastPageToken = ""
+    var fetchPageCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,8 +118,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             cell.storePhotoImageView.image = storeImage.image
             cell.storePhotoImageView.contentMode = .scaleToFill
         }
-        
-        
+        cell.showStoreDetailButton.tag = indexPath.row
+        cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
         
         cell.distanceText.text = location.distanceText
         cell.durationText.text = location.durationText
@@ -143,6 +145,14 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         }
         return 0
     }
+    
+    func showStoreDetail(_ sender: UIButton) {
+        
+        
+        
+    }
+    
+    
     
     @IBAction func changTableViewAndMap(_ sender: UIButton) {
         if mapTableView.isHidden == true {

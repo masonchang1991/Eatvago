@@ -111,8 +111,6 @@ extension NearbyViewController: FetchLocationDelegate {
                 return
             }
             self.nextPageToken = pageToken
-            let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(pageToken)&key=\(googleMapAPIKey)"
-                self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
             
         } else {
             print("there is no other page")
@@ -200,7 +198,13 @@ extension NearbyViewController: FetchDistanceDelegate {
             }
         }
         self.mapTableView.reloadData()
-
+        
+        if self.lastPageToken != "" && self.lastPageToken == self.nextPageToken {
+            return
+        }
+        
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(self.nextPageToken)&key=\(googleMapAPIKey)"
+        self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
         
         
     }

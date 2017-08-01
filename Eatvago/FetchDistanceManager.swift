@@ -21,10 +21,10 @@ class FetchDistanceManager {
     
     var locations: [Location] = []
 
-    var fetchCount = 0
+
     
     func fetchDistance(myLocation: CLLocation, nearLocations: [Location]) {
-        
+        var fetchCount = 0
         for nearLocation in nearLocations {
             let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(nearLocation.latitude),\(nearLocation.longitude)&key=\(googleMapDistanceMatrixAPIKey)"
             
@@ -68,8 +68,8 @@ class FetchDistanceManager {
                 self.locations.append(location)
                 
                 //直到fetch到最後一個才delegate回去
-                self.fetchCount += 1
-                if self.fetchCount == nearLocations.count {
+                fetchCount += 1
+                if fetchCount == nearLocations.count {
                     self.delegate?.manager(self, didGet: self.locations)
                 }
 

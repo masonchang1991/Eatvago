@@ -81,16 +81,24 @@ class FetchNearbyLocationManager {
                     }
                     rating = rlevel
                 }
-                
                 guard let geometry = result["geometry"] as? [String:Any],
                     let id = result["id"] as? String,
                     let name = result["name"] as? String,
                     let placeId = result["place_id"] as? String,
-                    let types = result["types"] as? [String],
-                    let photos = result["photos"] as? [[String:Any]] else {
+                    let types = result["types"] as? [String] else {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
                 }
+                var photoReference = ""
+                if let photos = result["photos"] as? [[String:Any]] {
+                    let photo = photos[0]
+                    guard let reference = photo["photo_reference"] as? String else {
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                        return
+                    }
+                    photoReference = reference
+                }
+                
                 guard let location = geometry["location"] as? [String:Any] else {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
@@ -99,12 +107,6 @@ class FetchNearbyLocationManager {
                     let longitude = location["lng"] as? CLLocationDegrees else {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
-                }
-                let photo = photos[0]
-                
-                guard let photoReference = photo["photo_reference"] as? String else {
-                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                    return
                 }
 
                 let locationData = Location(latitude: latitude, longitude: longitude, name: name, id: id, placeId: placeId, types: types, priceLevel: priceLevel, rating: rating, photoReference: photoReference)

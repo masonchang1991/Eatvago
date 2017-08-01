@@ -21,7 +21,10 @@ class FetchPlaceImageManager {
     func fetchImage(locationPhotoReference photoReference: String, imageOfIndexPathRow: Int) {
         
         //下載圖片
-
+        if photoReference == "" {
+            return
+        }
+        
             let requestImgUrl = URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=\(photoReference)&key=\(googleMapAPIKey)")
             
             
