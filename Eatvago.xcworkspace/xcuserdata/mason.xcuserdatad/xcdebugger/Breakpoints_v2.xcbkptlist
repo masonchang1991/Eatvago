@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
-            timestampString = "523333932.193281"
+            timestampString = "523351459.790233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237">
+            startingLineNumber = "234"
+            endingLineNumber = "234">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -60,22 +60,6 @@
             startingLineNumber = "202"
             endingLineNumber = "202"
             landmarkName = "addStoreDetail(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/NearbyLocationDelegateFunction.swift"
-            timestampString = "523335786.026147"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "manager(_:didGet:nextPageToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

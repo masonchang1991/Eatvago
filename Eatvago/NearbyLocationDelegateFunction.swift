@@ -14,11 +14,11 @@ extension NearbyViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        print("Location: \(location)")
+        let myLocation: CLLocation = locations.last!
+        print("Location: \(myLocation)")
         
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
+        let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
+                                              longitude: myLocation.coordinate.longitude,
                                               zoom: zoomLevel)
         
         if googleMapView.isHidden {
@@ -29,45 +29,43 @@ extension NearbyViewController: CLLocationManagerDelegate {
         }
         //下面這些判斷 主要是因為locationManager會一直丟location給我 但我不想一直呼叫我的FetchNearbyLocationManager
         //所以做了一些限制條件讓他只會在真正需要的時候call
-        if self.googleMapView.myLocation != nil {
+        if myLocation != CLLocation() {
             //與前次地點相同則不摳
             if self.lastLocation != nil {
                 
-                guard let location = self.lastLocation,
-                    let myLocation = self.googleMapView.myLocation else {
+                guard let lastLocation = self.lastLocation else {
                         print("lastLocation or current location guard let fail")
                         return
                 }
                        //1公尺約0.00000900900901度
                     // 如果超過一定範圍則重置字典
-                if Double((location.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
-                    || Double((location.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
-                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
-                    || Double((location.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
+                if Double((lastLocation.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
+                    || Double((lastLocation.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
+                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
+                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
                     
                     self.nearbyLocationDictionary = [:]
                     
                     self.locations = []
                     
-                    self.lastLocation = self.googleMapView.myLocation
+                    self.lastLocation = myLocation
                     
-                    if let myLocation = self.googleMapView.myLocation {
+   
                         self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
-                    }
+                    
                     
                 }
+                
             } else {
                 // 第一個進來的location設為 currentLocation
-                self.lastLocation = self.googleMapView.myLocation
+                self.lastLocation = myLocation
                 
                 // 座標更新後呼叫拿取附近的地點
-                if let myLocation = self.googleMapView.myLocation {
-                    self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
-                }
+                self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
             }
             
             locationManager.stopUpdatingLocation()
-        
+            self.currentLocation = myLocation
         } else {
             locationManager.startUpdatingLocation()
         }
@@ -103,9 +101,8 @@ extension NearbyViewController: FetchLocationDelegate {
 
         print(nearLocations.count)
         
-        guard let myLocation = self.googleMapView.myLocation else {
-            return
-        }
+        let myLocation = currentLocation
+        
         
         fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
 

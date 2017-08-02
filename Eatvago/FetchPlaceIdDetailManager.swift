@@ -21,7 +21,7 @@ class FetchPlaceIdDetailManager {
     
     func requestPlaceIdDetail(locationsWithoutDetail: Location, senderTag: Int) {
             
-            let placeId = locationsWithoutDetail .placeId
+            let placeId = locationsWithoutDetail.placeId
             
             let urlString = "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeId)&key=\(googleMapAPIKey[0])"
             

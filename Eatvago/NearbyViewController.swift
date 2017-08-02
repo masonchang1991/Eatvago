@@ -21,7 +21,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var window: UIWindow?
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
+    var currentLocation = CLLocation()
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
