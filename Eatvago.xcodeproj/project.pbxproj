@@ -25,6 +25,10 @@
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
+		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
+		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
+		93A10BF01F31D69E00F69A82 /* RandomGameCirclesDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */; };
+		93A10BF21F31EEFB00F69A82 /* NearbyGlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
+		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
+		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
+		93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameCirclesDesign.swift; sourceTree = "<group>"; };
+		93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyGlobalVariables.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,6 +96,7 @@
 				930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */,
 				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
+				93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */,
 				9380CA911F2DE46200629C0A /* FetchManagers */,
 			);
 			name = NearBy;
@@ -118,6 +127,7 @@
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
+				93A10BEA1F31BF3500F69A82 /* Random Game */,
 				930086761F2A089C00BEA223 /* NearBy */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
 				9308F2971F2F215800819B03 /* UIImage+Gif.swift */,
@@ -146,6 +156,16 @@
 				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
 			);
 			name = FetchManagers;
+			sourceTree = "<group>";
+		};
+		93A10BEA1F31BF3500F69A82 /* Random Game */ = {
+			isa = PBXGroup;
+			children = (
+				93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */,
+				93A10BED1F31C01F00F69A82 /* CircleFunction.swift */,
+				93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */,
+			);
+			name = "Random Game";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,9 +309,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
+				93A10BF21F31EEFB00F69A82 /* NearbyGlobalVariables.swift in Sources */,
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
+				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
+				93A10BF01F31D69E00F69A82 /* RandomGameCirclesDesign.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				930086781F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift in Sources */,

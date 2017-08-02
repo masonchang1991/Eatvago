@@ -62,7 +62,7 @@ class LoadingViewController: UIViewController {
                         userId = (value?.uid)!
                         
                     } else {
-                        print(error ?? nil)
+
                         self.loginSuccess = false
                     }
                     
@@ -76,7 +76,7 @@ class LoadingViewController: UIViewController {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.makeKeyAndVisible()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let nextVC = storyBoard.instantiateViewController(withIdentifier: "mainNavigationController")
+                let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.window?.rootViewController = nextVC
             } else {
                 self.window = UIWindow(frame: UIScreen.main.bounds)

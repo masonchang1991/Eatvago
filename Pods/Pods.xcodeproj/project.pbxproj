@@ -229,7 +229,6 @@
 		1A29DDDEDB2F0DFA64C731F5CCE80378 /* GoogleToolboxForMac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleToolboxForMac-umbrella.h"; sourceTree = "<group>"; };
 		1B52894514B68ED53271C2C0C8DB6D54 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		1D539C8B1A3E329E3ABDF0CA6ACBFA41 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		1D5A924AE967A9AD1CA5762EF6128B15 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		1F02FA2159E93F83C6A8B85A8023DE6F /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		1F03065DED6BCDCFACD3E92AB13F473A /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
 		1FB2448E6FA5F4464367C873167B2DAC /* NVActivityIndicatorView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NVActivityIndicatorView-umbrella.h"; sourceTree = "<group>"; };
@@ -260,7 +259,6 @@
 		3DC482D5BEEEEF40730EDE8D4C52655E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E232BFCCE926FE77DD418E169BE427A /* SDImageCacheConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheConfig.m; path = SDWebImage/SDImageCacheConfig.m; sourceTree = "<group>"; };
 		3F2B0E01DB1252C6CE85DE737C06D8E3 /* GTMNSDictionary+URLArguments.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSDictionary+URLArguments.m"; path = "Foundation/GTMNSDictionary+URLArguments.m"; sourceTree = "<group>"; };
-		401B20AD1E046F08FFB8251B9A8C701B /* GooglePlacePicker.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlacePicker.bundle; path = Frameworks/GooglePlacePicker.framework/Versions/A/Resources/GooglePlacePicker.bundle; sourceTree = "<group>"; };
 		42E29075710DD50FDF9E144963B8BEDA /* SCLExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SCLExtensions.swift; path = SCLAlertView/SCLExtensions.swift; sourceTree = "<group>"; };
 		44AD1B14FA54D36ADCEEC116F77F8FEB /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallClipRotateMultiple.swift; path = NVActivityIndicatorView/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotateMultiple.swift; sourceTree = "<group>"; };
 		474A31CC7FEBCD1F0B3E2A8C85B927D5 /* UIButton+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+WebCache.h"; path = "SDWebImage/UIButton+WebCache.h"; sourceTree = "<group>"; };
@@ -278,6 +276,7 @@
 		5571D0115973E028AF056A07FB79DA21 /* GTMSessionFetcherLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcherLogging.h; path = Source/GTMSessionFetcherLogging.h; sourceTree = "<group>"; };
 		576E7EFFB0E06C1B56411AB87902F530 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		591721877BEE6EACB4B33A2E1BEB708D /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		5A453ABE0B3AED2A9AC3390ACC8C03D2 /* GooglePlacePicker.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlacePicker.bundle; path = Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle; sourceTree = "<group>"; };
 		5A5DE5185C190E8BFAC8537F37ACE930 /* nanopb-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-prefix.pch"; sourceTree = "<group>"; };
 		5C9EB0B22E09BAD2F6EEF162B6A4BBDD /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		5D60D09E034E9F1EF031392F6271C714 /* UIView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCache.h"; path = "SDWebImage/UIView+WebCache.h"; sourceTree = "<group>"; };
@@ -287,6 +286,7 @@
 		6159D42CF277EE1BF41DED224359CF1A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61BEB9B9D09FC1E893C78E78D63D3492 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		6281F189433DF7099E7BBB67BF311F57 /* NVActivityIndicatorAnimationBallZigZag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallZigZag.swift; path = NVActivityIndicatorView/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZag.swift; sourceTree = "<group>"; };
+		661DB6CA354612DECB0C5D23BF136238 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		68B7A8ED87EFD6A1353EAD3E2464BE49 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A8E9C0D4B0E84A8EFE5DA7A220FA82B /* GTMSessionFetcherService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcherService.h; path = Source/GTMSessionFetcherService.h; sourceTree = "<group>"; };
 		6AA1CB4D996987C6BACE2D6D64AC00D3 /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorView.swift; path = NVActivityIndicatorView/NVActivityIndicatorView/NVActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -310,6 +310,7 @@
 		80B33AD1B2FFC72DD6D5CC17639517F9 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderOperation.m; path = SDWebImage/SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
 		8113C33D88E14FCDF7D9A349F9B3422D /* GTMNSData+zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GTMNSData+zlib.h"; path = "Foundation/GTMNSData+zlib.h"; sourceTree = "<group>"; };
 		846C704DA27EADEDBDAB9DED1564A618 /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
+		85A6645DF981E8C429DD6A1BCBA88085 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		8792ABA6A8C7E1F3972116C1CA937F83 /* SDWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageManager.h; path = SDWebImage/SDWebImageManager.h; sourceTree = "<group>"; };
 		884C08A958F7A3F234A7A40CE1631CCA /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		8A72F7F943A845D33CF8365BA016EC80 /* NVActivityIndicatorAnimationBallScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallScale.swift; path = NVActivityIndicatorView/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScale.swift; sourceTree = "<group>"; };
@@ -342,7 +343,6 @@
 		A976C7A94E1807D0E792E68364465BB7 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Core/Sources/Firebase.h; sourceTree = "<group>"; };
 		A99B848F69C3C273E59A3A38008C146B /* GoogleToolboxForMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = GoogleToolboxForMac.modulemap; sourceTree = "<group>"; };
 		AA367B0E94691DB6F0E0C67CDFA0E3B0 /* GTMSessionUploadFetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMSessionUploadFetcher.m; path = Source/GTMSessionUploadFetcher.m; sourceTree = "<group>"; };
-		B0AFDBFE7E515C87FB002D2F6391A94E /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		B30B0CF92D1F64086CE3C5B677A145E5 /* GTMSessionFetcher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTMSessionFetcher-prefix.pch"; sourceTree = "<group>"; };
 		B49F0BBE827ABFA027687588269F5E41 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "SDWebImage/UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		B62D4786D6300D2BAF452AF63FF002A8 /* nanopb-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-umbrella.h"; sourceTree = "<group>"; };
@@ -608,6 +608,14 @@
 			name = "NSData+zlib";
 			sourceTree = "<group>";
 		};
+		2888E03455C130CA80608FDFCD9F1BD6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85A6645DF981E8C429DD6A1BCBA88085 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2943C2EFE63DBE09AF181E8FA6E8F5CD /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				94258A115944E8466776C974B88AE161 /* Frameworks */,
-				7484E9FB9175E1A17658C5F69F7F9A7F /* Resources */,
+				C60F09D485833AF0C59DE7A036D37C5D /* Resources */,
 			);
 			name = GooglePlacePicker;
 			path = GooglePlacePicker;
@@ -671,7 +679,7 @@
 			isa = PBXGroup;
 			children = (
 				2BD8CBFE6C6BB6969E5032932DE64756 /* Frameworks */,
-				E3C0813011DBCF0B62D64075C038B9E7 /* Resources */,
+				E470830820855676AAF0C6E5F55CFB4D /* Resources */,
 			);
 			name = GooglePlaces;
 			path = GooglePlaces;
@@ -762,7 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				B3C1A0379384CF0932E3F66715D9ABDD /* Frameworks */,
-				7AF92790C7894A7F7D73AF8460458061 /* Resources */,
+				2888E03455C130CA80608FDFCD9F1BD6 /* Resources */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -779,14 +787,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GTMSessionFetcher";
-			sourceTree = "<group>";
-		};
-		7484E9FB9175E1A17658C5F69F7F9A7F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				401B20AD1E046F08FFB8251B9A8C701B /* GooglePlacePicker.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		7786A8D55B747685B8A2BAA4A5493716 /* Pods */ = {
@@ -842,14 +842,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SCLAlertView";
-			sourceTree = "<group>";
-		};
-		7AF92790C7894A7F7D73AF8460458061 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B0AFDBFE7E515C87FB002D2F6391A94E /* GoogleMaps.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		7D2C2D54673069B330FF2C34826CA4F4 /* DebugUtils */ = {
@@ -1014,6 +1006,14 @@
 			path = "../Target Support Files/SDWebImage";
 			sourceTree = "<group>";
 		};
+		C60F09D485833AF0C59DE7A036D37C5D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5A453ABE0B3AED2A9AC3390ACC8C03D2 /* GooglePlacePicker.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C679046C7A9821FA730C1D1171751935 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,10 +1037,10 @@
 			path = FirebaseAuth;
 			sourceTree = "<group>";
 		};
-		E3C0813011DBCF0B62D64075C038B9E7 /* Resources */ = {
+		E470830820855676AAF0C6E5F55CFB4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1D5A924AE967A9AD1CA5762EF6128B15 /* GooglePlaces.bundle */,
+				661DB6CA354612DECB0C5D23BF136238 /* GooglePlaces.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

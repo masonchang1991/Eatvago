@@ -115,7 +115,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.setValue(password, forKey: "UserLoginPassword")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let nextVC = storyBoard.instantiateViewController(withIdentifier: "mainNavigationController")
+                let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.present(nextVC, animated: true, completion: nil)
                 
             } else {

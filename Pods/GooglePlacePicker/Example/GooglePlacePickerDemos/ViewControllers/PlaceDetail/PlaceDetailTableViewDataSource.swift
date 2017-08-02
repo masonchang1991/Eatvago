@@ -12,7 +12,7 @@
  * ANY KIND, either express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-//swiftlint:disable force_cast
+
 import UIKit
 import GooglePlaces
 
@@ -117,7 +117,7 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
     }
 
     // For all the other cells use the same class.
-
+//swiftlint:disable force_cast
     let untyped = tableView.dequeueReusableCell(withIdentifier: PlaceAttributeCell.reuseIdentifier,
                                                 for: indexPath)
     let cell = untyped as! PlaceAttributeCell
@@ -190,7 +190,8 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
     // Our first cell has a fixed height, all the rest are automatic.
     if indexPath.item == 0 {
       return compactHeader ? 0 : 20
-    } else {
+    }
+    else {
       return UITableViewAutomaticDimension
     }
   }

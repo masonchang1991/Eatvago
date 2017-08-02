@@ -200,14 +200,22 @@ extension NearbyViewController: FetchDistanceDelegate {
             if nearbyLocationDictionary["\(location.placeId)"] == nil {
                 
                 let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                
                 let marker = GMSMarker(position: coordinates)
+                
                 marker.title = location.name
+                
                 marker.map = self.googleMapView
+                
                 self.googleMapView.animate(toLocation: coordinates)
                 
                 nearbyLocationDictionary["\(location.placeId)"] = location
+                
                 self.locations.append(location)
-                fetchPlaceImageManager.fetchImage(locationPhotoReference: location.photoReference, imageOfIndexPathRow: (self.locations.count - 1))
+                fetchedLocations.append(location)
+                
+                fetchPlaceImageManager.fetchImage(locationPhotoReference: location.photoReference,
+                                                  imageOfIndexPathRow: (self.locations.count - 1))
                 
             } else {
                 print("已經出現過", location.name)

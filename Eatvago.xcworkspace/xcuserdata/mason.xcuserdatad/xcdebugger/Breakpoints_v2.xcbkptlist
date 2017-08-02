@@ -44,7 +44,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "234"
-            endingLineNumber = "234">
+            endingLineNumber = "234"
+            landmarkName = "NearbyViewController"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -85,13 +87,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Eatvago/FetchNearbyLocationManager.swift"
-            timestampString = "523337229.904122"
+            filePath = "Eatvago/RandomGameViewController.swift"
+            timestampString = "523370801.037795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "fetchRequestHandler(urlString:nextPageToken:)"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "generateRestaurant(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -101,14 +103,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Eatvago/FetchNearbyLocationManager.swift"
-            timestampString = "523337229.904122"
+            filePath = "Eatvago/RandomGameViewController.swift"
+            timestampString = "523370801.037795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "fetchRequestHandler(urlString:nextPageToken:)"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "generateRestaurant(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.RandomGameViewController.generateRestaurant (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/RandomGameViewController.swift"
+                  timestampString = "523378619.711948"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "6090">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.RandomGameViewController.(generateRestaurant (__ObjC.UIButton) -&gt; ()).(closure #3)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/RandomGameViewController.swift"
+                  timestampString = "523378619.714791"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
