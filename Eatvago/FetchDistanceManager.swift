@@ -10,7 +10,6 @@ import Alamofire
 import UIKit
 import GooglePlaces
 
-
 protocol FetchDistanceDelegate: class {
     func manager(_ manager: FetchDistanceManager, didGet nearLocationsWithDistance: [Location])
     func manager(_ manager: FetchDistanceManager, didFailWith error: Error)
@@ -20,8 +19,6 @@ class FetchDistanceManager {
     weak var delegate: FetchDistanceDelegate?
     
     var locations: [Location] = []
-
-
     
     func fetchDistance(myLocation: CLLocation, nearLocations: [Location]) {
         
@@ -75,17 +72,11 @@ class FetchDistanceManager {
                 if fetchCount == nearLocations.count {
                     self.delegate?.manager(self, didGet: self.locations)
                 }
-
                 
             }
             
         }
         
-        
-        
-        
     }
-
-
 
 }

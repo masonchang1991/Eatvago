@@ -77,7 +77,7 @@ extension UIImage {
             return delay
         }
 
-        let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
+        let gifProperties: CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
 
         // Get delay time
         var delayObject: AnyObject = unsafeBitCast(

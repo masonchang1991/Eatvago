@@ -20,11 +20,10 @@ class FetchPlaceIdDetailManager {
      weak var delegate: FetchPlaceIdDetailDelegate?
     
     func requestPlaceIdDetail(locationsWithoutDetail: Location, senderTag: Int) {
-
             
             let placeId = locationsWithoutDetail .placeId
             
-            let urlString = "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeId)&key=\(googleMapAPIKey)"
+            let urlString = "https://maps.googleapis.com/maps/api/place/details/json?placeid=\(placeId)&key=\(googleMapAPIKey[0])"
             
             Alamofire.request(urlString).responseJSON { (response) in
                 
@@ -85,7 +84,6 @@ class FetchPlaceIdDetailManager {
                         
                     }
                 }
-
                 
                 //剩餘解optional的放入location
                 locationWithDetail.formattedPhoneNumber = formattedPhoneNumber
@@ -93,11 +91,8 @@ class FetchPlaceIdDetailManager {
                 locationWithDetail.website = website
                 locationWithDetail.photoReference = photoReference
                 self.delegate?.manager(self, searchBy: placeId, didGet: locationWithDetail, senderTag: senderTag)
-                
-                
             
         }
     }
     
 }
-

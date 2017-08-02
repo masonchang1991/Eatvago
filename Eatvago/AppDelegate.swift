@@ -12,9 +12,9 @@ import FirebaseAuth
 import GoogleMaps
 import GooglePlaces
 
-var googleMapAPIKey = "AIzaSyCB5YF23lT_BZV0J0u5Ks97ytl0k6GjVIQ"
+var googleMapAPIKey = ["AIzaSyBivGI2MbdVzOeeGBvZqqhPO0JQ9BdL87g", "AIzaSyC-vTtOFq2MRx29_Dp-UuPlbjc3tA9NA0I", "AIzaSyCgdyuXgEpb2omTocjALBgHi7wsP3OxmX8", "AIzaSyCNvYlOUnIJ7rZ6ikyw2l8z6GIYJgKCGb4", "AIzaSyAzzNQSinBXS1OGKEbSYbmcUQyds1Ep6EE"]
 var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
-
+var userId = ""
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        GMSServices.provideAPIKey(googleMapAPIKey)
-        GMSPlacesClient.provideAPIKey(googleMapAPIKey)
+        GMSServices.provideAPIKey(googleMapAPIKey[0])
+        GMSPlacesClient.provideAPIKey(googleMapAPIKey[0])
         return true
        
     }

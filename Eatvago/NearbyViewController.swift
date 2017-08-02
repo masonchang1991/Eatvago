@@ -10,7 +10,9 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import NVActivityIndicatorView
-
+import FirebaseDatabase
+import Firebase
+import SCLAlertView
 
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
     
@@ -23,8 +25,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
-
-    
 
     //附近的地點 base on mylocation
     var locations: [Location] = []
@@ -43,20 +43,45 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var lastPageToken = ""
     var fetchPageCount = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //用來add資訊
+    var ref: DatabaseReference?
+    var databaseHandle: DatabaseHandle?
+    
+    override func loadView() {
+         super.loadView()
         
         //設置初始點
-        let camera = GMSCameraPosition.camera(withLatitude: 25.042476, longitude: 121.564882, zoom: 20)
-        googleMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: 25.042476,
+                                              longitude: 121.564882,
+                                              zoom: 20)
+        googleMapView = GMSMapView.map(withFrame: mapView.bounds,
+                                       camera: camera)
         googleMapView.settings.myLocationButton = true
-        googleMapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        googleMapView.autoresizingMask = [.flexibleWidth,
+                                          .flexibleHeight]
         googleMapView.isMyLocationEnabled = true
         
         // Add the map to the view, hide it until we've got a location update.
         mapView.addSubview(googleMapView)
         googleMapView.isHidden = true
         mapView.isHidden = true
+        
+    }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 配置 locationManager
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        placesClient = GMSPlacesClient.shared()
+        
 
         mapTableView.delegate = self
         mapTableView.dataSource = self
@@ -66,26 +91,20 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         fetchPlaceImageManager.delegate = self
         fetchDistanceManager.delegate = self
         
-
+        
+        ref = Database.database().reference()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
         self.lastLocation = nil
-        
-        // 配置 locationManager
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-        placesClient = GMSPlacesClient.shared()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -108,31 +127,26 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             cell.storePhotoImageView.isHidden = true
             
         } else {
+            cell.storePhotoView.isHidden = true
+            cell.storePhotoImageView.isHidden = false
             cell.storePhotoView.stopAnimating()
             
             guard let storeImage = location.photo else {
                 return UITableViewCell()
             }
-            cell.storePhotoView.isHidden = true
-            cell.storePhotoImageView.isHidden = false
-            cell.storePhotoImageView.contentMode = .scaleToFill
             cell.storePhotoImageView.image = storeImage.image
             cell.storePhotoImageView.contentMode = .scaleToFill
         }
         cell.showStoreDetailButton.tag = indexPath.row
         cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
+        cell.addStoreDetailButton.tag = indexPath.row
+        cell.addStoreDetailButton.addTarget(self, action: #selector(addStoreDetail(_:)), for: .touchUpInside)
         
         cell.distanceText.text = location.distanceText
         cell.durationText.text = location.durationText
-        
-        
     
         return cell
     }
-    
-    
-    
-
     
     // Show only the first five items in the table (scrolling is disabled in IB).
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -147,15 +161,65 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         return 0
     }
     
-    func showStoreDetail(_ sender: UIButton) {
+    func addStoreDetail(_ sender: UIButton) {
         
-        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 15)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 10)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        let subTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 216, height: 70))
+        let x = (subTextField.frame.width - 180) / 2
+        
+        let addCommentTextField = UITextField(frame: CGRect(x: x, y: 10, width: 180, height: 50))
+        
+        addCommentTextField.layer.borderColor = UIColor.blue.cgColor
+        addCommentTextField.layer.borderWidth = 1.5
+        addCommentTextField.layer.cornerRadius = 5
+        addCommentTextField.placeholder = " 施工中"
+        subTextField.addSubview(addCommentTextField)
+        alert.customSubview = subTextField
+
+        
+        alert.addButton("OK") {
+            
+            var text = addCommentTextField.text
+            
+            let autoId = self.ref?.childByAutoId()
+            
+            guard let key = autoId?.key else {
+                return
+            }
+            
+            
+            self.ref?.child("Place Detail").child("\(self.locations[sender.tag].placeId)").child("Comments").child(key).setValue(key)
+            
+            self.ref?.child("Comments").child("\(self.locations[sender.tag].placeId)").child(key).child("Creater").setValue(userId)
+            
+            self.ref?.child("Comments").child("\(self.locations[sender.tag].placeId)").child(key).child("Comment").setValue(text)
+            
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.showTitle("評論\(self.locations[sender.tag].name)", subTitle: "", style: .success)
+      
+        
         
         
         
     }
     
     
+    
+    func showStoreDetail(_ sender: UIButton) {
+        
+        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
+        
+    }
     
     @IBAction func changTableViewAndMap(_ sender: UIButton) {
         if mapTableView.isHidden == true {

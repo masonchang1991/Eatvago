@@ -54,8 +54,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     if let myLocation = self.googleMapView.myLocation {
                         self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
                     }
-
-                    
                     
                 }
             } else {
@@ -67,8 +65,12 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
                 }
             }
-        }
+            
+            locationManager.stopUpdatingLocation()
         
+        } else {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     // Handle authorization for the location manager.
@@ -165,9 +167,7 @@ extension NearbyViewController: FetchPlaceIdDetailDelegate {
         subTextView.addSubview(textView)
         alert.customSubview = subTextView
         
-        
         alert.showTitle("\(self.locations[senderTag].name)", subTitle: "", style: .success)
-        
         
     }
     
@@ -182,23 +182,17 @@ extension NearbyViewController: FetchPlaceImageDelegate {
         
         print(imageOfIndexPathRow)
         DispatchQueue.main.async {
-            
-            
-            
             self.locations[imageOfIndexPathRow].photo = imageView
             self.mapTableView.reloadData()
         }
-        
         
     }
     
     func manager(_ manager: FetchPlaceImageManager, didFailWith error: Error) {
         
-        
     }
     
 }
-
 
 extension NearbyViewController: FetchDistanceDelegate {
     
@@ -227,23 +221,14 @@ extension NearbyViewController: FetchDistanceDelegate {
         if self.lastPageToken != "" && self.lastPageToken == self.nextPageToken {
             return
         }
-        
       
         self.lastPageToken = self.nextPageToken
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(self.nextPageToken)&key=\(googleMapAPIKey)"
-        self.fetchNearbyLocationManager.fetchRequestHandler(urlString: urlString)
-
-    
-        
-
-        
+        self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken)
         
     }
     
     func manager(_ manager: FetchDistanceManager, didFailWith error: Error) {
         
-        
     }
-    
     
 }

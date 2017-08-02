@@ -185,7 +185,7 @@
         <scene sceneID="FDe-li-bme">
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

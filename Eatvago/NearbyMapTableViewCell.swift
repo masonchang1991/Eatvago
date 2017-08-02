@@ -12,7 +12,6 @@ import NVActivityIndicatorView
 class NearbyMapTableViewCell: UITableViewCell, NVActivityIndicatorViewable {
 
     @IBOutlet weak var mapTextLabel: UILabel!
-
     
     @IBOutlet weak var distanceText: UILabel!
     
@@ -22,11 +21,8 @@ class NearbyMapTableViewCell: UITableViewCell, NVActivityIndicatorViewable {
     
     @IBOutlet weak var storePhotoImageView: UIImageView!
     
-    
-    
     @IBOutlet weak var showStoreDetailButton: UIButton!
     
     @IBOutlet weak var addStoreDetailButton: UIButton!
-    
     
 }
