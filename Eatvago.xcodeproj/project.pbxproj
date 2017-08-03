@@ -9,18 +9,36 @@
 /* Begin PBXBuildFile section */
 		3D618EF2A4B9A4883A992048 /* Pods_Eatvago.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */; };
 		9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300866C1F28ED5000BEA223 /* NearbyViewController.swift */; };
+		930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 930086741F29E9FE00BEA223 /* GoogleService-Info.plist */; };
+		930086781F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */; };
+		9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */; };
 		930144331F27986700CEC11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144321F27986700CEC11A /* AppDelegate.swift */; };
 		930144381F27986700CEC11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930144361F27986700CEC11A /* Main.storyboard */; };
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
 		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
-		9301444C1F288AD700CEC11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301444B1F288AD700CEC11A /* GoogleService-Info.plist */; };
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
+		9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F2971F2F215800819B03 /* UIImage+Gif.swift */; };
+		9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9308F29A1F2F21B000819B03 /* loadingGIF.gif */; };
+		9308F29D1F2F2D2600819B03 /* FetchPlaceImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */; };
+		9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329D9D11F306A6800415697 /* FetchDistanceManager.swift */; };
+		93729A201F32E65B004125C0 /* FilterDropDownViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729A1E1F32E65B004125C0 /* FilterDropDownViews.swift */; };
+		93729A211F32E65B004125C0 /* FilterDropDownViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93729A1F1F32E65B004125C0 /* FilterDropDownViews.xib */; };
+		9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */; };
+		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
+		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
+		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
+		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
+		93A10BF01F31D69E00F69A82 /* RandomGameCirclesDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */; };
+		93A10BF21F31EEFB00F69A82 /* NearbyGlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2368AA98FF231B9792B4005E /* Pods-Eatvago.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.debug.xcconfig"; sourceTree = "<group>"; };
 		9300866C1F28ED5000BEA223 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		930086741F29E9FE00BEA223 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyLocationDelegateFunction.swift; sourceTree = "<group>"; };
+		9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapTableViewCell.swift; sourceTree = "<group>"; };
 		9301442F1F27986700CEC11A /* Eatvago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatvago.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930144321F27986700CEC11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		930144371F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,8 +46,20 @@
 		9301443C1F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9301443E1F27986700CEC11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9301444B1F288AD700CEC11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9308F2971F2F215800819B03 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		9308F29A1F2F21B000819B03 /* loadingGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingGIF.gif; sourceTree = "<group>"; };
+		9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceImageManager.swift; sourceTree = "<group>"; };
+		9329D9D11F306A6800415697 /* FetchDistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDistanceManager.swift; sourceTree = "<group>"; };
+		93729A1E1F32E65B004125C0 /* FilterDropDownViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDropDownViews.swift; sourceTree = "<group>"; };
+		93729A1F1F32E65B004125C0 /* FilterDropDownViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterDropDownViews.xib; sourceTree = "<group>"; };
+		9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationManager.swift; sourceTree = "<group>"; };
+		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
+		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
+		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
+		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
+		93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameCirclesDesign.swift; sourceTree = "<group>"; };
+		93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyGlobalVariables.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,6 +93,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		930086761F2A089C00BEA223 /* NearBy */ = {
+			isa = PBXGroup;
+			children = (
+				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
+				93729A1E1F32E65B004125C0 /* FilterDropDownViews.swift */,
+				93729A1F1F32E65B004125C0 /* FilterDropDownViews.xib */,
+				930086771F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift */,
+				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
+				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
+				93A10BF11F31EEFB00F69A82 /* NearbyGlobalVariables.swift */,
+				9380CA911F2DE46200629C0A /* FetchManagers */,
+			);
+			name = NearBy;
+			sourceTree = "<group>";
+		};
 		930144261F27986700CEC11A = {
 			isa = PBXGroup;
 			children = (
@@ -88,13 +133,45 @@
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
-				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
+				93A10BEA1F31BF3500F69A82 /* Random Game */,
+				930086761F2A089C00BEA223 /* NearBy */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
+				9308F2971F2F215800819B03 /* UIImage+Gif.swift */,
+				9308F2991F2F217600819B03 /* Gif */,
 				9301443B1F27986700CEC11A /* LaunchScreen.storyboard */,
 				9301443E1F27986700CEC11A /* Info.plist */,
-				9301444B1F288AD700CEC11A /* GoogleService-Info.plist */,
+				930086741F29E9FE00BEA223 /* GoogleService-Info.plist */,
 			);
 			path = Eatvago;
+			sourceTree = "<group>";
+		};
+		9308F2991F2F217600819B03 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				9308F29A1F2F21B000819B03 /* loadingGIF.gif */,
+			);
+			name = Gif;
+			sourceTree = "<group>";
+		};
+		9380CA911F2DE46200629C0A /* FetchManagers */ = {
+			isa = PBXGroup;
+			children = (
+				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
+				9329D9D11F306A6800415697 /* FetchDistanceManager.swift */,
+				9308F29C1F2F2D2600819B03 /* FetchPlaceImageManager.swift */,
+				9380CA8B1F2B341500629C0A /* FetchNearbyLocationManager.swift */,
+			);
+			name = FetchManagers;
+			sourceTree = "<group>";
+		};
+		93A10BEA1F31BF3500F69A82 /* Random Game */ = {
+			isa = PBXGroup;
+			children = (
+				93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */,
+				93A10BED1F31C01F00F69A82 /* CircleFunction.swift */,
+				93A10BEF1F31D69E00F69A82 /* RandomGameCirclesDesign.swift */,
+			);
+			name = "Random Game";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +238,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93729A211F32E65B004125C0 /* FilterDropDownViews.xib in Resources */,
 				9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */,
-				9301444C1F288AD700CEC11A /* GoogleService-Info.plist in Resources */,
+				930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */,
 				9301443A1F27986700CEC11A /* Assets.xcassets in Resources */,
+				9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */,
 				930144381F27986700CEC11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,10 +316,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
+				93A10BF21F31EEFB00F69A82 /* NearbyGlobalVariables.swift in Sources */,
+				9380CA8C1F2B341500629C0A /* FetchNearbyLocationManager.swift in Sources */,
+				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
+				93729A201F32E65B004125C0 /* FilterDropDownViews.swift in Sources */,
+				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
+				93A10BF01F31D69E00F69A82 /* RandomGameCirclesDesign.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
+				930086781F2A08C700BEA223 /* NearbyLocationDelegateFunction.swift in Sources */,
+				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
+				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
+				9308F29D1F2F2D2600819B03 /* FetchPlaceImageManager.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
+				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
+				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

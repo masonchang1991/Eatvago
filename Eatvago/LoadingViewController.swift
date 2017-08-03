@@ -24,7 +24,6 @@ class LoadingViewController: UIViewController {
         
         appleImage.tintColor = UIColor.white
         appleImage.alpha = 0.0
-
     
     }
     
@@ -37,29 +36,33 @@ class LoadingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
     func loading() {
 
         appleImage.tintColor = UIColor.red
         
-        UIView.animate(withDuration: 5.0, animations: {
+        UIView.animate(withDuration: 2.0, animations: {
+            
             self.loadingViewWidthConstrain.constant = 200
             self.appleImage.alpha = 1.0
-            if UserDefaults.standard.value(forKey: "UserLoginEmail") != nil && UserDefaults.standard.value(forKey: "UserLoginPassword") != nil {
+            
+            if UserDefaults.standard.value(forKey: "UserLoginEmail") != nil
+                && UserDefaults.standard.value(forKey: "UserLoginPassword") != nil {
+                
                 guard let email = UserDefaults.standard.value(forKey: "UserLoginEmail") as? String,
                     let password = UserDefaults.standard.value(forKey: "UserLoginPassword") as? String else {
                         print("At appdelegate , can't get email or password")
                         return
                 }
-                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                Auth.auth().signIn(withEmail: email, password: password) { (value, error) in
                     if error == nil {
 
                         print("Success Login")
                         self.loginSuccess = true
+                        userId = (value?.uid)!
                         
                     } else {
+
                         self.loginSuccess = false
                     }
                     
@@ -73,7 +76,7 @@ class LoadingViewController: UIViewController {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.makeKeyAndVisible()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let nextVC = storyBoard.instantiateViewController(withIdentifier: "mainNavigationController")
+                let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.window?.rootViewController = nextVC
             } else {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -85,6 +88,5 @@ class LoadingViewController: UIViewController {
         }
 
     }
-    
 
    }
