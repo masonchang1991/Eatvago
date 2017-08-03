@@ -13,9 +13,11 @@ import NVActivityIndicatorView
 import FirebaseDatabase
 import Firebase
 import SCLAlertView
+import YNDropDownMenu
 
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
     
+    @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapTableView: UITableView!
     var window: UIWindow?
@@ -24,8 +26,9 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var currentLocation = CLLocation()
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 15.0
-
+    var zoomLevel: Float = 16.0
+    var filterDistance = 100.0
+    
     //附近的地點 base on mylocation
     var locations: [Location] = []
     
@@ -90,9 +93,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         fetchPlaceIdDetailManager.delegate = self
         fetchPlaceImageManager.delegate = self
         fetchDistanceManager.delegate = self
-        
-        
+
         ref = Database.database().reference()
+        
+
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
@@ -246,4 +251,56 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         self.window?.rootViewController = nextVC
     }
 
+    @IBAction func chaneDistance(_ sender: Any) {
+        
+        locationManager.stopUpdatingLocation()
+        
+        
+        // 建立一個提示框
+        let alertController = UIAlertController(
+            title: "切換距離",
+            message: "請輸入您要的距離",
+            preferredStyle: .alert)
+        
+        // 建立一個輸入框
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "距離"
+        }
+        
+        // 建立[取消]按鈕
+        let cancelAction = UIAlertAction(
+            title: "取消",
+            style: .cancel,
+            handler: nil)
+        alertController.addAction(cancelAction)
+
+        // 建立[登入]按鈕
+        let okAction = UIAlertAction(
+            title: "確認",
+            style: UIAlertActionStyle.default) {
+                (action: UIAlertAction!) -> Void in
+                
+                self.filterDistance = Double((alertController.textFields?.first?.text)!)!
+                self.currentLocation = CLLocation()
+                self.lastLocation = nil
+                self.locations = []
+                self.nearbyLocationDictionary = [:]
+                DispatchQueue.main.async {
+                    self.googleMapView.clear()
+                    self.mapTableView.reloadData()
+                    self.locationManager.startUpdatingLocation()
+                }
+
+                
+        }
+        alertController.addAction(okAction)
+        self.present(
+            alertController,
+            animated: true,
+            completion: nil)
+        
+        
+    }
+   
 }

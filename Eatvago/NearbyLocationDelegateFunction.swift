@@ -61,7 +61,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
                 self.lastLocation = myLocation
                 
                 // 座標更新後呼叫拿取附近的地點
-                self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
+                self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance)
             }
             
             locationManager.stopUpdatingLocation()
