@@ -19,7 +19,7 @@ import UIKit
 /// current traitCollection and provides a property |actualTraitCollection| which can be used to
 /// access the most recent trait collection.
 class BaseContainerViewController: UIViewController {
-  private var _actualTraitCollection: AnyObject? = nil
+  private var _actualTraitCollection: AnyObject?
 
   /// Retrieve the most recent trait collection. This will usually be the same as |traitCollection|
   /// but will differ during trait transitions. During a trait transition |traitCollection| will

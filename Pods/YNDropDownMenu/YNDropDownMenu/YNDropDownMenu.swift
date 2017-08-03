@@ -55,10 +55,10 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     /// Alpha Value if animation ended in *hideMenu()* function
-    open var blurEffectViewAlpha:CGFloat = 1.0
+    open var blurEffectViewAlpha: CGFloat = 1.0
     
     /// Blur effect style in background view
-    open var blurEffectStyle:UIBlurEffectStyle = .dark
+    open var blurEffectStyle: UIBlurEffectStyle = .dark
     
     /// Make background blur view enabled
     open var backgroundBlurEnabled = true
@@ -70,16 +70,16 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     open var hideMenuDuration = 0.3
     
     /// Show menu spring velocity default value: *0.5*
-    open var showMenuSpringVelocity:CGFloat = 0.5
+    open var showMenuSpringVelocity: CGFloat = 0.5
     
     /// Show menu spring damping default value: *0.8*
-    open var showMenuSpringWithDamping:CGFloat = 0.8
+    open var showMenuSpringWithDamping: CGFloat = 0.8
     
     /// Hide menu spring velocity Default value: *0.9*
-    open var hideMenuSpringVelocity:CGFloat = 0.9
+    open var hideMenuSpringVelocity: CGFloat = 0.9
     
     /// Hide menu spring damping Default value: *0.8*
-    open var hideMenuSpringWithDamping:CGFloat = 0.8
+    open var hideMenuSpringWithDamping: CGFloat = 0.8
     
     /// Bottom 0.5px line
     open var bottomLine: UIView!
@@ -129,7 +129,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         
     }
     
-    
     /**
      Set arrow image or other images. Same image size is the best
      
@@ -144,7 +143,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             dropDownButtons?[i].buttonImages = self.buttonImages
         }
     }
-    
     
     /**
      Set an image for a drop-down button with various colors.
@@ -164,9 +162,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             dropDownButtons?[i].buttonImages = self.buttonImages
         }
         
-        
     }
-    
     
     /**
      Set an image for a drop-down button with various colors.
@@ -189,8 +185,8 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     }
     
     /// Convert String-type hex color codes into UIColor.
-    private func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    private func hexStringToUIColor (hex: String) -> UIColor {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
@@ -200,7 +196,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             return UIColor.gray
         }
         
-        var rgbValue:UInt32 = 0
+        var rgbValue: UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(
@@ -212,7 +208,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     }
     
     /// Mask images with UIColor.
-    private func imageMaskingwithColor(_ color: UIColor, image: UIImage?) -> UIImage?{
+    private func imageMaskingwithColor(_ color: UIColor, image: UIImage?) -> UIImage? {
         
         if let image = image {
             
@@ -236,12 +232,11 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             
             return coloredImage
             
-        }else{
+        } else {
             
             return nil
         }
     }
-    
     
     /**
      Set label color.
@@ -258,7 +253,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
-    
     /**
      Set label color with hex color codes
      
@@ -267,7 +261,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
      - Parameter disabled: Disabled color
      */
     
-    open func setLabelColorWhen(normalRGB: String, selectedRGB: String, disabledRGB: String){
+    open func setLabelColorWhen(normalRGB: String, selectedRGB: String, disabledRGB: String) {
         
         self.buttonlabelFontColors = YNFontColor.init(normal: hexStringToUIColor(hex: normalRGB), selected: hexStringToUIColor(hex: selectedRGB), disabled: hexStringToUIColor(hex: disabledRGB))
         
@@ -275,7 +269,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             dropDownButtons?[i].labelFontColors = self.buttonlabelFontColors
         }
     }
-    
     
     /**
      Set the same label font for every status.
@@ -404,7 +397,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
-    
     /**
      Change view you called. you can call it in YNDropDownMenu or YNDropDownView
      
@@ -461,7 +453,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
-    internal func showMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (()-> Void)?) {
+    internal func showMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (() -> Void)?) {
         guard
             let yNDropDownButton = yNDropDownButton,
             let dropDownView = dropDownView else { return }
@@ -500,7 +492,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         })
     }
     
-    internal func hideMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (()-> Void)?) {
+    internal func hideMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (() -> Void)?) {
         guard
             let yNDropDownButton = yNDropDownButton,
             let dropDownView = dropDownView else { return }
@@ -520,7 +512,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 }
                 self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: CGFloat(self.menuHeight))
                 if let _buttonImageView = buttonImageView {
-                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0);
+                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0)
                     _buttonImageView.image = self.buttonImages?.normal
                 }
                 
@@ -538,7 +530,6 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             didComplete?()
         })
     }
-    
     
     internal func changeBlurEffectView() {
         self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: UIScreen.main.bounds.size.height - self.frame.origin.y)

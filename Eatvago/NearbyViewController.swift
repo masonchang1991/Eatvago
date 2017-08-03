@@ -30,7 +30,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 18.0
     var filterDistance = 100.0
-
     
     //附近的地點 base on mylocation
     var locations: [Location] = []
@@ -74,8 +73,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +84,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
-        
 
         mapTableView.delegate = self
         mapTableView.dataSource = self
@@ -98,8 +94,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         fetchDistanceManager.delegate = self
 
         ref = Database.database().reference()
-        
-
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -142,8 +136,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             }
         })
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -222,7 +214,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         addCommentTextField.placeholder = " 施工中"
         subTextField.addSubview(addCommentTextField)
         alert.customSubview = subTextField
-
         
         alert.addButton("OK") {
             
@@ -234,7 +225,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                 return
             }
             
-            
             self.ref?.child("Place Detail").child("\(self.locations[sender.tag].placeId)").child("Comments").child(key).setValue(key)
             
             self.ref?.child("Comments").child("\(self.locations[sender.tag].placeId)").child(key).child("Creater").setValue(userId)
@@ -245,14 +235,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         alert.showTitle("評論\(self.locations[sender.tag].name)", subTitle: "", style: .success)
-      
-        
-        
-        
         
     }
-    
-    
     
     func showStoreDetail(_ sender: UIButton) {
         
@@ -289,7 +273,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         locationManager.stopUpdatingLocation()
         
-        
         // 建立一個提示框
         let alertController = UIAlertController(
             title: "切換距離",
@@ -313,7 +296,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let okAction = UIAlertAction(
             title: "確認",
             style: UIAlertActionStyle.default) {
-                (action: UIAlertAction!) -> Void in
+                (_: UIAlertAction!) -> Void in
                 
                 self.filterDistance = Double((alertController.textFields?.first?.text)!)!
                 self.currentLocation = CLLocation()
@@ -326,7 +309,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                     self.mapTableView.reloadData()
                     self.locationManager.startUpdatingLocation()
                 }
-
                 
         }
         alertController.addAction(okAction)
@@ -340,7 +322,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func textFilter(_ sender: Any) {
         
         locationManager.stopUpdatingLocation()
-        
         
         // 建立一個提示框
         let alertController = UIAlertController(
@@ -365,7 +346,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let okAction = UIAlertAction(
             title: "確認",
             style: UIAlertActionStyle.default) {
-                (action: UIAlertAction!) -> Void in
+                (_: UIAlertAction!) -> Void in
                 
                 filterText = (alertController.textFields?.first?.text)!
                 self.currentLocation = CLLocation()
@@ -378,7 +359,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                     self.mapTableView.reloadData()
                     self.locationManager.startUpdatingLocation()
                 }
-                
                 
         }
         alertController.addAction(okAction)

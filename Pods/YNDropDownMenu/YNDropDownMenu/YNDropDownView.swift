@@ -44,7 +44,6 @@ open class YNDropDownView: UIView {
     open func changeMenu(title: String, status: YNStatus, at index: Int) {
         self.delegate?.changeMenu(title: title, status: status, at: index)
     }
-
     
     /**
      Change view you called. you can call it in YNDropDownMenu or YNDropDownView

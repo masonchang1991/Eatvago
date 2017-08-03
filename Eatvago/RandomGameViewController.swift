@@ -40,7 +40,6 @@ class RandomGameViewController: UIViewController {
     
     var randomRestaurant = [Location]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,12 +70,9 @@ class RandomGameViewController: UIViewController {
         sixthRestaurantButton.isHidden = true
     }
     
-    
     @IBAction func generateRestaurant(_ sender: UIButton) {
         
         randomRestaurant = []
-        
-        
         
         if firstRestaurantButton.isHidden == false {
             
@@ -105,19 +101,16 @@ class RandomGameViewController: UIViewController {
                 self.sixthRestaurantButton.isHidden = true
             })
         })
-
-            
             
         } else {
             
-            for _ in 0...5{
+            for _ in 0...5 {
                 
                 let randomNumber = Int(arc4random_uniform(UInt32(fetchedLocations.count - 1)))
                 
                 randomRestaurant.append(fetchedLocations[randomNumber])
                 
             }
-            
             
             firstRestaurantButton.setTitle(randomRestaurant[0].name, for: .normal)
             secondRestaurantButton.setTitle(randomRestaurant[1].name, for: .normal)
@@ -147,7 +140,6 @@ class RandomGameViewController: UIViewController {
                 self.fifthRestaurantButton.isHidden = false
                 self.sixthRestaurantButton.isHidden = false
                 
-                
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
@@ -155,7 +147,6 @@ class RandomGameViewController: UIViewController {
     }
 
     @IBAction func spin(_ sender: UIButton) {
-        
         
         let randomNumber = Int(arc4random_uniform(UInt32(30)))
         let randomNumberAdd = randomNumber + 20
@@ -203,19 +194,13 @@ class RandomGameViewController: UIViewController {
                 
             })
             
-            
         }
         
     }
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-                    
-
 
 }

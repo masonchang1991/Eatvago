@@ -28,7 +28,6 @@ class FetchPlaceImageManager {
         }
         
             let requestImgUrl = URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=\(photoReference)&key=\(googleMapAPIKey[0])")
-        
             
             guard let url = requestImgUrl else {
                 return
@@ -41,7 +40,6 @@ class FetchPlaceImageManager {
             img.sd_setImage(with: url)
             
             self.delegate?.manager(self, fetch: img, imageOfIndexPathRow: imageOfIndexPathRow)
-    
 
     }
 }

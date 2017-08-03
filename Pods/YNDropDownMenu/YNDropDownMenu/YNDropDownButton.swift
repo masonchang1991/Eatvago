@@ -95,7 +95,7 @@ class YNDropDownButton: UIButton {
         
         let centerYConstraintImage = NSLayoutConstraint(item: buttonLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
         
-        self.addConstraints([centerXwithOffsetConstraintImage,centerYConstraintImage])
+        self.addConstraints([centerXwithOffsetConstraintImage, centerYConstraintImage])
         
         self.buttonImageView = UIImageView()
         self.buttonImageView.image = _buttonImage
@@ -109,7 +109,7 @@ class YNDropDownButton: UIButton {
         
         self.addSubview(buttonImageView)
         
-        self.addConstraints([buttonImageViewXContraint,buttonImageViewYConstraint,buttonImageViewHeight,buttonImageViewWidth])
+        self.addConstraints([buttonImageViewXContraint, buttonImageViewYConstraint, buttonImageViewHeight, buttonImageViewWidth])
     }
     
     private func initView() {
@@ -125,6 +125,6 @@ class YNDropDownButton: UIButton {
         centerXwithOffsetConstraint = NSLayoutConstraint(item: buttonLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
         centerYConstraint = NSLayoutConstraint(item: buttonLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
         
-        self.addConstraints([centerXwithOffsetConstraint,centerYConstraint])
+        self.addConstraints([centerXwithOffsetConstraint, centerYConstraint])
     }
 }

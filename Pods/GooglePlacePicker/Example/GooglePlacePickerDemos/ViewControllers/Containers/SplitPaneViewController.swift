@@ -250,7 +250,7 @@ class SplitPaneViewController: BaseContainerViewController {
             finish()
         })
       } else {
-        UIView.animate(withDuration: 0.367, animations: animation) { (finished) in
+        UIView.animate(withDuration: 0.367, animations: animation) { (_) in
           finish()
         }
       }

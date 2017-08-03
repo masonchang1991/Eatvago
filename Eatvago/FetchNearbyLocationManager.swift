@@ -90,7 +90,6 @@ class FetchNearbyLocationManager {
                 }
             }
             
-            
             guard let results = localJson["results"] as? [[String: Any]],
                 let pageToken = localJson["next_page_token"] as? String? else {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)

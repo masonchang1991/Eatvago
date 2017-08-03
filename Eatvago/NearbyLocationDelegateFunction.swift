@@ -49,10 +49,8 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     self.locations = []
                     
                     self.lastLocation = myLocation
-                    
    
                         self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: 300)
-                    
                     
                 }
                 
@@ -102,7 +100,6 @@ extension NearbyViewController: FetchLocationDelegate {
         print(nearLocations.count)
         
         let myLocation = currentLocation
-        
         
         fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
 
@@ -197,6 +194,7 @@ extension NearbyViewController: FetchDistanceDelegate {
         
         //每個地點delegate去獲取詳細資訊
         for location in nearLocationsWithDistance {
+            
             if nearbyLocationDictionary["\(location.placeId)"] == nil {
                 
                 let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
@@ -225,9 +223,11 @@ extension NearbyViewController: FetchDistanceDelegate {
         if self.lastPageToken != "" && self.lastPageToken == self.nextPageToken {
             return
         }
-      
+      DispatchQueue.global().asyncAfter(deadline: .now() + 3.0) { 
         self.lastPageToken = self.nextPageToken
         self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken)
+        }
+
         
     }
     

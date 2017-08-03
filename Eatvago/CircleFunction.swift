@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class CircleView: UIView {
     
     override func draw(_ rect: CGRect) {
@@ -42,14 +41,9 @@ class CircleView: UIView {
             path.addLine(to: center)
         }
         
-        
             path.lineWidth = 5
             path.stroke()
         
-        
     }
-    
-    
-    
     
 }

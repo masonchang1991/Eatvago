@@ -43,4 +43,3 @@ struct YNFont {
     /// Disabled UIFont
     var disabled: UIFont?
 }
-

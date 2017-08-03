@@ -190,8 +190,7 @@ class PlaceDetailTableViewDataSource: NSObject, UITableViewDataSource, UITableVi
     // Our first cell has a fixed height, all the rest are automatic.
     if indexPath.item == 0 {
       return compactHeader ? 0 : 20
-    }
-    else {
+    } else {
       return UITableViewAutomaticDimension
     }
   }
