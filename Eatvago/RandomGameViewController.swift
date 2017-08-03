@@ -45,6 +45,11 @@ class RandomGameViewController: UIViewController {
         super.viewDidLoad()
         
         //先隱藏起來
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //先隱藏起來
         firstXConstraint.constant = 110
         firstYConstraint.constant = 110
         secondXConstraint.constant = 110
@@ -64,11 +69,6 @@ class RandomGameViewController: UIViewController {
         fourthRestaurantButton.isHidden = true
         fifthRestaurantButton.isHidden = true
         sixthRestaurantButton.isHidden = true
-        
-        
-     
-        
-        
     }
     
     
@@ -161,12 +161,6 @@ class RandomGameViewController: UIViewController {
         let randomNumberAdd = randomNumber + 20
         var number = 1
         
-        
-        
-
-        
-        
-          
         for _ in 0...randomNumberAdd {
 
             UIView.animate(withDuration: 3.0, delay: 0.2, options: .curveEaseOut, animations: {

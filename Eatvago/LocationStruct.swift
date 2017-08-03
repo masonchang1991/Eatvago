@@ -22,7 +22,7 @@ struct Location {
     var reviewsText: [String]
     var website: String
     var photoReference: String
-    var photo: UIImageView?
+    var photo: UIImage?
     var distanceText: String
     var durationText: String
 

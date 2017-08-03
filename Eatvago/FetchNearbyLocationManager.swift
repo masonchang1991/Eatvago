@@ -40,7 +40,7 @@ class FetchNearbyLocationManager {
         self.coordinate = coordinate
         self.radius = radius
         
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&keyword=&key=\(googleMapAPIKey[keyCount])"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&keyword=\(filterText)&key=\(googleMapAPIKey[keyCount])"
 
         print(urlString)
 

@@ -179,7 +179,7 @@ extension NearbyViewController: FetchPlaceImageDelegate {
         
         print(imageOfIndexPathRow)
         DispatchQueue.main.async {
-            self.locations[imageOfIndexPathRow].photo = imageView
+//            self.locations[imageOfIndexPathRow].photo = imageView
             self.mapTableView.reloadData()
         }
         
@@ -207,15 +207,14 @@ extension NearbyViewController: FetchDistanceDelegate {
                 
                 marker.map = self.googleMapView
                 
-                self.googleMapView.animate(toLocation: coordinates)
+                //self.googleMapView.animate(toLocation: coordinates)
                 
                 nearbyLocationDictionary["\(location.placeId)"] = location
                 
                 self.locations.append(location)
                 fetchedLocations.append(location)
                 
-                fetchPlaceImageManager.fetchImage(locationPhotoReference: location.photoReference,
-                                                  imageOfIndexPathRow: (self.locations.count - 1))
+                loadFirstPhotoForPlace(placeID: location.placeId, indexPathRow: (self.locations.count - 1))
                 
             } else {
                 print("已經出現過", location.name)

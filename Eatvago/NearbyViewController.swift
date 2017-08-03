@@ -15,6 +15,8 @@ import Firebase
 import SCLAlertView
 import YNDropDownMenu
 
+var filterText = ""
+
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var filterView: UIView!
@@ -26,8 +28,9 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var currentLocation = CLLocation()
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 16.0
+    var zoomLevel: Float = 18.0
     var filterDistance = 100.0
+
     
     //附近的地點 base on mylocation
     var locations: [Location] = []
@@ -110,6 +113,37 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    //讀取圖片func
+    func loadFirstPhotoForPlace(placeID: String, indexPathRow: Int) {
+        print(placeID)
+        GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
+            if let error = error {
+                // TODO: handle the error.
+                print("Error: \(error.localizedDescription)")
+            } else {
+                if let firstPhoto = photos?.results.first {
+                    self.loadImageForMetadata(photoMetadata: firstPhoto, indexPathRow: indexPathRow)
+                }
+            }
+        }
+    }
+    
+    func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata, indexPathRow: Int) {
+        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
+            (photo, error) -> Void in
+            if let error = error {
+                // TODO: handle the error.
+                print("Error: \(error.localizedDescription)")
+            } else {
+                DispatchQueue.main.async {
+                    self.locations[indexPathRow].photo = photo
+                    self.mapTableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -127,7 +161,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.mapTextLabel.text = location.name
         
-        if location.photo?.image == nil {
+        if location.photo == nil {
             cell.storePhotoView.startAnimating()
             cell.storePhotoImageView.isHidden = true
             
@@ -139,7 +173,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             guard let storeImage = location.photo else {
                 return UITableViewCell()
             }
-            cell.storePhotoImageView.image = storeImage.image
+            cell.storePhotoImageView.image = storeImage
             cell.storePhotoImageView.contentMode = .scaleToFill
         }
         cell.showStoreDetailButton.tag = indexPath.row
@@ -285,6 +319,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                 self.currentLocation = CLLocation()
                 self.lastLocation = nil
                 self.locations = []
+                fetchedLocations = []
                 self.nearbyLocationDictionary = [:]
                 DispatchQueue.main.async {
                     self.googleMapView.clear()
@@ -300,7 +335,58 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             animated: true,
             completion: nil)
         
-        
     }
    
+    @IBAction func textFilter(_ sender: Any) {
+        
+        locationManager.stopUpdatingLocation()
+        
+        
+        // 建立一個提示框
+        let alertController = UIAlertController(
+            title: "輸入關鍵字",
+            message: "請輸入您的關鍵字",
+            preferredStyle: .alert)
+        
+        // 建立一個輸入框
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "Key word"
+        }
+        
+        // 建立[取消]按鈕
+        let cancelAction = UIAlertAction(
+            title: "取消",
+            style: .cancel,
+            handler: nil)
+        alertController.addAction(cancelAction)
+        
+        // 建立[登入]按鈕
+        let okAction = UIAlertAction(
+            title: "確認",
+            style: UIAlertActionStyle.default) {
+                (action: UIAlertAction!) -> Void in
+                
+                filterText = (alertController.textFields?.first?.text)!
+                self.currentLocation = CLLocation()
+                self.lastLocation = nil
+                self.locations = []
+                fetchedLocations = []
+                self.nearbyLocationDictionary = [:]
+                DispatchQueue.main.async {
+                    self.googleMapView.clear()
+                    self.mapTableView.reloadData()
+                    self.locationManager.startUpdatingLocation()
+                }
+                
+                
+        }
+        alertController.addAction(okAction)
+        self.present(
+            alertController,
+            animated: true,
+            completion: nil)
+        
+    }
+    
 }
