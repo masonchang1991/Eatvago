@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '935435522F3CA727383AF8D7A2C9958F'
-               BlueprintName = 'SCLAlertView'
+               BlueprintIdentifier = '5748CBD6628E5BED81C1A3FF982B380B'
+               BlueprintName = 'Magnetic'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SCLAlertView.framework'>
+               BuildableName = 'Magnetic.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

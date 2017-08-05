@@ -26,6 +26,7 @@ class FetchDistanceManager {
         locations = []
         
         for nearLocation in nearLocations {
+            
             let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(nearLocation.latitude),\(nearLocation.longitude)&key=\(googleMapDistanceMatrixAPIKey)"
             
             Alamofire.request(urlStringForDistance).responseJSON { (response) in

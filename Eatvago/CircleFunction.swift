@@ -10,6 +10,9 @@ import UIKit
 
 class CircleView: UIView {
     
+    
+    private var number = 0
+    
     override func draw(_ rect: CGRect) {
         
         let path = UIBezierPath()

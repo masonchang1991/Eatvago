@@ -13,7 +13,6 @@ import NVActivityIndicatorView
 import FirebaseDatabase
 import Firebase
 import SCLAlertView
-import YNDropDownMenu
 
 var filterText = ""
 
@@ -42,7 +41,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     let fetchNearbyLocationManager = FetchNearbyLocationManager()
     let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
-    let fetchPlaceImageManager = FetchPlaceImageManager()
+    let fetchLocationImageManager = FetchLocationImageManager()
     let fetchDistanceManager = FetchDistanceManager()
     var nextPageToken = ""
     var lastPageToken = ""
@@ -90,8 +89,8 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         fetchNearbyLocationManager.delegate = self
         fetchPlaceIdDetailManager.delegate = self
-        fetchPlaceImageManager.delegate = self
         fetchDistanceManager.delegate = self
+        fetchLocationImageManager.delegate = self
 
         ref = Database.database().reference()
         
@@ -105,36 +104,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    //讀取圖片func
-    func loadFirstPhotoForPlace(placeID: String, indexPathRow: Int) {
-        print(placeID)
-        GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
-            if let error = error {
-                // TODO: handle the error.
-                print("Error: \(error.localizedDescription)")
-            } else {
-                if let firstPhoto = photos?.results.first {
-                    self.loadImageForMetadata(photoMetadata: firstPhoto, indexPathRow: indexPathRow)
-                }
-            }
-        }
-    }
-    
-    func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata, indexPathRow: Int) {
-        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
-            (photo, error) -> Void in
-            if let error = error {
-                // TODO: handle the error.
-                print("Error: \(error.localizedDescription)")
-            } else {
-                DispatchQueue.main.async {
-                    self.locations[indexPathRow].photo = photo
-                    self.mapTableView.reloadData()
-                }
-            }
-        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -186,10 +155,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     // Make table rows display at proper height if there are less than 5 items.
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if (section == tableView.numberOfSections - 1) {
+        if section == tableView.numberOfSections - 1 {
             return 1
+        } else {
+            return 0
         }
-        return 0
     }
     
     func addStoreDetail(_ sender: UIButton) {
@@ -217,7 +187,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         alert.addButton("OK") {
             
-            var text = addCommentTextField.text
+            let text = addCommentTextField.text
             
             let autoId = self.ref?.childByAutoId()
             
@@ -280,8 +250,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             preferredStyle: .alert)
         
         // 建立一個輸入框
-        alertController.addTextField {
-            (textField: UITextField!) -> Void in
+        alertController.addTextField { (textField: UITextField!) -> Void in
             textField.placeholder = "距離"
         }
         
@@ -295,8 +264,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         // 建立[登入]按鈕
         let okAction = UIAlertAction(
             title: "確認",
-            style: UIAlertActionStyle.default) {
-                (_: UIAlertAction!) -> Void in
+            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
                 
                 self.filterDistance = Double((alertController.textFields?.first?.text)!)!
                 self.currentLocation = CLLocation()
@@ -330,8 +298,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             preferredStyle: .alert)
         
         // 建立一個輸入框
-        alertController.addTextField {
-            (textField: UITextField!) -> Void in
+        alertController.addTextField { (textField: UITextField!) -> Void in
             textField.placeholder = "Key word"
         }
         
@@ -345,8 +312,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         // 建立[登入]按鈕
         let okAction = UIAlertAction(
             title: "確認",
-            style: UIAlertActionStyle.default) {
-                (_: UIAlertAction!) -> Void in
+            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
                 
                 filterText = (alertController.textFields?.first?.text)!
                 self.currentLocation = CLLocation()
