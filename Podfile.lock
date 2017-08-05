@@ -58,7 +58,6 @@ PODS:
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
   - SwiftLint (0.21.0)
-  - YNDropDownMenu (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -72,7 +71,6 @@ DEPENDENCIES:
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SwiftLint
-  - YNDropDownMenu
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -92,8 +90,7 @@ SPEC CHECKSUMS:
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
-  YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
 
-PODFILE CHECKSUM: b9d5cdde6d6c56a94c1747b2a1d08e4ae2275c7d
+PODFILE CHECKSUM: 6034c770809050b241cd57980eafb6797a4cfa1e
 
 COCOAPODS: 1.2.1

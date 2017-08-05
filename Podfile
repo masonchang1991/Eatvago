@@ -17,5 +17,4 @@ target 'Eatvago' do
   pod 'SDWebImage', '~> 4.0'
   pod 'NVActivityIndicatorView'
   pod 'SCLAlertView'
-  pod 'YNDropDownMenu'
 end

@@ -39,11 +39,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>YNDropDownMenu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -51,52 +46,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>51C43C63973241D5CBF086DA9553B106</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>634BAA0E7AF02D69F49C6C278F74D85B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B35FE04C9CACA83AD1B39E176FCD85CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D11C9F29B8DB58C3E746D4DCFB6C511B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
