@@ -16,12 +16,17 @@ import SCLAlertView
 
 var filterText = ""
 
-class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable {
+class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
     
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapTableView: UITableView!
+    
     var window: UIWindow?
+    
+    // 與TabBarcontroller分享的Model
+    var fetchedLocations = [Location]()
+    
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -58,22 +63,32 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let camera = GMSCameraPosition.camera(withLatitude: 25.042476,
                                               longitude: 121.564882,
                                               zoom: 20)
+        
         googleMapView = GMSMapView.map(withFrame: mapView.bounds,
                                        camera: camera)
+        
         googleMapView.settings.myLocationButton = true
+        
         googleMapView.autoresizingMask = [.flexibleWidth,
                                           .flexibleHeight]
         googleMapView.isMyLocationEnabled = true
         
         // Add the map to the view, hide it until we've got a location update.
         mapView.addSubview(googleMapView)
+        
         googleMapView.isHidden = true
+        
         mapView.isHidden = true
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//swiftlint:disable force_cast
+        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        tbC.fetchedLocations = self.locations
+        tbC.delegate = self
+
         
         // 配置 locationManager
         
@@ -97,36 +112,49 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        
-        self.lastLocation = nil
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        
     }
     
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        //swiftlint:disable force_cast
+        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        tbC.fetchedLocations = self.locations
+        
+        
+    }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return locations.count
+        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 110.0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
             return UITableViewCell()
         }
+        
         let location = locations[indexPath.row]
         
         cell.mapTextLabel.text = location.name
         
         if location.photo == nil {
+            
             cell.storePhotoView.startAnimating()
             cell.storePhotoImageView.isHidden = true
             
         } else {
+            
             cell.storePhotoView.isHidden = true
             cell.storePhotoImageView.isHidden = false
             cell.storePhotoView.stopAnimating()
@@ -134,9 +162,12 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             guard let storeImage = location.photo else {
                 return UITableViewCell()
             }
+            
             cell.storePhotoImageView.image = storeImage
             cell.storePhotoImageView.contentMode = .scaleToFill
+            
         }
+        
         cell.showStoreDetailButton.tag = indexPath.row
         cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
         cell.addStoreDetailButton.tag = indexPath.row
@@ -147,19 +178,21 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
         return cell
     }
-    
-    // Show only the first five items in the table (scrolling is disabled in IB).
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return self.mapTableView.frame.size.height/5
+        
     }
-    
-    // Make table rows display at proper height if there are less than 5 items.
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
         if section == tableView.numberOfSections - 1 {
             return 1
         } else {
             return 0
         }
+        
     }
     
     func addStoreDetail(_ sender: UIButton) {
@@ -213,7 +246,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
         
     }
-    
+
     @IBAction func changTableViewAndMap(_ sender: UIButton) {
         if mapTableView.isHidden == true {
             mapTableView.isHidden = false
@@ -270,7 +303,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                 self.currentLocation = CLLocation()
                 self.lastLocation = nil
                 self.locations = []
-                fetchedLocations = []
                 self.nearbyLocationDictionary = [:]
                 DispatchQueue.main.async {
                     self.googleMapView.clear()
@@ -318,7 +350,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
                 self.currentLocation = CLLocation()
                 self.lastLocation = nil
                 self.locations = []
-                fetchedLocations = []
                 self.nearbyLocationDictionary = [:]
                 DispatchQueue.main.async {
                     self.googleMapView.clear()

@@ -26,6 +26,8 @@
 		93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729AC81F35CF51004125C0 /* FetchDistanceDelegate.swift */; };
 		93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729ACA1F35D0E4004125C0 /* FetchLocationImageManager.swift */; };
 		93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729ACC1F35D7BF004125C0 /* FetchLocationImageDelegate.swift */; };
+		93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729ACE1F3631C2004125C0 /* MainTabBarController.swift */; };
+		93729AD11F36DB8A004125C0 /* NearbyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729AD01F36DB8A004125C0 /* NearbyNavigationController.swift */; };
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
@@ -57,6 +59,8 @@
 		93729AC81F35CF51004125C0 /* FetchDistanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDistanceDelegate.swift; sourceTree = "<group>"; };
 		93729ACA1F35D0E4004125C0 /* FetchLocationImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchLocationImageManager.swift; sourceTree = "<group>"; };
 		93729ACC1F35D7BF004125C0 /* FetchLocationImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchLocationImageDelegate.swift; sourceTree = "<group>"; };
+		93729ACE1F3631C2004125C0 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		93729AD01F36DB8A004125C0 /* NearbyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyNavigationController.swift; sourceTree = "<group>"; };
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationsManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
+				93729ACE1F3631C2004125C0 /* MainTabBarController.swift */,
+				93729AD01F36DB8A004125C0 /* NearbyNavigationController.swift */,
 				93A10BEA1F31BF3500F69A82 /* Random Game */,
 				930086761F2A089C00BEA223 /* NearBy */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
@@ -329,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93729AD11F36DB8A004125C0 /* NearbyNavigationController.swift in Sources */,
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
 				93A10BF21F31EEFB00F69A82 /* NearbyGlobalVariables.swift in Sources */,
@@ -346,6 +353,7 @@
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
+				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
 				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
