@@ -9,7 +9,6 @@
 import UIKit
 import GooglePlaces
 
-
 protocol FetchLocationImageDelegate: class {
     
     func manager(_ manager: FetchLocationImageManager, didGet locationImage: UIImage, at indexPathRow: Int)
@@ -67,7 +66,3 @@ class FetchLocationImageManager {
         })
     }
 }
-
-
-
-

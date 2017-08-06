@@ -362,7 +362,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-ea-xRP">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-ea-xRP" customClass="MagneticView" customModule="Magnetic">
                                 <rect key="frame" x="67" y="166" width="240" height="335"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -372,7 +372,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5v4-bE-unK"/>
                     <connections>
-                        <outlet property="randomGameView" destination="sKY-ea-xRP" id="dcZ-JN-Eer"/>
+                        <outlet property="randomGameMagneticView" destination="sKY-ea-xRP" id="tgP-Qs-m5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfB-uX-O0X" userLabel="First Responder" sceneMemberID="firstResponder"/>

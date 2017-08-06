@@ -9,7 +9,6 @@
 import UIKit
 import SCLAlertView
 
-
 extension NearbyViewController: FetchPlaceIdDetailDelegate {
     
     func manager(_ manager: FetchPlaceIdDetailManager, searchBy placeId: String, didGet locationWithDetail: Location, senderTag: Int) {
@@ -60,4 +59,3 @@ extension NearbyViewController: FetchPlaceIdDetailDelegate {
         
     }
 }
-

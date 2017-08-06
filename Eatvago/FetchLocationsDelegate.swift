@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 extension NearbyViewController: FetchLocationDelegate {
     
     func manager(_ manager: FetchNearbyLocationManager, didGet nearLocations: [Location], nextPageToken: String?) {

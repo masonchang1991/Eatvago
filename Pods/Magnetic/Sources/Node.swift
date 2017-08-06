@@ -118,7 +118,7 @@ open class Node: MaskNode {
     }
     
     override open func removeFromParent() {
-        removedAnimation() {
+        removedAnimation {
             super.removeFromParent()
         }
     }

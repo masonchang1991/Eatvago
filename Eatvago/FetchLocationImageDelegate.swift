@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 extension NearbyViewController: FetchLocationImageDelegate {
-    
     
     func manager(_ manager: FetchLocationImageManager, didGet locationImage: UIImage, at indexPathRow: Int) {
         
@@ -25,9 +23,6 @@ extension NearbyViewController: FetchLocationImageDelegate {
     
     func manager(_ manager: FetchLocationImageManager, didFailWith error: Error) {
         
-        
-        
     }
-    
     
 }

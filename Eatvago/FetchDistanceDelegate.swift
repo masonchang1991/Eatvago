@@ -58,7 +58,6 @@ extension NearbyViewController: FetchDistanceDelegate {
             
         }
         
-        
     }
     
     func manager(_ manager: FetchDistanceManager, didFailWith error: Error) {

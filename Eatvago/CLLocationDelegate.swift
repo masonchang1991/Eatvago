@@ -9,7 +9,6 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-
 extension NearbyViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
@@ -68,7 +67,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
     
-    
     func callFetchNearbyLocations(myLocation: CLLocation) {
         
         //做了一些限制條件讓他只會在真正需要的時候call
@@ -117,9 +115,4 @@ extension NearbyViewController: CLLocationManagerDelegate {
 
     }
     
-    
-    
 }
-
-
-

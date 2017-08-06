@@ -84,11 +84,10 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//swiftlint:disable force_cast
+        
         let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
         tbC.fetchedLocations = self.locations
         tbC.delegate = self
-
         
         // 配置 locationManager
         
@@ -112,8 +111,10 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-
         
+        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        tbC.fetchedLocations = self.locations
+        tbC.delegate = self
         
     }
     
@@ -122,9 +123,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
         tbC.fetchedLocations = self.locations
         
-        
     }
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
