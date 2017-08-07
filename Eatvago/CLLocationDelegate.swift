@@ -93,7 +93,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
                     
                     self.lastLocation = myLocation
                     
-                    self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance,keywordText: self.keywordText)
+                    self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance, keywordText: self.keywordText)
                     
                 }
                 

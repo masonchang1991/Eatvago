@@ -75,7 +75,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         searchController?.searchBar.barStyle = .blackTranslucent
         
         segmentedHandler()
-        
 
         definesPresentationContext = true
 
@@ -94,8 +93,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
     }
     
-    
-    func reloadView(){
+    func reloadView() {
         
         self.addListCollectionView.reloadData()
         
@@ -135,8 +133,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 colorProgressCount += 1
                 
             }
-            
-            
             
         }
         
@@ -236,7 +232,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         return 1
     }
     
-    
     @IBAction func randomSearch(_ sender: Any) {
         
         randomCount = Int(randomCountTextField.text!)!
@@ -266,7 +261,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     }
     
     func segmentedHandler() {
-
         
         //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
         if setSegmentedControl.selectedSegmentIndex == 0 {
@@ -286,7 +280,5 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         segmentedHandler()
     }
-    
-    
 
 }

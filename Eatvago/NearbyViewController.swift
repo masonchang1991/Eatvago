@@ -14,8 +14,6 @@ import FirebaseDatabase
 import Firebase
 import SCLAlertView
 
-
-
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
     
     @IBOutlet weak var filterView: UIView!
@@ -55,7 +53,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     //用來add資訊
     var ref: DatabaseReference?
     var databaseHandle: DatabaseHandle?
-    
     
     var tabBarC = MainTabBarController()
     
@@ -116,7 +113,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
-        
         tabBarC.fetchedLocations = self.locations
         tabBarC.delegate = self
         
@@ -172,7 +168,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.showStoreDetailButton.tag = indexPath.row
         cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
-        
         
         cell.addToList.tintColor = UIColor.gray
         
@@ -230,10 +225,6 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
-    
-
-    
-    
     
     /*
     func addStoreDetail(_ sender: UIButton) {

@@ -18,8 +18,6 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         print("Place address: \(place.formattedAddress)")
         print("Place attributions: \(place.attributions)")
         
-
-        
         var location = Location(latitude: place.coordinate.latitude,
                      longitude: place.coordinate.longitude,
                      name: place.name,
@@ -39,12 +37,10 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         
         self.searchedLocations.append(location)
         
-
-        
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                           didFailAutocompleteWithError error: Error){
+                           didFailAutocompleteWithError error: Error) {
         // TODO: handle the error.
         print("Error: ", error.localizedDescription)
     }

@@ -24,6 +24,5 @@ class NearbyMapTableViewCell: UITableViewCell, NVActivityIndicatorViewable {
     @IBOutlet weak var showStoreDetailButton: UIButton!
     
     @IBOutlet weak var addToList: UIButton!
-
     
 }
