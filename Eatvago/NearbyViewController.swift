@@ -14,7 +14,7 @@ import FirebaseDatabase
 import Firebase
 import SCLAlertView
 
-var filterText = ""
+
 
 class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
     
@@ -34,7 +34,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 18.0
     var filterDistance = 100.0
-    
+    var keywordText = ""
     //附近的地點 base on mylocation
     var locations: [Location] = []
     
@@ -55,6 +55,9 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     //用來add資訊
     var ref: DatabaseReference?
     var databaseHandle: DatabaseHandle?
+    
+    
+    var tabBarC = MainTabBarController()
     
     override func loadView() {
          super.loadView()
@@ -85,10 +88,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
-        tbC.fetchedLocations = self.locations
-        tbC.delegate = self
-        
+        tabBarC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        tabBarC.fetchedLocations = self.locations
+        tabBarC.delegate = self
+        tabBarC.nearbyViewController = self
+
         // 配置 locationManager
         
         locationManager.requestWhenInUseAuthorization()
@@ -112,16 +116,15 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
-        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
-        tbC.fetchedLocations = self.locations
-        tbC.delegate = self
+        
+        tabBarC.fetchedLocations = self.locations
+        tabBarC.delegate = self
         
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        //swiftlint:disable force_cast
-        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
-        tbC.fetchedLocations = self.locations
+
+        tabBarC.fetchedLocations = self.locations
         
     }
     
@@ -169,8 +172,17 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.showStoreDetailButton.tag = indexPath.row
         cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
-        cell.addStoreDetailButton.tag = indexPath.row
-        cell.addStoreDetailButton.addTarget(self, action: #selector(addStoreDetail(_:)), for: .touchUpInside)
+        
+        
+        cell.addToList.tintColor = UIColor.gray
+        
+        for location in tabBarC.addLocations {
+            if location.name == self.locations[indexPath.row].name {
+                cell.addToList.tintColor = UIColor.red
+            }
+        }  
+        cell.addToList.tag = indexPath.row
+        cell.addToList.addTarget(self, action: #selector(addToList), for: .touchUpInside)
         
         cell.distanceText.text = location.distanceText
         cell.durationText.text = location.durationText
@@ -194,6 +206,36 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    func addToList(_ sender: UIButton) {
+        
+        if sender.tintColor != UIColor.red {
+            
+            sender.tintColor = UIColor.red
+            
+            tabBarC.addLocations.append(self.locations[sender.tag])
+
+        } else {
+            
+            sender.tintColor = UIColor.gray
+            
+            var nowAt = 0
+            
+            for location in tabBarC.addLocations {
+                
+                if location.name == self.locations[sender.tag].name {
+                    tabBarC.addLocations.remove(at: nowAt)
+                }
+                nowAt += 1
+            }
+        }
+        
+    }
+    
+
+    
+    
+    
+    /*
     func addStoreDetail(_ sender: UIButton) {
         
         let appearance = SCLAlertView.SCLAppearance(
@@ -239,7 +281,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         alert.showTitle("評論\(self.locations[sender.tag].name)", subTitle: "", style: .success)
         
     }
-    
+    */
     func showStoreDetail(_ sender: UIButton) {
         
         self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
@@ -345,7 +387,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             title: "確認",
             style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
                 
-                filterText = (alertController.textFields?.first?.text)!
+                self.keywordText = (alertController.textFields?.first?.text)!
                 self.currentLocation = CLLocation()
                 self.lastLocation = nil
                 self.locations = []

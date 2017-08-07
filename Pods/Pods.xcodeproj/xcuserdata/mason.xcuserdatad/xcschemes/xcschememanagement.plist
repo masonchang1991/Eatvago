@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,11 +57,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E733F37F97664F7B6CDD87C9E82149B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
@@ -67,22 +67,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4BE078E233436F025ED44DA10D77D326</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5748CBD6628E5BED81C1A3FF982B380B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A8904CF4193B445CFE74247618BE88A</key>
+		<key>5CABD1AF654AB4982FDE18530290B40A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>814662785B65C67979F1F1F793CAF1E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>87D8A28CC56165A307D9AD425087151A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>935435522F3CA727383AF8D7A2C9958F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

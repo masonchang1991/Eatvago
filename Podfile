@@ -18,4 +18,5 @@ target 'Eatvago' do
   pod 'NVActivityIndicatorView'
   pod 'SCLAlertView'
   pod 'Magnetic'
+  pod 'SkyFloatingLabelTextField'
 end

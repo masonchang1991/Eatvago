@@ -35,19 +35,19 @@ class FetchNearbyLocationManager {
     
     var requestTimer = 0
     
-    func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double) {
+    func requestNearbyLocation(coordinate: CLLocationCoordinate2D, radius: Double, keywordText: String) {
 
         self.coordinate = coordinate
         self.radius = radius
         
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&keyword=\(filterText)&key=\(googleMapAPIKey[keyCount])"
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&type=restaurant&keyword=\(keywordText)&key=\(googleMapAPIKey[keyCount])"
 
         print(urlString)
 
-        fetchRequestHandler(urlString: urlString, nextPageToken: "")
+        fetchRequestHandler(urlString: urlString, nextPageToken: "", keywordText: keywordText)
     }
     
-    func fetchRequestHandler(urlString: String, nextPageToken: String) {
+    func fetchRequestHandler(urlString: String, nextPageToken: String, keywordText: String) {
         //清空之前的陣列
         locations = []
         var url = urlString
@@ -76,16 +76,16 @@ class FetchNearbyLocationManager {
                 if self.keyCount < 4 {
                     if nextPageToken == "" {
                     self.keyCount += 1
-                    self.requestNearbyLocation(coordinate: self.coordinate, radius: self.radius)
+                        self.requestNearbyLocation(coordinate: self.coordinate, radius: self.radius, keywordText: keywordText)
                     } else {
-                        self.fetchRequestHandler(urlString: "", nextPageToken: nextPageToken)
+                        self.fetchRequestHandler(urlString: "", nextPageToken: nextPageToken, keywordText: keywordText)
                     }
                 } else {
                     self.keyCount = 0
                     if nextPageToken == "" {
-                    self.requestNearbyLocation(coordinate: self.coordinate, radius: self.radius)
+                        self.requestNearbyLocation(coordinate: self.coordinate, radius: self.radius, keywordText: keywordText)
                     } else {
-                        self.fetchRequestHandler(urlString: "", nextPageToken: nextPageToken)
+                        self.fetchRequestHandler(urlString: "", nextPageToken: nextPageToken, keywordText: keywordText)
                     }
                 }
             }

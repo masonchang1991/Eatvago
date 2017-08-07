@@ -11,5 +11,13 @@ import UIKit
 class MainTabBarController: UITabBarController {
 
     var fetchedLocations = [Location]()
+    
+    var addLocations = [Location]()
+    
+    var filterDistance = ""
+    
+    var keywordText = ""
+    
+    var nearbyViewController: UIViewController?
 
 }

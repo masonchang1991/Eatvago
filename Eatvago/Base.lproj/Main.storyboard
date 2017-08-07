@@ -236,11 +236,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPb-MD-n4c">
-                                                    <rect key="frame" x="262" y="10" width="73" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu9-1C-EVv">
                                                     <rect key="frame" x="185" y="8" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -278,6 +273,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0G0-RV-7ru">
+                                                    <rect key="frame" x="292" y="16" width="12" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="heart"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="H5g-xR-h2J" firstAttribute="leading" secondItem="yXX-lu-8IE" secondAttribute="leadingMargin" constant="20" id="kQb-eX-tbS"/>
@@ -285,7 +286,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="addStoreDetailButton" destination="gPb-MD-n4c" id="OS7-jq-jto"/>
+                                            <outlet property="addToList" destination="0G0-RV-7ru" id="plZ-rI-aCv"/>
                                             <outlet property="distanceText" destination="Vka-9I-8fv" id="PcR-iZ-nyk"/>
                                             <outlet property="durationText" destination="gr2-DM-Qun" id="vRN-6I-e1p"/>
                                             <outlet property="mapTextLabel" destination="t8Q-eS-yNW" id="cTv-RD-dYl"/>
@@ -362,17 +363,165 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-ea-xRP" customClass="MagneticView" customModule="Magnetic">
-                                <rect key="frame" x="67" y="166" width="240" height="335"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-ea-xRP" customClass="MagneticView" customModule="Magnetic">
+                                <rect key="frame" x="0.0" y="184" width="375" height="365"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="365" id="kao-ml-j8E"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-Y2-opa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="GNm-CJ-g52"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oDH-wp-MkV">
+                                    <size key="itemSize" width="120" height="35"/>
+                                    <size key="headerReferenceSize" width="30" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="gio-Gc-dVZ" customClass="AddListCollectionViewCell" customModule="Eatvago" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="2.5" width="120" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nek-t6-Ph7">
+                                                    <rect key="frame" x="15" y="7" width="91" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="locationLabel" destination="nek-t6-Ph7" id="Z2T-SU-8rj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PLo-Ln-KFk">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bh-l7-8hi">
+                                <rect key="frame" x="0.0" y="134" width="375" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scv-u7-AXO" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="15" y="8" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" red="0.73384682599999995" green="0.85409755340000004" blue="0.9924670458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Distance"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sjf-Wm-gIo" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="118" y="8" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" red="0.73384682599999995" green="0.85409755340000004" blue="0.9924670458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Keyword"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="RandomCount" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vFS-5f-Unh" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="220" y="8" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" red="0.73384682599999995" green="0.85409755340000004" blue="0.9924670458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="RandomCount"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WN8-gd-Six">
+                                        <rect key="frame" x="325" y="8" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="GO"/>
+                                        <connections>
+                                            <action selector="randomSearch:" destination="htm-Q2-okX" eventType="touchUpInside" id="qEF-j2-MSE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ofs-BI-o7C"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Q0-4T-vbI">
+                                <rect key="frame" x="0.0" y="104" width="375" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="o45-zZ-Gcx"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="SET RANDOM"/>
+                                    <segment title="ADD BY YOURSELF"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setSegmentControl:" destination="htm-Q2-okX" eventType="valueChanged" id="ZnS-TW-RZa"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hz-gS-FzG">
+                                <rect key="frame" x="0.0" y="134" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ykf-Y2-opa" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="0Ub-9m-wal"/>
+                            <constraint firstItem="2bh-l7-8hi" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="4ms-FH-wsX"/>
+                            <constraint firstAttribute="trailing" secondItem="ykf-Y2-opa" secondAttribute="trailing" id="FC2-Eh-ydP"/>
+                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="top" secondItem="ykf-Y2-opa" secondAttribute="bottom" id="LmE-f3-hpW"/>
+                            <constraint firstItem="2bh-l7-8hi" firstAttribute="top" secondItem="4Q0-4T-vbI" secondAttribute="bottom" id="PLZ-h1-VZP"/>
+                            <constraint firstItem="4hz-gS-FzG" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="QOL-Us-hBl"/>
+                            <constraint firstItem="sKY-ea-xRP" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="RJW-Pm-olJ"/>
+                            <constraint firstAttribute="trailing" secondItem="4hz-gS-FzG" secondAttribute="trailing" id="TfX-7r-iVs"/>
+                            <constraint firstAttribute="trailing" secondItem="2bh-l7-8hi" secondAttribute="trailing" id="ZOb-yr-qvW"/>
+                            <constraint firstItem="ykf-Y2-opa" firstAttribute="top" secondItem="GKV-Ax-ftm" secondAttribute="bottom" id="cxW-S3-Jst"/>
+                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="dak-1m-iMO"/>
+                            <constraint firstAttribute="trailing" secondItem="sKY-ea-xRP" secondAttribute="trailing" id="fID-3F-7iy"/>
+                            <constraint firstItem="sKY-ea-xRP" firstAttribute="top" secondItem="4hz-gS-FzG" secondAttribute="bottom" id="hJC-Ge-lUh"/>
+                            <constraint firstItem="sKY-ea-xRP" firstAttribute="top" secondItem="2bh-l7-8hi" secondAttribute="bottom" id="lg7-7Q-8GV"/>
+                            <constraint firstAttribute="trailing" secondItem="4Q0-4T-vbI" secondAttribute="trailing" id="spN-1O-38j"/>
+                            <constraint firstItem="4hz-gS-FzG" firstAttribute="top" secondItem="4Q0-4T-vbI" secondAttribute="bottom" id="tYm-xt-Ma4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5v4-bE-unK"/>
                     <connections>
+                        <outlet property="addListCollectionView" destination="ykf-Y2-opa" id="5e7-5h-6DR"/>
+                        <outlet property="distanceTextField" destination="scv-u7-AXO" id="aSu-GG-Xxs"/>
+                        <outlet property="keywordTextField" destination="sjf-Wm-gIo" id="r1c-bW-toA"/>
+                        <outlet property="randomCountTextField" destination="vFS-5f-Unh" id="wpY-7W-jN7"/>
                         <outlet property="randomGameMagneticView" destination="sKY-ea-xRP" id="tgP-Qs-m5i"/>
+                        <outlet property="searchView" destination="4hz-gS-FzG" id="TMS-3s-N19"/>
+                        <outlet property="setRandomView" destination="2bh-l7-8hi" id="5oH-wf-2pw"/>
+                        <outlet property="setSegmentedControl" destination="4Q0-4T-vbI" id="jys-P1-u54"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfB-uX-O0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,5 +569,6 @@
     </scenes>
     <resources>
         <image name="apple-image" width="1000" height="1000"/>
+        <image name="heart" width="12" height="12"/>
     </resources>
 </document>

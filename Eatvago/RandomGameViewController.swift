@@ -9,9 +9,24 @@
 import UIKit
 import Magnetic
 import SpriteKit
+import SkyFloatingLabelTextField
+import GooglePlaces
 
-class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate {
-  
+class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet weak var setSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var distanceTextField: SkyFloatingLabelTextFieldWithIcon!
+    
+    @IBOutlet weak var keywordTextField: SkyFloatingLabelTextFieldWithIcon!
+    
+    @IBOutlet weak var randomCountTextField: SkyFloatingLabelTextFieldWithIcon!
+    
+    @IBOutlet weak var setRandomView: UIView!
+    
+    @IBOutlet weak var addListCollectionView: UICollectionView!
+    
+    @IBOutlet weak var searchView: UIView!
     
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
@@ -28,82 +43,112 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         return randomGameMagneticView.magnetic
     }
     
-    var tabBarVC: MainTabBarController?
-    
-
-//    
-//    var magneticDelegate: MagneticDelegate? // magnetic delegate
-//    var allowsMultipleSelection: Bool = true// controls whether you can select multiple nodes. defaults to true
-//    var selectedChildren: [Node] = [] // returns selected chidren
+    var tabBarVC: MainTabBarController = MainTabBarController()
 
     var totalRestaurants = [Location]()
     var randomRestaurants = [Location]()
+    var searchedLocations = [Location]()
+    var randomCount = 6
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
     
     var nodeDictionary = [String: String]()
     var nodes = [Node]()
 
-    
     var colorArray: [UIColor] =
         [UIColor.red, UIColor.orange, UIColor.green, UIColor.blue, UIColor.purple, UIColor.brown]
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
         
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        searchView.addSubview((searchController?.searchBar)!)
+        view.addSubview(searchView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.searchBar.barStyle = .blackTranslucent
+        
+        segmentedHandler()
+        
+
+        definesPresentationContext = true
+
+        tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        
+        tabBarVC.delegate = self
+        
+        self.addListCollectionView.delegate = self
+        self.addListCollectionView.dataSource = self
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        reloadView()
+        
+    }
+    
+    
+    func reloadView(){
+        
+        self.addListCollectionView.reloadData()
+        
         removeAllNode(magnetic: magnetic)
         
         self.randomRestaurants = []
         
-        let tbC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        self.nodeDictionary = [:]
         
-        tbC.delegate = self
-        
-        totalRestaurants = tbC.fetchedLocations
+        totalRestaurants = tabBarVC.fetchedLocations
         
         randomGameMagneticView.presentScene(magnetic)
         
-        generateRandomRetaurant(randomCounts: 6, totalRestaurants: totalRestaurants)
+        generateRandomRetaurant(randomCounts: randomCount, totalRestaurants: totalRestaurants)
         
-        var randomCount = 0
-        
+        var progressCount = 0
+        var colorProgressCount = 0
         for restaurant in self.randomRestaurants {
             
-            self.nodeDictionary["\(randomCount)"] = restaurant.name
+            progressCount += 1
+            
+            self.nodeDictionary["\(progressCount)"] = restaurant.name
             
             addNode(magnetic: magnetic,
-                    text: "\(randomCount)",
-                    image: restaurant.photo,
-                    color: colorArray[randomCount],
-                    radius: 30)
+                    text: "\(progressCount)",
+                image: restaurant.photo,
+                color: colorArray[colorProgressCount],
+                radius: 30)
             
             //避免count超過color array長度
-            if randomCount == (colorArray.count - 1) {
+            if colorProgressCount == (colorArray.count - 1) {
                 
-                randomCount = 0
+                colorProgressCount = 0
                 
             } else {
                 
-                randomCount += 1
+                colorProgressCount += 1
                 
             }
-
+            
+            
+            
         }
+        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        self.navigationController?.popViewController(animated: true)
+
     }
-    
-    
 
     func generateRandomRetaurant(randomCounts: Int, totalRestaurants: [Location]) {
+        
+        if totalRestaurants.count == 0 { return }
         
         let upperBound = totalRestaurants.count - 1
         
@@ -135,8 +180,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
     }
     
-    
-    
     func addNode(magnetic: Magnetic, text: String, image: UIImage?, color: UIColor, radius: CGFloat) {
         
         let node = Node(text: text, image: image, color: color, radius: radius)
@@ -153,12 +196,91 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             return
         }
         
-        node.text = nodeDictionary[key]
+        if nodeDictionary[key] != nil {
+        
+            node.text = nodeDictionary[key]
+            
+        }
         
     }
     
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
         // handle node deselection
     }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        
+        return tabBarVC.addLocations.count
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? AddListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.locationLabel.text = tabBarVC.addLocations[indexPath.row].name
+        
+        return cell
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
+    @IBAction func randomSearch(_ sender: Any) {
+        
+        randomCount = Int(randomCountTextField.text!)!
+        
+        guard let distance = distanceTextField.text,
+            let keyword = keywordTextField.text else {
+                return
+        }
+        
+        let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        
+        nearbyViewController.filterDistance = Double(distance) ?? 0
+        nearbyViewController.keywordText = keyword
+        nearbyViewController.locations = []
+        nearbyViewController.nearbyLocationDictionary = [:]
+        nearbyViewController.lastLocation = nil
+        nearbyViewController.locationManager.stopUpdatingLocation()
+        nearbyViewController.locationManager.startUpdatingLocation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            
+            nearbyViewController.mapTableView.reloadData()
+            self.tabBarVC.fetchedLocations = nearbyViewController.locations
+            
+            self.reloadView()
+        }
+    }
+    
+    func segmentedHandler() {
+
+        
+        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
+        if setSegmentedControl.selectedSegmentIndex == 0 {
+            
+            setRandomView.isHidden = false
+            searchView.isHidden = true
+            
+        } else {
+            
+            setRandomView.isHidden = true
+            searchView.isHidden = false
+        }
+        
+    }
+
+    @IBAction func setSegmentControl(_ sender: UISegmentedControl) {
+        
+        segmentedHandler()
+    }
+    
+    
 
 }

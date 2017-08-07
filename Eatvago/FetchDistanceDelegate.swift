@@ -54,7 +54,7 @@ extension NearbyViewController: FetchDistanceDelegate {
             
             self.lastPageToken = self.nextPageToken
             
-            self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken)
+            self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken, keywordText: self.keywordText)
             
         }
         
