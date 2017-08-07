@@ -37,6 +37,8 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         
         location.website = place.website?.absoluteString ?? ""
         
+        self.searchedLocations.append(location)
+        
 
         
     }

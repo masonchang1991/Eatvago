@@ -210,8 +210,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        
-        return tabBarVC.addLocations.count
+        return tabBarVC.addLocations.count + searchedLocations.count
 
     }
     
@@ -220,8 +219,15 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? AddListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.locationLabel.text = tabBarVC.addLocations[indexPath.row].name
+        if indexPath.row <= tabBarVC.addLocations.count {
+            
+            cell.locationLabel.text = tabBarVC.addLocations[indexPath.row].name
+            
+        } else {
+            
+            cell.locationLabel.text = searchedLocations[indexPath.row - tabBarVC.addLocations.count].name
+            
+        }
         
         return cell
     }
