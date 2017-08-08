@@ -163,19 +163,17 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         var randomRestaurantsCount = 0
         
-        var randomRestaurants: [String: String] = [:]
-        
-        randomRestaurants = [:]
+        var randomRestaurantsObserver: [String: String] = [:]
         
         while randomRestaurantsCount != randomCounts && randomRestaurantsCount != totalRestaurants.count {
             
             let randomNumner = Int(arc4random_uniform(UInt32(upperBound)))
             
-            if randomRestaurants[totalRestaurants[randomNumner].name] == nil {
+            if randomRestaurantsObserver[totalRestaurants[randomNumner].name] == nil {
                 
                 self.randomRestaurants.append(totalRestaurants[randomNumner])
                 
-                randomRestaurants["\(totalRestaurants[randomNumner].name)"] = totalRestaurants[randomNumner].name
+                randomRestaurantsObserver["\(totalRestaurants[randomNumner].name)"] = totalRestaurants[randomNumner].name
                 
                 randomRestaurantsCount += 1
                 
@@ -246,7 +244,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
         return 1
+        
     }
     
     @IBAction func randomSearch(_ sender: Any) {

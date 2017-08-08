@@ -11,4 +11,5 @@ import UIKit
 class AddListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var locationLabel: UILabel!
+    
 }
