@@ -238,9 +238,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
             
-            
         
-        
+        self.selectedRestaurant = nil
         
         
     }
@@ -256,7 +255,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? AddListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        if indexPath.row <= tabBarVC.addLocations.count {
+        if indexPath.row <= tabBarVC.addLocations.count && tabBarVC.addLocations.count != 0 {
             
             cell.locationLabel.text = tabBarVC.addLocations[indexPath.row].name
             
@@ -325,6 +324,26 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
     }
     @IBAction func goByNavigation(_ sender: UIButton) {
+        
+        let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        
+        let startLocation = nearbyViewController.currentLocation
+        
+        guard let destinationLat = selectedRestaurant?.latitude,
+                let destinationLon = selectedRestaurant?.longitude else {
+                return
+        }
+        
+        
+        
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
+        } else {
+            print("Can't use comgooglemaps://");
+        }
+        
+        
         
         
     }
