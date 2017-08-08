@@ -49,6 +49,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
     var totalRestaurants = [Location]()
     var randomRestaurants = [Location]()
+    var selectedRestaurant: Location?
     var searchedLocations = [Location]()
     var randomCount = 6
     
@@ -203,6 +204,16 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
         
+        //消除其他已經選取的cell外框顏色
+        for selectedNode in nodes {
+            
+            selectedNode.strokeColor = UIColor.clear
+        
+        }
+        
+        //加入外框顏色
+        node.strokeColor = UIColor.red
+        
         guard let key = node.text else {
             return
         }
@@ -211,12 +222,27 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
             node.text = nodeDictionary[key]
             
+            for selectedResraurant in self.randomRestaurants {
+                
+                if selectedResraurant.name == node.text {
+                    
+                    self.selectedRestaurant = selectedResraurant
+                    
+                }
+            }
+            
+            return
         }
         
     }
     
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
-        // handle node deselection
+            
+            
+        
+        
+        
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -296,6 +322,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             addListCollectionView.isHidden = false
             
         }
+        
+    }
+    @IBAction func goByNavigation(_ sender: UIButton) {
+        
         
     }
 
