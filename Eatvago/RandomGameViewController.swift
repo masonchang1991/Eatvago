@@ -11,6 +11,8 @@ import Magnetic
 import SpriteKit
 import SkyFloatingLabelTextField
 import GooglePlaces
+import GooglePlacePicker
+import GoogleMaps
 
 class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -103,7 +105,18 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         self.nodeDictionary = [:]
         
-        totalRestaurants = tabBarVC.fetchedLocations
+        if setSegmentedControl.selectedSegmentIndex == 0 {
+        
+            totalRestaurants = tabBarVC.fetchedLocations
+            
+        } else {
+            
+            
+            totalRestaurants = tabBarVC.addLocations
+            
+            totalRestaurants.append(contentsOf: searchedLocations)
+            
+        }
         
         randomGameMagneticView.presentScene(magnetic)
         
@@ -146,15 +159,17 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         if totalRestaurants.count == 0 { return }
         
-        let upperBound = totalRestaurants.count - 1
+        let upperBound = totalRestaurants.count
         
         var randomRestaurantsCount = 0
         
         var randomRestaurants: [String: String] = [:]
         
-        while randomRestaurantsCount != randomCounts {
+        randomRestaurants = [:]
+        
+        while randomRestaurantsCount != randomCounts && randomRestaurantsCount != totalRestaurants.count {
             
-            let randomNumner = Int(arc4random_uniform(UInt32(upperBound - 1)))
+            let randomNumner = Int(arc4random_uniform(UInt32(upperBound)))
             
             if randomRestaurants[totalRestaurants[randomNumner].name] == nil {
                 
@@ -163,6 +178,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 randomRestaurants["\(totalRestaurants[randomNumner].name)"] = totalRestaurants[randomNumner].name
                 
                 randomRestaurantsCount += 1
+                
+            } else {
                 
             }
         }
@@ -265,13 +282,19 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
         if setSegmentedControl.selectedSegmentIndex == 0 {
             
+            reloadView()
             setRandomView.isHidden = false
             searchView.isHidden = true
+            addListCollectionView.isHidden = true
+
             
         } else {
             
+            reloadView()
             setRandomView.isHidden = true
             searchView.isHidden = false
+            addListCollectionView.isHidden = false
+            
         }
         
     }

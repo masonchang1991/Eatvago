@@ -72,7 +72,7 @@ class FetchNearbyLocationManager {
                 return
             }
             //發出request失敗則重發
-            if (status == "OVER_QUERY_LIMIT" || status == "INVALID_REQUEST") && self.requestTimer < 10 {
+            if (status == "OVER_QUERY_LIMIT" || status == "INVALID_REQUEST") && self.requestTimer < 2 {
                 if self.keyCount < 4 {
                     if nextPageToken == "" {
                     self.keyCount += 1
