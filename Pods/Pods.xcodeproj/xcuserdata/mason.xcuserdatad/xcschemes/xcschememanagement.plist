@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FaveButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
+		<key>14445CE022629978D8B3EEC5208D6EB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4BE078E233436F025ED44DA10D77D326</key>
+		<key>2950DE5C4D904B55AD993C0074D42C4E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,22 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CABD1AF654AB4982FDE18530290B40A</key>
+		<key>755D3AE5C040AA0C34E86570BCB5B1B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>814662785B65C67979F1F1F793CAF1E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>87D8A28CC56165A307D9AD425087151A</key>
+		<key>7C08227B6E14D87F0F5B0FD6DFFA1A3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A927D6FF36BF7E77D5F1C40D5BA4961</key>
 		<dict>
 			<key>primary</key>
 			<true/>

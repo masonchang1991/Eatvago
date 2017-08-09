@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - FaveButton (2.0.3)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -63,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FaveButton (~> 2.0.3)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -78,6 +80,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -97,6 +100,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 4e2d2f7160af660ed1da6bb9d0027b5c474b4b79
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 4ca61591fc45e56470ea341942326391a3a72822
+PODFILE CHECKSUM: 793be9b4f69f6b1e1258bf4924ed1d4d530e6d7f
 
 COCOAPODS: 1.2.1

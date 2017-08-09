@@ -5,18 +5,19 @@
 //  Created by Ｍason Chang on 2017/8/2.
 //  Copyright © 2017年 Ｍason Chang iOS#4. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import Magnetic
 import SpriteKit
 import SkyFloatingLabelTextField
 import GooglePlaces
-import GooglePlacePicker
-import GoogleMaps
+import FaveButton
 
 class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var setSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var openSetRandomButton: FaveButton!
     
     @IBOutlet weak var distanceTextField: SkyFloatingLabelTextFieldWithIcon!
     
@@ -24,11 +25,16 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var randomCountTextField: SkyFloatingLabelTextFieldWithIcon!
     
+    @IBOutlet weak var searchButton: FaveButton!
+    
     @IBOutlet weak var setRandomView: UIView!
     
     @IBOutlet weak var addListCollectionView: UICollectionView!
     
     @IBOutlet weak var searchView: UIView!
+    
+    @IBOutlet weak var navigationButton: FaveButton!
+    
     
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
@@ -66,6 +72,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
         
@@ -87,16 +97,36 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         self.addListCollectionView.delegate = self
         self.addListCollectionView.dataSource = self
+        
+        
+        // outlet fave button bug need to set two times color
+        searchButton.isSelected = false
+        openSetRandomButton.isSelected = false
+        searchButton.normalColor = UIColor.asiSeaBlue
+        openSetRandomButton.normalColor = UIColor.asiSeaBlue
+        navigationButton.imageView?.contentMode = .scaleAspectFit
+        navigationButton.isSelected = false
+        navigationButton.normalColor = UIColor.asiBrownish
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        reloadView()
+        // UI
+        searchButton.isSelected = false
+        searchButton.normalColor = UIColor.asiSeaBlue
+        
+        openSetRandomButton.isSelected = false
+        openSetRandomButton.normalColor = UIColor.asiSeaBlue
+        
+        navigationButton.isSelected = false
+        navigationButton.normalColor = UIColor.asiBrownish
+        
+        reloadRandomBallView()
         
     }
     
-    func reloadView() {
+    func reloadRandomBallView() {
         
         self.addListCollectionView.reloadData()
         
@@ -221,27 +251,23 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         if nodeDictionary[key] != nil {
         
             node.text = nodeDictionary[key]
-            
-            for selectedResraurant in self.randomRestaurants {
-                
-                if selectedResraurant.name == node.text {
-                    
-                    self.selectedRestaurant = selectedResraurant
-                    
-                }
-            }
-            
-            return
         }
         
+        for selectedResraurant in self.randomRestaurants {
+            
+            if selectedResraurant.name == node.text {
+                
+                self.selectedRestaurant = selectedResraurant
+                
+            }
+        }
     }
     
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
-            
-        
+
         self.selectedRestaurant = nil
         
-        
+    
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -298,27 +324,75 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             nearbyViewController.mapTableView.reloadData()
             self.tabBarVC.fetchedLocations = nearbyViewController.locations
             
-            self.reloadView()
+            self.reloadRandomBallView()
         }
     }
+    
+    
+    @IBAction func openOrCloseSetRandomView(_ sender: FaveButton) {
+        
+        if setRandomView.isHidden == true {
+
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                
+                self.setRandomView.alpha = 1.0
+                
+                self.addListCollectionView.alpha = 1.0
+                
+            }, completion: { (_) in
+                
+                self.setRandomView.isHidden = false
+                
+                self.addListCollectionView.isHidden = false
+                
+            })
+
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                
+                self.setRandomView.alpha = 0.0
+                
+                self.addListCollectionView.alpha = 0.0
+                
+            }, completion: { (_) in
+                
+                self.setRandomView.isHidden = true
+                
+                self.addListCollectionView.isHidden = true
+                
+            })
+            
+        }
+        
+        
+        
+    }
+
+    
+    
+    
     
     func segmentedHandler() {
         
         //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
         if setSegmentedControl.selectedSegmentIndex == 0 {
             
-            reloadView()
-            setRandomView.isHidden = false
+            reloadRandomBallView()
+            openSetRandomButton.isHidden = false
             searchView.isHidden = true
             addListCollectionView.isHidden = true
-
+            setRandomView.isHidden = true
             
         } else {
             
-            reloadView()
-            setRandomView.isHidden = true
+            reloadRandomBallView()
+            openSetRandomButton.isHidden = true
             searchView.isHidden = false
             addListCollectionView.isHidden = false
+            setRandomView.isHidden = false
             
         }
         
@@ -333,19 +407,15 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 let destinationLon = selectedRestaurant?.longitude else {
                 return
         }
+
         
-        
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
         } else {
             print("Can't use comgooglemaps://");
         }
-        
-        
-        
-        
+
     }
 
     @IBAction func setSegmentControl(_ sender: UISegmentedControl) {
