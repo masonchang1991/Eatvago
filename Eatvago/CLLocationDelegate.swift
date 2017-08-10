@@ -7,7 +7,7 @@
 //
 import UIKit
 import GoogleMaps
-import GooglePlaces
+
 
 extension NearbyViewController: CLLocationManagerDelegate {
     

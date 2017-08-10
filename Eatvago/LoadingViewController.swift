@@ -38,7 +38,7 @@ class LoadingViewController: UIViewController {
     }
     
     func loading() {
-
+        
         appleImage.tintColor = UIColor.red
         
         UIView.animate(withDuration: 2.0, animations: {
@@ -46,47 +46,35 @@ class LoadingViewController: UIViewController {
             self.loadingViewWidthConstrain.constant = 200
             self.appleImage.alpha = 1.0
             
-            if UserDefaults.standard.value(forKey: "UserLoginEmail") != nil
-                && UserDefaults.standard.value(forKey: "UserLoginPassword") != nil {
+            if UserDefaults.standard.value(forKey: "UID") != nil {
                 
-                guard let email = UserDefaults.standard.value(forKey: "UserLoginEmail") as? String,
-                    let password = UserDefaults.standard.value(forKey: "UserLoginPassword") as? String else {
-                        print("At appdelegate , can't get email or password")
-                        return
-                }
-                Auth.auth().signIn(withEmail: email, password: password) { (value, error) in
-                    if error == nil {
-
-                        print("Success Login")
-                        self.loginSuccess = true
-                        userId = (value?.uid)!
-                        
-                    } else {
-
-                        self.loginSuccess = false
-                    }
-                    
-                }
+                self.loginSuccess = true
+                
             } else {
                 
+                self.loginSuccess = false
             }
-             self.view.layoutIfNeeded()
+            
+            self.view.layoutIfNeeded()
+            
         }) { (_) in
             if self.loginSuccess {
+                
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.makeKeyAndVisible()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.window?.rootViewController = nextVC
+                
             } else {
+                
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.makeKeyAndVisible()
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
                 self.window?.rootViewController = nextVC
+                
             }
         }
-
     }
-
-   }
+}

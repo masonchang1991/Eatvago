@@ -14,7 +14,6 @@ import GooglePlaces
 
 var googleMapAPIKey = ["AIzaSyBivGI2MbdVzOeeGBvZqqhPO0JQ9BdL87g", "AIzaSyC-vTtOFq2MRx29_Dp-UuPlbjc3tA9NA0I", "AIzaSyCgdyuXgEpb2omTocjALBgHi7wsP3OxmX8", "AIzaSyCNvYlOUnIJ7rZ6ikyw2l8z6GIYJgKCGb4", "AIzaSyAzzNQSinBXS1OGKEbSYbmcUQyds1Ep6EE", "AIzaSyCV3ihG-MXQPr5s4_EZgdD45VVgxj3Jmo0"]
 var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
-var userId = ""
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -35,7 +35,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var navigationButton: FaveButton!
     
-    
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
             magnetic.magneticDelegate = self
@@ -72,10 +71,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
         
@@ -107,7 +102,34 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         navigationButton.imageView?.contentMode = .scaleAspectFit
         navigationButton.isSelected = false
         navigationButton.normalColor = UIColor.asiBrownish
+        
+        
+        
+        
+        
+        let background = UIImage(named: "randomGameImage")
+    
+        
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: randomGameMagneticView.magnetic.frame)
+//    imageView.contentMode =  .scaleAspectFit
+//        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.contentMode =  .scaleAspectFit
+        imageView.center = randomGameMagneticView.center
+        
+        self.view.addSubview(imageView)
+        self.view.contentMode = .scaleAspectFit
 
+        
+        self.view.sendSubview(toBack: imageView)
+      self.randomGameMagneticView.backgroundColor = UIColor.clear
+        self.randomGameMagneticView.magnetic.backgroundColor = UIColor.clear
+
+        
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,6 +170,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             totalRestaurants.append(contentsOf: searchedLocations)
             
         }
+        randomGameMagneticView.layer.backgroundColor = UIColor(patternImage: UIImage(named: "randomGameImage")!).cgColor
         
         randomGameMagneticView.presentScene(magnetic)
         
@@ -183,7 +206,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-
+        
     }
 
     func generateRandomRetaurant(randomCounts: Int, totalRestaurants: [Location]) {

@@ -35,6 +35,7 @@
 		9383D4BC1F3AD74900DAAD56 /* ColorsandFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BB1F3AD74900DAAD56 /* ColorsandFonts.swift */; };
 		9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */; };
 		9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */; };
+		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		9383D4BB1F3AD74900DAAD56 /* ColorsandFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsandFonts.swift; sourceTree = "<group>"; };
 		9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchHistoryTableViewController.swift; sourceTree = "<group>"; };
 		9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchViewController.swift; sourceTree = "<group>"; };
+		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */,
 				9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */,
+				9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */,
+				9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */,
 				93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */,

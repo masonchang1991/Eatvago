@@ -40,7 +40,8 @@ class LoginViewController: UIViewController {
 
         segmentedHandler()
         
-        ref = Database.database().reference()
+        
+        
 
     }
     @IBAction func forgetPassword(_ sender: UIButton) {
@@ -107,12 +108,11 @@ class LoginViewController: UIViewController {
                 print("Form is not valid")
                 return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {
                 print("Success Login")
                 
-                UserDefaults.standard.setValue(email, forKey: "UserLoginEmail")
-                UserDefaults.standard.setValue(password, forKey: "UserLoginPassword")
+                UserDefaults.standard.setValue(user?.uid, forKey: "UID")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
@@ -145,8 +145,8 @@ class LoginViewController: UIViewController {
             
             if error == nil {
                 // 計算認證信, 細部過程待補 note
-                user?.sendEmailVerification {
-                    error in if let error = error {
+                user?.sendEmailVerification { error in
+                    if let error = error {
                         print(error)
                     }
                 }
