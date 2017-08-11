@@ -39,9 +39,6 @@ class LoginViewController: UIViewController {
         phonenumberTextField.placeholder = "Your Phone Number"
 
         segmentedHandler()
-        
-        
-        
 
     }
     @IBAction func forgetPassword(_ sender: UIButton) {

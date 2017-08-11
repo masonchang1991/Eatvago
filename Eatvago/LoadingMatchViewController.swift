@@ -7,21 +7,60 @@
 //
 
 import UIKit
+import Firebase
 
-class LoadingMatchViewController: UIViewController {
+class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate {
 
     @IBOutlet weak var test: UILabel!
     
+    var matchRoomId = ""
     
-    var text: String = ""
+    var type = ""
+    
+    var ref: DatabaseReference = DatabaseReference()
+    
+    var ownerSuccessManager = OwnerMatchSuccessManager()
+    
+    var isARoomOwner: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        test.text = text
+        ref = Database.database().reference()
         
-        
+        let matchRoomRef = ref.child("Match Room").child(type).child(matchRoomId)
+
+        if isARoomOwner == true {
+            
+            ownerSuccessManager.delegate = self
+            
+            matchRoomRef.child("locked").observe(.value, with: { (snapshot) in
+                
+                self.ownerSuccessManager.matchSuccess(matchRoomRef: matchRoomRef,
+                                                      ref: self.ref,
+                                                      type: self.type,
+                                                      matchRoomId: self.matchRoomId,
+                                                      snapshot: snapshot)
+                
+            })
+            
+        } else {
+            
+            self.ref.child("Match Room").child(type).child(matchRoomId).child("Connection").observe(.value, with: { (snapshot) in
+
+                guard let connectionRoomId = snapshot.value as? String else { return }
+    
+                self.ref.child("Match Room").child(self.type).child(self.matchRoomId).child("Connection").removeAllObservers()
+                
+                self.performSegue(withIdentifier: "matchSuccess", sender: nil)
+                
+            })
+        }
+    }
+    
+    func manager(_ manager: OwnerMatchSuccessManager, matchSuccess: String) {
+
+        self.performSegue(withIdentifier: "matchSuccess", sender: nil)
         
     }
 
@@ -29,7 +68,5 @@ class LoadingMatchViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
 
 }

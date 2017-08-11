@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
 
     @IBOutlet weak var nickNameTextField: UITextField!
     
@@ -37,8 +37,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     var tabBarVC: MainTabBarController = MainTabBarController()
     
     var myLocation = CLLocation()
-
     
+    var checkIfRoomExistManager = CheckIfRoomExistManager()
     
     override func viewDidLoad() {
         
@@ -63,6 +63,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         distanceTextField.inputView = distancePickerView
         
         ref = Database.database().reference()
+        
+        self.checkIfRoomExistManager.delegate = self
     
     }
 
@@ -74,7 +76,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
@@ -92,7 +93,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        
         switch pickerView {
         case genderPickerView:
             return genderPickOption[row]
@@ -104,7 +104,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         }
 
     }
-
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
@@ -120,35 +119,102 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
     }
     
-    
     @IBAction func matchButton(_ sender: Any) {
         
+        guard let type = typeTextField.text else {
+            return
+        }
 
+        self.checkIfRoomExistManager.checkIfRoomExist(type: type)
+        
+//        self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let loadingVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
+        
+        if segue.identifier == "ownerLoading" {
+            
+            let loadingVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
+            
+            loadingVC.isARoomOwner = true
+            
+        } else {
+            
+            let loadingVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
+            
+            loadingVC.isARoomOwner = false
+            
+        }
+        
+        guard let roomId = sender as? String else { return }
+        
+        loadingVC.type = self.typeTextField.text ?? ""
+        
+        loadingVC.matchRoomId = roomId
+        
+    }
+    
+    
+    func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String) {
+        
+        var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
+        
+        guard let type = typeTextField.text,
+            let gender = genderTextField.text,
+            let nickName = nickNameTextField.text,
+            let matchInfoAutoId = self.ref?.childByAutoId().key,
+            let myLocationLat = myLocation.coordinate.latitude as? Double,
+            let myLocationLon = myLocation.coordinate.longitude as? Double else {
+                return
+        }
+        
+        var attenderMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender]
+        
+        var attenderRoomData: [String: Any] = ["finished": true,
+                                          "locked": true,
+                                          "attender": userId,
+                                          "attenderLocationLat": "\(myLocationLat)",
+                                          "attenderLocationLon": "\(myLocationLon)",
+                                          "attenderMatchInfo": matchInfoAutoId]
+        
+        self.ref?.child("Match Room").child(type).child(roomId).updateChildValues(attenderRoomData)
+        
+        self.ref?.child("Match Info").child(type).child(roomId).updateChildValues(attenderMatchInfoData)
+        
+        self.performSegue(withIdentifier: "attenderLoading", sender: roomId)
+        
+    }
+    
+    func manager(_ manager: CheckIfRoomExistManager, be roomOwner: String) {
+        
+        var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
+        
         let today = Date().description
         
         guard let type = typeTextField.text,
-              let gender = genderTextField.text,
-              let nickName = nickNameTextField.text,
-              let matchRoomAutoId = self.ref?.childByAutoId().key,
-              let matchInfoAutoId = self.ref?.childByAutoId().key,
-              let myLocationLat = myLocation.coordinate.latitude as? Double,
-                let myLocationLon = myLocation.coordinate.longitude as? Double else {
-            return
+            let gender = genderTextField.text,
+            let nickName = nickNameTextField.text,
+            let matchRoomAutoId = self.ref?.childByAutoId().key,
+            let matchInfoAutoId = self.ref?.childByAutoId().key,
+            let myLocationLat = myLocation.coordinate.latitude as? Double,
+            let myLocationLon = myLocation.coordinate.longitude as? Double else {
+                return
         }
-        
-        var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
         
         var newRoomData: [String: Any] = ["finished": false,
                                           "locked": false,
                                           "owner": userId,
-                                          "ownerLocationLat" : "\(myLocationLat)",
-                                          "ownerLocationLon" : "\(myLocationLon)",
-                                          "ownerMatchInfo": matchInfoAutoId,
-                                          "attender" : "nil",
-                                          "attenderLocationLat": "nil",
-                                          "attenderLocationLon": "nil",
-                                          "attenderMatchInfo": "nil",
-                                          "createdDate": today]
+                                          "ownerLocationLat": "\(myLocationLat)",
+            "ownerLocationLon": "\(myLocationLon)",
+            "ownerMatchInfo": matchInfoAutoId,
+            "attender": "nil",
+            "attenderLocationLat": "nil",
+            "attenderLocationLon": "nil",
+            "attenderMatchInfo": "nil",
+            "createdDate": today]
         
         var ownerMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender]
         
@@ -156,43 +222,10 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         self.ref?.child("Match Info").child(type).child(matchInfoAutoId).updateChildValues(ownerMatchInfoData)
         
-        self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         
         
-        
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "matchLoading" {
-            
-            var nextVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
-            
-            guard let matchRoomId = sender as? String else{
-                return
-            }
-            
-            nextVC.text = matchRoomId
-            
-            
-            
-        } else {
-            
-            
-            
-            
-        }
-        
-        
-        
+        self.performSegue(withIdentifier: "ownerLoading", sender: matchRoomAutoId)
         
     }
-    
-    
-    
-    
-    
-    
 
 }

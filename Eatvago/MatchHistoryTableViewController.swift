@@ -8,15 +8,10 @@
 
 import UIKit
 
-
 class MatchHistoryViewController: UIViewController {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        
         
     }
 

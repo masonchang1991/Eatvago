@@ -186,7 +186,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -743,7 +743,8 @@
                         <outlet property="genderTextField" destination="AgT-0d-o6p" id="RG6-1r-GWW"/>
                         <outlet property="nickNameTextField" destination="1dL-sT-RBJ" id="mem-sD-bzs"/>
                         <outlet property="typeTextField" destination="ymg-gS-Gw2" id="7Cd-P4-ith"/>
-                        <segue destination="vrP-NY-qZ1" kind="show" identifier="matchLoading" id="Ty6-So-NiL"/>
+                        <segue destination="vrP-NY-qZ1" kind="show" identifier="ownerLoading" id="Ty6-So-NiL"/>
+                        <segue destination="vrP-NY-qZ1" kind="show" identifier="attenderLoading" id="8BV-9g-hKI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yte-gp-pHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -774,18 +775,38 @@
                     </view>
                     <connections>
                         <outlet property="test" destination="dHk-qy-lEQ" id="xPb-XX-nuP"/>
+                        <segue destination="fhf-Wh-Ki0" kind="show" identifier="matchSuccess" id="OLi-ad-vbg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5x-uh-cbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4279.1999999999998" y="2344.6776611694154"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="f2J-WE-C2H">
+            <objects>
+                <viewController id="fhf-Wh-Ki0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iet-0f-YCh"/>
+                        <viewControllerLayoutGuide type="bottom" id="OUG-E6-mJ4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UmK-y7-t6g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mVJ-X9-BLT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l0N-ch-96I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5398" y="2339"/>
+        </scene>
         <!--Item-->
         <scene sceneID="fw8-3j-kND">
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -823,7 +844,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -848,4 +869,7 @@
         <image name="heart" width="12" height="12"/>
         <image name="search" width="294" height="296"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8BV-9g-hKI"/>
+    </inferredMetricsTieBreakers>
 </document>

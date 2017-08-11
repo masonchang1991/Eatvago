@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Magnetic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>14445CE022629978D8B3EEC5208D6EB6</key>
+		<key>1272CF8C9378DE43E683D3060E5D8F35</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2950DE5C4D904B55AD993C0074D42C4E</key>
+		<key>216D9EBC6FFC4074F96F21A4CF23A12A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>279AA6726F52A334C45E85774BD21A3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>755D3AE5C040AA0C34E86570BCB5B1B7</key>
+		<key>65CAB64E43BFAC7B8BC86C6E803839BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A927D6FF36BF7E77D5F1C40D5BA4961</key>
+		<key>A92F3534E7748E46F8C19D19D49CD74E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

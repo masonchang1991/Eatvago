@@ -93,7 +93,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         self.addListCollectionView.delegate = self
         self.addListCollectionView.dataSource = self
         
-        
         // outlet fave button bug need to set two times color
         searchButton.isSelected = false
         openSetRandomButton.isSelected = false
@@ -103,15 +102,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         navigationButton.isSelected = false
         navigationButton.normalColor = UIColor.asiBrownish
         
-        
-        
-        
-        
         let background = UIImage(named: "randomGameImage")
-    
         
-        
-        var imageView : UIImageView!
+        var imageView: UIImageView!
         imageView = UIImageView(frame: randomGameMagneticView.magnetic.frame)
 //    imageView.contentMode =  .scaleAspectFit
 //        imageView.clipsToBounds = true
@@ -121,14 +114,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         self.view.addSubview(imageView)
         self.view.contentMode = .scaleAspectFit
-
         
         self.view.sendSubview(toBack: imageView)
       self.randomGameMagneticView.backgroundColor = UIColor.clear
         self.randomGameMagneticView.magnetic.backgroundColor = UIColor.clear
-
-        
-
         
     }
     
@@ -163,7 +152,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             totalRestaurants = tabBarVC.fetchedLocations
             
         } else {
-            
             
             totalRestaurants = tabBarVC.addLocations
             
@@ -289,7 +277,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
 
         self.selectedRestaurant = nil
-        
     
     }
 
@@ -351,11 +338,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
     }
     
-    
     @IBAction func openOrCloseSetRandomView(_ sender: FaveButton) {
         
         if setRandomView.isHidden == true {
-
             
             UIView.animate(withDuration: 0.4, animations: {
                 
@@ -370,7 +355,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 self.addListCollectionView.isHidden = false
                 
             })
-
             
         } else {
             
@@ -390,13 +374,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
         }
         
-        
-        
     }
-
-    
-    
-    
     
     func segmentedHandler() {
         
@@ -430,13 +408,12 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 let destinationLon = selectedRestaurant?.longitude else {
                 return
         }
-
         
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
         } else {
-            print("Can't use comgooglemaps://");
+            print("Can't use comgooglemaps://")
         }
 
     }

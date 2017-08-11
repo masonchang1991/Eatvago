@@ -8,26 +8,29 @@
 import UIKit
 import GoogleMaps
 
-
 extension NearbyViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         let myLocation: CLLocation = locations.last!
-        print("Location: \(myLocation)")
         
         let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
                                               longitude: myLocation.coordinate.longitude,
                                               zoom: zoomLevel)
         
         if googleMapView.isHidden {
+            
             googleMapView.isHidden = false
             googleMapView.camera = camera
+            
         } else {
+            
             googleMapView.animate(to: camera)
+            
         }
         
-        callFetchNearbyLocations(myLocation: myLocation)
+        callIfFetchNearbyLocations(myLocation: myLocation)
 
     }
     
@@ -67,7 +70,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
     
-    func callFetchNearbyLocations(myLocation: CLLocation) {
+    func callIfFetchNearbyLocations(myLocation: CLLocation) {
         
         //做了一些限制條件讓他只會在真正需要的時候call
         if myLocation != CLLocation() {
@@ -111,6 +114,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         } else {
             
             locationManager.startUpdatingLocation()
+
         }
 
     }

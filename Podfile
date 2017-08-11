@@ -20,4 +20,5 @@ target 'Eatvago' do
   pod 'Magnetic'
   pod 'SkyFloatingLabelTextField'
   pod 'FaveButton', '~> 2.0.3'
+  pod 'IQKeyboardManager'
 end

@@ -38,6 +38,9 @@
 		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
+		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
+		93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */; };
+		93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
+		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
+		93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerMatchSuccessManager.swift; sourceTree = "<group>"; };
+		93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfRoomExistManager.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -196,6 +202,8 @@
 				9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */,
 				9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */,
 				9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */,
+				93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */,
+				93FB57FE1F3CB6030017E460 /* Manager */,
 			);
 			name = Match;
 			sourceTree = "<group>";
@@ -209,6 +217,15 @@
 				9383D4971F3897E200DAAD56 /* GMSDelegate.swift */,
 			);
 			name = "Random Game";
+			sourceTree = "<group>";
+		};
+		93FB57FE1F3CB6030017E460 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */,
+				93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +376,7 @@
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,
+				93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */,
 				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
@@ -367,11 +385,13 @@
 				9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */,
+				93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */,
 				93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */,
 				930086781F2A08C700BEA223 /* CLLocationDelegate.swift in Sources */,
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
+				93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,

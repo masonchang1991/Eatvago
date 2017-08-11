@@ -46,6 +46,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
+  - IQKeyboardManager (4.0.11)
   - Magnetic (1.0.7)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
+  - IQKeyboardManager
   - Magnetic
   - NVActivityIndicatorView
   - SCLAlertView
@@ -92,6 +94,7 @@ SPEC CHECKSUMS:
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  IQKeyboardManager: 83eae5318483a34eb2069ef413d195b97605232e
   Magnetic: f74297dd1797b35d9bebf7a768d91cadf71bb1cb
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
@@ -100,6 +103,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 4e2d2f7160af660ed1da6bb9d0027b5c474b4b79
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 793be9b4f69f6b1e1258bf4924ed1d4d530e6d7f
+PODFILE CHECKSUM: fb9f6df5f90eee139ed00925140ad8d293ce691d
 
 COCOAPODS: 1.2.1
