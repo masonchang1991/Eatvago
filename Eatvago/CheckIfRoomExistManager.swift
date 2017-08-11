@@ -48,17 +48,23 @@ class CheckIfRoomExistManager {
     
     func findRoom(type: String, completion: @escaping ((Bool, String) -> ())) {
 
-        let existRoom = ref.child("Match Room").child(type).queryOrdered(byChild: "locked").queryEqual(toValue: false).queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
+         ref.child("Match Room").child(type).queryOrdered(byChild: "locked").queryEqual(toValue: false).queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let value = snapshot.value as? [String: Any] else {
                 
+                
                 //回傳沒房間
                 completion(false, "Null")
-                
+                self.ref.removeAllObservers()
                 return
             }
             
+            print(value)
+            
+            
             let key = Array(value.keys)[0]
+            
+            self.ref.removeAllObservers()
             
             completion(true, key)
     

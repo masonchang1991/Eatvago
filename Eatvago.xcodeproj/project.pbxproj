@@ -41,6 +41,7 @@
 		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
 		93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */; };
 		93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */; };
+		93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
 		93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerMatchSuccessManager.swift; sourceTree = "<group>"; };
 		93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfRoomExistManager.swift; sourceTree = "<group>"; };
+		93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchRoomData.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -224,6 +226,7 @@
 			children = (
 				93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */,
 				93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */,
+				93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
 				9383D4961F38536E00DAAD56 /* AddListCollectionViewCell.swift in Sources */,
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
+				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,
 				93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */,

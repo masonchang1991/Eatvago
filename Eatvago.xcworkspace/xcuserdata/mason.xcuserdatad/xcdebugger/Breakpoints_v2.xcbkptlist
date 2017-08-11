@@ -119,45 +119,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Eatvago/PrepareToMatchViewController.swift"
-            timestampString = "524075901.620564"
+            filePath = "Eatvago/CheckIfRoomExistManager.swift"
+            timestampString = "524133325.412983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "manager(_:be:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/PrepareToMatchViewController.swift"
-            timestampString = "524075901.620564"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "manager(_:didGet:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/PrepareToMatchViewController.swift"
-            timestampString = "524076582.212279"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "manager(_:didGet:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "findRoom(type:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -168,12 +136,236 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/CheckIfRoomExistManager.swift"
-            timestampString = "524076633.301747"
+            timestampString = "524133370.740532"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "findRoom(type:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/PrepareToMatchViewController.swift"
+            timestampString = "524133509.398004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "matchButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchMatchRoomData.swift"
+            timestampString = "524134105.209435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "getRoomData(by:isRoomowner:type:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchMatchRoomData.swift"
+            timestampString = "524134818.84364"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "getOppositePeopleInfo(oppositePeopleMatchInfoId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchMatchRoomData.swift"
+            timestampString = "524134819.90199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "getOppositePeopleInfo(oppositePeopleMatchInfoId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchMatchRoomData.swift"
+            timestampString = "524135006.757481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "getRoomData(by:isRoomowner:type:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchMatchRoomDataManager.(getRoomData (by : __ObjC.DatabaseReference, isRoomowner : Swift.Bool, type : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchMatchRoomData.swift"
+                  timestampString = "524140378.268276"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "613">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchMatchRoomDataManager.(getRoomData (by : __ObjC.DatabaseReference, isRoomowner : Swift.Bool, type : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchMatchRoomData.swift"
+                  timestampString = "524140378.271315"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "1044">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchMatchRoomData.swift"
+            timestampString = "524135095.331583"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "getOppositePeopleInfo(oppositePeopleMatchInfoId:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchMatchRoomDataManager.(getOppositePeopleInfo (oppositePeopleMatchInfoId : Swift.String, completion : (Swift.String, Swift.String, Swift.String, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchMatchRoomData.swift"
+                  timestampString = "524140378.277069"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "620">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchMatchRoomDataManager.(getOppositePeopleInfo (oppositePeopleMatchInfoId : Swift.String, completion : (Swift.String, Swift.String, Swift.String, Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchMatchRoomData.swift"
+                  timestampString = "524140378.279307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "1051">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/LoadingMatchViewController.swift"
+            timestampString = "524140249.101689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "observerIsAnyoneDecline()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.LoadingMatchViewController.observerIsAnyoneDecline () -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
+                  timestampString = "524140378.284967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.LoadingMatchViewController.(observerIsAnyoneDecline () -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
+                  timestampString = "524140378.287888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/LoadingMatchViewController.swift"
+            timestampString = "524140251.487843"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "closeTheRoom()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

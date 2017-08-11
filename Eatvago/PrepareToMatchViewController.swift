@@ -20,6 +20,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
     @IBOutlet weak var distanceTextField: UITextField!
     
+    @IBOutlet weak var greetingTextView: UITextView!
+    
+    
     var genderPickerView = UIPickerView()
     
     var typePickerView = UIPickerView()
@@ -127,7 +130,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
         self.checkIfRoomExistManager.checkIfRoomExist(type: type)
         
-//        self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
+//      self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         
     }
     
@@ -153,6 +156,14 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         loadingVC.type = self.typeTextField.text ?? ""
         
+        loadingVC.myName = nickNameTextField.text ?? ""
+       
+        loadingVC.myGender = genderTextField.text ?? ""
+        
+        loadingVC.myGeetingText = greetingTextView.text ?? ""
+        
+        loadingVC.myPhotoURl = "https://firebasestorage.googleapis.com/v0/b/eatvago-2f85d.appspot.com/o/001.jpg?alt=media&token=0ea1de29-1945-4a55-a649-b56818473c29"
+        
         loadingVC.matchRoomId = roomId
         
     }
@@ -165,15 +176,16 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         guard let type = typeTextField.text,
             let gender = genderTextField.text,
             let nickName = nickNameTextField.text,
+            let greetingText = greetingTextView.text,
             let matchInfoAutoId = self.ref?.childByAutoId().key,
             let myLocationLat = myLocation.coordinate.latitude as? Double,
             let myLocationLon = myLocation.coordinate.longitude as? Double else {
                 return
         }
         
-        var attenderMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender]
+        var attenderMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender, "greetingText": greetingText]
         
-        var attenderRoomData: [String: Any] = ["finished": true,
+        var attenderRoomData: [String: Any] = [
                                           "locked": true,
                                           "attender": userId,
                                           "attenderLocationLat": "\(myLocationLat)",
@@ -182,7 +194,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         self.ref?.child("Match Room").child(type).child(roomId).updateChildValues(attenderRoomData)
         
-        self.ref?.child("Match Info").child(type).child(roomId).updateChildValues(attenderMatchInfoData)
+        self.ref?.child("Match Info").child(type).child(matchInfoAutoId).updateChildValues(attenderMatchInfoData)
         
         self.performSegue(withIdentifier: "attenderLoading", sender: roomId)
         
@@ -197,6 +209,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         guard let type = typeTextField.text,
             let gender = genderTextField.text,
             let nickName = nickNameTextField.text,
+            let greetingText = greetingTextView.text,
             let matchRoomAutoId = self.ref?.childByAutoId().key,
             let matchInfoAutoId = self.ref?.childByAutoId().key,
             let myLocationLat = myLocation.coordinate.latitude as? Double,
@@ -214,9 +227,10 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             "attenderLocationLat": "nil",
             "attenderLocationLon": "nil",
             "attenderMatchInfo": "nil",
-            "createdDate": today]
+            "createdDate": today,
+            "Connection": "nil"]
         
-        var ownerMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender]
+        var ownerMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender, "greetingText": greetingText]
         
         self.ref?.child("Match Room").child(type).child(matchRoomAutoId).updateChildValues(newRoomData)
         
