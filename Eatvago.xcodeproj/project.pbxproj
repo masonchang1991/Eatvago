@@ -43,6 +43,9 @@
 		93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */; };
 		93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */; };
 		93FB58021F3DEC660017E460 /* MatchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */; };
+		93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */; };
+		93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */; };
+		93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfRoomExistManager.swift; sourceTree = "<group>"; };
 		93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchRoomData.swift; sourceTree = "<group>"; };
 		93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessViewController.swift; sourceTree = "<group>"; };
+		93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateMidpointBetweenTwoLocation.swift; sourceTree = "<group>"; };
+		93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataManager.swift; sourceTree = "<group>"; };
+		93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessRoomStruct.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -238,6 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */,
+				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
+				93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */,
+				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
 			);
 			name = MatchSuccess;
 			sourceTree = "<group>";
@@ -383,6 +392,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */,
+				93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */,
 				9383D4BC1F3AD74900DAAD56 /* ColorsandFonts.swift in Sources */,
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
@@ -413,6 +424,7 @@
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
 				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
 				9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */,
+				93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

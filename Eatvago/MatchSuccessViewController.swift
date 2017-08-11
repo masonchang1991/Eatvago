@@ -10,15 +10,48 @@ import UIKit
 import Firebase
 
 
-class MatchSuccessViewController: UIViewController {
+class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDelegate {
     
     var matchRoomRef = DatabaseReference()
     
     var matchSuccessRoomRef = DatabaseReference()
     
+    var myName = ""
+    
+    var oppositePeopleName = ""
+    
+    var myPhotoImageView = UIImageView()
+    
+    var oppositePeopleImageView: UIImageView?
+    
+    var fetchRoomDataManager = FetchMatchSuccessRoomDataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      ifAnyoneDeclineObserver()
+        
+        
+      self.fetchRoomDataManager.delegate = self
+        
+      self.fetchRoomDataManager.fetchRoomData(matchSuccessRoomRef: matchSuccessRoomRef)
+
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    func ifAnyoneDeclineObserver() {
         
         matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
             
@@ -39,36 +72,36 @@ class MatchSuccessViewController: UIViewController {
                 let okAction = UIAlertAction(
                     title: "OK",
                     style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-          
+                        
                         self.performSegue(withIdentifier: "goBackToMain", sender: nil)
                         
-                    }
+                }
                 alertController.addAction(okAction)
                 self.present(
                     alertController,
                     animated: true,
                     completion: nil)
-
+                
             }
             
         })
 
-
-        
-        
-        
-        
-        
-        
         
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
+        
+        print(successRoomData)
+        
+        
     }
     
+    func manager(_ manager: FetchMatchSuccessRoomDataManager, didFail withError: String) {
+        
+        print(withError)
+        
+    }
 
 
 }

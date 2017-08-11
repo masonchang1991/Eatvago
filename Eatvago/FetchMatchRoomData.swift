@@ -63,7 +63,7 @@ class FetchMatchRoomDataManager {
                 
                 self.getOppositePeopleInfo(oppositePeopleMatchInfoId: attenderMatchInfo, completion: { (name, gender, greetingText, photoURL) in
                     
-                    let peopleImage = UIImageView()
+                    let peopleImageView = UIImageView()
                     
                     if photoURL != nil {
                         
@@ -71,33 +71,33 @@ class FetchMatchRoomDataManager {
                         
                         if gender == "male" {
                             
-                            peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         } else {
                             
-                            peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         }
                         
-                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImage: peopleImage)
+                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImageView: peopleImageView)
                         
                          self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
 
                         
-                    }else {
+                    } else {
                         
                         
                         if gender == "male" {
                             
-                            peopleImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         } else {
                             
-                            peopleImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         }
                         
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImage: peopleImage)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImageView: peopleImageView)
                         
                         self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         
@@ -111,7 +111,7 @@ class FetchMatchRoomDataManager {
                 
                 self.getOppositePeopleInfo(oppositePeopleMatchInfoId: ownerMatchInfo, completion: { (name, gender, greetingText, photoURL) in
                     
-                    let peopleImage = UIImageView()
+                    let peopleImageView = UIImageView()
                     
                     if photoURL != nil {
                         
@@ -119,15 +119,15 @@ class FetchMatchRoomDataManager {
                         
                         if gender == "male" {
                             
-                            peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         } else {
                             
-                            peopleImage.sd_setImage(with: url, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         }
                         
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImage: peopleImage)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImageView: peopleImageView)
                         
                         self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         
@@ -137,15 +137,15 @@ class FetchMatchRoomDataManager {
                         
                         if gender == "male" {
                             
-                            peopleImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         } else {
                             
-                            peopleImage.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
+                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
                             
                         }
                         
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImage: peopleImage)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImageView: peopleImageView)
                         
                         self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         

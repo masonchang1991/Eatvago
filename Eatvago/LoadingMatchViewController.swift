@@ -154,8 +154,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         oppositePeopleNameLabel.text = matchRoomData.oppositePeopleName
         
         oppositePeopleInfoTextView.text = matchRoomData.oppositePeopleText
-        
-        oppositePeopleImageView = matchRoomData.oppositePeopleImage
+
+        oppositePeopleImageView = matchRoomData.oppositePeopleImageView
         
         oppositePeopleImageView.contentMode = .scaleAspectFit
         
@@ -210,6 +210,11 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         matchSuccessVC.matchRoomRef = self.matchRoomRef
         matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
+        matchSuccessVC.myName = self.myName
+        matchSuccessVC.myPhotoImageView = self.myImageView
+        matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
+        matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
+        
         
         self.present(matchSuccessVC, animated: true, completion: nil)
         
