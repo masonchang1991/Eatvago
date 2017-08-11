@@ -186,7 +186,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         var attenderMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender, "greetingText": greetingText]
         
         var attenderRoomData: [String: Any] = [
-                                          "locked": true,
+                                          "islocked": true,
                                           "attender": userId,
                                           "attenderLocationLat": "\(myLocationLat)",
                                           "attenderLocationLon": "\(myLocationLon)",
@@ -217,8 +217,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                 return
         }
         
-        var newRoomData: [String: Any] = ["finished": false,
-                                          "locked": false,
+        var newRoomData: [String: Any] = ["isClosed": false,
+                                          "islocked": false,
                                           "owner": userId,
                                           "ownerLocationLat": "\(myLocationLat)",
             "ownerLocationLon": "\(myLocationLon)",

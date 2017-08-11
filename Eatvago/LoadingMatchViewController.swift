@@ -94,7 +94,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
 
             ownerSuccessManager.delegate = self
             
-            matchRoomRef.child("locked").observe(.value, with: { (snapshot) in
+            matchRoomRef.child("islocked").observe(.value, with: { (snapshot) in
                 
                 if self.runTime == 1 {
                 
@@ -172,7 +172,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                                                   matchRoomId: self.matchRoomId,
                                                   snapshot: self.ownerSnapshot)
 
-            matchRoomRef.child("locked").removeAllObservers()
+            matchRoomRef.child("islocked").removeAllObservers()
             
         } else {
 
@@ -193,21 +193,25 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     func goToChatRoom(sender: UIButton) {
         
          self.performSegue(withIdentifier: "matchSuccess", sender: nil)
+         
         
     }
     
     func closeTheRoom() {
         
-        self.matchRoomRef.child("locked").setValue(true)
-        self.matchRoomRef.child("finished").setValue(true)
-        self.navigationController?.popViewController(animated: true)
+        self.matchRoomRef.child("islocked").setValue(true)
+        self.matchRoomRef.child("isClosed").setValue(true)
+        //swiftlint:disable force_cast
+        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
+        //swiftlint:enable force_cast
+        self.navigationController?.popToViewController(matchHistoryVC, animated: true)
         
         
     }
     
     func observerIsAnyoneDecline() {
         
-        matchRoomRef.child("finished").observe(.value, with: { (snapshot) in
+        matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
             
             if self.runTime == 1 {
                 
