@@ -51,9 +51,13 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     var matchRoomRef = DatabaseReference()
     
+    var matchSuccessRoomRef = DatabaseReference()
+    
     var ownerSnapshot = DataSnapshot()
     
     var isARoomOwner: Bool = true
+    
+    var ifAcceptMatch: Bool = false
     
     // 讓observer 第一次設定時不要run
     var runTime = 0
@@ -94,7 +98,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
 
             ownerSuccessManager.delegate = self
             
-            matchRoomRef.child("islocked").observe(.value, with: { (snapshot) in
+            matchRoomRef.child("isLocked").observe(.value, with: { (snapshot) in
                 
                 if self.runTime == 1 {
                 
@@ -118,6 +122,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 if self.runTime == 1 {
 
                 guard let connectionRoomId = snapshot.value as? String else { return }
+                    
+                self.matchSuccessRoomRef = self.ref.child("Connection").child(connectionRoomId)
     
                 self.ref.child("Match Room").child(self.type).child(self.matchRoomId).child("Connection").removeAllObservers()
                 
@@ -133,7 +139,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
     }
     
-    func manager(_ manager: OwnerMatchSuccessManager, matchSuccess: String) {
+    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference) {
+        
+        self.matchSuccessRoomRef = matchSuccessRoomRef
         
         acceptButton.isHidden = false
         
@@ -172,7 +180,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                                                   matchRoomId: self.matchRoomId,
                                                   snapshot: self.ownerSnapshot)
 
-            matchRoomRef.child("islocked").removeAllObservers()
+            matchRoomRef.child("isLocked").removeAllObservers()
             
         } else {
 
@@ -192,15 +200,29 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     func goToChatRoom(sender: UIButton) {
         
-         self.performSegue(withIdentifier: "matchSuccess", sender: nil)
+        ifAcceptMatch = true
+        
+        //swiftlint:disable force_cast
+        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
+        
+        let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
+        //swiftlint:enable force_cast
+        
+        matchSuccessVC.matchRoomRef = self.matchRoomRef
+        matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
+        
+        self.present(matchSuccessVC, animated: true, completion: nil)
+        
+        self.navigationController?.popToViewController(matchHistoryVC, animated: true)
          
         
     }
     
     func closeTheRoom() {
         
-        self.matchRoomRef.child("islocked").setValue(true)
+        self.matchRoomRef.child("isLocked").setValue(true)
         self.matchRoomRef.child("isClosed").setValue(true)
+        
         //swiftlint:disable force_cast
         let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
         //swiftlint:enable force_cast

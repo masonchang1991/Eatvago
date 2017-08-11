@@ -186,7 +186,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -896,17 +896,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mVJ-X9-BLT"/>
+                    <connections>
+                        <segue destination="uIf-5o-cg4" kind="show" identifier="goBackToMain" id="VD7-Pg-rFI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0N-ch-96I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057" y="3254"/>
+            <point key="canvasLocation" x="-508" y="3188"/>
         </scene>
         <!--Item-->
         <scene sceneID="fw8-3j-kND">
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -944,7 +947,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

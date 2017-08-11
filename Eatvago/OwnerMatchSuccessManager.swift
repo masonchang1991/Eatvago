@@ -11,7 +11,7 @@ import Firebase
 
 protocol OwnerMatchSuccessDelegate: class {
     
-    func manager(_ manager: OwnerMatchSuccessManager, matchSuccess: String)
+    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference)
     
     
 }
@@ -54,7 +54,7 @@ class OwnerMatchSuccessManager {
                 }
                 
                 ref.child("UserHistory").child(uid).child(connectionRoomId).setValue(connectionRoomId)
-                self.delegate?.manager(self, matchSuccess: "success")
+                self.delegate?.manager(self, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId))
                 
             })
             

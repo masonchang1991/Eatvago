@@ -7,13 +7,61 @@
 //
 
 import UIKit
+import Firebase
+
 
 class MatchSuccessViewController: UIViewController {
+    
+    var matchRoomRef = DatabaseReference()
+    
+    var matchSuccessRoomRef = DatabaseReference()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
+            
+            guard let isClosed = snapshot.value as? Bool else {
+                return
+            }
+            
+            if isClosed == true {
+                
+                //跳出alert
+                // 建立一個提示框
+                let alertController = UIAlertController(
+                    title: "Sorry",
+                    message: "You have been declined",
+                    preferredStyle: .alert)
+                
+                // 建立[OK]按鈕
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
+          
+                        self.performSegue(withIdentifier: "goBackToMain", sender: nil)
+                        
+                    }
+                alertController.addAction(okAction)
+                self.present(
+                    alertController,
+                    animated: true,
+                    completion: nil)
 
-        // Do any additional setup after loading the view.
+            }
+            
+        })
+
+
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +70,5 @@ class MatchSuccessViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
