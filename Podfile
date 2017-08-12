@@ -21,4 +21,5 @@ target 'Eatvago' do
   pod 'SkyFloatingLabelTextField'
   pod 'FaveButton', '~> 2.0.3'
   pod 'IQKeyboardManager'
+  pod 'FSPagerView'
 end

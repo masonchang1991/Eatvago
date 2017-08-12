@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FSPagerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FaveButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,16 +77,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1272CF8C9378DE43E683D3060E5D8F35</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>216D9EBC6FFC4074F96F21A4CF23A12A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>279AA6726F52A334C45E85774BD21A3D</key>
 		<dict>
 			<key>primary</key>
@@ -92,12 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5748CBD6628E5BED81C1A3FF982B380B</key>
+		<key>42952A178997273A56F9CB9168AB1775</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>65CAB64E43BFAC7B8BC86C6E803839BB</key>
+		<key>503EF40EB57B204CF43994475387FE47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5748CBD6628E5BED81C1A3FF982B380B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A92F3534E7748E46F8C19D19D49CD74E</key>
+		<key>A184D72B32548F2D7069B90440FC8347</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,7 +122,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CC149A709C282F926C915A9FE52B9D6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED279AFE7EA745A57B7B9F35AD5F2C9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

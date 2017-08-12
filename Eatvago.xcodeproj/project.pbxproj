@@ -12,6 +12,11 @@
 		930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 930086741F29E9FE00BEA223 /* GoogleService-Info.plist */; };
 		930086781F2A08C700BEA223 /* CLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930086771F2A08C700BEA223 /* CLLocationDelegate.swift */; };
 		9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */; };
+		930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */; };
+		930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */; };
+		930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */; };
+		930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */; };
+		930119E01F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */; };
 		930144331F27986700CEC11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144321F27986700CEC11A /* AppDelegate.swift */; };
 		930144381F27986700CEC11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930144361F27986700CEC11A /* Main.storyboard */; };
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
@@ -54,6 +59,11 @@
 		930086741F29E9FE00BEA223 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		930086771F2A08C700BEA223 /* CLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDelegate.swift; sourceTree = "<group>"; };
 		9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapTableViewCell.swift; sourceTree = "<group>"; };
+		930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCLLocationDelegate.swift; sourceTree = "<group>"; };
+		930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchDistanceDelegate.swift; sourceTree = "<group>"; };
+		930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchLocationDelegate.swift; sourceTree = "<group>"; };
+		930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchLocationImageDelegate.swift; sourceTree = "<group>"; };
+		930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchPlaceDetailDelegate.swift; sourceTree = "<group>"; };
 		9301442F1F27986700CEC11A /* Eatvago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatvago.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930144321F27986700CEC11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		930144371F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +143,18 @@
 				9380CA911F2DE46200629C0A /* FetchManagers */,
 			);
 			name = NearBy;
+			sourceTree = "<group>";
+		};
+		930119D61F3EA920002822B1 /* DelegateFunction */ = {
+			isa = PBXGroup;
+			children = (
+				930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */,
+				930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */,
+				930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */,
+				930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */,
+				930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */,
+			);
+			name = DelegateFunction;
 			sourceTree = "<group>";
 		};
 		930144261F27986700CEC11A = {
@@ -247,6 +269,7 @@
 				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
 				93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */,
 				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
+				930119D61F3EA920002822B1 /* DelegateFunction */,
 			);
 			name = MatchSuccess;
 			sourceTree = "<group>";
@@ -394,6 +417,7 @@
 			files = (
 				93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */,
 				93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */,
+				930119E01F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift in Sources */,
 				9383D4BC1F3AD74900DAAD56 /* ColorsandFonts.swift in Sources */,
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
@@ -401,6 +425,7 @@
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
 				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
+				930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,
 				93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */,
 				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
@@ -408,6 +433,7 @@
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */,
+				930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */,
 				9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */,
@@ -418,10 +444,12 @@
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
+				930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */,
 				93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
+				930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */,
 				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
 				9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */,
 				93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */,

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CC149A709C282F926C915A9FE52B9D6F'
-               BlueprintName = 'SkyFloatingLabelTextField'
+               BlueprintIdentifier = 'ED279AFE7EA745A57B7B9F35AD5F2C9F'
+               BlueprintName = 'FSPagerView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SkyFloatingLabelTextField.framework'>
+               BuildableName = 'FSPagerView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
