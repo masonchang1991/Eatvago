@@ -31,7 +31,7 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var googleMapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 18.0
-    var filterDistance = 100.0
+    var filterDistance = 500.0
     var keywordText = ""
     //附近的地點 base on mylocation
     var locations: [Location] = []
