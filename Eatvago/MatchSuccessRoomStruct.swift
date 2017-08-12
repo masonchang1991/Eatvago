@@ -20,10 +20,7 @@ struct MatchSuccessRoom {
     var ownerLocation: CLLocationCoordinate2D
     
     var centerLocation: CLLocationCoordinate2D
-    
-    var listRoomId: String
-    
-    
+
 }
 
 

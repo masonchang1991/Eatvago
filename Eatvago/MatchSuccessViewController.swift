@@ -12,7 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import FSPagerView
 
-class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate {
+class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate{
     
     @IBOutlet weak var mapView: UIView!
     
@@ -24,6 +24,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var distanceLabel: UILabel!
     
     @IBOutlet weak var storeNameLabel: UILabel!
+
+    @IBOutlet weak var addToListButton: UIButton!
     
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -79,8 +81,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     var type = ""
     
-    var listRoomId = ""
-    
     var myPhotoImageView = UIImageView()
     
     var oppositePeopleImageView: UIImageView?
@@ -112,6 +112,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
     let fetchLocationImageManager = FetchLocationImageManager()
     let fetchDistanceManager = FetchDistanceManager()
+    let addOrRemoveListItemManager = AddOrRemoveListItemManager()
     var nextPageToken = ""
     var lastPageToken = ""
     var fetchPageCount = 0
@@ -147,7 +148,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         super.viewDidLoad()
         
         ifAnyoneDeclineObserver()
-        
+        ifAnyoneAddToList()
         
         self.fetchRoomDataManager.delegate = self
         
@@ -167,7 +168,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         fetchPlaceIdDetailManager.delegate = self
         fetchDistanceManager.delegate = self
         fetchLocationImageManager.delegate = self
-        
+        addOrRemoveListItemManager.delegate = self
         
         //配置pagerView
         
@@ -217,6 +218,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         choosedLocation = ChoosedLocation(storeName: location.name, locationLat: String(location.latitude), locationLon: String(location.longitude))
         //將location存入
         
+        if self.choosedLocations[self.choosedLocation.storeName] != nil {
+            
+            addToListButton.tintColor = UIColor.red
+        
+        } else {
+            
+            addToListButton.tintColor = UIColor.blue
+        }
+        
         return cell
     }
 
@@ -251,63 +261,54 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                     alertController,
                     animated: true,
                     completion: nil)
-                
             }
-            
         })
-
     }
-
     
-    @IBAction func addToList(_ sender: Any) {
-        
-        //檢查是否有value
-        
-        var ref = Database.database().reference()
-        
-        
-        self.matchSuccessRoomRef = ref.child("Connection").child("-KrKo9mJ9yBW7MYjRxP8")
+    func ifAnyoneAddToList() {
         
         self.matchSuccessRoomRef.child("list").observe(.value, with: { (snapshot) in
             
             self.choosedLocations = [:]
             
-            guard let locations = snapshot.value as? [[String: [String: String]]] else {
-                
-                let location = ["location": self.choosedLocation]
-                self.matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
+            guard let locations = snapshot.value as? [String: [String: String]] else {
                 return
-                
             }
             
-            for location in locations {
-
-                for (_, locationValue) in location {
-                    
-                    let storeName = locationValue["storeName"]
-                    
-                    let locationLat = locationValue["locationLat"]
-                    
-                    let locationLon = locationValue["locationLon"]
-                    
-                    self.choosedLocations[storeName ?? ""] = ChoosedLocation(storeName: storeName ?? "",
-                                                                       locationLat: locationLat ?? "",
-                                                                       locationLon: locationLon ?? "")
-                    
-
-                }
+            for (_, location) in locations {
                 
-            }
-            
-            if self.choosedLocations[self.choosedLocation.storeName] == nil {
+                let storeName = location["storeName"]
                 
-                let location = ["location": self.choosedLocation]
+                let locationLat = location["locationLat"]
                 
-                self.matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
+                let locationLon = location["locationLon"]
+                
+                self.choosedLocations[storeName ?? ""] = ChoosedLocation(storeName: storeName ?? "",
+                                                                         locationLat: locationLat ?? "",
+                                                                         locationLon: locationLon ?? "")
                 
             }
 
-        })
+            self.listPagerView.reloadData()
+    })
+}
+    
+    func manager(_ manager: AddOrRemoveListItemManager, successAdded: Bool) {
+        
+        
+    }
+    
+    func manager(_ manager: AddOrRemoveListItemManager, didFail withError: String) {
+        
+        
+    }
+    
+
+    
+    @IBAction func addToList(_ sender: Any) {
+        
+        self.addOrRemoveListItemManager.addOrRemovelistItem(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: self.choosedLocation)
+        
     }
     
     
@@ -369,5 +370,5 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
 //        segmentedHandler()
 //    }
 
-
 }
+

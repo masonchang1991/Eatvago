@@ -15,8 +15,6 @@ extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
 
     func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
         
-        self.listRoomId = successRoomData.listRoomId
-        
         self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: successRoomData.centerLocation, radius: 1000, keywordText: "")
         
         // 將使用者座標釘上

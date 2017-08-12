@@ -1035,6 +1035,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mVJ-X9-BLT"/>
                     <connections>
+                        <outlet property="addToListButton" destination="hmm-Nt-tIu" id="WqL-oN-Cy4"/>
                         <outlet property="distanceLabel" destination="Ezw-Ad-C1Z" id="Cin-SW-fh6"/>
                         <outlet property="durationLabel" destination="t0D-ci-nVR" id="I7N-gu-L5k"/>
                         <outlet property="listPagerView" destination="ySR-cC-yXQ" id="4rN-4v-wyd"/>

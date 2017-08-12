@@ -34,8 +34,6 @@ class OwnerMatchSuccessManager {
 
             let connectionRoomId = ref.childByAutoId().key
             
-            let listRoomId = ref.childByAutoId().key
-            
             matchRoomRef.child("Connection").setValue(connectionRoomId)
             
             self.fetchMatchRoom(ref: ref, type: type, matchRoomId: matchRoomId, completion: { (matchRoom) in
@@ -47,8 +45,7 @@ class OwnerMatchSuccessManager {
                                       "attender": matchRoom.attender,
                                       "attenderLocationLat": matchRoom.attenderLocationLat,
                                       "attenderLocationLon": matchRoom.attenderLocationLon,
-                                      "attenderMatchInfo": matchRoom.attenderMatchInfo,
-                                      "listRoomId": listRoomId]
+                                      "attenderMatchInfo": matchRoom.attenderMatchInfo]
                 
                 ref.child("Connection").child(connectionRoomId).setValue(connectionRoom)
                 

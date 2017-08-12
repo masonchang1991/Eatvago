@@ -42,6 +42,7 @@
 		9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */; };
 		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
 		9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */; };
+		9391DFC61F3F27DD0014BABD /* addOrRemoveListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC51F3F27DD0014BABD /* addOrRemoveListItem.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
@@ -92,6 +93,7 @@
 		9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchViewController.swift; sourceTree = "<group>"; };
 		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
 		9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataDelegate.swift; sourceTree = "<group>"; };
+		9391DFC51F3F27DD0014BABD /* addOrRemoveListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOrRemoveListItem.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
+				9391DFC51F3F27DD0014BABD /* addOrRemoveListItem.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
 				9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */,
 				9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */,
+				9391DFC61F3F27DD0014BABD /* addOrRemoveListItem.swift in Sources */,
 				93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */,
 				93FB58021F3DEC660017E460 /* MatchSuccessViewController.swift in Sources */,
 				93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */,
