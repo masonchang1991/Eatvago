@@ -27,12 +27,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
 
     @IBOutlet weak var addToListButton: UIButton!
     
+    @IBOutlet weak var listPickerView: UIPickerView!
+    
+    
     @IBOutlet weak var listPagerView: FSPagerView! {
         
         didSet {
             
             self.listPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
-            self.typeIndex = 3
+            self.typeIndex = 1
             
         }
     }
@@ -175,6 +178,10 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.listPagerView.delegate = self
         self.listPagerView.dataSource = self
         
+        //配置pickerview
+        
+        self.listPickerView.delegate = self
+        self.listPickerView.dataSource = self
         
         
         
@@ -195,7 +202,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         if location.photo == nil {
             
             cell.imageView?.image = UIImage(named: "noImage")
-            cell.imageView?.contentMode = .scaleAspectFit
+            cell.imageView?.contentMode = .scaleAspectFill
             
             
         } else {
@@ -205,7 +212,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             }
             
             cell.imageView?.image = storeImage
-            cell.imageView?.contentMode = .scaleAspectFit
+            cell.imageView?.contentMode = .scaleAspectFill
             
         }
         
@@ -290,6 +297,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             }
 
             self.listPagerView.reloadData()
+            self.listPickerView.reloadAllComponents()
     })
 }
     

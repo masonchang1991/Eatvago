@@ -43,6 +43,7 @@
 		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
 		9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */; };
 		9391DFC61F3F27DD0014BABD /* addOrRemoveListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC51F3F27DD0014BABD /* addOrRemoveListItem.swift */; };
+		9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
@@ -94,6 +95,7 @@
 		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
 		9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataDelegate.swift; sourceTree = "<group>"; };
 		9391DFC51F3F27DD0014BABD /* addOrRemoveListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOrRemoveListItem.swift; sourceTree = "<group>"; };
+		9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessPickerViewDelegate.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */,
 				930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */,
 				9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */,
+				9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */,
 			);
 			name = DelegateFunction;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,
 				93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */,
+				9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */,
 				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
