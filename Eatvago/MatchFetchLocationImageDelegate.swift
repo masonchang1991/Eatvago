@@ -17,7 +17,7 @@ extension MatchSuccessViewController: FetchLocationImageDelegate {
             
             self.locations[indexPathRow].photo = locationImage
             
-//            self.mapTableView.reloadData()
+           self.listPagerView.reloadData()
         }
         
     }

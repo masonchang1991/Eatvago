@@ -21,5 +21,18 @@ struct MatchSuccessRoom {
     
     var centerLocation: CLLocationCoordinate2D
     
+    var listRoomId: String
+    
+    
+}
+
+
+struct ChoosedLocation {
+    
+    var storeName: String
+    
+    var locationLat: String
+    
+    var locationLon: String
     
 }

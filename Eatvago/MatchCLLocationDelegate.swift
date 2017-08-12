@@ -31,7 +31,7 @@ extension MatchSuccessViewController: CLLocationManagerDelegate {
             
         }
         
-        callIfFetchNearbyLocations(myLocation: myLocation)
+//        callIfFetchNearbyLocations(myLocation: myLocation)
         
     }
     

@@ -31,6 +31,8 @@ class FetchDistanceManager {
             
             Alamofire.request(urlStringForDistance).responseJSON { (response) in
                 
+                print(urlStringForDistance)
+                
                 var location = nearLocation
                 
                 let jsonOfDistance = response.result.value
@@ -44,34 +46,46 @@ class FetchDistanceManager {
                     self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                     return
                 }
-                let rowOfElement = rowsOfElements[0]
-                guard let elements = rowOfElement["elements"] as? [[String:Any]] else {
-                    self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                
+                print(rowsOfElements.description)
+                
+                if rowsOfElements.count == 0 {
+                    
+                    print("distance fetch fail")
+                    
                     return
-                }
-                let element = elements[0]
-                
-                guard let distance = element["distance"] as? [String: Any],
-                    let duration = element["duration"] as? [String:Any] else {
+                    
+                } else {
+                    
+                    let rowOfElement = rowsOfElements[0]
+                    guard let elements = rowOfElement["elements"] as? [[String:Any]] else {
                         self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
                         return
-                }
-                
-                guard let distanceText = distance["text"] as? String,
-                    let durationText = duration["text"] as? String else {
-                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                        return
-                }
-                
-                location.distanceText = distanceText
-                location.durationText = durationText
-                
-                self.locations.append(location)
-                
-                //直到fetch到最後一個才delegate回去
-                fetchCount += 1
-                if fetchCount == nearLocations.count {
-                    self.delegate?.manager(self, didGet: self.locations)
+                    }
+                    let element = elements[0]
+                    
+                    guard let distance = element["distance"] as? [String: Any],
+                        let duration = element["duration"] as? [String:Any] else {
+                            self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                            return
+                    }
+                    
+                    guard let distanceText = distance["text"] as? String,
+                        let durationText = duration["text"] as? String else {
+                            self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                            return
+                    }
+                    
+                    location.distanceText = distanceText
+                    location.durationText = durationText
+                    
+                    self.locations.append(location)
+                    
+                    //直到fetch到最後一個才delegate回去
+                    fetchCount += 1
+                    if fetchCount == nearLocations.count {
+                        self.delegate?.manager(self, didGet: self.locations)
+                    }
                 }
                 
             }

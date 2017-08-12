@@ -10,11 +10,61 @@ import UIKit
 import Firebase
 import GoogleMaps
 import GooglePlaces
+import FSPagerView
 
-
-class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDelegate {
+class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate {
     
     @IBOutlet weak var mapView: UIView!
+    
+    
+    @IBOutlet weak var mapAndListChangeButton: UIButton!
+    
+    @IBOutlet weak var durationLabel: UILabel!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var storeNameLabel: UILabel!
+    
+    @IBOutlet weak var listPagerView: FSPagerView! {
+        
+        didSet {
+            
+            self.listPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.typeIndex = 3
+            
+        }
+    }
+    
+    fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.crossFading,
+                                                                      .zoomOut,
+                                                                      .depth,
+                                                                      .linear,
+                                                                      .overlap,
+                                                                      .ferrisWheel,
+                                                                      .invertedFerrisWheel,
+                                                                      .coverFlow,
+                                                                      .cubic]
+    fileprivate var typeIndex = 0 {
+        didSet {
+            let type = self.transformerTypes[typeIndex]
+            self.listPagerView.transformer = FSPagerViewTransformer(type:type)
+            switch type {
+            case .crossFading, .zoomOut, .depth:
+                self.listPagerView.itemSize = .zero // 'Zero' means fill the size of parent
+            case .linear, .overlap:
+                let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
+                self.listPagerView.itemSize = self.listPagerView.frame.size.applying(transform)
+            case .ferrisWheel, .invertedFerrisWheel:
+                self.listPagerView.itemSize = CGSize(width: 180, height: 140)
+            case .coverFlow:
+                self.listPagerView.itemSize = CGSize(width: 220, height: 170)
+            case .cubic:
+                let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.listPagerView.itemSize = self.listPagerView.frame.size.applying(transform)
+            }
+        }
+    }
+
     
     
     var matchRoomRef = DatabaseReference()
@@ -25,11 +75,21 @@ class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDel
     
     var oppositePeopleName = ""
     
+    var isRoomOwner = false
+    
+    var type = ""
+    
+    var listRoomId = ""
+    
     var myPhotoImageView = UIImageView()
     
     var oppositePeopleImageView: UIImageView?
     
     var fetchRoomDataManager = FetchMatchSuccessRoomDataManager()
+    
+    var choosedLocation = ChoosedLocation(storeName: "", locationLat: "", locationLon: "")
+    
+    var choosedLocations: [String: ChoosedLocation] = [:]
     
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
@@ -55,6 +115,7 @@ class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDel
     var nextPageToken = ""
     var lastPageToken = ""
     var fetchPageCount = 0
+    var myLocation = CLLocation()
     
     override func loadView() {
         super.loadView()
@@ -82,10 +143,6 @@ class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDel
         
     }
 
-    
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,23 +163,63 @@ class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDel
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
         
-//        fetchNearbyLocationManager.delegate = self
-//        fetchPlaceIdDetailManager.delegate = self
-//        fetchDistanceManager.delegate = self
-//        fetchLocationImageManager.delegate = self
+        fetchNearbyLocationManager.delegate = self
+        fetchPlaceIdDetailManager.delegate = self
+        fetchDistanceManager.delegate = self
+        fetchLocationImageManager.delegate = self
         
         
+        //配置pagerView
         
+        self.listPagerView.delegate = self
+        self.listPagerView.dataSource = self
         
         
         
         
     }
     
+    public func numberOfItems(in pagerView: FSPagerView) -> Int {
+        return locations.count
+    }
     
-    
-    
-    
+    public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        
+        let location = locations[index]
+        
+        print(index)
+        
+        
+        if location.photo == nil {
+            
+            cell.imageView?.image = UIImage(named: "noImage")
+            cell.imageView?.contentMode = .scaleAspectFit
+            
+            
+        } else {
+            
+            guard let storeImage = location.photo else {
+                return FSPagerViewCell()
+            }
+            
+            cell.imageView?.image = storeImage
+            cell.imageView?.contentMode = .scaleAspectFit
+            
+        }
+        
+        durationLabel.text = location.durationText
+        
+        distanceLabel.text = location.distanceText
+        
+        storeNameLabel.text = location.name
+        
+        choosedLocation = ChoosedLocation(storeName: location.name, locationLat: String(location.latitude), locationLon: String(location.longitude))
+        //將location存入
+        
+        return cell
+    }
+
     
     func ifAnyoneDeclineObserver() {
         
@@ -159,22 +256,118 @@ class MatchSuccessViewController: UIViewController, FetchMatchSuccessRoomDataDel
             
         })
 
-        
-        
     }
 
-    func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
+    
+    @IBAction func addToList(_ sender: Any) {
         
-        print(successRoomData)
+        //檢查是否有value
+        
+        var ref = Database.database().reference()
         
         
+        self.matchSuccessRoomRef = ref.child("Connection").child("-KrKo9mJ9yBW7MYjRxP8")
+        
+        self.matchSuccessRoomRef.child("list").observe(.value, with: { (snapshot) in
+            
+            self.choosedLocations = [:]
+            
+            guard let locations = snapshot.value as? [[String: [String: String]]] else {
+                
+                let location = ["location": self.choosedLocation]
+                self.matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
+                return
+                
+            }
+            
+            for location in locations {
+
+                for (_, locationValue) in location {
+                    
+                    let storeName = locationValue["storeName"]
+                    
+                    let locationLat = locationValue["locationLat"]
+                    
+                    let locationLon = locationValue["locationLon"]
+                    
+                    self.choosedLocations[storeName ?? ""] = ChoosedLocation(storeName: storeName ?? "",
+                                                                       locationLat: locationLat ?? "",
+                                                                       locationLon: locationLon ?? "")
+                    
+
+                }
+                
+            }
+            
+            if self.choosedLocations[self.choosedLocation.storeName] == nil {
+                
+                let location = ["location": self.choosedLocation]
+                
+                self.matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
+                
+            }
+
+        })
     }
     
-    func manager(_ manager: FetchMatchSuccessRoomDataManager, didFail withError: String) {
+    
+    
+    
+    
+    
+    
+//    func segmentedHandler() {
+//        
+//        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
+//        if setSegmentedControl.selectedSegmentIndex == 0 {
+//            
+//            reloadRandomBallView()
+//            openSetRandomButton.isHidden = false
+//            searchView.isHidden = true
+//            addListCollectionView.isHidden = true
+//            setRandomView.isHidden = true
+//            
+//        } else {
+//            
+//            reloadRandomBallView()
+//            openSetRandomButton.isHidden = true
+//            searchView.isHidden = false
+//            addListCollectionView.isHidden = false
+//            setRandomView.isHidden = false
+//            
+//        }
+//        
+//    }
+
+    
+    
+    
+    
+    
+    @IBAction func mapAndListChange(_ sender: Any) {
         
-        print(withError)
+        if mapView.isHidden == true {
+            
+            mapView.isHidden = false
+            listPagerView.isHidden = true
+            
+            
+        } else {
+            
+            mapView.isHidden = true
+            listPagerView.isHidden = false
+            
+            
+        }
+        
+        
         
     }
+//    
+//    @IBAction func setSegmentControl(_ sender: UISegmentedControl) {
+//        
+//        segmentedHandler()
+//    }
 
 
 }

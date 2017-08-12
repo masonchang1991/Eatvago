@@ -14,7 +14,7 @@ extension MatchSuccessViewController: FetchLocationDelegate {
         
         print(nearLocations.count)
         
-        let myLocation = currentLocation
+        let myLocation = self.myLocation
         
         fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
         

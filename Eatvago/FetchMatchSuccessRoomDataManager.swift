@@ -37,7 +37,8 @@ class FetchMatchSuccessRoomDataManager {
                 let attenderLocationLonString = roomData["attenderLocationLon"],
                 let ownerUID = roomData["owner"],
                 let ownerLocationLatString = roomData["ownerLocationLat"],
-                let ownerLocationLonString = roomData["ownerLocationLon"] else {
+                let ownerLocationLonString = roomData["ownerLocationLon"],
+                let listRoomId = roomData["listRoomId"] else {
                     
                     self.delegate?.manager(self, didFail: "JSON FAIL")
                     return
@@ -63,7 +64,7 @@ class FetchMatchSuccessRoomDataManager {
             
             let centerPoint = middlePointOfListMarkers(listCoords: collectionPiont)
             
-            let successRoomData = MatchSuccessRoom(ownerUID: ownerUID, attenderUID: attenderUID, attenderLocation: pointAttender, ownerLocation: pointOwner, centerLocation: centerPoint)
+            let successRoomData = MatchSuccessRoom(ownerUID: ownerUID, attenderUID: attenderUID, attenderLocation: pointAttender, ownerLocation: pointOwner, centerLocation: centerPoint, listRoomId: listRoomId)
             
             self.delegate?.manager(self, didGet: successRoomData)
             

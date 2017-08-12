@@ -214,7 +214,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchSuccessVC.myPhotoImageView = self.myImageView
         matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
         matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
-        
+        matchSuccessVC.type = self.type
+        matchSuccessVC.isRoomOwner = self.isARoomOwner
         
         self.present(matchSuccessVC, animated: true, completion: nil)
         

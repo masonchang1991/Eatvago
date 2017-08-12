@@ -42,7 +42,7 @@ extension MatchSuccessViewController: FetchDistanceDelegate {
             }
         }
         
-//        self.mapTableView.reloadData()
+            self.listPagerView.reloadData()
         
         if self.lastPageToken != "" && self.lastPageToken == self.nextPageToken {
             
