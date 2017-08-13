@@ -19,19 +19,30 @@ extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelega
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return self.choosedLocations.count
+        return self.choosedLocations.count + self.searchedLocations.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        var listLocation = [String]()
+        var listLocation: [ChoosedLocation] = []
         for (_, value) in self.choosedLocations {
             
-            listLocation.append(value.storeName)
+            listLocation.append(ChoosedLocation(storeName: value.storeName,
+                                                locationLat: value.locationLat,
+                                                locationLon: value.locationLon))
             
         }
         
-      return listLocation[row]
+        for location in self.searchedLocations {
+            
+            listLocation.append(ChoosedLocation(storeName: location.name,
+                                                locationLat: String(location.latitude),
+                                                locationLon: String(location.longitude)))
+            
+        }
+        
+        
+      return listLocation[row].storeName
         
     }
     

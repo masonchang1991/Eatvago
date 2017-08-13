@@ -43,6 +43,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     var myGender = ""
     
+    var myPhotoImage = UIImage()
+    
     var ref: DatabaseReference = DatabaseReference()
     
     var ownerSuccessManager = OwnerMatchSuccessManager()
@@ -58,6 +60,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     var isARoomOwner: Bool = true
     
     var ifAcceptMatch: Bool = false
+    
+    var window: UIWindow?
     
     // 讓observer 第一次設定時不要run
     var runTime = 0
@@ -80,13 +84,23 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         if myGender == "male" {
             
-            myImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "boy"), options: .refreshCached, completed: nil)
+            myImageView.image = myPhotoImage
+            myImageView.layer.borderColor = UIColor.asiSeaBlue.cgColor
+            myImageView.layer.borderWidth = 1.0
+            myImageView.layer.cornerRadius = 10
+            myImageView.clipsToBounds = true
+            
             myNameLabel.text = myName
             myTextView.text = myGeetingText
             
         } else {
             
-            myImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "girl"), options: .refreshCached, completed: nil)
+            myImageView.image = myPhotoImage
+            myImageView.layer.borderColor = UIColor.asiPale.cgColor
+            myImageView.layer.borderWidth = 1.0
+            myImageView.layer.cornerRadius = 10
+            myImageView.clipsToBounds = true
+            
             myNameLabel.text = myName
             myTextView.text = myGeetingText
             
@@ -205,6 +219,11 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         //swiftlint:disable force_cast
         let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
         
+//        let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
         //swiftlint:enable force_cast
         
@@ -217,10 +236,11 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchSuccessVC.type = self.type
         matchSuccessVC.isRoomOwner = self.isARoomOwner
         
-        self.present(matchSuccessVC, animated: true, completion: nil)
         
-        self.navigationController?.popToViewController(matchHistoryVC, animated: true)
-         
+        self.window?.rootViewController = matchSuccessVC
+        self.tabBarController?.dismiss(animated: false, completion: nil)
+
+        
         
     }
     

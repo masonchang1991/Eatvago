@@ -224,6 +224,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         tabBarC.fetchedLocations = self.locations
+        tabBarC.userPhoto = self.userPhotoImageView
+        
         
     }
     
@@ -239,9 +241,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         let location = locations[index]
         
         if location.photo == nil {
-            
-            cell.imageView?.image = UIImage(named: "noImage")
-            cell.imageView?.contentMode = .scaleAspectFill
+
             self.loadingNVAView.startAnimating()
             cell.imageView?.isHidden = true
 

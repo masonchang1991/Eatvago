@@ -11,11 +11,13 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import FSPagerView
+import NVActivityIndicatorView
 
 class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate{
     
     @IBOutlet weak var mapView: UIView!
     
+    @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
     
     @IBOutlet weak var mapAndListChangeButton: UIButton!
     
@@ -29,7 +31,18 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     @IBOutlet weak var listPickerView: UIPickerView!
     
+    @IBOutlet weak var listPickerHeightConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    @IBOutlet weak var searchBarView: UIView!
+    
+    @IBOutlet weak var navigationButtonForPagerView: UIButton!
+    
+    @IBOutlet weak var navigationButtonForList: UIButton!
     
     
     @IBOutlet weak var listPagerView: FSPagerView! {
@@ -107,6 +120,9 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     //附近的地點 base on mylocation
     var locations: [Location] = []
     
+    //搜尋的地點
+    var searchedLocations: [Location] = []
+    
     //建立呼叫fetchNearbyLocation使用的location 用途：避免重複互叫fetchNearbyLocationManager
     var lastLocation: CLLocation?
     
@@ -122,6 +138,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     var lastPageToken = ""
     var fetchPageCount = 0
     var myLocation = CLLocation()
+    
+    //
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
     
     override func loadView() {
         super.loadView()
@@ -158,6 +179,22 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.fetchRoomDataManager.delegate = self
         
         self.fetchRoomDataManager.fetchRoomData(matchSuccessRoomRef: matchSuccessRoomRef)
+        
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        // search bar layout
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        searchBarView.addSubview((searchController?.searchBar)!)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.searchBar.barStyle = .blackTranslucent
+        self.searchBarView.backgroundColor = UIColor.clear
+        //
+        searchBarView.isHidden = true
+        searchBarHeightConstraint.constant = 0
+        
         
         
         // 配置 locationManager
@@ -203,12 +240,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         if location.photo == nil {
             
-            cell.imageView?.image = UIImage(named: "noImage")
-            cell.imageView?.contentMode = .scaleAspectFill
-            
-            
+            self.loadingNVAView.startAnimating()
+            cell.imageView?.isHidden = true
             
         } else {
+            
+            self.loadingNVAView.stopAnimating()
+            self.loadingNVAView.isHidden = true
+            cell.imageView?.isHidden = false
             
             guard let storeImage = location.photo else {
                 return FSPagerViewCell()
@@ -236,6 +275,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             addToListButton.tintColor = UIColor.blue
         }
+        
+        
+        print(self.searchedLocations.count)
+        print(self.choosedLocations.count)
+        print(self.choosedLocations)
         
         return cell
     }
@@ -282,6 +326,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             self.choosedLocations = [:]
             
             guard let locations = snapshot.value as? [String: [String: String]] else {
+                self.setupPickerView()
                 return
             }
             
@@ -298,12 +343,63 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                                                                          locationLon: locationLon ?? "")
                 
             }
-
+            
             self.listPagerView.reloadData()
             self.listPickerView.reloadAllComponents()
-    })
-}
+            self.setupPickerView()
+            
+        })
+    }
     
+    
+    func setupPickerView() {
+            
+            if self.choosedLocations.count + self.searchedLocations.count == 0 {
+                
+                print(self.choosedLocations.count + self.searchedLocations.count, "DDDDDDDDDD")
+                
+                UIView.animate(withDuration: 0.4, animations: {
+                    
+                    self.listPickerHeightConstraint.constant = 0
+                    
+                    self.view.layoutIfNeeded()
+                    
+                    
+                }, completion: { (_) in
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                        self.listPickerView.isHidden = true
+                    })
+                    
+                })
+                
+            } else {
+                
+                print(self.choosedLocations.count + self.searchedLocations.count, "DDDDDDDDDD")
+
+                
+                UIView.animate(withDuration: 0.1, animations: {
+                    
+                    self.listPickerView.isHidden = false
+                    
+                    
+                }, completion: { (true) in
+                    
+                    UIView.animate(withDuration: 0.4, animations: {
+                        
+                        self.listPickerHeightConstraint.constant = 100
+                        
+                        self.view.layoutIfNeeded()
+                    })
+                    
+                })
+            }
+            
+        
+    }
+
+
+
     func manager(_ manager: AddOrRemoveListItemManager, successAdded: Bool) {
         
         
@@ -314,42 +410,45 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
     }
     
-
-    
     @IBAction func addToList(_ sender: Any) {
         
-        self.addOrRemoveListItemManager.addOrRemovelistItem(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: self.choosedLocation)
+        self.addOrRemoveListItemManager.addOrRemovelistItem(matchSuccessRoomRef: matchSuccessRoomRef,
+                                                            choosedLocation: self.choosedLocation)
         
     }
-    
-    
-    
-    
-    
-    
-    
-//    func segmentedHandler() {
-//        
-//        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
-//        if setSegmentedControl.selectedSegmentIndex == 0 {
-//            
-//            reloadRandomBallView()
-//            openSetRandomButton.isHidden = false
-//            searchView.isHidden = true
-//            addListCollectionView.isHidden = true
-//            setRandomView.isHidden = true
-//            
-//        } else {
-//            
-//            reloadRandomBallView()
-//            openSetRandomButton.isHidden = true
-//            searchView.isHidden = false
-//            addListCollectionView.isHidden = false
-//            setRandomView.isHidden = false
-//            
-//        }
-//        
-//    }
+
+    func segmentedHandler() {
+        
+        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
+        if segmentControl.selectedSegmentIndex == 0 {
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                
+                self.searchBarHeightConstraint.constant = 0
+                self.view.layoutIfNeeded()
+                
+            }, completion: { (true) in
+                
+                self.searchBarView.isHidden = true
+                
+            })
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                
+                self.searchBarHeightConstraint.constant = 40
+                self.view.layoutIfNeeded()
+                
+            }, completion: { (true) in
+                
+                self.searchBarView.isHidden = false
+                
+            })
+            
+        }
+        
+    }
 
     
     
@@ -375,11 +474,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         
     }
-//    
-//    @IBAction func setSegmentControl(_ sender: UISegmentedControl) {
-//        
-//        segmentedHandler()
-//    }
+  
+    @IBAction func segmentControlAction(_ sender: UISegmentedControl) {
+        
+        segmentedHandler()
+    }
 
 }
 

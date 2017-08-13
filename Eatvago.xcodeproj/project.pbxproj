@@ -57,6 +57,7 @@
 		93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */; };
 		93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */; };
 		93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */; };
+		93FD1E581F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateMidpointBetweenTwoLocation.swift; sourceTree = "<group>"; };
 		93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataManager.swift; sourceTree = "<group>"; };
 		93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessRoomStruct.swift; sourceTree = "<group>"; };
+		93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessGMSDelegate.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -294,6 +296,7 @@
 				93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */,
 				93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */,
 				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
+				93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */,
 				9391DFC21F3EF43C0014BABD /* Manager */,
 				930119D61F3EA920002822B1 /* DelegateFunction */,
 			);
@@ -477,6 +480,7 @@
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
 				930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */,
 				93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */,
+				93FD1E581F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift in Sources */,
 				9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,

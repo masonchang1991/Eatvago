@@ -15,7 +15,11 @@ extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
 
     func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
         
-        self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: successRoomData.centerLocation, radius: 1000, keywordText: "")
+        if type == "Any" {
+            type = ""
+        }
+        
+        self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: successRoomData.centerLocation, radius: 1000, keywordText: type)
         
         // 將使用者座標釘上
         if isRoomOwner == true {

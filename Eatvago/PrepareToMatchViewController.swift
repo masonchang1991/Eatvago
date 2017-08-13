@@ -12,28 +12,24 @@ import CoreLocation
 
 class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
 
+    
+    @IBOutlet weak var userPhotoImageView: UIImageView!
+    
     @IBOutlet weak var nickNameTextField: UITextField!
     
     @IBOutlet weak var genderTextField: UITextField!
     
     @IBOutlet weak var typeTextField: UITextField!
-
-    @IBOutlet weak var distanceTextField: UITextField!
     
     @IBOutlet weak var greetingTextView: UITextView!
-    
-    
+
     var genderPickerView = UIPickerView()
     
     var typePickerView = UIPickerView()
-    
-    var distancePickerView = UIPickerView()
 
     var genderPickOption = ["male", "female"]
     
-    var typePickOption = ["pizza", "coffee", "bar"]
-    
-    var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+    var typePickOption = ["Any", "pizza", "coffee", "bar"]
 
     var ref: DatabaseReference?
     
@@ -57,17 +53,28 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         genderTextField.inputView = genderPickerView
         
+        genderTextField.text = genderPickOption[0]
+        
         typePickerView.delegate = self
         
         typeTextField.inputView = typePickerView
         
-        distancePickerView.delegate = self
-        
-        distanceTextField.inputView = distancePickerView
+        typeTextField.text = typePickOption[0]
         
         ref = Database.database().reference()
         
         self.checkIfRoomExistManager.delegate = self
+        
+        // layout
+        
+        self.userPhotoImageView.image = nearbyViewController.userPhotoImageView.image
+        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
+        self.userPhotoImageView.clipsToBounds = true
+        
+        self.greetingTextView.layer.cornerRadius = 30
+        self.greetingTextView.clipsToBounds = true
+        self.greetingTextView.backgroundColor = UIColor.asiDarkSand
+        self.greetingTextView.backgroundColor?.withAlphaComponent(0.8)
     
     }
 
@@ -87,9 +94,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             return genderPickOption.count
         case typePickerView:
             return typePickOption.count
-        case distancePickerView:
-            return distancePickOption.count
-            default: return 0
+        default: return 0
         }
 
     }
@@ -101,8 +106,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             return genderPickOption[row]
         case typePickerView:
             return typePickOption[row]
-        case distancePickerView:
-            return "\(distancePickOption[row])"
         default: return "default"
         }
 
@@ -115,9 +118,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             genderTextField.text = genderPickOption[row]
         case typePickerView:
             typeTextField.text = typePickOption[row]
-        case distancePickerView:
-            distanceTextField.text = "\(distancePickOption[row])"
-            default: print("default")
+        default: print("default")
         }
 
     }
@@ -162,7 +163,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         loadingVC.myGeetingText = greetingTextView.text ?? ""
         
-        loadingVC.myPhotoURl = "https://firebasestorage.googleapis.com/v0/b/eatvago-2f85d.appspot.com/o/001.jpg?alt=media&token=0ea1de29-1945-4a55-a649-b56818473c29"
+        loadingVC.myPhotoImage = userPhotoImageView.image ?? UIImage()
         
         loadingVC.matchRoomId = roomId
         
@@ -171,7 +172,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String) {
         
-        var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
+        let userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
         
         guard let type = typeTextField.text,
             let gender = genderTextField.text,

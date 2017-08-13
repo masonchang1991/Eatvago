@@ -39,6 +39,8 @@ class AddOrRemoveListItemManager {
                 
                 matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
                 
+                self.delegate?.manager(self, successAdded: true)
+                
                 return
             }
             
@@ -69,7 +71,7 @@ class AddOrRemoveListItemManager {
             } else {
                 
                 
-               self.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: {
+               self.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: { (true) in
                 
                 //dosomething
                 
@@ -83,7 +85,7 @@ class AddOrRemoveListItemManager {
 }
 
 
-    func removeItemFromFirebase(matchSuccessRoomRef: DatabaseReference, choosedLocation: ChoosedLocation, completion: @escaping (() -> Void)) {
+    func removeItemFromFirebase(matchSuccessRoomRef: DatabaseReference, choosedLocation: ChoosedLocation, completion: @escaping ((Bool) -> Void)) {
         
         matchSuccessRoomRef.child("list").queryOrdered(byChild: "storeName").queryEqual(toValue: choosedLocation.storeName).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -102,6 +104,8 @@ class AddOrRemoveListItemManager {
                 print(valueSnap.key,"-------")
                 
                 matchSuccessRoomRef.child("list").child(valueSnap.key).removeValue()
+                
+                completion(true)
                 
             }
 
