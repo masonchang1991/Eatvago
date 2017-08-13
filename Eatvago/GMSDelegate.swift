@@ -14,9 +14,6 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
                            didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         // Do something with the selected place.
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         
         var location = Location(latitude: place.coordinate.latitude,
                      longitude: place.coordinate.longitude,
@@ -30,13 +27,12 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         
         location.formattedPhoneNumber = place.phoneNumber ?? ""
         
-        print(place.website)
-        print(place.website?.absoluteString)
-        
         location.website = place.website?.absoluteString ?? ""
         
         self.searchedLocations.append(location)
-        
+        self.addListPickerView.isHidden = false
+        self.addListPickerView.reloadAllComponents()
+        self.reloadRandomBallView()
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

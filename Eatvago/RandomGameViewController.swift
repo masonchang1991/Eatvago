@@ -13,7 +13,7 @@ import SkyFloatingLabelTextField
 import GooglePlaces
 import FaveButton
 
-class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var setSegmentedControl: UISegmentedControl!
     
@@ -29,11 +29,14 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var setRandomView: UIView!
     
-    @IBOutlet weak var addListCollectionView: UICollectionView!
-    
     @IBOutlet weak var searchView: UIView!
     
     @IBOutlet weak var navigationButton: FaveButton!
+    
+    @IBOutlet weak var addListPickerView: UIPickerView!
+    
+    
+    
     
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
@@ -73,15 +76,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-        
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
-        searchView.addSubview((searchController?.searchBar)!)
-        view.addSubview(searchView)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.searchBar.barStyle = .blackTranslucent
-        
+
         segmentedHandler()
 
         definesPresentationContext = true
@@ -90,21 +85,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         tabBarVC.delegate = self
         
-        self.addListCollectionView.delegate = self
-        self.addListCollectionView.dataSource = self
-        
-        // outlet fave button bug need to set two times color
-        searchButton.isSelected = false
-        openSetRandomButton.isSelected = false
-        searchButton.normalColor = UIColor.asiSeaBlue
-        openSetRandomButton.normalColor = UIColor.asiSeaBlue
-        navigationButton.imageView?.contentMode = .scaleAspectFit
-        navigationButton.isSelected = false
-        navigationButton.normalColor = UIColor.asiBrownish
-        
-        
-        self.randomGameMagneticView.backgroundColor = UIColor.clear
-        self.randomGameMagneticView.magnetic.backgroundColor = UIColor.clear
+        self.addListPickerView.delegate = self
+        self.addListPickerView.dataSource = self
+
+        setLayout()
         
     }
     
@@ -126,7 +110,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     func reloadRandomBallView() {
         
-        self.addListCollectionView.reloadData()
+        self.addListPickerView.reloadAllComponents()
         
         removeAllNode(magnetic: magnetic)
         
@@ -145,7 +129,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             totalRestaurants.append(contentsOf: searchedLocations)
             
         }
-        randomGameMagneticView.layer.backgroundColor = UIColor.asiDenimBlue.cgColor
         
         randomGameMagneticView.presentScene(magnetic)
         
@@ -267,37 +250,35 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return tabBarVC.addLocations.count + searchedLocations.count
-
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as? AddListCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        if indexPath.row <= tabBarVC.addLocations.count && tabBarVC.addLocations.count != 0 {
+        if row <= tabBarVC.addLocations.count && tabBarVC.addLocations.count != 0 {
             
-            cell.locationLabel.text = tabBarVC.addLocations[indexPath.row].name
+            return tabBarVC.addLocations[row].name
             
         } else {
             
-            cell.locationLabel.text = searchedLocations[indexPath.row - tabBarVC.addLocations.count].name
+            return searchedLocations[row - tabBarVC.addLocations.count].name
             
         }
-        
-        return cell
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
-        
     }
-    
+
     @IBAction func randomSearch(_ sender: Any) {
+        
+        if randomCountTextField.text?.characters.count == 0
+            || distanceTextField.text?.characters.count == 0
+            || keywordTextField.text?.characters.count == 0 {
+                return
+        }
+        
         
         randomCount = Int(randomCountTextField.text!)!
         
@@ -333,13 +314,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 
                 self.setRandomView.alpha = 1.0
                 
-                self.addListCollectionView.alpha = 1.0
+                self.addListPickerView.alpha = 1.0
                 
             }, completion: { (_) in
                 
                 self.setRandomView.isHidden = false
                 
-                self.addListCollectionView.isHidden = false
+                self.addListPickerView.isHidden = false
                 
             })
             
@@ -349,13 +330,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 
                 self.setRandomView.alpha = 0.0
                 
-                self.addListCollectionView.alpha = 0.0
+                self.addListPickerView.alpha = 0.0
                 
             }, completion: { (_) in
                 
                 self.setRandomView.isHidden = true
                 
-                self.addListCollectionView.isHidden = true
+                self.addListPickerView.isHidden = true
                 
             })
             
@@ -371,7 +352,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             reloadRandomBallView()
             openSetRandomButton.isHidden = false
             searchView.isHidden = true
-            addListCollectionView.isHidden = true
+            addListPickerView.isHidden = true
             setRandomView.isHidden = true
             
         } else {
@@ -379,7 +360,16 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             reloadRandomBallView()
             openSetRandomButton.isHidden = true
             searchView.isHidden = false
-            addListCollectionView.isHidden = false
+            
+            if tabBarVC.addLocations.count + searchedLocations.count != 0 {
+                
+                addListPickerView.isHidden = false
+                
+            } else {
+                
+                addListPickerView.isHidden = true
+                
+            }
             setRandomView.isHidden = false
             
         }

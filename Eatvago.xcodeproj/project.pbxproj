@@ -35,7 +35,6 @@
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
-		9383D4961F38536E00DAAD56 /* AddListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */; };
 		9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4971F3897E200DAAD56 /* GMSDelegate.swift */; };
 		9383D4BC1F3AD74900DAAD56 /* ColorsandFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BB1F3AD74900DAAD56 /* ColorsandFonts.swift */; };
 		9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */; };
@@ -47,6 +46,7 @@
 		9391DFCA1F4022CE0014BABD /* NearByUserPhotoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */; };
 		9391DFCC1F4023C40014BABD /* GetPhotoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */; };
 		9391DFCE1F4032CD0014BABD /* UploadUserPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */; };
+		9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
@@ -90,7 +90,6 @@
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationsManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
-		9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddListCollectionViewCell.swift; sourceTree = "<group>"; };
 		9383D4971F3897E200DAAD56 /* GMSDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSDelegate.swift; sourceTree = "<group>"; };
 		9383D4BB1F3AD74900DAAD56 /* ColorsandFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsandFonts.swift; sourceTree = "<group>"; };
 		9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchHistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByUserPhotoFunction.swift; sourceTree = "<group>"; };
 		9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPhotoFunction.swift; sourceTree = "<group>"; };
 		9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPhotoManager.swift; sourceTree = "<group>"; };
+		9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setRamdomGameLayout.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
@@ -271,8 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */,
+				9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */,
 				93A10BED1F31C01F00F69A82 /* CircleFunction.swift */,
-				9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */,
 				9383D4971F3897E200DAAD56 /* GMSDelegate.swift */,
 			);
 			name = "Random Game";
@@ -448,7 +448,6 @@
 				9383D4BC1F3AD74900DAAD56 /* ColorsandFonts.swift in Sources */,
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
-				9383D4961F38536E00DAAD56 /* AddListCollectionViewCell.swift in Sources */,
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
 				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
@@ -478,6 +477,7 @@
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
 				930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */,
 				93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */,
+				9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,

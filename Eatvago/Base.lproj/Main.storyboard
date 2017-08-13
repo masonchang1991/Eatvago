@@ -425,7 +425,7 @@
                                             <constraint firstAttribute="width" constant="90" id="yBA-lG-fhS"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="10"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
@@ -444,7 +444,7 @@
                                             <constraint firstAttribute="height" constant="30" id="ah0-B3-HGk"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="10"/>
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
@@ -490,6 +490,12 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
                                                 <color key="value" red="0.3820775401" green="0.8602381053" blue="0.9924670458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
+                                                <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                                <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="randomSearch:" destination="htm-Q2-okX" eventType="touchUpInside" id="qEF-j2-MSE"/>
@@ -502,7 +508,7 @@
                                             <constraint firstAttribute="width" constant="90" id="L1K-A6-UvS"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="10"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
@@ -573,14 +579,14 @@
                                 </constraints>
                             </pickerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Q0-4T-vbI">
-                                <rect key="frame" x="0.0" y="556" width="120" height="31"/>
+                                <rect key="frame" x="0.0" y="154" width="120" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Uwk-5N-A8n"/>
                                     <constraint firstAttribute="width" constant="120" id="cQo-N8-InT"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Set"/>
-                                    <segment title="Add"/>
+                                    <segment title="" image="RandomNear"/>
+                                    <segment title="" image="RandomList"/>
                                 </segments>
                                 <connections>
                                     <action selector="setSegmentControl:" destination="htm-Q2-okX" eventType="valueChanged" id="ZnS-TW-RZa"/>
@@ -593,6 +599,7 @@
                             <constraint firstAttribute="trailing" secondItem="C1T-2e-qk8" secondAttribute="trailing" id="2lR-jQ-asP"/>
                             <constraint firstItem="XIb-iK-gYj" firstAttribute="centerY" secondItem="2bh-l7-8hi" secondAttribute="centerY" id="3TA-c9-50F"/>
                             <constraint firstItem="2bh-l7-8hi" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="4ms-FH-wsX"/>
+                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="top" secondItem="C1T-2e-qk8" secondAttribute="bottom" id="5He-vD-SJd"/>
                             <constraint firstItem="4hz-gS-FzG" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="6Zv-lW-dco"/>
                             <constraint firstItem="sKY-ea-xRP" firstAttribute="top" secondItem="C1T-2e-qk8" secondAttribute="bottom" id="BDP-GC-OA5"/>
                             <constraint firstItem="XIb-iK-gYj" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" constant="5" id="C5a-Cs-TMJ"/>
@@ -607,12 +614,12 @@
                             <constraint firstAttribute="trailing" secondItem="2bh-l7-8hi" secondAttribute="trailing" id="sFa-iy-E8C"/>
                             <constraint firstItem="sKY-ea-xRP" firstAttribute="top" secondItem="C1T-2e-qk8" secondAttribute="bottom" id="v33-t5-Gad"/>
                             <constraint firstItem="4hz-gS-FzG" firstAttribute="top" secondItem="GKV-Ax-ftm" secondAttribute="bottom" id="vFK-6V-rbw"/>
-                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="top" secondItem="sKY-ea-xRP" secondAttribute="bottom" id="zSL-dj-h0H"/>
                             <constraint firstItem="2bh-l7-8hi" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="zsb-i6-XMJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5v4-bE-unK"/>
                     <connections>
+                        <outlet property="addListPickerView" destination="C1T-2e-qk8" id="8RR-Gg-2Qb"/>
                         <outlet property="distanceTextField" destination="scv-u7-AXO" id="aSu-GG-Xxs"/>
                         <outlet property="keywordTextField" destination="sjf-Wm-gIo" id="r1c-bW-toA"/>
                         <outlet property="navigationButton" destination="6mq-pz-NRC" id="icq-Fh-KWE"/>
@@ -1057,11 +1064,11 @@
             </objects>
             <point key="canvasLocation" x="-1268" y="892"/>
         </scene>
-        <!--Item-->
+        <!--Match-->
         <scene sceneID="fw8-3j-kND">
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="moK-N5-vw1"/>
+                    <tabBarItem key="tabBarItem" title="Match" image="matchIcon" id="moK-N5-vw1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1121,6 +1128,8 @@
         <image name="Navigation" width="16" height="16"/>
         <image name="NearBySearchIcon" width="25" height="25"/>
         <image name="PeopleDefaultImage" width="64" height="64"/>
+        <image name="RandomList" width="16" height="16"/>
+        <image name="RandomNear" width="16" height="16"/>
         <image name="Setup" width="16" height="16"/>
         <image name="SlotIcon" width="25" height="25"/>
         <image name="apple-image" width="1000" height="1000"/>
@@ -1128,6 +1137,7 @@
         <image name="edit" width="390" height="307"/>
         <image name="girl" width="128" height="128"/>
         <image name="heart" width="12" height="12"/>
+        <image name="matchIcon" width="32" height="32"/>
         <image name="search" width="294" height="296"/>
     </resources>
     <inferredMetricsTieBreakers>

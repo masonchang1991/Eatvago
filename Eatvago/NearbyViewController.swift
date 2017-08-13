@@ -213,6 +213,14 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        
+        locationManager.stopUpdatingLocation()
+        
+    }
+    
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         tabBarC.fetchedLocations = self.locations
