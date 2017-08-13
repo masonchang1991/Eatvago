@@ -236,8 +236,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             cell.imageView?.contentMode = .scaleAspectFill
             self.loadingNVAView.startAnimating()
             cell.imageView?.isHidden = true
-            
-            
+
         } else {
             self.loadingNVAView.stopAnimating()
             self.loadingNVAView.isHidden = true
@@ -279,6 +278,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             addToListButton.tintColor = UIColor.asiSeaBlue
             
         }
+        
         return cell
 
     }
@@ -305,7 +305,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                 nowAt += 1
             }
         }
-        
     }
     
     /*
@@ -373,21 +372,17 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             self.storeImagePagerView.isHidden = true
             sender.setTitle("List", for: .normal)
         }
-        
     }
     
     
     @IBAction func goToNavigation(_ sender: Any) {
-        
+
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(self.currentLocation.coordinate.latitude),\(self.currentLocation.coordinate.longitude)&daddr=\(self.choosedLocation.latitude),\(self.choosedLocation.longitude)&directionsmode=walking")!)
         } else {
             print("Can't use comgooglemaps://")
         }
-
-        
-        
         
     }
     
