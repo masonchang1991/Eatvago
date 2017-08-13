@@ -10,19 +10,21 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-protocol UploadUserPhotoDelegate:class {
+protocol UploadOrDownLoadUserPhotoDelegate:class {
     
-    func manager(_ manager: UploadUserPhotoManager, successNotion: String)
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion: String)
     
-    func manager(_ manager: UploadUserPhotoManager, errorDescription: String?)
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL)
+    
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: String?)
     
     
 }
 
 
-class UploadUserPhotoManager {
+class UploadOrDownLoadUserPhotoManager {
     
-    weak var delegate: UploadUserPhotoDelegate?
+    weak var delegate: UploadOrDownLoadUserPhotoDelegate?
     
     
     func uploadUserPhoto(userPhoto: UIImage) {
@@ -51,14 +53,59 @@ class UploadUserPhotoManager {
                 if let uploadImageUrl = data?.downloadURL()?.absoluteString {
                     
                     reference.setValue(uploadImageUrl)
-                    self.delegate?.manager(self, successNotion: "uploadImage Success")
+                    self.delegate?.manager(self, uploadSuccessNotion: "uploadImage Success")
                     
                 }
-                
                 
             })
             
         }
     }
+    
+    func downLoadUserPhoto() {
+        
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let reference: DatabaseReference! = Database.database().reference().child("UserAccount").child(userID).child("UserPhotoURL")
+        
+        reference.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.exists() == false {
+                
+                self.delegate?.manager(self, errorDescription: "NO image can download")
+                
+                return
+            }
+            
+            guard let photoURLString = snapshot.value as? String else {
+                
+                self.delegate?.manager(self, errorDescription: "download user photo fail")
+                return
+                
+            }
+            
+            guard let photoURL = URL(string: photoURLString) else {
+                
+                self.delegate?.manager(self, errorDescription: "download user photo fail")
+                return
+                
+            }
+            
+            print(photoURL)
+            
+            self.delegate?.manager(self, downloadImageURL: photoURL)
+            
+            })
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }

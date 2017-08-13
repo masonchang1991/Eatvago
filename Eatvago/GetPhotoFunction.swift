@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NearbyViewController: UIImagePickerControllerDelegate, UploadUserPhotoDelegate {
+extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoadUserPhotoDelegate {
     
     func getUserCamera() {
         
@@ -74,7 +74,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadUserPhoto
             
             self.userPhotoImageView.contentMode = .scaleAspectFit
             
-            self.uploadUserPhotoManager.uploadUserPhoto(userPhoto: image)
+            self.uploadOrDownLoadUserPhotoManager.uploadUserPhoto(userPhoto: image)
             
             
             
@@ -87,15 +87,24 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadUserPhoto
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func manager(_ manager: UploadUserPhotoManager, successNotion: String) {
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion successNotion: String) {
         
         print(successNotion)
         
     }
     
-    func manager(_ manager: UploadUserPhotoManager, errorDescription: String?) {
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: String?) {
         
         print(errorDescription)
+        
+    }
+    
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {
+        
+        DispatchQueue.main.async {
+            self.userPhotoImageView.sd_setImage(with: downloadImageURL, completed: nil)
+        }
+
         
     }
     

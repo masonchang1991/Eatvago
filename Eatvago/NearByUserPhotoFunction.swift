@@ -11,6 +11,19 @@ import UIKit
 
 extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
+    
+    func fetchUserPhotoFromFireBase() {
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     func stepUpUserPhotoGesture() {
         
          let tap = UITapGestureRecognizer(target: self, action: #selector(choosePhotoOrCamera))
@@ -18,8 +31,6 @@ extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecogni
          self.userPhotoImageView.addGestureRecognizer(tap)
         
          self.userPhotoImageView.isUserInteractionEnabled = true
-        
-        
         
         
     }

@@ -436,7 +436,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/addOrRemoveListItem.swift"
-                  timestampString = "524303495.213474"
+                  timestampString = "524305862.103794"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -451,7 +451,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/addOrRemoveListItem.swift"
-                  timestampString = "524303495.216045"
+                  timestampString = "524305862.106364"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "91"
@@ -474,38 +474,6 @@
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "removeItemFromFirebase(matchSuccessRoomRef:choosedLocation:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/FetchLocationsDelegate.swift"
-            timestampString = "524295918.876536"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "manager(_:didGet:nextPageToken:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/GetPhotoFunction.swift"
-            timestampString = "524303469.844843"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "manager(_:successNotion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
