@@ -157,9 +157,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 colorProgressCount += 1
                 
             }
-            
         }
-        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
