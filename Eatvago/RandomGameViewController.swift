@@ -17,6 +17,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var setSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var setSegmentControlConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var openSetRandomButton: FaveButton!
     
     @IBOutlet weak var distanceTextField: SkyFloatingLabelTextFieldWithIcon!
@@ -34,9 +36,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     @IBOutlet weak var navigationButton: FaveButton!
     
     @IBOutlet weak var addListPickerView: UIPickerView!
-    
-    
-    
     
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
@@ -312,9 +311,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             UIView.animate(withDuration: 0.4, animations: {
                 
+                self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height
+                
                 self.setRandomView.alpha = 1.0
                 
                 self.addListPickerView.alpha = 1.0
+                
+                self.view.layoutIfNeeded()
                 
             }, completion: { (_) in
                 
@@ -328,9 +331,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             UIView.animate(withDuration: 0.4, animations: {
                 
+                self.setSegmentControlConstraint.constant = 0
+                
                 self.setRandomView.alpha = 0.0
                 
                 self.addListPickerView.alpha = 0.0
+                
+                self.view.layoutIfNeeded()
                 
             }, completion: { (_) in
                 
@@ -360,6 +367,12 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             reloadRandomBallView()
             openSetRandomButton.isHidden = true
             searchView.isHidden = false
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                self.setSegmentControlConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            })
+            
             
             if tabBarVC.addLocations.count + searchedLocations.count != 0 {
                 

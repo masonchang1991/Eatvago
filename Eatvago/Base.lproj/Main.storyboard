@@ -363,9 +363,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="dMc-sG-Tro">
                         <barButtonItem key="leftBarButtonItem" image="Exit" style="plain" id="eNo-hw-bSr">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xZ5-nB-a5t">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xZ5-nB-a5t">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="Exit"/>
                                 <connections>
                                     <action selector="logout:" destination="SBI-uB-Lwu" eventType="touchUpInside" id="bDh-GD-x0t"/>
@@ -578,8 +579,8 @@
                                     <constraint firstAttribute="height" constant="50" id="jkX-e3-H3H"/>
                                 </constraints>
                             </pickerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Q0-4T-vbI">
-                                <rect key="frame" x="0.0" y="154" width="120" height="31"/>
+                            <segmentedControl opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4Q0-4T-vbI">
+                                <rect key="frame" x="0.0" y="114" width="120" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Uwk-5N-A8n"/>
                                     <constraint firstAttribute="width" constant="120" id="cQo-N8-InT"/>
@@ -599,8 +600,8 @@
                             <constraint firstAttribute="trailing" secondItem="C1T-2e-qk8" secondAttribute="trailing" id="2lR-jQ-asP"/>
                             <constraint firstItem="XIb-iK-gYj" firstAttribute="centerY" secondItem="2bh-l7-8hi" secondAttribute="centerY" id="3TA-c9-50F"/>
                             <constraint firstItem="2bh-l7-8hi" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="4ms-FH-wsX"/>
-                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="top" secondItem="C1T-2e-qk8" secondAttribute="bottom" id="5He-vD-SJd"/>
                             <constraint firstItem="4hz-gS-FzG" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="6Zv-lW-dco"/>
+                            <constraint firstItem="4Q0-4T-vbI" firstAttribute="top" secondItem="2bh-l7-8hi" secondAttribute="bottom" id="A1L-MM-HhA"/>
                             <constraint firstItem="sKY-ea-xRP" firstAttribute="top" secondItem="C1T-2e-qk8" secondAttribute="bottom" id="BDP-GC-OA5"/>
                             <constraint firstItem="XIb-iK-gYj" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" constant="5" id="C5a-Cs-TMJ"/>
                             <constraint firstItem="4Q0-4T-vbI" firstAttribute="leading" secondItem="T7m-ha-YWA" secondAttribute="leading" id="DTo-sf-6RM"/>
@@ -629,6 +630,7 @@
                         <outlet property="searchButton" destination="WN8-gd-Six" id="1Lh-rH-lGc"/>
                         <outlet property="searchView" destination="4hz-gS-FzG" id="TMS-3s-N19"/>
                         <outlet property="setRandomView" destination="2bh-l7-8hi" id="5oH-wf-2pw"/>
+                        <outlet property="setSegmentControlConstraint" destination="A1L-MM-HhA" id="CVP-0k-d2i"/>
                         <outlet property="setSegmentedControl" destination="4Q0-4T-vbI" id="jys-P1-u54"/>
                     </connections>
                 </viewController>
