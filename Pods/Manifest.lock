@@ -10,6 +10,9 @@ PODS:
   - Firebase/Database (4.0.4):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
+  - Firebase/Storage (4.0.4):
+    - Firebase/Core
+    - FirebaseStorage (= 2.0.0)
   - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -25,6 +28,10 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
+  - FirebaseStorage (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FSPagerView (0.5.5)
   - GoogleMaps (2.4.0):
     - GoogleMaps/Maps (= 2.4.0)
@@ -70,6 +77,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Storage
   - FSPagerView
   - GoogleMaps
   - GooglePlacePicker
@@ -91,6 +99,7 @@ SPEC CHECKSUMS:
   FirebaseCore: cfc042628ef9f20debe09c0eb683135fcd404cb4
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   FSPagerView: 3ec72e6b201d77a48adab5ed1d33b43a8cc153d6
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlacePicker: 755f10343d71280c7b016823e73fbae9625dfa8a
@@ -106,6 +115,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 4e2d2f7160af660ed1da6bb9d0027b5c474b4b79
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: f95bd77f2ef67abfd8f7b14556f1219cdf5e5785
+PODFILE CHECKSUM: d3c3286aa3a57b799f7394db50d88a972513551b
 
 COCOAPODS: 1.2.1

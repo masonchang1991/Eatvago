@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NearbyViewController: UIImagePickerControllerDelegate {
+extension NearbyViewController: UIImagePickerControllerDelegate, UploadUserPhotoDelegate {
     
     func getUserCamera() {
         
@@ -73,12 +73,30 @@ extension NearbyViewController: UIImagePickerControllerDelegate {
             self.userPhotoImageView.image = image
             
             self.userPhotoImageView.contentMode = .scaleAspectFit
+            
+            self.uploadUserPhotoManager.uploadUserPhoto(userPhoto: image)
+            
+            
+            
+            
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func manager(_ manager: UploadUserPhotoManager, successNotion: String) {
+        
+        print(successNotion)
+        
+    }
+    
+    func manager(_ manager: UploadUserPhotoManager, errorDescription: String?) {
+        
+        print(errorDescription)
+        
     }
     
 }

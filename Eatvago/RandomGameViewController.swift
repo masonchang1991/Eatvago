@@ -102,21 +102,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         navigationButton.isSelected = false
         navigationButton.normalColor = UIColor.asiBrownish
         
-        let background = UIImage(named: "randomGameImage")
         
-        var imageView: UIImageView!
-        imageView = UIImageView(frame: randomGameMagneticView.magnetic.frame)
-//    imageView.contentMode =  .scaleAspectFit
-//        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.contentMode =  .scaleAspectFit
-        imageView.center = randomGameMagneticView.center
-        
-        self.view.addSubview(imageView)
-        self.view.contentMode = .scaleAspectFit
-        
-        self.view.sendSubview(toBack: imageView)
-      self.randomGameMagneticView.backgroundColor = UIColor.clear
+        self.randomGameMagneticView.backgroundColor = UIColor.clear
         self.randomGameMagneticView.magnetic.backgroundColor = UIColor.clear
         
     }
@@ -158,7 +145,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             totalRestaurants.append(contentsOf: searchedLocations)
             
         }
-        randomGameMagneticView.layer.backgroundColor = UIColor(patternImage: UIImage(named: "randomGameImage")!).cgColor
+        randomGameMagneticView.layer.backgroundColor = UIColor.asiDenimBlue.cgColor
         
         randomGameMagneticView.presentScene(magnetic)
         

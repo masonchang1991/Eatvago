@@ -106,6 +106,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     //建立location的字典 座標是key 值是location struct  目的: 改善地點間交集的狀況
     var nearbyLocationDictionary: [String : Location ] = [:]
     
+    let uploadUserPhotoManager = UploadUserPhotoManager()
     let fetchNearbyLocationManager = FetchNearbyLocationManager()
     let fetchPlaceIdDetailManager = FetchPlaceIdDetailManager()
     let fetchLocationImageManager = FetchLocationImageManager()
@@ -180,6 +181,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         fetchPlaceIdDetailManager.delegate = self
         fetchDistanceManager.delegate = self
         fetchLocationImageManager.delegate = self
+        uploadUserPhotoManager.delegate = self
 
         ref = Database.database().reference()
         
