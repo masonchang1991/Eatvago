@@ -15,7 +15,7 @@ import Firebase
 import SCLAlertView
 import FSPagerView
 
-class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
+class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var userPhotoImageView: UIImageView!
 
@@ -123,6 +123,11 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     var tabBarC = MainTabBarController()
     
+    
+    //pickerViewData
+    var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+    var distanceTextField = UITextField()
+    
     override func loadView() {
          super.loadView()
         
@@ -181,6 +186,19 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         //layout
         addToListButton.addTarget(self, action: #selector(addToList), for: .touchUpInside)
         
+        userInfoTextView.layer.borderColor = UIColor.asiSandBrown.cgColor
+        userInfoTextView.layer.borderWidth = 2.0
+        userInfoTextView.backgroundColor = UIColor.clear
+        userInfoTextView.layer.cornerRadius = 20
+        userInfoTextView.clipsToBounds = true
+        
+        if userInfoTextView.text.characters.count == 0 {
+            
+            userInfoTextView.text = "Add Your Infomation"
+            
+        }
+        
+        stepUpUserPhotoGesture()
         
         
     }
@@ -261,80 +279,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         return cell
 
     }
-    
-    
-//    
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
-//            return UITableViewCell()
-//        }
-//        
-//        let location = locations[indexPath.row]
-//        
-//        cell.mapTextLabel.text = location.name
-//        
-//        if location.photo == nil {
-//            
-//            cell.storePhotoView.startAnimating()
-//            cell.storePhotoImageView.isHidden = true
-//            
-//        } else {
-//            
-//            cell.storePhotoView.isHidden = true
-//            cell.storePhotoImageView.isHidden = false
-//            cell.storePhotoView.stopAnimating()
-//            
-//            guard let storeImage = location.photo else {
-//                return UITableViewCell()
-//            }
-//            
-//            cell.storePhotoImageView.image = storeImage
-//            cell.storePhotoImageView.contentMode = .scaleToFill
-//            
-//        }
-//        
-//        cell.showStoreDetailButton.tag = indexPath.row
-//        cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
-//        
-//        cell.addToList.tintColor = UIColor.gray
-//        
-//        for location in tabBarC.addLocations {
-//            if location.name == self.locations[indexPath.row].name {
-//                cell.addToList.tintColor = UIColor.red
-//            }
-//        }  
-//        cell.addToList.tag = indexPath.row
-//        cell.addToList.addTarget(self, action: #selector(addToList), for: .touchUpInside)
-//        
-//        cell.distanceText.text = location.distanceText
-//        cell.durationText.text = location.durationText
-//    
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//        return self.mapTableView.frame.size.height/5
-//        
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        
-//        if section == tableView.numberOfSections - 1 {
-//            return 1
-//        } else {
-//            return 0
-//        }
-//        
-//    }
-    
-    
-    
-    
-    
-    
+
     func addToList(_ sender: UIButton) {
         
         if sender.tintColor != UIColor.red {
@@ -423,10 +368,27 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             mapView.isHidden = false
             storeImagePagerView.isHidden = true
             self.storeImagePagerView.isHidden = true
-            sender.setTitle("Table", for: .normal)
+            sender.setTitle("List", for: .normal)
         }
         
     }
+    
+    
+    @IBAction func goToNavigation(_ sender: Any) {
+        
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=\(self.currentLocation.coordinate.latitude),\(self.currentLocation.coordinate.longitude)&daddr=\(self.choosedLocation.latitude),\(self.choosedLocation.longitude)&directionsmode=walking")!)
+        } else {
+            print("Can't use comgooglemaps://")
+        }
+
+        
+        
+        
+    }
+    
+    
 
     @IBAction func logout(_ sender: UIButton) {
         // 消去 UserDefaults內使用者的帳號資訊
@@ -439,99 +401,82 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
         self.window?.rootViewController = nextVC
     }
+    
+    @IBAction func setUpFilter(_ sender: Any) {
+    
+        var distancePickerView = UIPickerView()
+        
+         //建立一個提示框
+        let alertController = UIAlertController(
+            title: "Filter",
+            message: "Choose",
+            preferredStyle: .alert)
+        
+        //建立一個輸入框
+        alertController.addTextField { (textField: UITextField!) -> Void in
+            self.distanceTextField = textField
+            textField.text = String(self.distancePickOption[0])
+            distancePickerView.delegate = self
+            textField.inputView = distancePickerView
+            
+        }
+        
+        // 建立一個輸入框
+        alertController.addTextField { (textField: UITextField!) -> Void in
+            textField.placeholder = "Key word"
+        }
 
-//    @IBAction func chaneDistance(_ sender: Any) {
-//        
-//        locationManager.stopUpdatingLocation()
-//        
-//        // 建立一個提示框
-//        let alertController = UIAlertController(
-//            title: "切換距離",
-//            message: "請輸入您要的距離",
-//            preferredStyle: .alert)
-//        
-//        // 建立一個輸入框
-//        alertController.addTextField { (textField: UITextField!) -> Void in
-//            textField.placeholder = "距離"
-//        }
-//        
-//        // 建立[取消]按鈕
-//        let cancelAction = UIAlertAction(
-//            title: "取消",
-//            style: .cancel,
-//            handler: nil)
-//        alertController.addAction(cancelAction)
-//
-//        // 建立[登入]按鈕
-//        let okAction = UIAlertAction(
-//            title: "確認",
-//            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-//                
-//                self.filterDistance = Double((alertController.textFields?.first?.text)!)!
-//                self.currentLocation = CLLocation()
-//                self.lastLocation = nil
-//                self.locations = []
-//                self.nearbyLocationDictionary = [:]
-//                DispatchQueue.main.async {
-//                    self.googleMapView.clear()
-//                    self.mapTableView.reloadData()
-//                    self.locationManager.startUpdatingLocation()
-//                }
-//                
-//        }
-//        alertController.addAction(okAction)
-//        self.present(
-//            alertController,
-//            animated: true,
-//            completion: nil)
-//        
-//    }
-   
-//    @IBAction func textFilter(_ sender: Any) {
-//        
-//        locationManager.stopUpdatingLocation()
-//        
-//        // 建立一個提示框
-//        let alertController = UIAlertController(
-//            title: "輸入關鍵字",
-//            message: "請輸入您的關鍵字",
-//            preferredStyle: .alert)
-//        
-//        // 建立一個輸入框
-//        alertController.addTextField { (textField: UITextField!) -> Void in
-//            textField.placeholder = "Key word"
-//        }
-//        
-//        // 建立[取消]按鈕
-//        let cancelAction = UIAlertAction(
-//            title: "取消",
-//            style: .cancel,
-//            handler: nil)
-//        alertController.addAction(cancelAction)
-//        
-//        // 建立[登入]按鈕
-//        let okAction = UIAlertAction(
-//            title: "確認",
-//            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-//                
-//                self.keywordText = (alertController.textFields?.first?.text)!
-//                self.currentLocation = CLLocation()
-//                self.lastLocation = nil
-//                self.locations = []
-//                self.nearbyLocationDictionary = [:]
-//                DispatchQueue.main.async {
-//                    self.googleMapView.clear()
-//                    self.mapTableView.reloadData()
-//                    self.locationManager.startUpdatingLocation()
-//                }
-//                
-//        }
-//        alertController.addAction(okAction)
-//        self.present(
-//            alertController,
-//            animated: true,
-//            completion: nil)
-//        
-//    }
+        //建立[取消]按鈕
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil)
+        alertController.addAction(cancelAction)
+        // 建立[ok]按鈕
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
+                
+                self.filterDistance = Double((alertController.textFields?.first?.text)!)!
+                self.keywordText = (alertController.textFields?[1].text)!
+                self.currentLocation = CLLocation()
+                self.lastLocation = nil
+                self.locations = []
+                self.nearbyLocationDictionary = [:]
+                self.storeNameLabel.text = ""
+                self.storeDistanceLabel.text = ""
+                self.storeDurationTimeLabel.text = ""
+                self.nextPageToken = ""
+                DispatchQueue.main.async {
+                    self.googleMapView.clear()
+                    self.storeImagePagerView.reloadData()
+                    self.locationManager.startUpdatingLocation()
+                }
+                
+        }
+        alertController.addAction(okAction)
+        self.present(
+            alertController,
+            animated: true,
+            completion: nil)
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return distancePickOption.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(distancePickOption[row])"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        distanceTextField.text = "\(distancePickOption[row])"
+    }
+    
     
 }

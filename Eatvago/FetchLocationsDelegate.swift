@@ -18,7 +18,7 @@ extension NearbyViewController: FetchLocationDelegate {
         
         fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
         
-        if nextPageToken != nil {
+        if nextPageToken != nil && nextPageToken != "" {
             
             guard let pageToken = nextPageToken else {
                 return

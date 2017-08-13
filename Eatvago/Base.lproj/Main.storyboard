@@ -186,7 +186,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -225,7 +225,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnr-BR-Nge">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qh0-Id-xQb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PeopleDefaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="qh0-Id-xQb">
                                         <rect key="frame" x="10" y="25" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="S7X-cK-Hzz"/>
@@ -239,7 +239,6 @@
                                             <constraint firstAttribute="width" constant="200" id="FZ4-yZ-mwG"/>
                                             <constraint firstAttribute="height" constant="100" id="ix8-ON-8iu"/>
                                         </constraints>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -260,6 +259,9 @@
                                     <constraint firstAttribute="height" constant="30" id="zGG-Jn-epm"/>
                                 </constraints>
                                 <state key="normal" image="Setup"/>
+                                <connections>
+                                    <action selector="setUpFilter:" destination="SBI-uB-Lwu" eventType="touchUpInside" id="RlI-M3-687"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73U-OK-zNP">
                                 <rect key="frame" x="50" y="214" width="275" height="30"/>
@@ -279,6 +281,9 @@
                                     <constraint firstAttribute="width" constant="30" id="aZW-vt-NgX"/>
                                 </constraints>
                                 <state key="normal" image="Navigation"/>
+                                <connections>
+                                    <action selector="goToNavigation:" destination="SBI-uB-Lwu" eventType="touchUpInside" id="RJg-TC-yMv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-fh-znw">
                                 <rect key="frame" x="187.5" y="588" width="157.5" height="30"/>
@@ -1092,7 +1097,7 @@
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1130,7 +1135,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1149,6 +1154,7 @@
         <image name="Male" width="20" height="20"/>
         <image name="Navigation" width="16" height="16"/>
         <image name="NearBySearchIcon" width="25" height="25"/>
+        <image name="PeopleDefaultImage" width="64" height="64"/>
         <image name="Setup" width="16" height="16"/>
         <image name="SlotIcon" width="25" height="25"/>
         <image name="apple-image" width="1000" height="1000"/>

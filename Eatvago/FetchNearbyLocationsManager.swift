@@ -56,7 +56,11 @@ class FetchNearbyLocationManager {
         
         if nextPageToken != "" && urlString == ""{
              url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(nextPageToken)&key=\(googleMapAPIKey[keyCount])"
-        }
+        } else if url == "" {
+            return
+        } else { }
+        
+
         
         print(url)
         Alamofire.request(url).responseJSON { (response) in

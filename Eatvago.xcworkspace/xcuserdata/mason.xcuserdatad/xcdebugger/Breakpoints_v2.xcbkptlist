@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524210838.625131"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211209.384752"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211216.626767"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211220.215244"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -356,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211222.578819"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211225.838959"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -388,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524211228.338926"
+            timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -436,7 +436,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/addOrRemoveListItem.swift"
-                  timestampString = "524293611.16906"
+                  timestampString = "524296593.352996"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -451,7 +451,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/addOrRemoveListItem.swift"
-                  timestampString = "524293611.171333"
+                  timestampString = "524296593.355566"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "91"
@@ -474,6 +474,22 @@
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "removeItemFromFirebase(matchSuccessRoomRef:choosedLocation:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Eatvago/FetchLocationsDelegate.swift"
+            timestampString = "524295918.876536"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "manager(_:didGet:nextPageToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

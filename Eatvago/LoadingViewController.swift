@@ -65,6 +65,8 @@ class LoadingViewController: UIViewController {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.window?.rootViewController = nextVC
+                self.dismiss(animated: false, completion: nil)
+                
                 
             } else {
                 
@@ -73,6 +75,7 @@ class LoadingViewController: UIViewController {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
                 self.window?.rootViewController = nextVC
+                self.dismiss(animated: false, completion: nil)
                 
             }
         }
