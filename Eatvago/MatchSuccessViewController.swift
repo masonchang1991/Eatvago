@@ -30,6 +30,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var listPickerView: UIPickerView!
     
     
+    
+    
     @IBOutlet weak var listPagerView: FSPagerView! {
         
         didSet {
@@ -203,6 +205,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             cell.imageView?.image = UIImage(named: "noImage")
             cell.imageView?.contentMode = .scaleAspectFill
+            
             
             
         } else {

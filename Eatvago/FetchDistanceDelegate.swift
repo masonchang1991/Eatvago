@@ -42,7 +42,7 @@ extension NearbyViewController: FetchDistanceDelegate {
             }
         }
         
-        self.mapTableView.reloadData()
+        self.storeImagePagerView.reloadData()
         
         if self.lastPageToken != "" && self.lastPageToken == self.nextPageToken {
             

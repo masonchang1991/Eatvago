@@ -13,13 +13,77 @@ import NVActivityIndicatorView
 import FirebaseDatabase
 import Firebase
 import SCLAlertView
+import FSPagerView
 
-class NearbyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
+class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate {
     
-    @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
+
+    @IBOutlet weak var userInfoTextView: UITextView!
+    
+    @IBOutlet weak var userInfoBackgroundView: UIView!
+    
+    @IBOutlet weak var storeNameLabel: UILabel!
+    
+    @IBOutlet weak var setUpFilterButton: UIButton!
+    
+    @IBOutlet weak var storeDurationTimeLabel: UILabel!
+    
+    @IBOutlet weak var storeDistanceLabel: UILabel!
+    
+    @IBOutlet weak var storeNavigationButton: UIButton!
+
+    @IBOutlet weak var addToListButton: UIButton!
+    
     @IBOutlet weak var mapView: UIView!
-    @IBOutlet weak var mapTableView: UITableView!
     
+    @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
+    
+ 
+    
+    //set up pager view
+    
+    @IBOutlet weak var storeImagePagerView: FSPagerView! {
+        
+        didSet {
+            
+            self.storeImagePagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.typeIndex = 1
+            
+        }
+    }
+    
+    fileprivate let transformerTypes: [FSPagerViewTransformerType] = [.crossFading,
+                                                                      .zoomOut,
+                                                                      .depth,
+                                                                      .linear,
+                                                                      .overlap,
+                                                                      .ferrisWheel,
+                                                                      .invertedFerrisWheel,
+                                                                      .coverFlow,
+                                                                      .cubic]
+    fileprivate var typeIndex = 0 {
+        didSet {
+            let type = self.transformerTypes[typeIndex]
+            self.storeImagePagerView.transformer = FSPagerViewTransformer(type:type)
+            switch type {
+            case .crossFading, .zoomOut, .depth:
+                self.storeImagePagerView.itemSize = .zero // 'Zero' means fill the size of parent
+            case .linear, .overlap:
+                let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
+                self.storeImagePagerView.itemSize = self.storeImagePagerView.frame.size.applying(transform)
+            case .ferrisWheel, .invertedFerrisWheel:
+                self.storeImagePagerView.itemSize = CGSize(width: 180, height: 140)
+            case .coverFlow:
+                self.storeImagePagerView.itemSize = CGSize(width: 220, height: 170)
+            case .cubic:
+                let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.storeImagePagerView.itemSize = self.storeImagePagerView.frame.size.applying(transform)
+            }
+        }
+    }
+    
+
     var window: UIWindow?
     
     // 與TabBarcontroller分享的Model
@@ -49,6 +113,9 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     var nextPageToken = ""
     var lastPageToken = ""
     var fetchPageCount = 0
+    
+    //給予假資料 讓下面不用解optional
+    var choosedLocation = Location(latitude: 0, longitude: 0, name: "", id: "", placeId: "", types: [], priceLevel: nil, rating: nil, photoReference: "")
     
     //用來add資訊
     var ref: DatabaseReference?
@@ -98,9 +165,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
+        
+        // set up pagerview delegate
 
-        mapTableView.delegate = self
-        mapTableView.dataSource = self
+        self.storeImagePagerView.delegate = self
+        self.storeImagePagerView.dataSource = self
         
         fetchNearbyLocationManager.delegate = self
         fetchPlaceIdDetailManager.delegate = self
@@ -108,6 +177,11 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         fetchLocationImageManager.delegate = self
 
         ref = Database.database().reference()
+        
+        //layout
+        addToListButton.addTarget(self, action: #selector(addToList), for: .touchUpInside)
+        
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -124,82 +198,142 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func numberOfItems(in pagerView: FSPagerView) -> Int {
         
         return locations.count
         
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
-        return 110.0
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        let location = locations[indexPath.row]
-        
-        cell.mapTextLabel.text = location.name
+        let location = locations[index]
         
         if location.photo == nil {
             
-            cell.storePhotoView.startAnimating()
-            cell.storePhotoImageView.isHidden = true
+            cell.imageView?.image = UIImage(named: "noImage")
+            cell.imageView?.contentMode = .scaleAspectFill
+            self.loadingNVAView.startAnimating()
+            cell.imageView?.isHidden = true
+            
             
         } else {
-            
-            cell.storePhotoView.isHidden = true
-            cell.storePhotoImageView.isHidden = false
-            cell.storePhotoView.stopAnimating()
+            self.loadingNVAView.stopAnimating()
+            self.loadingNVAView.isHidden = true
+            cell.imageView?.isHidden = false
             
             guard let storeImage = location.photo else {
-                return UITableViewCell()
+                return FSPagerViewCell()
             }
             
-            cell.storePhotoImageView.image = storeImage
-            cell.storePhotoImageView.contentMode = .scaleToFill
+            cell.imageView?.image = storeImage
+            cell.imageView?.contentMode = .scaleAspectFill
             
         }
         
-        cell.showStoreDetailButton.tag = indexPath.row
-        cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
+        storeDistanceLabel.text = location.distanceText
+        storeDurationTimeLabel.text = location.durationText
+        storeNameLabel.text = location.name
         
-        cell.addToList.tintColor = UIColor.gray
+        choosedLocation = location
         
-        for location in tabBarC.addLocations {
-            if location.name == self.locations[indexPath.row].name {
-                cell.addToList.tintColor = UIColor.red
+        var ifInTheList = false
+        
+        for locationInList in tabBarC.addLocations {
+            
+            if locationInList.name == choosedLocation.name {
+                
+                ifInTheList = true
+                
             }
-        }  
-        cell.addToList.tag = indexPath.row
-        cell.addToList.addTarget(self, action: #selector(addToList), for: .touchUpInside)
+           
+        }
         
-        cell.distanceText.text = location.distanceText
-        cell.durationText.text = location.durationText
-    
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return self.mapTableView.frame.size.height/5
-        
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        if section == tableView.numberOfSections - 1 {
-            return 1
+        if ifInTheList == true {
+            
+            addToListButton.tintColor = UIColor.red
+            
         } else {
-            return 0
+            
+            addToListButton.tintColor = UIColor.asiSeaBlue
+            
         }
-        
+        return cell
+
     }
+    
+    
+//    
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "mapTableViewCell", for: indexPath) as? NearbyMapTableViewCell else {
+//            return UITableViewCell()
+//        }
+//        
+//        let location = locations[indexPath.row]
+//        
+//        cell.mapTextLabel.text = location.name
+//        
+//        if location.photo == nil {
+//            
+//            cell.storePhotoView.startAnimating()
+//            cell.storePhotoImageView.isHidden = true
+//            
+//        } else {
+//            
+//            cell.storePhotoView.isHidden = true
+//            cell.storePhotoImageView.isHidden = false
+//            cell.storePhotoView.stopAnimating()
+//            
+//            guard let storeImage = location.photo else {
+//                return UITableViewCell()
+//            }
+//            
+//            cell.storePhotoImageView.image = storeImage
+//            cell.storePhotoImageView.contentMode = .scaleToFill
+//            
+//        }
+//        
+//        cell.showStoreDetailButton.tag = indexPath.row
+//        cell.showStoreDetailButton.addTarget(self, action: #selector(showStoreDetail(_:)), for: .touchUpInside)
+//        
+//        cell.addToList.tintColor = UIColor.gray
+//        
+//        for location in tabBarC.addLocations {
+//            if location.name == self.locations[indexPath.row].name {
+//                cell.addToList.tintColor = UIColor.red
+//            }
+//        }  
+//        cell.addToList.tag = indexPath.row
+//        cell.addToList.addTarget(self, action: #selector(addToList), for: .touchUpInside)
+//        
+//        cell.distanceText.text = location.distanceText
+//        cell.durationText.text = location.durationText
+//    
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        return self.mapTableView.frame.size.height/5
+//        
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        
+//        if section == tableView.numberOfSections - 1 {
+//            return 1
+//        } else {
+//            return 0
+//        }
+//        
+//    }
+    
+    
+    
+    
+    
     
     func addToList(_ sender: UIButton) {
         
@@ -207,17 +341,17 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
             
             sender.tintColor = UIColor.red
             
-            tabBarC.addLocations.append(self.locations[sender.tag])
+            tabBarC.addLocations.append(choosedLocation)
 
         } else {
             
-            sender.tintColor = UIColor.gray
+            sender.tintColor = UIColor.asiSeaBlue
             
             var nowAt = 0
             
             for location in tabBarC.addLocations {
                 
-                if location.name == self.locations[sender.tag].name {
+                if location.name == choosedLocation.name {
                     tabBarC.addLocations.remove(at: nowAt)
                 }
                 nowAt += 1
@@ -280,13 +414,15 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     @IBAction func changTableViewAndMap(_ sender: UIButton) {
-        if mapTableView.isHidden == true {
-            mapTableView.isHidden = false
+        if storeImagePagerView.isHidden == true {
+            storeImagePagerView.isHidden = false
+            storeImagePagerView.reloadData()
             mapView.isHidden = true
             sender.setTitle("Map", for: .normal)
         } else {
             mapView.isHidden = false
-            mapTableView.isHidden = true
+            storeImagePagerView.isHidden = true
+            self.storeImagePagerView.isHidden = true
             sender.setTitle("Table", for: .normal)
         }
         
@@ -304,98 +440,98 @@ class NearbyViewController: UIViewController, UITableViewDataSource, UITableView
         self.window?.rootViewController = nextVC
     }
 
-    @IBAction func chaneDistance(_ sender: Any) {
-        
-        locationManager.stopUpdatingLocation()
-        
-        // 建立一個提示框
-        let alertController = UIAlertController(
-            title: "切換距離",
-            message: "請輸入您要的距離",
-            preferredStyle: .alert)
-        
-        // 建立一個輸入框
-        alertController.addTextField { (textField: UITextField!) -> Void in
-            textField.placeholder = "距離"
-        }
-        
-        // 建立[取消]按鈕
-        let cancelAction = UIAlertAction(
-            title: "取消",
-            style: .cancel,
-            handler: nil)
-        alertController.addAction(cancelAction)
-
-        // 建立[登入]按鈕
-        let okAction = UIAlertAction(
-            title: "確認",
-            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-                
-                self.filterDistance = Double((alertController.textFields?.first?.text)!)!
-                self.currentLocation = CLLocation()
-                self.lastLocation = nil
-                self.locations = []
-                self.nearbyLocationDictionary = [:]
-                DispatchQueue.main.async {
-                    self.googleMapView.clear()
-                    self.mapTableView.reloadData()
-                    self.locationManager.startUpdatingLocation()
-                }
-                
-        }
-        alertController.addAction(okAction)
-        self.present(
-            alertController,
-            animated: true,
-            completion: nil)
-        
-    }
+//    @IBAction func chaneDistance(_ sender: Any) {
+//        
+//        locationManager.stopUpdatingLocation()
+//        
+//        // 建立一個提示框
+//        let alertController = UIAlertController(
+//            title: "切換距離",
+//            message: "請輸入您要的距離",
+//            preferredStyle: .alert)
+//        
+//        // 建立一個輸入框
+//        alertController.addTextField { (textField: UITextField!) -> Void in
+//            textField.placeholder = "距離"
+//        }
+//        
+//        // 建立[取消]按鈕
+//        let cancelAction = UIAlertAction(
+//            title: "取消",
+//            style: .cancel,
+//            handler: nil)
+//        alertController.addAction(cancelAction)
+//
+//        // 建立[登入]按鈕
+//        let okAction = UIAlertAction(
+//            title: "確認",
+//            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
+//                
+//                self.filterDistance = Double((alertController.textFields?.first?.text)!)!
+//                self.currentLocation = CLLocation()
+//                self.lastLocation = nil
+//                self.locations = []
+//                self.nearbyLocationDictionary = [:]
+//                DispatchQueue.main.async {
+//                    self.googleMapView.clear()
+//                    self.mapTableView.reloadData()
+//                    self.locationManager.startUpdatingLocation()
+//                }
+//                
+//        }
+//        alertController.addAction(okAction)
+//        self.present(
+//            alertController,
+//            animated: true,
+//            completion: nil)
+//        
+//    }
    
-    @IBAction func textFilter(_ sender: Any) {
-        
-        locationManager.stopUpdatingLocation()
-        
-        // 建立一個提示框
-        let alertController = UIAlertController(
-            title: "輸入關鍵字",
-            message: "請輸入您的關鍵字",
-            preferredStyle: .alert)
-        
-        // 建立一個輸入框
-        alertController.addTextField { (textField: UITextField!) -> Void in
-            textField.placeholder = "Key word"
-        }
-        
-        // 建立[取消]按鈕
-        let cancelAction = UIAlertAction(
-            title: "取消",
-            style: .cancel,
-            handler: nil)
-        alertController.addAction(cancelAction)
-        
-        // 建立[登入]按鈕
-        let okAction = UIAlertAction(
-            title: "確認",
-            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-                
-                self.keywordText = (alertController.textFields?.first?.text)!
-                self.currentLocation = CLLocation()
-                self.lastLocation = nil
-                self.locations = []
-                self.nearbyLocationDictionary = [:]
-                DispatchQueue.main.async {
-                    self.googleMapView.clear()
-                    self.mapTableView.reloadData()
-                    self.locationManager.startUpdatingLocation()
-                }
-                
-        }
-        alertController.addAction(okAction)
-        self.present(
-            alertController,
-            animated: true,
-            completion: nil)
-        
-    }
+//    @IBAction func textFilter(_ sender: Any) {
+//        
+//        locationManager.stopUpdatingLocation()
+//        
+//        // 建立一個提示框
+//        let alertController = UIAlertController(
+//            title: "輸入關鍵字",
+//            message: "請輸入您的關鍵字",
+//            preferredStyle: .alert)
+//        
+//        // 建立一個輸入框
+//        alertController.addTextField { (textField: UITextField!) -> Void in
+//            textField.placeholder = "Key word"
+//        }
+//        
+//        // 建立[取消]按鈕
+//        let cancelAction = UIAlertAction(
+//            title: "取消",
+//            style: .cancel,
+//            handler: nil)
+//        alertController.addAction(cancelAction)
+//        
+//        // 建立[登入]按鈕
+//        let okAction = UIAlertAction(
+//            title: "確認",
+//            style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
+//                
+//                self.keywordText = (alertController.textFields?.first?.text)!
+//                self.currentLocation = CLLocation()
+//                self.lastLocation = nil
+//                self.locations = []
+//                self.nearbyLocationDictionary = [:]
+//                DispatchQueue.main.async {
+//                    self.googleMapView.clear()
+//                    self.mapTableView.reloadData()
+//                    self.locationManager.startUpdatingLocation()
+//                }
+//                
+//        }
+//        alertController.addAction(okAction)
+//        self.present(
+//            alertController,
+//            animated: true,
+//            completion: nil)
+//        
+//    }
     
 }

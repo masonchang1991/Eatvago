@@ -16,7 +16,7 @@ extension NearbyViewController: FetchLocationImageDelegate {
             
             self.locations[indexPathRow].photo = locationImage
             
-            self.mapTableView.reloadData()
+            self.storeImagePagerView.reloadData()
         }
         
     }

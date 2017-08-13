@@ -331,7 +331,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             
-            nearbyViewController.mapTableView.reloadData()
+            nearbyViewController.storeImagePagerView.reloadData()
             self.tabBarVC.fetchedLocations = nearbyViewController.locations
             
             self.reloadRandomBallView()
