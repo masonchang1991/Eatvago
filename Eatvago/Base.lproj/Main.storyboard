@@ -187,7 +187,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -655,9 +655,6 @@
                                 <rect key="frame" x="263" y="101" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="oSU-NJ-eIx" kind="show" id="ut3-tl-L49"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMg-m6-iEr">
                                 <rect key="frame" x="64" y="101" width="46" height="30"/>
@@ -671,7 +668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MO8-he-lb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="2345"/>
+            <point key="canvasLocation" x="1996" y="3118"/>
         </scene>
         <!--Prepare To Match View Controller-->
         <scene sceneID="2Lx-ZF-Tqi">
@@ -767,6 +764,7 @@
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="bottom" secondItem="h6g-Xx-Cw6" secondAttribute="bottom" id="wVc-7X-pOZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7zY-dJ-eUj"/>
                     <connections>
                         <outlet property="genderTextField" destination="AgT-0d-o6p" id="RG6-1r-GWW"/>
                         <outlet property="greetingTextView" destination="xpf-Nn-8Sq" id="Hhc-jr-Lax"/>
@@ -779,7 +777,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yte-gp-pHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3141.5999999999999" y="2343.7781109445277"/>
+            <point key="canvasLocation" x="1994" y="2344"/>
         </scene>
         <!--Loading Match View Controller-->
         <scene sceneID="JK9-SC-mQk">
@@ -923,7 +921,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5x-uh-cbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4279.1999999999998" y="2344.6776611694154"/>
+            <point key="canvasLocation" x="2983" y="2344"/>
         </scene>
         <!--Match Success View Controller-->
         <scene sceneID="f2J-WE-C2H">
@@ -944,6 +942,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pab-ze-5gr" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                            <rect key="frame" x="113" y="121" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="ZWh-04-n35"/>
+                                                <constraint firstAttribute="width" constant="150" id="bAb-3b-cC4"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballBeat"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txV-CW-emm">
                                             <rect key="frame" x="62.5" y="0.0" width="250" height="35"/>
                                             <constraints>
@@ -1031,19 +1042,6 @@
                                             </constraints>
                                             <state key="normal" image="Navigation"/>
                                         </button>
-                                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pab-ze-5gr" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                            <rect key="frame" x="113" y="121" width="150" height="150"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="ZWh-04-n35"/>
-                                                <constraint firstAttribute="width" constant="150" id="bAb-3b-cC4"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                    <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballRotateChase"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I53-0A-zyI">
                                             <rect key="frame" x="157" y="461" width="60" height="50"/>
                                             <constraints>
@@ -1106,7 +1104,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5B-6n-u8V">
                                                     <rect key="frame" x="308" y="5" width="62" height="38"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0p-B0-EUU">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0p-B0-EUU">
                                                             <rect key="frame" x="10" y="5" width="42" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="h5a-eA-v0E"/>
@@ -1128,9 +1126,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="K5B-6n-u8V" secondAttribute="trailing" constant="5" id="3lc-6Y-eG6"/>
-                                            <constraint firstAttribute="bottom" secondItem="K5B-6n-u8V" secondAttribute="bottom" constant="5" id="Ulz-NR-iY2"/>
-                                            <constraint firstItem="K5B-6n-u8V" firstAttribute="top" secondItem="DuD-Pp-tB5" secondAttribute="top" constant="5" id="o7O-v3-NgP"/>
+                                            <constraint firstItem="K5B-6n-u8V" firstAttribute="top" secondItem="DuD-Pp-tB5" secondAttribute="top" constant="5" id="40l-JU-Rh6"/>
+                                            <constraint firstAttribute="trailing" secondItem="K5B-6n-u8V" secondAttribute="trailing" constant="5" id="Oma-Ri-RLj"/>
+                                            <constraint firstAttribute="bottom" secondItem="K5B-6n-u8V" secondAttribute="bottom" constant="5" id="T39-zC-R2Q"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="chatLabel" destination="d0p-B0-EUU" id="fXG-Zq-nyU"/>
@@ -1153,7 +1151,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq0-Xz-NJz">
                                                     <rect key="frame" x="53" y="5" width="52" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tr0-7L-5J0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tr0-7L-5J0">
                                                             <rect key="frame" x="5" y="5" width="42" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="2aY-D5-rDA"/>
@@ -1249,6 +1247,7 @@
                         <outlet property="loadingNVAView" destination="pab-ze-5gr" id="Rv2-6M-qr4"/>
                         <outlet property="mapAndListChangeButton" destination="1G1-es-ghV" id="ZwD-XI-4sT"/>
                         <outlet property="mapView" destination="t18-tw-jkF" id="rmk-PF-Rhh"/>
+                        <outlet property="matchRoomTableView" destination="eGt-gX-ECq" id="1mJ-Nh-bS1"/>
                         <outlet property="navigationButtonForList" destination="I53-0A-zyI" id="FBD-P2-Dy9"/>
                         <outlet property="navigationButtonForPagerView" destination="EFb-0F-hMp" id="Y5o-QX-zoG"/>
                         <outlet property="searchBarHeightConstraint" destination="jas-0K-Yua" id="DHh-2G-Fyk"/>
@@ -1267,12 +1266,12 @@
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Match" image="matchIcon" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="hiJ-jA-yu0" kind="relationship" relationship="rootViewController" id="9WQ-pY-Qqi"/>
+                        <segue destination="oSU-NJ-eIx" kind="relationship" relationship="rootViewController" id="cEr-B7-4eH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjI-tN-DdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1305,7 +1304,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

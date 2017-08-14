@@ -49,6 +49,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     @IBOutlet weak var sendMessageButton: UIButton!
     
+    @IBOutlet weak var matchRoomTableView: UITableView!
 
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -246,10 +247,17 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         //layout
         self.navigationButtonForList.isHidden = true
         self.changSearchStatusButton.addTarget(self, action: #selector(searchStatusHandler), for: .touchUpInside)
+        self.listPagerView.backgroundColor = UIColor.clear
         
         //設置聊天室observer
         chatObserverManager.setObserver(connectionRoomId: connectionRoomId)
         self.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        
+        //tableview
+        self.matchRoomTableView.delegate = self
+        self.matchRoomTableView.dataSource = self
+        self.matchRoomTableView.estimatedRowHeight = 150
+        self.matchRoomTableView.rowHeight = UITableViewAutomaticDimension
         
     }
     
@@ -268,21 +276,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
         }
         
-    }
-    
-    func setObserverInChatRoom() {
-        
-        
-        
-        
-        
         
     }
-    
-    
-    
-    
-    
     
     func navigationForPagerView() {
         
@@ -533,11 +528,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             mapView.isHidden = false
             listPagerView.isHidden = true
+            loadingNVAView.isHidden = true
             
         } else {
             
             mapView.isHidden = true
             listPagerView.isHidden = false
+            loadingNVAView.isHidden = false
             
         }
         

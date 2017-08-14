@@ -64,6 +64,7 @@
 		93FD1E6C1F419B7D003D4EC6 /* ChatObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */; };
 		93FD1E6E1F41A0D9003D4EC6 /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */; };
 		93FD1E701F41A3C6003D4EC6 /* ChatObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */; };
+		93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatObserverManager.swift; sourceTree = "<group>"; };
 		93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
 		93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatObserverDelegate.swift; sourceTree = "<group>"; };
+		93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessTableViewDelegate.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				93FD1E691F4198CF003D4EC6 /* SendMessageDelegate.swift */,
+				93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */,
 				93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */,
 				930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */,
 				930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */,
@@ -472,6 +475,7 @@
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
 				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
 				93FD1E6C1F419B7D003D4EC6 /* ChatObserverManager.swift in Sources */,
+				93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
 				930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,

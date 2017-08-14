@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 extension MatchSuccessViewController: SendMessageDelegate {
     
     
@@ -17,14 +15,14 @@ extension MatchSuccessViewController: SendMessageDelegate {
         
         
         
+     
+        
+        
         
     }
         
     func manager(_ manager: SendMessageManager, didFailwith error: Error) {
         
-        
-        
     }
-    
 
 }

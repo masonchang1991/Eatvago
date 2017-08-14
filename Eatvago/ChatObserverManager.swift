@@ -34,12 +34,11 @@ class ChatObserverManager {
     
     func setObserver(connectionRoomId: String) {
         
-        var messages: [Message] = []
-        
         ref = Database.database().reference()
         
         ref.child("Chat Room").child(connectionRoomId).observe(.value, with: { (snapshot) in
-            print(snapshot,"------------")
+
+            var messages: [Message] = []
             for messageStruct in snapshot.children {
                 
                 guard let messageStructSnapshot = messageStruct as? DataSnapshot else {

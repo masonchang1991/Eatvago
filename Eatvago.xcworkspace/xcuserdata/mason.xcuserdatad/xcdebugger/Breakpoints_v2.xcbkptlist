@@ -136,7 +136,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
-                  timestampString = "524396851.680333"
+                  timestampString = "524414455.403041"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "270"
@@ -151,7 +151,7 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
-                  timestampString = "524396851.683427"
+                  timestampString = "524414455.406226"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "270"
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524395870.996364"
+            timestampString = "524413561.783274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "582"
-            endingLineNumber = "582">
+            startingLineNumber = "581"
+            endingLineNumber = "581">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524395870.996364"
+            timestampString = "524413561.783274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603">
+            startingLineNumber = "602"
+            endingLineNumber = "602">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -314,22 +314,6 @@
             startingLineNumber = "79"
             endingLineNumber = "79"
             landmarkName = "requestPlaceIdDetail(locationsWithoutDetail:senderTag:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524395870.996364"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
-            landmarkName = "searchStatusHandler()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

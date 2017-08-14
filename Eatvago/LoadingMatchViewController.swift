@@ -231,7 +231,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         ref.child("UserHistory").child(uid).child(connectionId).setValue(connectionId)
         
         //swiftlint:disable force_cast
-        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
+//        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
         
 //        let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
         
