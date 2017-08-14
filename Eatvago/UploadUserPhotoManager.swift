@@ -37,7 +37,7 @@ class UploadOrDownLoadUserPhotoManager {
         
         let storageRef = Storage.storage().reference().child("UserAccount").child(userID).child("UserPhoto")
         
-        if let uploadData = UIImagePNGRepresentation(userPhoto) {
+        if let uploadData = UIImageJPEGRepresentation(userPhoto, 0.5) {
             
             
             storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in

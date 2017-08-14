@@ -129,6 +129,10 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     var distanceTextField = UITextField()
     
+    //全螢幕讀取 下載圖片或上傳圖片
+    let activityData = ActivityData()
+    
+    
     override func loadView() {
          super.loadView()
         
@@ -193,12 +197,10 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         userInfoTextView.backgroundColor = UIColor.clear
         userInfoTextView.layer.cornerRadius = 20
         userInfoTextView.clipsToBounds = true
+        userInfoTextView.contentSize = CGSize(width: userInfoTextView.bounds.width * 0.8, height: userInfoTextView.bounds.height * 0.8)
         
-        if userInfoTextView.text.characters.count == 0 {
-            
-            userInfoTextView.text = "Add Your Infomation"
-            
-        }
+        userPhotoImageView.layer.cornerRadius = 20
+        userPhotoImageView.clipsToBounds = true
         
         stepUpUserPhotoGesture()
         

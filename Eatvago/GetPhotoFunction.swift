@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoadUserPhotoDelegate {
     
@@ -76,9 +77,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             
             self.uploadOrDownLoadUserPhotoManager.uploadUserPhoto(userPhoto: image)
             
-            
-            
-            
+            NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         }
     }
     
@@ -90,6 +89,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion successNotion: String) {
         
         print(successNotion)
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         
     }
     
@@ -97,12 +97,14 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         
         print(errorDescription)
         
+        
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {
         
         DispatchQueue.main.async {
             self.userPhotoImageView.sd_setImage(with: downloadImageURL, completed: nil)
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         }
 
         

@@ -248,6 +248,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return tabBarVC.addLocations.count + searchedLocations.count
     }
 
@@ -360,6 +361,14 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             addListPickerView.isHidden = true
             setRandomView.isHidden = true
             
+            UIView.animate(withDuration: 0.4, animations: {
+                
+                self.setSegmentControlConstraint.constant = 0
+                self.view.layoutIfNeeded()
+                
+            })
+
+            
         } else {
             
             reloadRandomBallView()
@@ -376,9 +385,21 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 
                 addListPickerView.isHidden = false
                 
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height
+                    self.view.layoutIfNeeded()
+                    
+                })
+                
             } else {
                 
                 addListPickerView.isHidden = true
+                
+                UIView.animate(withDuration: 0.4, animations: {
+                    
+                    self.setSegmentControlConstraint.constant = 0
+                    
+                })
                 
             }
             setRandomView.isHidden = false

@@ -40,14 +40,14 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     var checkIfRoomExistManager = CheckIfRoomExistManager()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
         
         let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
         myLocation = nearbyViewController.currentLocation
-        
-        super.viewDidLoad()
+
         
         genderPickerView.delegate = self
         

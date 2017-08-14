@@ -11,7 +11,6 @@
 		9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300866C1F28ED5000BEA223 /* NearbyViewController.swift */; };
 		930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 930086741F29E9FE00BEA223 /* GoogleService-Info.plist */; };
 		930086781F2A08C700BEA223 /* CLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930086771F2A08C700BEA223 /* CLLocationDelegate.swift */; };
-		9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */; };
 		930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */; };
 		930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */; };
 		930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */; };
@@ -65,7 +64,6 @@
 		9300866C1F28ED5000BEA223 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		930086741F29E9FE00BEA223 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		930086771F2A08C700BEA223 /* CLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDelegate.swift; sourceTree = "<group>"; };
-		9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapTableViewCell.swift; sourceTree = "<group>"; };
 		930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCLLocationDelegate.swift; sourceTree = "<group>"; };
 		930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchDistanceDelegate.swift; sourceTree = "<group>"; };
 		930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchLocationDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
-				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
 				9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */,
 				9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */,
@@ -486,7 +483,6 @@
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
 				930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */,
-				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
 				9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */,
 				93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */,
 			);
