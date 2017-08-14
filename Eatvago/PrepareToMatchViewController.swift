@@ -202,7 +202,13 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
         
-        let today = Date().description
+        let todayUnformate = Date()
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss"
+        
+        let today = dateFormatter.string(from: todayUnformate)
         
         guard let type = typeTextField.text,
             let gender = genderTextField.text,

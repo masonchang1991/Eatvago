@@ -33,16 +33,22 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     @IBOutlet weak var listPickerView: UIPickerView!
     
-    
     @IBOutlet weak var listPickerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var changSearchStatusButton: UIButton!
     
     @IBOutlet weak var searchBarView: UIView!
     
     @IBOutlet weak var navigationButtonForPagerView: UIButton!
+    
+    @IBOutlet weak var chatBoxView: UIView!
+    
+    @IBOutlet weak var chatBoxTextField: UITextField!
+    
+    @IBOutlet weak var sendMessageButton: UIButton!
+    
 
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -112,6 +118,10 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     var choosedLocations: [String: ChoosedLocation] = [:]
     
+    var searchButtonStatus = false
+    
+    var chatRoomMessages: [Message] = []
+    
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -137,6 +147,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     let fetchLocationImageManager = FetchLocationImageManager()
     let fetchDistanceManager = FetchDistanceManager()
     let addOrRemoveListItemManager = AddOrRemoveListItemManager()
+    let sendMessageManager = SendMessageManager()
+    let chatObserverManager = ChatObserverManager()
     var nextPageToken = ""
     var lastPageToken = ""
     var fetchPageCount = 0
@@ -214,6 +226,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         fetchDistanceManager.delegate = self
         fetchLocationImageManager.delegate = self
         addOrRemoveListItemManager.delegate = self
+        sendMessageManager.delegate = self
+        chatObserverManager.delegate = self
         
         //配置pagerView
         
@@ -231,8 +245,43 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         //layout
         self.navigationButtonForList.isHidden = true
+        self.changSearchStatusButton.addTarget(self, action: #selector(searchStatusHandler), for: .touchUpInside)
+        
+        //設置聊天室observer
+        chatObserverManager.setObserver(connectionRoomId: connectionRoomId)
+        self.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
     }
+    
+    
+    func sendMessage() {
+        
+        if chatBoxTextField.text?.characters.count == 0 {
+            
+            return
+            
+        } else {
+            
+            guard let message = chatBoxTextField.text else { return }
+            
+            sendMessageManager.sendMessageToFireBase(message: message, connectionRoomId: connectionRoomId)
+            
+        }
+        
+    }
+    
+    func setObserverInChatRoom() {
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
     
     func navigationForPagerView() {
@@ -258,13 +307,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
+
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
         return locations.count
     }
@@ -393,8 +436,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             if self.choosedLocations.count + self.searchedLocations.count == 0 {
                 
-                print(self.choosedLocations.count + self.searchedLocations.count, "DDDDDDDDDD")
-                
                 UIView.animate(withDuration: 0.4, animations: {
                     
                     self.listPickerHeightConstraint.constant = 0
@@ -411,8 +452,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 })
                 
             } else {
-                
-                print(self.choosedLocations.count + self.searchedLocations.count, "DDDDDDDDDD")
                 
                 UIView.animate(withDuration: 0.1, animations: {
                     
@@ -447,33 +486,41 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
     }
 
-    func segmentedHandler() {
+    func searchStatusHandler() {
         
-        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
-        if segmentControl.selectedSegmentIndex == 0 {
+        //如果searchStatus有變更
+        if searchButtonStatus == false {
             
             UIView.animate(withDuration: 0.4, animations: {
                 
                 self.searchBarHeightConstraint.constant = 0
                 self.view.layoutIfNeeded()
+                self.searchBarView.alpha = 0.0
                 
             }, completion: { (_) in
                 
                 self.searchBarView.isHidden = true
-                
+                self.searchButtonStatus = true
+                DispatchQueue.main.async {
+                    self.changSearchStatusButton.imageView?.image = UIImage(named: "openSearch")
+                }
             })
             
         } else {
+            self.searchBarView.isHidden = false
             
             UIView.animate(withDuration: 0.4, animations: {
-                
+                self.searchBarView.alpha = 1.0
                 self.searchBarHeightConstraint.constant = 40
                 self.view.layoutIfNeeded()
                 
             }, completion: { (_) in
                 
-                self.searchBarView.isHidden = false
-                
+
+                self.searchButtonStatus = false
+                DispatchQueue.main.async {
+                    self.changSearchStatusButton.imageView?.image = UIImage(named: "closeSearch")
+                }
             })
             
         }
@@ -494,11 +541,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
         }
         
-    }
-  
-    @IBAction func segmentControlAction(_ sender: UISegmentedControl) {
-        
-        segmentedHandler()
     }
 
 }
