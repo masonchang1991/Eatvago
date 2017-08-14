@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 import CoreLocation
 
-
 //        /** Degrees to Radian **/
 
-func degreeToRadian(angle:CLLocationDegrees) -> CGFloat{
+func degreeToRadian(angle: CLLocationDegrees) -> CGFloat {
     
     return (  (CGFloat(angle)) / 180.0 * CGFloat(Double.pi)  )
     
@@ -21,13 +20,13 @@ func degreeToRadian(angle:CLLocationDegrees) -> CGFloat{
 
 //        /** Radians to Degrees **/
 
-func radianToDegree(radian:CGFloat) -> CLLocationDegrees{
+func radianToDegree(radian: CGFloat) -> CLLocationDegrees {
     
     return CLLocationDegrees(  radian * CGFloat(180.0 / Double.pi)  )
     
 }
 
-func middlePointOfListMarkers(listCoords: [CLLocationCoordinate2D]) -> CLLocationCoordinate2D{
+func middlePointOfListMarkers(listCoords: [CLLocationCoordinate2D]) -> CLLocationCoordinate2D {
     
     var x = 0.0 as CGFloat
     
@@ -35,19 +34,17 @@ func middlePointOfListMarkers(listCoords: [CLLocationCoordinate2D]) -> CLLocatio
     
     var z = 0.0 as CGFloat
     
-    
-    
-    for coordinate in listCoords{
+    for coordinate in listCoords {
         
-        let lat:CGFloat = degreeToRadian(angle: coordinate.latitude)
+        let lat: CGFloat = degreeToRadian(angle: coordinate.latitude)
         
-        let lon:CGFloat = degreeToRadian(angle: coordinate.longitude)
+        let lon: CGFloat = degreeToRadian(angle: coordinate.longitude)
         
         x = x + cos(lat) * cos(lon)
         
-        y = y + cos(lat) * sin(lon);
+        y = y + cos(lat) * sin(lon)
         
-        z = z + sin(lat);
+        z = z + sin(lat)
         
     }
     
@@ -57,21 +54,17 @@ func middlePointOfListMarkers(listCoords: [CLLocationCoordinate2D]) -> CLLocatio
     
     z = z/CGFloat(listCoords.count)
     
-    
-    
     let resultLon: CGFloat = atan2(y, x)
     
     let resultHyp: CGFloat = sqrt(x*x+y*y)
     
-    let resultLat:CGFloat = atan2(z, resultHyp)
-    
-    
+    let resultLat: CGFloat = atan2(z, resultHyp)
     
     let newLat = radianToDegree(radian: resultLat)
     
     let newLon = radianToDegree(radian: resultLon)
     
-    let result:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: newLat, longitude: newLon)
+    let result: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: newLat, longitude: newLon)
     
     return result
     

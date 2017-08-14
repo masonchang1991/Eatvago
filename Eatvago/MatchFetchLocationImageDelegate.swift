@@ -6,7 +6,6 @@
 //  Copyright © 2017年 Ｍason Chang iOS#4. All rights reserved.
 //
 
-
 import UIKit
 
 extension MatchSuccessViewController: FetchLocationImageDelegate {

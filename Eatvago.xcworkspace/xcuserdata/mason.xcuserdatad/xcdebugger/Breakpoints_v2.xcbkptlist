@@ -120,13 +120,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/LoadingMatchViewController.swift"
-            timestampString = "524335599.016523"
+            timestampString = "524384464.684693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "closeTheRoom()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.LoadingMatchViewController.closeTheRoom () -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
+                  timestampString = "524382931.848265"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "408">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.LoadingMatchViewController.closeTheRoom () -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/LoadingMatchViewController.swift"
+                  timestampString = "524382931.850872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "1028">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524335057.58792"
+            timestampString = "524384464.684693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492">
+            startingLineNumber = "542"
+            endingLineNumber = "542">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -150,27 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524335057.58792"
+            timestampString = "524384464.684693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524296592.078906"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
-            landmarkType = "7">
+            startingLineNumber = "563"
+            endingLineNumber = "563">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -311,22 +327,6 @@
             timestampString = "524296592.078906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Eatvago/FetchNearbyLocationsManager.swift"
-            timestampString = "524296592.078906"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
             endingLineNumber = "122"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
@@ -379,6 +379,38 @@
             endingLineNumber = "147"
             landmarkName = "fetchRequestHandler(urlString:nextPageToken:keywordText:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchNearbyLocationManager.(fetchRequestHandler (urlString : Swift.String, nextPageToken : Swift.String, keywordText : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchNearbyLocationsManager.swift"
+                  timestampString = "524382931.917019"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "12147">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Eatvago.FetchNearbyLocationManager.(fetchRequestHandler (urlString : Swift.String, nextPageToken : Swift.String, keywordText : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/FetchNearbyLocationsManager.swift"
+                  timestampString = "524382931.920918"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "12510">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -404,12 +436,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Eatvago/MatchSuccessViewController.swift"
-            timestampString = "524335057.58792"
+            timestampString = "524384464.684693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
-            landmarkName = "manager(_:didFail:)"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "segmentedHandler()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,16 +11,13 @@ import Firebase
 
 protocol OwnerMatchSuccessDelegate: class {
     
-    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference)
-    
+    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String)
     
 }
-
 
 class OwnerMatchSuccessManager {
     
     weak var delegate: OwnerMatchSuccessDelegate?
-    
     
     func matchSuccess(matchRoomRef: DatabaseReference, ref: DatabaseReference, type: String, matchRoomId: String, snapshot: DataSnapshot) {
         
@@ -48,13 +45,8 @@ class OwnerMatchSuccessManager {
                                       "attenderMatchInfo": matchRoom.attenderMatchInfo]
                 
                 ref.child("Connection").child(connectionRoomId).setValue(connectionRoom)
-                
-                guard let uid = UserDefaults.standard.value(forKey: "UID") as? String else {
-                    return
-                }
-                
-                ref.child("UserHistory").child(uid).child(connectionRoomId).setValue(connectionRoomId)
-                self.delegate?.manager(self, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId))
+    
+                self.delegate?.manager(self, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId), connectionRoomId: connectionRoomId)
                 
             })
             
@@ -99,13 +91,9 @@ class OwnerMatchSuccessManager {
                                           attenderMatchInfo: attenderMatchInfo,
                                           connection: nil)
             
-            
             completion(matchRoomData)
             
         })
     }
-    
-    
-    
     
 }

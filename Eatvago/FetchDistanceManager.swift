@@ -27,12 +27,9 @@ class FetchDistanceManager {
         
         ///google 壞掉 特地加這行
         
-         self.delegate?.manager(self, didGet: nearLocations)
+        self.delegate?.manager(self, didGet: nearLocations)
         
         return
-        
-        
-        
         
         for nearLocation in nearLocations {
             
@@ -57,7 +54,6 @@ class FetchDistanceManager {
                 }
                 
                 print(rowsOfElements.description)
-                
                 
 //                let rowOfElement = rowsOfElements[0]
 //                guard let elements = rowOfElement["elements"] as? [[String:Any]] else {
@@ -88,7 +84,6 @@ class FetchDistanceManager {
                 if fetchCount == nearLocations.count {
                     self.delegate?.manager(self, didGet: self.locations)
                 }
-                
                 
             }
             

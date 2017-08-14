@@ -29,7 +29,6 @@ struct MatchRoom {
     
 }
 
-
 struct MatchPeopleInfo {
     
     var oppositePeopleName: String

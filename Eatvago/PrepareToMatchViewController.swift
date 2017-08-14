@@ -11,7 +11,6 @@ import Firebase
 import CoreLocation
 
 class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
-
     
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
@@ -47,7 +46,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
         myLocation = nearbyViewController.currentLocation
-
         
         genderPickerView.delegate = self
         
@@ -169,7 +167,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
     }
     
-    
     func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String) {
         
         let userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
@@ -236,8 +233,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         self.ref?.child("Match Room").child(type).child(matchRoomAutoId).updateChildValues(newRoomData)
         
         self.ref?.child("Match Info").child(type).child(matchInfoAutoId).updateChildValues(ownerMatchInfoData)
-        
-        
         
         self.performSegue(withIdentifier: "ownerLoading", sender: matchRoomAutoId)
         

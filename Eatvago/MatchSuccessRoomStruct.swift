@@ -23,7 +23,6 @@ struct MatchSuccessRoom {
 
 }
 
-
 struct ChoosedLocation {
     
     var storeName: String

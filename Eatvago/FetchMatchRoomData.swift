@@ -16,9 +16,7 @@ protocol FetchMatchRoomDataDelegate: class {
     
     func manager(_ manager: FetchMatchRoomDataManager, didFail with: String)
     
-    
 }
-
 
 class FetchMatchRoomDataManager {
     
@@ -82,10 +80,8 @@ class FetchMatchRoomDataManager {
                          let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeopleImageView: peopleImageView)
                         
                          self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
-
                         
                     } else {
-                        
                         
                         if gender == "male" {
                             
@@ -104,8 +100,6 @@ class FetchMatchRoomDataManager {
                     }
                     
                 })
-                
-                
                 
             } else {
                 
@@ -131,9 +125,7 @@ class FetchMatchRoomDataManager {
                         
                         self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         
-                        
-                    }else {
-                        
+                    } else {
                         
                         if gender == "male" {
                             
@@ -159,8 +151,6 @@ class FetchMatchRoomDataManager {
         
     }
     
-    
-    
     func getOppositePeopleInfo(oppositePeopleMatchInfoId: String, completion: @escaping ((String, String, String, String?) -> Void)) {
         
         ref.child("Match Info").child(type).child(oppositePeopleMatchInfoId).observe(.value, with: { (snapshot) in
@@ -182,46 +172,18 @@ class FetchMatchRoomDataManager {
                     
             }
             
-            
             if let photoURL = peopleData["photo"] as? String {
-                
                 
                 completion(name, gender, greetingText, photoURL)
                 
-                
-                
             } else {
-                
                 
                 completion(name, gender, greetingText, nil)
                 
-                
             }
-            
-            
             
         })
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }
-
-

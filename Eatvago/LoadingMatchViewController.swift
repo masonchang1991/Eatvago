@@ -57,6 +57,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     var ownerSnapshot = DataSnapshot()
     
+    //將connectionRoomID拿出 傳到match success viewcontroller
+    
+    var connectionId = ""
+    
     var isARoomOwner: Bool = true
     
     var ifAcceptMatch: Bool = false
@@ -138,6 +142,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 guard let connectionRoomId = snapshot.value as? String else { return }
                     
                 self.matchSuccessRoomRef = self.ref.child("Connection").child(connectionRoomId)
+                    
+                self.connectionId = connectionRoomId
     
                 self.ref.child("Match Room").child(self.type).child(self.matchRoomId).child("Connection").removeAllObservers()
                 
@@ -153,9 +159,11 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
     }
     
-    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference) {
+    func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String) {
         
         self.matchSuccessRoomRef = matchSuccessRoomRef
+        
+        self.connectionId = connectionRoomId
         
         acceptButton.isHidden = false
         
@@ -216,6 +224,12 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         ifAcceptMatch = true
         
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        ref.child("UserHistory").child(uid).child(connectionId).setValue(connectionId)
+        
         //swiftlint:disable force_cast
         let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
         
@@ -235,12 +249,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
         matchSuccessVC.type = self.type
         matchSuccessVC.isRoomOwner = self.isARoomOwner
-        
+        matchSuccessVC.connectionRoomId = connectionId
         
         self.window?.rootViewController = matchSuccessVC
         self.tabBarController?.dismiss(animated: false, completion: nil)
-
-        
         
     }
     
@@ -249,17 +261,21 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         self.matchRoomRef.child("isLocked").setValue(true)
         self.matchRoomRef.child("isClosed").setValue(true)
         
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        self.ref.child("UserHistory").child(uid).child(self.connectionId).removeValue()
         //swiftlint:disable force_cast
         let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
         //swiftlint:enable force_cast
         self.navigationController?.popToViewController(matchHistoryVC, animated: true)
         
-        
     }
     
     func observerIsAnyoneDecline() {
         
-        matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
+        matchRoomRef.child("isClosed").observe(.value, with: { (_) in
             
             if self.runTime == 1 {
                 
@@ -268,7 +284,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             }
             
         })
-
         
     }
 }

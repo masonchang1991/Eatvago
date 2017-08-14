@@ -10,7 +10,6 @@ import Foundation
 import GoogleMaps
 import GooglePlaces
 
-
 extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
 
     func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
@@ -66,8 +65,6 @@ extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
             
             hisMarker.icon = GMSMarker.markerImage(with: UIColor.green)
         }
-        
-        
         
     }
     

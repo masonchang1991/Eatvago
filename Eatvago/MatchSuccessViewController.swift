@@ -13,7 +13,7 @@ import GooglePlaces
 import FSPagerView
 import NVActivityIndicatorView
 
-class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate{
+class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate {
     
     @IBOutlet weak var mapView: UIView!
     
@@ -29,10 +29,12 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
 
     @IBOutlet weak var addToListButton: UIButton!
     
+    @IBOutlet weak var navigationButtonForList: UIButton!
+    
     @IBOutlet weak var listPickerView: UIPickerView!
     
-    @IBOutlet weak var listPickerHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var listPickerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     
@@ -41,10 +43,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var searchBarView: UIView!
     
     @IBOutlet weak var navigationButtonForPagerView: UIButton!
-    
-    @IBOutlet weak var navigationButtonForList: UIButton!
-    
-    
+
     @IBOutlet weak var listPagerView: FSPagerView! {
         
         didSet {
@@ -84,12 +83,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             }
         }
     }
-
     
+    var ref: DatabaseReference = DatabaseReference()
     
     var matchRoomRef = DatabaseReference()
     
     var matchSuccessRoomRef = DatabaseReference()
+    
+    var connectionRoomId = ""
     
     var myName = ""
     
@@ -106,6 +107,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     var fetchRoomDataManager = FetchMatchSuccessRoomDataManager()
     
     var choosedLocation = ChoosedLocation(storeName: "", locationLat: "", locationLon: "")
+    
+    var pickerViewChoosedLocation = ChoosedLocation(storeName: "", locationLat: "", locationLon: "")
     
     var choosedLocations: [String: ChoosedLocation] = [:]
     
@@ -173,6 +176,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref = Database.database().reference()
+        
         ifAnyoneDeclineObserver()
         ifAnyoneAddToList()
         
@@ -194,8 +199,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         //
         searchBarView.isHidden = true
         searchBarHeightConstraint.constant = 0
-        
-        
         
         // 配置 locationManager
         
@@ -222,9 +225,45 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.listPickerView.delegate = self
         self.listPickerView.dataSource = self
         
+        //配置navigation button action
+        self.navigationButtonForPagerView.addTarget(self, action: #selector(navigationForPagerView), for: .touchUpInside)
+        self.navigationButtonForList.addTarget(self, action: #selector(navigationForList), for: .touchUpInside)
         
+        //layout
+        self.navigationButtonForList.isHidden = true
         
     }
+    
+    
+    func navigationForPagerView() {
+        
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(choosedLocation.locationLat),\(choosedLocation.locationLon)&directionsmode=walking")!)
+        } else {
+            print("Can't use comgooglemaps://")
+        }
+        
+    }
+    
+    
+    
+    func navigationForList() {
+        
+        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(pickerViewChoosedLocation.locationLat),\(pickerViewChoosedLocation.locationLon)&directionsmode=walking")!)
+        } else {
+            print("Can't use comgooglemaps://")
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
         return locations.count
@@ -234,9 +273,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
         let location = locations[index]
-        
-        print(index)
-        
         
         if location.photo == nil {
             
@@ -276,14 +312,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             addToListButton.tintColor = UIColor.blue
         }
         
-        
-        print(self.searchedLocations.count)
-        print(self.choosedLocations.count)
-        print(self.choosedLocations)
-        
         return cell
     }
-
     
     func ifAnyoneDeclineObserver() {
         
@@ -307,6 +337,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                     title: "OK",
                     style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
                         
+                        
+                        guard let uid = Auth.auth().currentUser?.uid else {
+                            return
+                        }
+                        
+                        print(uid, "uiddddddddd")
+                        
+                        self.ref.child("UserHistory").child(uid).child(self.connectionRoomId).removeValue()
                         self.performSegue(withIdentifier: "goBackToMain", sender: nil)
                         
                 }
@@ -351,7 +389,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         })
     }
     
-    
     func setupPickerView() {
             
             if self.choosedLocations.count + self.searchedLocations.count == 0 {
@@ -364,11 +401,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                     
                     self.view.layoutIfNeeded()
                     
-                    
                 }, completion: { (_) in
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                         self.listPickerView.isHidden = true
+                        self.navigationButtonForList.isHidden = true
                     })
                     
                 })
@@ -376,14 +413,12 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             } else {
                 
                 print(self.choosedLocations.count + self.searchedLocations.count, "DDDDDDDDDD")
-
                 
                 UIView.animate(withDuration: 0.1, animations: {
                     
                     self.listPickerView.isHidden = false
-                    
-                    
-                }, completion: { (true) in
+                    self.navigationButtonForList.isHidden = false
+                }, completion: { (_) in
                     
                     UIView.animate(withDuration: 0.4, animations: {
                         
@@ -394,19 +429,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                     
                 })
             }
-            
         
     }
 
-
-
     func manager(_ manager: AddOrRemoveListItemManager, successAdded: Bool) {
-        
         
     }
     
     func manager(_ manager: AddOrRemoveListItemManager, didFail withError: String) {
-        
         
     }
     
@@ -427,7 +457,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 self.searchBarHeightConstraint.constant = 0
                 self.view.layoutIfNeeded()
                 
-            }, completion: { (true) in
+            }, completion: { (_) in
                 
                 self.searchBarView.isHidden = true
                 
@@ -440,7 +470,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 self.searchBarHeightConstraint.constant = 40
                 self.view.layoutIfNeeded()
                 
-            }, completion: { (true) in
+            }, completion: { (_) in
                 
                 self.searchBarView.isHidden = false
                 
@@ -449,11 +479,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         }
         
     }
-
-    
-    
-    
-    
     
     @IBAction func mapAndListChange(_ sender: Any) {
         
@@ -462,16 +487,12 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             mapView.isHidden = false
             listPagerView.isHidden = true
             
-            
         } else {
             
             mapView.isHidden = true
             listPagerView.isHidden = false
             
-            
         }
-        
-        
         
     }
   
@@ -481,4 +502,3 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     }
 
 }
-

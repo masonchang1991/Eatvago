@@ -277,7 +277,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 return
         }
         
-        
         randomCount = Int(randomCountTextField.text!)!
         
         guard let distance = distanceTextField.text,
@@ -367,7 +366,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 self.view.layoutIfNeeded()
                 
             })
-
             
         } else {
             
@@ -379,7 +377,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 self.setSegmentControlConstraint.constant = 0
                 self.view.layoutIfNeeded()
             })
-            
             
             if tabBarVC.addLocations.count + searchedLocations.count != 0 {
                 

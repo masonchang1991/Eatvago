@@ -15,7 +15,7 @@ import Firebase
 import SCLAlertView
 import FSPagerView
 
-class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
+class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var userPhotoImageView: UIImageView!
 
@@ -38,8 +38,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBOutlet weak var mapView: UIView!
     
     @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
-    
- 
     
     //set up pager view
     
@@ -82,7 +80,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             }
         }
     }
-    
 
     var window: UIWindow?
     
@@ -124,14 +121,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     var tabBarC = MainTabBarController()
     
-    
     //pickerViewData
     var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     var distanceTextField = UITextField()
     
     //全螢幕讀取 下載圖片或上傳圖片
     let activityData = ActivityData()
-    
     
     override func loadView() {
          super.loadView()
@@ -222,12 +217,10 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
     }
     
-    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         tabBarC.fetchedLocations = self.locations
         tabBarC.userPhoto = self.userPhotoImageView
-        
         
     }
     
@@ -384,7 +377,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         }
     }
     
-    
     @IBAction func goToNavigation(_ sender: Any) {
 
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
@@ -395,8 +387,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         }
         
     }
-    
-    
 
     @IBAction func logout(_ sender: UIButton) {
         // 消去 UserDefaults內使用者的帳號資訊
@@ -485,6 +475,5 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         distanceTextField.text = "\(distancePickOption[row])"
     }
-    
     
 }

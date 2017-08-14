@@ -18,11 +18,9 @@ protocol addOrRemoveListItemDelegate:class {
     
 }
 
-
 class AddOrRemoveListItemManager {
 
     weak var delegate: addOrRemoveListItemDelegate?
-    
     
     func addOrRemovelistItem(matchSuccessRoomRef: DatabaseReference, choosedLocation: ChoosedLocation) {
         
@@ -70,8 +68,7 @@ class AddOrRemoveListItemManager {
                 
             } else {
                 
-                
-               self.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: { (true) in
+               self.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: { (_) in
                 
                 //dosomething
                 
@@ -84,24 +81,22 @@ class AddOrRemoveListItemManager {
 
 }
 
-
     func removeItemFromFirebase(matchSuccessRoomRef: DatabaseReference, choosedLocation: ChoosedLocation, completion: @escaping ((Bool) -> Void)) {
         
         matchSuccessRoomRef.child("list").queryOrdered(byChild: "storeName").queryEqual(toValue: choosedLocation.storeName).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            
             print(snapshot.value, "value~~~~~~~~~~")
             print(snapshot.children, "childern~~~~~~~")
             
-            for item in snapshot.children{
+            for item in snapshot.children {
             
-            guard let valueSnap = item as? DataSnapshot else{
+            guard let valueSnap = item as? DataSnapshot else {
             
                 return
             
             }
                 
-                print(valueSnap.key,"-------")
+                print(valueSnap.key, "-------")
                 
                 matchSuccessRoomRef.child("list").child(valueSnap.key).removeValue()
                 
@@ -113,15 +108,4 @@ class AddOrRemoveListItemManager {
             
         }
         
-        
-        
-        
-        
     }
-    
-        
-
-
-
-
-

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
 
@@ -24,11 +25,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     @IBOutlet weak var loginAndRegisterButton: UIButton!
-    var ref: DatabaseReference?
+    var ref: DatabaseReference!
     var changSegmentCount = 0
     var changButtonPosition: NSLayoutConstraint?
+    let activityData = ActivityData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
         
         emailTextField.placeholder = "Email"
         
@@ -138,20 +143,30 @@ class LoginViewController: UIViewController {
                 return
         }
         
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if error == nil {
                 // 計算認證信, 細部過程待補 note
                 user?.sendEmailVerification { error in
+                    
+                    if error == nil {
+                        
+                        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                        
+                        self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
+                        self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
+                        self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
+                    }
+                    
                     if let error = error {
                         print(error)
                     }
                 }
+                
                 print("Successfully register")
                 
-                self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
-                self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
-                self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
             } else {
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 

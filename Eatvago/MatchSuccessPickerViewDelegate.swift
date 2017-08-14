@@ -6,12 +6,9 @@
 //  Copyright © 2017年 Ｍason Chang iOS#4. All rights reserved.
 //
 
-
 import UIKit
 
-
 extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -41,13 +38,13 @@ extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelega
             
         }
         
+        self.pickerViewChoosedLocation = listLocation[row]
         
       return listLocation[row].storeName
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
         
     }
     

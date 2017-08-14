@@ -9,9 +9,7 @@
 import UIKit
 import Firebase
 
-
 protocol CheckIfRoomExistDelegate: class {
-    
     
     func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String)
     
@@ -19,18 +17,13 @@ protocol CheckIfRoomExistDelegate: class {
     
 }
 
-
-
 class CheckIfRoomExistManager {
-    
     
     weak var delegate: CheckIfRoomExistDelegate?
     
     var ref: DatabaseReference =  Database.database().reference()
     
-    
     func checkIfRoomExist(type: String) {
-        
         
         findRoom(type: type) { (finded, key) in
             
@@ -46,12 +39,11 @@ class CheckIfRoomExistManager {
         }
     }
     
-    func findRoom(type: String, completion: @escaping ((Bool, String) -> ())) {
+    func findRoom(type: String, completion: @escaping ((Bool, String) -> Void)) {
 
          ref.child("Match Room").child(type).queryOrdered(byChild: "isLocked").queryEqual(toValue: false).queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let value = snapshot.value as? [String: Any] else {
-                
                 
                 //回傳沒房間
                 completion(false, "Null")
@@ -60,7 +52,6 @@ class CheckIfRoomExistManager {
             }
             
             print(value)
-            
             
             let key = Array(value.keys)[0]
             

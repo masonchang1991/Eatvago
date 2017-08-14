@@ -8,13 +8,9 @@
 
 import UIKit
 
-
-
 extension RandomGameViewController {
     
-    
     func setLayout() {
-        
         
         self.addListPickerView.backgroundColor = UIColor.clear
         
@@ -45,10 +41,6 @@ extension RandomGameViewController {
         
         self.view.backgroundColor = UIColor.white
         
-        
-        
-        
     }
-    
     
 }

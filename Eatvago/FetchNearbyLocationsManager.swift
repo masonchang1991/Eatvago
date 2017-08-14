@@ -60,8 +60,6 @@ class FetchNearbyLocationManager {
             return
         } else { }
         
-
-        
         print(url)
         Alamofire.request(url).responseJSON { (response) in
 

@@ -18,15 +18,11 @@ protocol FetchMatchSuccessRoomDataDelegate:class {
     
 }
 
-
 class FetchMatchSuccessRoomDataManager {
-    
     
     weak var delegate: FetchMatchSuccessRoomDataDelegate?
     
-    
     func fetchRoomData(matchSuccessRoomRef: DatabaseReference) {
-        
     
         matchSuccessRoomRef.observe(.value, with: { (snapshot) in
             
@@ -67,38 +63,8 @@ class FetchMatchSuccessRoomDataManager {
             
             self.delegate?.manager(self, didGet: successRoomData)
             
-            
         })
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

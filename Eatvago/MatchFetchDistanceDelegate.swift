@@ -65,4 +65,3 @@ extension MatchSuccessViewController: FetchDistanceDelegate {
     }
     
 }
-

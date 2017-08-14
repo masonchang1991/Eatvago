@@ -67,7 +67,6 @@ class LoadingViewController: UIViewController {
                 self.window?.rootViewController = nextVC
                 self.dismiss(animated: false, completion: nil)
                 
-                
             } else {
                 
                 self.window = UIWindow(frame: UIScreen.main.bounds)

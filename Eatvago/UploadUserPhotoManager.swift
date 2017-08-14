@@ -18,14 +18,11 @@ protocol UploadOrDownLoadUserPhotoDelegate:class {
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: String?)
     
-    
 }
-
 
 class UploadOrDownLoadUserPhotoManager {
     
     weak var delegate: UploadOrDownLoadUserPhotoDelegate?
-    
     
     func uploadUserPhoto(userPhoto: UIImage) {
         
@@ -39,7 +36,6 @@ class UploadOrDownLoadUserPhotoManager {
         
         if let uploadData = UIImageJPEGRepresentation(userPhoto, 0.5) {
             
-            
             storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in
                 
                 if error != nil {
@@ -48,7 +44,6 @@ class UploadOrDownLoadUserPhotoManager {
                     return
                     
                 }
-                
                 
                 if let uploadImageUrl = data?.downloadURL()?.absoluteString {
                     
@@ -100,12 +95,5 @@ class UploadOrDownLoadUserPhotoManager {
             })
         
     }
-    
-    
-    
-    
-    
-    
-    
     
 }
