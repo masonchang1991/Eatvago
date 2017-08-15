@@ -52,8 +52,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         return randomGameMagneticView.magnetic
     }
     
-    var tabBarVC: MainTabBarController = MainTabBarController()
-
+    weak var tabBarVC: MainTabBarController?
+    
     var totalRestaurants = [Location]()
     var randomRestaurants = [Location]()
     var selectedRestaurant: Location?
@@ -82,13 +82,17 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
         tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
         
-        tabBarVC.delegate = self
+        tabBarVC?.delegate = self
         
         self.addListPickerView.delegate = self
         self.addListPickerView.dataSource = self
 
         setLayout()
         
+    }
+    
+    deinit {
+        print("LoadingViewController")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,11 +123,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         if setSegmentedControl.selectedSegmentIndex == 0 {
         
-            totalRestaurants = tabBarVC.fetchedLocations
+            totalRestaurants = (tabBarVC?.fetchedLocations) ?? []
             
         } else {
             
-            totalRestaurants = tabBarVC.addLocations
+            totalRestaurants = (tabBarVC?.addLocations ?? [])
             
             totalRestaurants.append(contentsOf: searchedLocations)
             
@@ -250,18 +254,18 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return tabBarVC.addLocations.count + searchedLocations.count
+        return (tabBarVC?.addLocations.count) ?? 0 + searchedLocations.count 
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if row <= tabBarVC.addLocations.count && tabBarVC.addLocations.count != 0 {
+        if row <= (tabBarVC?.addLocations.count) ?? 0 && (tabBarVC?.addLocations.count) ?? 0 != 0 {
             
-            return tabBarVC.addLocations[row].name
+            return tabBarVC?.addLocations[row].name
             
         } else {
             
-            return searchedLocations[row - tabBarVC.addLocations.count].name
+            return searchedLocations[row - ((tabBarVC?.addLocations.count) ?? 0)].name
             
         }
     }
@@ -285,7 +289,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 return
         }
         
-        let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
         nearbyViewController.filterDistance = Double(distance) ?? 0
         nearbyViewController.keywordText = keyword
@@ -298,7 +302,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             
             nearbyViewController.storeImagePagerView.reloadData()
-            self.tabBarVC.fetchedLocations = nearbyViewController.locations
+            self.tabBarVC?.fetchedLocations = nearbyViewController.locations
             
             self.reloadRandomBallView()
         }
@@ -379,7 +383,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 self.view.layoutIfNeeded()
             })
             
-            if tabBarVC.addLocations.count + searchedLocations.count != 0 {
+            if (tabBarVC?.addLocations.count ?? 0) + searchedLocations.count != 0 {
                 
                 addListPickerView.isHidden = false
                 
@@ -407,7 +411,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     }
     @IBAction func goByNavigation(_ sender: UIButton) {
         
-        let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
         let startLocation = nearbyViewController.currentLocation
         

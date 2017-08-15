@@ -159,6 +159,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
     }
     
+    deinit {
+        print("LoadingViewController")
+    }
+    
     func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String) {
         
         self.matchSuccessRoomRef = matchSuccessRoomRef
@@ -255,9 +259,13 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchSuccessVC.type = self.type
         matchSuccessVC.isRoomOwner = self.isARoomOwner
         matchSuccessVC.connectionRoomId = connectionId
+        matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
         
         self.window?.rootViewController = matchSuccessVC
-        self.tabBarController?.dismiss(animated: false, completion: nil)
+//        self.tabBarController?.dismiss(animated: false, completion: nil)
+//        self.tabBarController?.navigationController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
+        
         
     }
     
@@ -274,7 +282,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         //swiftlint:disable force_cast
         let prepareToMatch = self.navigationController?.viewControllers[0] as! PrepareToMatchViewController
         //swiftlint:enable force_cast
-        self.navigationController?.popToViewController(prepareToMatch, animated: true)
+        
         
     }
     

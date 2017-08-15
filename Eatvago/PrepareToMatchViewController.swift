@@ -32,7 +32,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
     var ref: DatabaseReference?
     
-    var tabBarVC: MainTabBarController = MainTabBarController()
+    weak var tabBarVC: MainTabBarController?
     
     var myLocation = CLLocation()
     
@@ -45,9 +45,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
         
-        self.userPhotoURLString = tabBarVC.userPhotoURLString
+        self.userPhotoURLString = (tabBarVC?.userPhotoURLString) ?? ""
         
-        let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
         myLocation = nearbyViewController.currentLocation
         
@@ -169,6 +169,10 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         loadingVC.matchRoomId = roomId
         
+    }
+    
+    deinit {
+        print("LoadingViewController")
     }
     
     func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String) {

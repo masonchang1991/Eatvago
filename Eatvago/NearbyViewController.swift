@@ -119,7 +119,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     var ref: DatabaseReference?
     var databaseHandle: DatabaseHandle?
     
-    var tabBarC = MainTabBarController()
+    weak var tabBarC = MainTabBarController()
     
     //pickerViewData
     var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
@@ -158,9 +158,9 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         super.viewDidLoad()
         
         tabBarC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
-        tabBarC.fetchedLocations = self.locations
-        tabBarC.delegate = self
-        tabBarC.nearbyViewController = self
+        tabBarC?.fetchedLocations = self.locations
+        tabBarC?.delegate = self
+        tabBarC?.nearbyViewController = self
 
         // 配置 locationManager
         
@@ -202,11 +202,17 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
         
     }
+    
+    deinit {
+        
+        print("LoadingViewController")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
-        tabBarC.fetchedLocations = self.locations
-        tabBarC.delegate = self
+        tabBarC?.fetchedLocations = self.locations
+        tabBarC?.delegate = self
         
     }
     
@@ -219,8 +225,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
-        tabBarC.fetchedLocations = self.locations
-        tabBarC.userPhoto = self.userPhotoImageView
+        tabBarC?.fetchedLocations = self.locations
+        tabBarC?.userPhoto = self.userPhotoImageView
         
     }
     
@@ -262,7 +268,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         var ifInTheList = false
         
-        for locationInList in tabBarC.addLocations {
+        for locationInList in (tabBarC?.addLocations) ?? [] {
             
             if locationInList.name == choosedLocation.name {
                 
@@ -292,7 +298,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             
             sender.tintColor = UIColor.red
             
-            tabBarC.addLocations.append(choosedLocation)
+            tabBarC?.addLocations.append(choosedLocation)
 
         } else {
             
@@ -300,10 +306,10 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             
             var nowAt = 0
             
-            for location in tabBarC.addLocations {
+            for location in (tabBarC?.addLocations) ?? [] {
                 
                 if location.name == choosedLocation.name {
-                    tabBarC.addLocations.remove(at: nowAt)
+                    tabBarC?.addLocations.remove(at: nowAt)
                 }
                 nowAt += 1
             }

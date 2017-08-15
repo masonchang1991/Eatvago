@@ -93,6 +93,10 @@ extension UIColor {
     class var asiBlack50: UIColor {
         return UIColor(white: 0.0, alpha: 0.5)
     }
+    
+    class var grapefruit: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 94.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
+    }
 }
 
 // Text styles

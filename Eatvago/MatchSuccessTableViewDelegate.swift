@@ -30,6 +30,9 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        
         return chatRoomMessages.count - 1
         
     }
@@ -54,6 +57,16 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             }
             
             messageCell.chatLabel.text = self.chatRoomMessages[indexPath.row].message
+            messageCell.chatView.backgroundColor = UIColor(red: 13.0/255.0, green: 70.0/255.0, blue: 188.0/255.0, alpha: 0.8)
+            
+            messageCell.chatView.layer.shadowOffset = CGSize(width: 0, height: 1)
+            messageCell.chatView.layer.shadowColor = UIColor.asiGreyishBrown.cgColor
+            messageCell.chatView.layer.shadowOpacity = 0.6
+            messageCell.chatView.layer.shadowRadius = 2
+            messageCell.chatView.clipsToBounds = false
+            
+            messageCell.chatLabel.textColor = UIColor.white
+            
             
             return messageCell
             
@@ -67,6 +80,20 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             }
             
             messageCell.chatLabel.text = self.chatRoomMessages[indexPath.row].message
+            messageCell.chatLabel.textColor = UIColor.white
+
+            
+            messageCell.chatView.backgroundColor = UIColor(red: 13.0/255.0, green: 70.0/255.0, blue: 188.0/255.0, alpha: 0.8)
+            messageCell.chatView.layer.shadowOffset = CGSize(width: 0, height: 1)
+            messageCell.chatView.layer.shadowColor = UIColor.asiGreyishBrown.cgColor
+            messageCell.chatView.layer.shadowOpacity = 0.6
+            messageCell.chatView.layer.shadowRadius = 2
+            messageCell.chatView.clipsToBounds = false
+            
+            messageCell.userPhotoImageView.image = self.oppositePeopleImageView?.image
+            messageCell.userPhotoImageView.contentMode = .scaleAspectFit
+            messageCell.userPhotoImageView.layer.cornerRadius = messageCell.userPhotoImageView.frame.width / 2
+            
             
             return messageCell
             

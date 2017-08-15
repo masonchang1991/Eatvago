@@ -50,6 +50,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var sendMessageButton: UIButton!
     
     @IBOutlet weak var matchRoomTableView: UITableView!
+    
+    @IBOutlet weak var titleBackgroundView: UIView!
+    
+    @IBOutlet weak var functionBarBackgroundView: UIView!
+    
+    @IBOutlet weak var underPagerViewBackgroundView: UIView!
+    
+    @IBOutlet weak var mainBackgroundView: UIView!
 
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -123,6 +131,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     var chatRoomMessages: [Message] = []
     
+    var messageSentFromMe = false
+    
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -159,7 +169,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    
+    var oppositePeoplePhoto: UIImage = UIImage()
+    var window: UIWindow?
     override func loadView() {
         super.loadView()
         
@@ -200,19 +211,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-        
-        // search bar layout
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
-        searchBarView.addSubview((searchController?.searchBar)!)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.searchBar.barStyle = .blackTranslucent
-        self.searchBarView.backgroundColor = UIColor.clear
-        //
-        searchBarView.isHidden = true
-        searchBarHeightConstraint.constant = 0
-        
+    
         // 配置 locationManager
         
         locationManager.requestWhenInUseAuthorization()
@@ -244,14 +243,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.navigationButtonForPagerView.addTarget(self, action: #selector(navigationForPagerView), for: .touchUpInside)
         self.navigationButtonForList.addTarget(self, action: #selector(navigationForList), for: .touchUpInside)
         
-        //layout
-        self.navigationButtonForList.isHidden = true
-        self.changSearchStatusButton.addTarget(self, action: #selector(searchStatusHandler), for: .touchUpInside)
-        self.listPagerView.backgroundColor = UIColor.clear
-        
         //設置聊天室observer
         chatObserverManager.setObserver(connectionRoomId: connectionRoomId)
-        self.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
         //tableview
         self.matchRoomTableView.delegate = self
@@ -259,6 +252,27 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.matchRoomTableView.estimatedRowHeight = 150
         self.matchRoomTableView.rowHeight = UITableViewAutomaticDimension
         
+        //buttonFunction
+        self.changSearchStatusButton.addTarget(self, action: #selector(searchStatusHandler), for: .touchUpInside)
+        self.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        
+        //layout
+        layoutSet()
+    }
+    
+    deinit {
+        print("LoadingViewController")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        locationManager.stopUpdatingLocation()
     }
     
     
@@ -343,11 +357,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         if self.choosedLocations[self.choosedLocation.storeName] != nil {
             
-            addToListButton.tintColor = UIColor.red
-        
-        } else {
+            self.addToListButton.imageView?.image = UIImage(named: "addListHeart")
             
-            addToListButton.tintColor = UIColor.blue
+        } else {
+            self.addToListButton.imageView?.image = UIImage(named: "bigHeart")
+            
         }
         
         return cell
@@ -379,9 +393,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                         guard let uid = Auth.auth().currentUser?.uid else {
                             return
                         }
-                        
-                        print(uid, "uiddddddddd")
-                        
+                        self.locationManager.stopUpdatingLocation()
                         self.ref.child("UserHistory").child(uid).child(self.connectionRoomId).removeValue()
                         self.performSegue(withIdentifier: "goBackToMain", sender: nil)
                         
@@ -431,7 +443,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             if self.choosedLocations.count + self.searchedLocations.count == 0 {
                 
-                UIView.animate(withDuration: 0.4, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     
                     self.listPickerHeightConstraint.constant = 0
                     
@@ -448,13 +460,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 
             } else {
                 
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0.01, animations: {
                     
                     self.listPickerView.isHidden = false
                     self.navigationButtonForList.isHidden = false
                 }, completion: { (_) in
                     
-                    UIView.animate(withDuration: 0.4, animations: {
+                    UIView.animate(withDuration: 0.2, animations: {
                         
                         self.listPickerHeightConstraint.constant = 100
                         
@@ -539,5 +551,19 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         }
         
     }
+    
+
+    @IBAction func leaveChatRoom(_ sender: Any) {
+        
+        locationManager.stopUpdatingLocation()
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+        self.window?.rootViewController = tabBarVC
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
 
 }

@@ -69,6 +69,12 @@ PODS:
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
   - SkyFloatingLabelTextField (3.2.0)
+  - SwifterSwift (3.1.0):
+    - SwifterSwift/Cocoa (= 3.1.0)
+    - SwifterSwift/Foundation (= 3.1.0)
+    - SwifterSwift/UIKit (= 3.1.0)
+  - SwifterSwift/Cocoa (3.1.0)
+  - SwifterSwift/Foundation (3.1.0)
   - SwifterSwift/UIKit (3.1.0)
   - SwiftLint (0.21.0)
 
@@ -89,7 +95,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SkyFloatingLabelTextField
-  - SwifterSwift/UIKit
+  - SwifterSwift
   - SwiftLint
 
 SPEC CHECKSUMS:
@@ -118,6 +124,6 @@ SPEC CHECKSUMS:
   SwifterSwift: f84eb7308f7742724b3cbf84283ce00f7c06d7fc
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 0b93c5eaf1a5935e1368fd97a5554592187be19e
+PODFILE CHECKSUM: 933f8f3a7c25e609a2cdcbaf3a897601bc33b2d1
 
 COCOAPODS: 1.2.1

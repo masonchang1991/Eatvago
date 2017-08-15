@@ -89,7 +89,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion successNotion: String, photoURL: String) {
         
         print(successNotion)
-        tabBarC.userPhotoURLString = photoURL
+        tabBarC?.userPhotoURLString = photoURL
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         
     }
@@ -103,7 +103,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {
 
 
-        tabBarC.userPhotoURLString = downloadImageURL.absoluteString
+        tabBarC?.userPhotoURLString = downloadImageURL.absoluteString
 
         DispatchQueue.main.async {
             self.userPhotoImageView.sd_setImage(with: downloadImageURL, completed: nil)

@@ -23,5 +23,5 @@ target 'Eatvago' do
   pod 'FaveButton', '~> 2.0.3'
   pod 'IQKeyboardManager'
   pod 'FSPagerView'
-  pod 'SwifterSwift/Cocoa'
+  pod 'SwifterSwift'
 end

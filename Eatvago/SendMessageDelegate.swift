@@ -7,17 +7,14 @@
 //
 
 import UIKit
+import SwifterSwift
 
 extension MatchSuccessViewController: SendMessageDelegate {
     
     
     func manager(_ manager: SendMessageManager, success: String) {
         
-        
-    
-     
-        
-        
+        self.messageSentFromMe = true
         
     }
         

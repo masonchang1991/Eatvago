@@ -15,10 +15,19 @@ extension MatchSuccessViewController: ChatObserverDelegate {
     func manager(_ manager: ChatObserverManager, didGet messages: [Message]) {
         
        self.chatRoomMessages = messages
-       self.matchRoomTableView.reloadData()
-       // 剪2是因為最後一筆 is last message
-
+       
+        if self.messageSentFromMe == true {
         
+            self.matchRoomTableView.scrollToBottom(animated: true)
+            
+            self.messageSentFromMe = false
+            
+        } else {
+        
+            self.matchRoomTableView.reloadData()
+            
+        }
+    
     }
     
     func manager(_ manager: ChatObserverManager, didFailWith error: Error) {

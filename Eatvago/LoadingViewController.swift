@@ -37,6 +37,10 @@ class LoadingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        print("LoadingViewController")
+    }
+    
     func loading() {
         
         appleImage.tintColor = UIColor.red
