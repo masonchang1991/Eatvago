@@ -33,7 +33,9 @@ class OwnerMatchSuccessManager {
             
             matchRoomRef.child("Connection").setValue(connectionRoomId)
             
-            self.fetchMatchRoom(ref: ref, type: type, matchRoomId: matchRoomId, completion: { (matchRoom) in
+            self.fetchMatchRoom(ref: ref, type: type, matchRoomId: matchRoomId, completion: { [weak self] (matchRoom) in
+                
+                guard let `weakself` = self else { return }
                 
                 let connectionRoom = ["owner": matchRoom.owner,
                                       "ownerMatch": matchRoom.ownerMatchInfo,
@@ -46,7 +48,7 @@ class OwnerMatchSuccessManager {
                 
                 ref.child("Connection").child(connectionRoomId).setValue(connectionRoom)
     
-                self.delegate?.manager(self, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId), connectionRoomId: connectionRoomId)
+                weakself.delegate?.manager(weakself, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId), connectionRoomId: connectionRoomId)
                 
             })
             

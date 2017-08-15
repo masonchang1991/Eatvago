@@ -134,7 +134,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
         
         randomGameMagneticView.presentScene(magnetic)
-        
+
         generateRandomRetaurant(randomCounts: randomCount, totalRestaurants: totalRestaurants)
         
         var progressCount = 0
@@ -221,9 +221,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             selectedNode.strokeColor = UIColor.clear
             
-        
         }
         
+        magnetic.allowsMultipleSelection = false
         //加入外框顏色
         node.strokeColor = UIColor.red
         

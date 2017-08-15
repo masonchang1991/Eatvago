@@ -103,7 +103,9 @@ class FetchMatchRoomDataManager {
                 
             } else {
                 
-                self.getOppositePeopleInfo(oppositePeopleMatchInfoId: ownerMatchInfo, completion: { (name, gender, greetingText, photoURL) in
+                self.getOppositePeopleInfo(oppositePeopleMatchInfoId: ownerMatchInfo, completion: { [weak self] (name, gender, greetingText, photoURL) in
+                    
+                    guard let `weakself` = self else { return }
                     
                     let peopleImageView = UIImageView()
                     
@@ -122,23 +124,13 @@ class FetchMatchRoomDataManager {
                         
                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
                         
-                        self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
+                        weakself.delegate?.manager(weakself, matchRoomData: matchPeopleInfo)
                         
                     } else {
                         
-//                        if gender == "male" {
-//                            
-//                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
-//                            
-//                        } else {
-//                            
-//                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
-//                            
-//                        }
-                        
                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
                         
-                        self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
+                        weakself.delegate?.manager(weakself, matchRoomData: matchPeopleInfo)
                         
                     }
                     

@@ -260,9 +260,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         layoutSet()
     }
     
-    deinit {
-        print("LoadingViewController")
-    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
@@ -273,6 +271,9 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         locationManager.stopUpdatingLocation()
+        googleMapView = nil
+        placesClient = nil
+        ref.removeAllObservers()
     }
     
     
@@ -556,11 +557,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBAction func leaveChatRoom(_ sender: Any) {
         
         locationManager.stopUpdatingLocation()
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.makeKeyAndVisible()
-        let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-        self.window?.rootViewController = tabBarVC
         self.dismiss(animated: true, completion: nil)
         
     }

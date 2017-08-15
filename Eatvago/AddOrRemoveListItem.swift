@@ -26,7 +26,9 @@ class AddOrRemoveListItemManager {
         
         var choosedLocations: [String: ChoosedLocation] = [:]
 
-        matchSuccessRoomRef.child("list").observeSingleEvent(of: .value, with: { (snapshot) in
+        matchSuccessRoomRef.child("list").observeSingleEvent(of: .value, with: { [weak self](snapshot) in
+            
+            guard let `weakself` = self else { return }
             
             guard let locations = snapshot.value as? [String: [String: String]] else {
                 
@@ -37,7 +39,7 @@ class AddOrRemoveListItemManager {
                 
                 matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
                 
-                self.delegate?.manager(self, successAdded: true)
+                weakself.delegate?.manager(weakself, successAdded: true)
                 
                 return
             }
@@ -64,15 +66,15 @@ class AddOrRemoveListItemManager {
                 
                 matchSuccessRoomRef.child("list").childByAutoId().updateChildValues(location)
                 
-                self.delegate?.manager(self, successAdded: true)
+                weakself.delegate?.manager(weakself, successAdded: true)
                 
             } else {
                 
-               self.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: { (_) in
+               weakself.removeItemFromFirebase(matchSuccessRoomRef: matchSuccessRoomRef, choosedLocation: choosedLocation, completion: { (_) in
                 
                 //dosomething
                 
-                self.delegate?.manager(self, successAdded: false)
+                weakself.delegate?.manager(weakself, successAdded: false)
                 
                })
                 

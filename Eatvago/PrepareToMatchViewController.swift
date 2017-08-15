@@ -143,13 +143,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         if segue.identifier == "ownerLoading" {
             
-            let loadingVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
-            
             loadingVC.isARoomOwner = true
             
         } else {
-            
-            let loadingVC = segue.destination as? LoadingMatchViewController ?? LoadingMatchViewController()
             
             loadingVC.isARoomOwner = false
             

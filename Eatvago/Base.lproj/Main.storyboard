@@ -56,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ro-GI-SYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="-430"/>
+            <point key="canvasLocation" x="1140" y="-484"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="-430"/>
+            <point key="canvasLocation" x="2209" y="-484"/>
         </scene>
         <!--NearBy-->
         <scene sceneID="FDe-li-bme">
@@ -197,7 +197,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2TV-39-tqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="354.87256371814095"/>
+            <point key="canvasLocation" x="1140" y="239"/>
         </scene>
         <!--Nearby View Controller-->
         <scene sceneID="gbT-j0-vGq">
@@ -392,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVM-iQ-rGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="355"/>
+            <point key="canvasLocation" x="2209" y="239"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6fS-D9-sCh">
@@ -665,7 +665,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfB-uX-O0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994.4000000000001" y="1494.6026986506747"/>
+            <point key="canvasLocation" x="2209" y="1084"/>
         </scene>
         <!--Match History View Controller-->
         <scene sceneID="D3T-pF-4eU">
@@ -696,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MO8-he-lb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="3118"/>
+            <point key="canvasLocation" x="4706" y="2740"/>
         </scene>
         <!--Prepare To Match View Controller-->
         <scene sceneID="2Lx-ZF-Tqi">
@@ -805,7 +805,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yte-gp-pHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994" y="2344"/>
+            <point key="canvasLocation" x="198" y="2373"/>
         </scene>
         <!--Loading Match View Controller-->
         <scene sceneID="JK9-SC-mQk">
@@ -844,10 +844,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-uJ-pSE" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                                 <rect key="frame" x="107.5" y="253.5" width="160" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="IdI-LZ-WZK"/>
-                                    <constraint firstAttribute="height" constant="160" id="yQJ-Gf-2zT"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleMultiple"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
@@ -861,14 +857,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefaultIconForMatch" translatesAutoresizingMaskIntoConstraints="NO" id="DMV-8Z-P6a">
                                 <rect key="frame" x="245" y="488" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="UKH-wq-dOc"/>
-                                    <constraint firstAttribute="width" constant="100" id="hjg-Tw-dLE"/>
+                                    <constraint firstAttribute="width" constant="100" id="S6A-Wf-yOc"/>
+                                    <constraint firstAttribute="height" constant="100" id="m6m-78-tdC"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aye-Kk-fhm">
-                                <rect key="frame" x="287.5" y="318" width="70" height="31"/>
+                                <rect key="frame" x="287.5" y="318" width="55" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="qA3-14-xtW"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="qA3-14-xtW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
                                 <state key="normal" title="Accept">
@@ -876,9 +872,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZx-dV-C02">
-                                <rect key="frame" x="17.5" y="318.5" width="70" height="30"/>
+                                <rect key="frame" x="28.5" y="318.5" width="59" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Lfe-QS-gi0"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="Lfe-QS-gi0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="14"/>
                                 <state key="normal" title="Decline">
@@ -910,28 +906,32 @@
                         <constraints>
                             <constraint firstItem="MQ9-Sz-QIH" firstAttribute="top" secondItem="25N-M2-h8W" secondAttribute="top" id="0Af-Fd-mLE"/>
                             <constraint firstItem="LvM-jg-OYW" firstAttribute="width" secondItem="25N-M2-h8W" secondAttribute="width" id="1Eb-sS-TTf"/>
-                            <constraint firstItem="AXp-9U-03u" firstAttribute="leading" secondItem="n1z-No-wIS" secondAttribute="leading" constant="30" id="4H4-r2-2Qq"/>
+                            <constraint firstAttribute="trailing" secondItem="DMV-8Z-P6a" secondAttribute="trailing" constant="30" id="3WG-ue-BuS"/>
+                            <constraint firstItem="DMV-8Z-P6a" firstAttribute="top" secondItem="MAr-ZP-Dbm" secondAttribute="bottom" constant="10" id="3tG-pd-RN3"/>
+                            <constraint firstItem="WJq-SJ-dBH" firstAttribute="top" secondItem="DMV-8Z-P6a" secondAttribute="bottom" constant="30" id="5u6-iO-eCD"/>
                             <constraint firstItem="fRu-uJ-pSE" firstAttribute="centerY" secondItem="n1z-No-wIS" secondAttribute="centerY" id="6rw-la-3M8"/>
                             <constraint firstAttribute="trailing" secondItem="MQ9-Sz-QIH" secondAttribute="trailing" constant="30" id="8jZ-4e-2qt"/>
-                            <constraint firstAttribute="trailing" secondItem="DMV-8Z-P6a" secondAttribute="trailing" constant="30" id="8na-pD-wNu"/>
                             <constraint firstItem="pZx-dV-C02" firstAttribute="centerY" secondItem="fRu-uJ-pSE" secondAttribute="centerY" id="9Gr-ur-M9K"/>
-                            <constraint firstItem="MAr-ZP-Dbm" firstAttribute="width" secondItem="DMV-8Z-P6a" secondAttribute="width" id="Emx-H9-yYu"/>
-                            <constraint firstItem="MAr-ZP-Dbm" firstAttribute="trailing" secondItem="DMV-8Z-P6a" secondAttribute="trailing" id="Ht1-WQ-rS0"/>
                             <constraint firstItem="MQ9-Sz-QIH" firstAttribute="top" secondItem="k2r-5p-Hut" secondAttribute="bottom" constant="30" id="JXs-47-U0L"/>
                             <constraint firstItem="MQ9-Sz-QIH" firstAttribute="leading" secondItem="25N-M2-h8W" secondAttribute="trailing" constant="30" id="KR9-eh-tcR"/>
-                            <constraint firstItem="DMV-8Z-P6a" firstAttribute="top" secondItem="MAr-ZP-Dbm" secondAttribute="bottom" constant="10" id="Lda-pl-zpk"/>
+                            <constraint firstItem="pZx-dV-C02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n1z-No-wIS" secondAttribute="leading" constant="5" id="Mql-cH-fko"/>
+                            <constraint firstItem="fRu-uJ-pSE" firstAttribute="height" secondItem="n1z-No-wIS" secondAttribute="height" multiplier="160:667" id="NRu-us-eS5"/>
                             <constraint firstItem="fRu-uJ-pSE" firstAttribute="leading" secondItem="pZx-dV-C02" secondAttribute="trailing" constant="20" id="NVL-3S-NKa"/>
-                            <constraint firstItem="AXp-9U-03u" firstAttribute="top" secondItem="DMV-8Z-P6a" secondAttribute="top" id="Rca-5f-OX7"/>
+                            <constraint firstItem="DMV-8Z-P6a" firstAttribute="leading" secondItem="AXp-9U-03u" secondAttribute="trailing" constant="30" id="Pia-oF-60b"/>
+                            <constraint firstItem="fRu-uJ-pSE" firstAttribute="width" secondItem="n1z-No-wIS" secondAttribute="width" multiplier="160:375" id="Qcq-lZ-OSt"/>
+                            <constraint firstItem="AXp-9U-03u" firstAttribute="leading" secondItem="n1z-No-wIS" secondAttribute="leading" constant="30" id="W2c-wg-PiK"/>
                             <constraint firstItem="LvM-jg-OYW" firstAttribute="leading" secondItem="25N-M2-h8W" secondAttribute="leading" id="Xik-qW-7PO"/>
                             <constraint firstItem="25N-M2-h8W" firstAttribute="top" secondItem="k2r-5p-Hut" secondAttribute="bottom" constant="30" id="YQ5-uW-PyF"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Aye-Kk-fhm" secondAttribute="trailing" constant="5" id="Zld-F5-kgh"/>
                             <constraint firstItem="25N-M2-h8W" firstAttribute="leading" secondItem="n1z-No-wIS" secondAttribute="leading" constant="30" id="Zzg-ZM-fLb"/>
                             <constraint firstItem="MQ9-Sz-QIH" firstAttribute="bottom" secondItem="25N-M2-h8W" secondAttribute="bottom" id="aHX-Fv-2ti"/>
+                            <constraint firstItem="AXp-9U-03u" firstAttribute="top" secondItem="DMV-8Z-P6a" secondAttribute="top" id="drY-D6-NGQ"/>
+                            <constraint firstItem="MAr-ZP-Dbm" firstAttribute="leading" secondItem="DMV-8Z-P6a" secondAttribute="leading" id="eTd-lQ-KFc"/>
                             <constraint firstItem="fRu-uJ-pSE" firstAttribute="centerX" secondItem="n1z-No-wIS" secondAttribute="centerX" id="ehG-0D-TPM"/>
                             <constraint firstItem="Aye-Kk-fhm" firstAttribute="leading" secondItem="fRu-uJ-pSE" secondAttribute="trailing" constant="20" id="ejy-V1-u4s"/>
                             <constraint firstItem="Aye-Kk-fhm" firstAttribute="centerY" secondItem="fRu-uJ-pSE" secondAttribute="centerY" id="jQE-mF-Qg5"/>
-                            <constraint firstItem="DMV-8Z-P6a" firstAttribute="leading" secondItem="AXp-9U-03u" secondAttribute="trailing" constant="30" id="mgy-pU-XQu"/>
-                            <constraint firstItem="AXp-9U-03u" firstAttribute="bottom" secondItem="DMV-8Z-P6a" secondAttribute="bottom" id="sB2-eq-jU6"/>
-                            <constraint firstItem="WJq-SJ-dBH" firstAttribute="top" secondItem="DMV-8Z-P6a" secondAttribute="bottom" constant="30" id="tbW-oX-p24"/>
+                            <constraint firstItem="MAr-ZP-Dbm" firstAttribute="trailing" secondItem="DMV-8Z-P6a" secondAttribute="trailing" id="joD-lb-uZ6"/>
+                            <constraint firstItem="AXp-9U-03u" firstAttribute="bottom" secondItem="DMV-8Z-P6a" secondAttribute="bottom" id="las-X7-x2T"/>
                             <constraint firstItem="LvM-jg-OYW" firstAttribute="top" secondItem="25N-M2-h8W" secondAttribute="bottom" constant="10" id="ycx-6g-2T3"/>
                         </constraints>
                     </view>
@@ -949,7 +949,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5x-uh-cbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2983" y="2344"/>
+            <point key="canvasLocation" x="1140" y="2372.5637181409297"/>
         </scene>
         <!--Match Success View Controller-->
         <scene sceneID="f2J-WE-C2H">
@@ -1172,7 +1172,7 @@
                                         <rect key="frame" x="0.0" y="526" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DuD-Pp-tB5" id="E0R-fU-2rJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5B-6n-u8V">
@@ -1248,7 +1248,7 @@
                                         <rect key="frame" x="0.0" y="586" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WrT-t1-8T6" id="J0y-Zh-ft9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ckb-DT-wkD">
@@ -1424,12 +1424,11 @@
                         <outlet property="storeNameLabel" destination="txV-CW-emm" id="9tf-be-P3J"/>
                         <outlet property="titleBackgroundView" destination="Nfj-FF-ZP1" id="MhT-2y-HXM"/>
                         <outlet property="underPagerViewBackgroundView" destination="cXf-qk-c0E" id="jgq-ak-HLL"/>
-                        <segue destination="uIf-5o-cg4" kind="show" identifier="goBackToMain" id="VD7-Pg-rFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0N-ch-96I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1268" y="891.90404797601207"/>
+            <point key="canvasLocation" x="2209" y="2373"/>
         </scene>
         <!--Match-->
         <scene sceneID="fw8-3j-kND">
@@ -1446,7 +1445,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjI-tN-DdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="2344"/>
+            <point key="canvasLocation" x="198" y="1620"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="3G7-XT-Nc2">
@@ -1485,7 +1484,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIy-JX-M16" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="1496"/>
+            <point key="canvasLocation" x="1140" y="1084"/>
         </scene>
     </scenes>
     <resources>

@@ -25,15 +25,17 @@ class CheckIfRoomExistManager {
     
     func checkIfRoomExist(type: String) {
         
-        findRoom(type: type) { (finded, key) in
+        findRoom(type: type) { [weak self](finded, key) in
+            
+            guard let `weakself` = self else { return }
             
             if finded == false {
 
-                self.delegate?.manager(self, be: "you are a room owner")
+                weakself.delegate?.manager(weakself, be: "you are a room owner")
 
             } else {
 
-                self.delegate?.manager(self, didGet: key)
+                weakself.delegate?.manager(weakself, didGet: key)
                 
             }
         }
