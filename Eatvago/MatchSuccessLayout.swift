@@ -11,16 +11,16 @@ import UIKit
 
 extension UIView {
     
-    func generateGradientImage(gradient colors: [CGColor], gradient frame: CGRect, gradient startPoint: CGPoint, gradient endPoint: CGPoint) -> UIImage {
+    func generateGradientImage(gradientColors: [CGColor], gradientFrame: CGRect, gradientStartPoint: CGPoint, gradientEndPoint: CGPoint) -> UIImage {
         let gradient = CAGradientLayer()
         let gradientFrame = frame
         gradient.frame = gradientFrame
-        gradient.colors = colors
-        gradient.startPoint = startPoint
-        gradient.endPoint = endPoint
+        gradient.colors = gradientColors
+        gradient.startPoint = gradientStartPoint
+        gradient.endPoint = gradientEndPoint
         
-        UIGraphicsBeginImageContext(layer.frame.size)
-        layer.render(in: UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContext(gradient.frame.size)
+        gradient.render(in: UIGraphicsGetCurrentContext()!)
         let outputImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return outputImage!

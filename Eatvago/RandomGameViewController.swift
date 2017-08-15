@@ -236,13 +236,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             node.text = nodeDictionary[key]
         }
         
-        for selectedResraurant in self.randomRestaurants {
+        for selectedResraurant in self.randomRestaurants where selectedResraurant.name == node.text{
             
-            if selectedResraurant.name == node.text {
-                
                 self.selectedRestaurant = selectedResraurant
-                
-            }
+             
         }
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+import NVActivityIndicatorView
 
 class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
     
@@ -40,16 +41,24 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     var userPhotoURLString = ""
     
+    weak var nearbyViewController: NearbyViewController?
+    
+    let activityData = ActivityData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        //swiftlint:disable force_cast
+        
+        tabBarVC = self.tabBarController as! MainTabBarController
+        nearbyViewController = tabBarVC?.nearbyViewController as! NearbyViewController
+        myLocation = nearbyViewController!.currentLocation
+        
+        //swiftlint:enable force_cast
         
         self.userPhotoURLString = (tabBarVC?.userPhotoURLString) ?? ""
         
-        let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
-        
-        myLocation = nearbyViewController.currentLocation
+        myLocation = nearbyViewController!.currentLocation
         
         genderPickerView.delegate = self
         
@@ -69,15 +78,15 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         // layout
         
-        self.userPhotoImageView.image = nearbyViewController.userPhotoImageView.image
-        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
-        self.userPhotoImageView.clipsToBounds = true
-        
-        self.greetingTextView.layer.cornerRadius = 30
-        self.greetingTextView.clipsToBounds = true
-        self.greetingTextView.backgroundColor = UIColor.asiDarkSand
-        self.greetingTextView.backgroundColor?.withAlphaComponent(0.8)
+        setUpLayout()
     
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,6 +141,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         }
 
         self.checkIfRoomExistManager.checkIfRoomExist(type: type)
+        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
 //      self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         

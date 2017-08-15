@@ -94,10 +94,10 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         
     }
     
-    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: String?) {
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error) {
         
         print(errorDescription)
-        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {

@@ -557,6 +557,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBAction func leaveChatRoom(_ sender: Any) {
         
         locationManager.stopUpdatingLocation()
+        self.removeFromParentViewController()
         self.dismiss(animated: true, completion: nil)
         
     }

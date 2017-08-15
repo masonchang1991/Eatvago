@@ -30,6 +30,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     @IBOutlet weak var acceptButton: UIButton!
     
     @IBOutlet weak var declineButton: UIButton!
+    
+    @IBOutlet weak var backgroundView: UIView!
+    
 
     var matchRoomId = ""
     
@@ -88,30 +91,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         let url = URL(string: myPhotoURl)
         
-        if myGender == "male" {
-            
-            myImageView.image = myPhotoImage
-            myImageView.layer.borderColor = UIColor.asiSeaBlue.cgColor
-            myImageView.layer.borderWidth = 1.0
-            myImageView.layer.cornerRadius = 10
-            myImageView.clipsToBounds = true
-            
-            myNameLabel.text = myName
-            myTextView.text = myGeetingText
-            
-        } else {
-            
-            myImageView.image = myPhotoImage
-            myImageView.layer.borderColor = UIColor.asiPale.cgColor
-            myImageView.layer.borderWidth = 1.0
-            myImageView.layer.cornerRadius =  myImageView.frame.width / 2
-            myImageView.clipsToBounds = true
-            
-            myNameLabel.text = myName
-            myTextView.text = myGeetingText
-            
-        }
+        setLayout()
         
+                
         observerIsAnyoneDecline()
 
         if isARoomOwner == true {

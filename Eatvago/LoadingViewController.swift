@@ -69,7 +69,9 @@ class LoadingViewController: UIViewController {
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 self.window?.rootViewController = nextVC
+                self.removeFromParentViewController()
                 self.dismiss(animated: false, completion: nil)
+
                 
             } else {
                 

@@ -16,9 +16,18 @@ protocol UploadOrDownLoadUserPhotoDelegate:class {
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL)
     
-    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: String?)
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error)
     
 }
+
+enum UploadOrDownloadPhotoError: Error {
+    
+    case download
+    
+    case upload
+    
+}
+
 
 class UploadOrDownLoadUserPhotoManager {
     
@@ -40,7 +49,7 @@ class UploadOrDownLoadUserPhotoManager {
                 
                 if error != nil {
                     
-                    self.delegate?.manager(self, errorDescription: error?.localizedDescription)
+                    self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.upload)
                     return
                     
                 }
@@ -60,6 +69,7 @@ class UploadOrDownLoadUserPhotoManager {
     func downLoadUserPhoto() {
         
         guard let userID = Auth.auth().currentUser?.uid else {
+            self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
             return
         }
         
@@ -69,21 +79,21 @@ class UploadOrDownLoadUserPhotoManager {
             
             if snapshot.exists() == false {
                 
-                self.delegate?.manager(self, errorDescription: "NO image can download")
+                self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 
                 return
             }
             
             guard let photoURLString = snapshot.value as? String else {
                 
-                self.delegate?.manager(self, errorDescription: "download user photo fail")
+                self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 return
                 
             }
             
             guard let photoURL = URL(string: photoURLString) else {
                 
-                self.delegate?.manager(self, errorDescription: "download user photo fail")
+                self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 return
                 
             }

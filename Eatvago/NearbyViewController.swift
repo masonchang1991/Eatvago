@@ -200,7 +200,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         stepUpUserPhotoGesture()
         
         uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
-        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
     }
     
     deinit {
