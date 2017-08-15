@@ -59,7 +59,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     //將connectionRoomID拿出 傳到match success viewcontroller
     
-    var connectionId = ""
+    var connectionId = "noRoomNow"
     
     var isARoomOwner: Bool = true
     
@@ -102,7 +102,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             myImageView.image = myPhotoImage
             myImageView.layer.borderColor = UIColor.asiPale.cgColor
             myImageView.layer.borderWidth = 1.0
-            myImageView.layer.cornerRadius = 10
+            myImageView.layer.cornerRadius =  myImageView.frame.width / 2
             myImageView.clipsToBounds = true
             
             myNameLabel.text = myName
@@ -176,12 +176,20 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         oppositePeopleNameLabel.text = matchRoomData.oppositePeopleName
         
         oppositePeopleInfoTextView.text = matchRoomData.oppositePeopleText
+        
+        guard let photoURL = matchRoomData.oppositePeoplePhotoURL else { return }
+        
+        let url = URL(string: photoURL)
 
-        oppositePeopleImageView = matchRoomData.oppositePeopleImageView
+        oppositePeopleImageView.sd_setImage(with: url, completed: nil)
         
-        oppositePeopleImageView.contentMode = .scaleAspectFit
+        oppositePeopleImageView.contentMode = .scaleAspectFill
         
-        oppositePeopleImageView.layer.borderWidth = 2
+        oppositePeopleImageView.layer.borderWidth = 1
+        
+        oppositePeopleImageView.layer.cornerRadius = oppositePeopleImageView.frame.width / 2
+        
+        oppositePeopleImageView.clipsToBounds = true
         
         if matchRoomData.oppositePeopleGender == "male" {
             
@@ -231,9 +239,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         ref.child("UserHistory").child(uid).child(connectionId).setValue(connectionId)
         
         //swiftlint:disable force_cast
-//        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
-        
-//        let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
@@ -267,9 +272,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         self.ref.child("UserHistory").child(uid).child(self.connectionId).removeValue()
         //swiftlint:disable force_cast
-        let matchHistoryVC = self.navigationController?.viewControllers[0] as! MatchHistoryViewController
+        let prepareToMatch = self.navigationController?.viewControllers[0] as! PrepareToMatchViewController
         //swiftlint:enable force_cast
-        self.navigationController?.popToViewController(matchHistoryVC, animated: true)
+        self.navigationController?.popToViewController(prepareToMatch, animated: true)
         
     }
     

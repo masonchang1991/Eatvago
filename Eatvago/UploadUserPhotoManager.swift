@@ -12,7 +12,7 @@ import FirebaseStorage
 
 protocol UploadOrDownLoadUserPhotoDelegate:class {
     
-    func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion: String)
+    func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion: String, photoURL: String)
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL)
     
@@ -48,7 +48,7 @@ class UploadOrDownLoadUserPhotoManager {
                 if let uploadImageUrl = data?.downloadURL()?.absoluteString {
                     
                     reference.setValue(uploadImageUrl)
-                    self.delegate?.manager(self, uploadSuccessNotion: "uploadImage Success")
+                    self.delegate?.manager(self, uploadSuccessNotion: "uploadImage Success", photoURL: uploadImageUrl)
                     
                 }
                 

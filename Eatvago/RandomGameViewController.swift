@@ -145,7 +145,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                     text: "\(progressCount)",
                 image: restaurant.photo,
                 color: colorArray[colorProgressCount],
-                radius: 30)
+                radius: 50)
             
             //避免count超過color array長度
             if colorProgressCount == (colorArray.count - 1) {
@@ -216,6 +216,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         for selectedNode in nodes {
             
             selectedNode.strokeColor = UIColor.clear
+            
         
         }
         

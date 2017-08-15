@@ -37,6 +37,6 @@ struct MatchPeopleInfo {
     
     var oppositePeopleText: String
     
-    var oppositePeopleImageView: UIImageView?
+    var oppositePeoplePhotoURL: String?
 
 }

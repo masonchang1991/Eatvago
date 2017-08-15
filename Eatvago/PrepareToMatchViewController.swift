@@ -38,10 +38,14 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     var checkIfRoomExistManager = CheckIfRoomExistManager()
     
+    var userPhotoURLString = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
+        
+        self.userPhotoURLString = tabBarVC.userPhotoURLString
         
         let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController ?? NearbyViewController()
         
@@ -181,9 +185,12 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                 return
         }
         
-        var attenderMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender, "greetingText": greetingText]
+        let attenderMatchInfoData: [String: String] = ["nickName": nickName,
+                                                       "gender": gender,
+                                                       "greetingText": greetingText,
+                                                       "UserPhotoURL": self.userPhotoURLString]
         
-        var attenderRoomData: [String: Any] = [
+        let attenderRoomData: [String: Any] = [
                                           "isLocked": true,
                                           "attender": userId,
                                           "attenderLocationLat": "\(myLocationLat)",
@@ -221,7 +228,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                 return
         }
         
-        var newRoomData: [String: Any] = ["isClosed": false,
+        let newRoomData: [String: Any] = ["isClosed": false,
                                           "isLocked": false,
                                           "owner": userId,
                                           "ownerLocationLat": "\(myLocationLat)",
@@ -234,7 +241,10 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             "createdDate": today,
             "Connection": "nil"]
         
-        var ownerMatchInfoData: [String: String] = ["nickName": nickName, "gender": gender, "greetingText": greetingText]
+        let ownerMatchInfoData: [String: String] = ["nickName": nickName,
+                                                    "gender": gender,
+                                                    "greetingText": greetingText,
+                                                    "UserPhotoURL": self.userPhotoURLString]
         
         self.ref?.child("Match Room").child(type).child(matchRoomAutoId).updateChildValues(newRoomData)
         

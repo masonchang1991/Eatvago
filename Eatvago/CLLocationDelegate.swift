@@ -114,7 +114,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         } else {
             
             locationManager.startUpdatingLocation()
-
+            
         }
 
     }

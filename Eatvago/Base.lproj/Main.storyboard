@@ -187,7 +187,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -211,6 +211,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="bfq-Cw-hfj" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="137" y="366" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="B2P-xf-IwC"/>
+                                    <constraint firstAttribute="height" constant="100" id="aaI-rN-Qbe"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballBeat"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Or-hU-H58">
                                 <rect key="frame" x="325" y="214" width="50" height="30"/>
                                 <constraints>
@@ -303,20 +317,6 @@
                                 <rect key="frame" x="345" y="588" width="30" height="30"/>
                                 <state key="normal" image="heart"/>
                             </button>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="bfq-Cw-hfj" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                <rect key="frame" x="137.5" y="366" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="B2P-xf-IwC"/>
-                                    <constraint firstAttribute="height" constant="100" id="aaI-rN-Qbe"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballRotateChase"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="1" green="0.75091561210000002" blue="0.72769906269999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVh-Rh-Cvv">
                                 <rect key="frame" x="0.0" y="244" width="375" height="344"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -673,7 +673,7 @@
         <!--Prepare To Match View Controller-->
         <scene sceneID="2Lx-ZF-Tqi">
             <objects>
-                <viewController storyboardIdentifier="PrepareToMatch" hidesBottomBarWhenPushed="YES" id="oSU-NJ-eIx" customClass="PrepareToMatchViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrepareToMatch" id="oSU-NJ-eIx" customClass="PrepareToMatchViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y6T-to-jvu"/>
                         <viewControllerLayoutGuide type="bottom" id="8Mq-rb-BBD"/>
@@ -782,7 +782,7 @@
         <!--Loading Match View Controller-->
         <scene sceneID="JK9-SC-mQk">
             <objects>
-                <viewController id="vrP-NY-qZ1" customClass="LoadingMatchViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="vrP-NY-qZ1" customClass="LoadingMatchViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k2r-5p-Hut"/>
                         <viewControllerLayoutGuide type="bottom" id="WJq-SJ-dBH"/>
@@ -1266,7 +1266,7 @@
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Match" image="matchIcon" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1304,7 +1304,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
