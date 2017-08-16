@@ -44,6 +44,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     
+    @IBOutlet weak var functionBarView: UIView!
+    
+    
+    @IBOutlet weak var bottomFunctionBarView: UIView!
+    
+    
     //set up pager view
     
     @IBOutlet weak var storeImagePagerView: FSPagerView! {
@@ -201,6 +207,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         //layout
         setupLayout()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupLayer()
+    }
+    
     
     deinit {
         
