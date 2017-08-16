@@ -37,6 +37,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var addListPickerView: UIPickerView!
     
+    @IBOutlet weak var randomGameBackgorundImageView: UIImageView!
+    
+    
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
             magnetic.magneticDelegate = self
@@ -68,7 +71,15 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     var nodes = [Node]()
 
     var colorArray: [UIColor] =
-        [UIColor.red, UIColor.orange, UIColor.green, UIColor.blue, UIColor.purple, UIColor.brown]
+        [UIColor.asiSlate.withAlphaComponent(0.6),
+         UIColor.asiSeaBlue.withAlphaComponent(0.6),
+         UIColor.asiSandBrown.withAlphaComponent(0.6),
+         UIColor.asiDustyOrange.withAlphaComponent(0.6),
+         UIColor.asiBrownish.withAlphaComponent(0.6),
+         UIColor.asiDarkishBlue.withAlphaComponent(0.6),
+         UIColor.asiGreyishBrown.withAlphaComponent(0.6),
+         UIColor.asiPaleGold.withAlphaComponent(0.6),
+         UIColor.asiCharcoalGrey.withAlphaComponent(0.6)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -279,7 +290,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 return
         }
         
-        randomCount = Int(randomCountTextField.text!)!
+        randomCount = Int(randomCountTextField.text ?? "0") ?? 0
         
         guard let distance = distanceTextField.text,
             let keyword = keywordTextField.text else {

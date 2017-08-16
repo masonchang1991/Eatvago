@@ -22,6 +22,12 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     @IBOutlet weak var typeTextField: UITextField!
     
     @IBOutlet weak var greetingTextView: UITextView!
+    
+    @IBOutlet weak var greetingTextBackgroundView: UIView!
+    
+    @IBOutlet weak var userPhotoShadowView: UIView!
+    
+    @IBOutlet weak var introductTitleLabel: UILabel!
 
     var genderPickerView = UIPickerView()
     
@@ -81,6 +87,14 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         setUpLayout()
     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        setUpUserPhoto()
+        
+    }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)

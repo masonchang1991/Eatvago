@@ -13,19 +13,18 @@ import UIKit
 extension PrepareToMatchViewController {
     
     
-    
-    func setUpLayout() {
-        
+    func setUpUserPhoto() {
         
         self.userPhotoImageView.image = nearbyViewController?.userPhotoImageView.image
         self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
         self.userPhotoImageView.clipsToBounds = true
+
         
-        self.greetingTextView.layer.cornerRadius = 30
-        self.greetingTextView.clipsToBounds = true
-        self.greetingTextView.backgroundColor = UIColor.asiDarkSand
-        self.greetingTextView.backgroundColor?.withAlphaComponent(0.8)
-        
+    }
+    
+    
+    
+    func setUpLayout() {
         
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
@@ -46,14 +45,25 @@ extension PrepareToMatchViewController {
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
         titleShadow.shadowColor = UIColor.asiBlack50
         titleShadow.shadowBlurRadius = 2
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkduster", size: UIFont.boldSystemFont(ofSize: 30).pointSize)!, NSShadowAttributeName: titleShadow]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: UIFont.boldSystemFont(ofSize: 30).pointSize)!, NSShadowAttributeName: titleShadow]
         // 設定Bar shadow
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.asiTealish85.cgColor
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 1
-
         
+        // userPhotoshadow
+        
+        self.userPhotoShadowView.frame = self.userPhotoImageView.bounds
+
+        self.userPhotoShadowView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.userPhotoShadowView.layer.shadowColor = UIColor.asiDarkBlueGrey.withAlphaComponent(0.8).cgColor
+        self.userPhotoShadowView.layer.shadowRadius = self.userPhotoImageView.frame.width
+        self.userPhotoShadowView.layer.shadowOpacity = 1.0
+        self.userPhotoShadowView.clipsToBounds = false
+        
+        // introduce title
+
         
         
         

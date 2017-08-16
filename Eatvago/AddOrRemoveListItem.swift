@@ -87,9 +87,6 @@ class AddOrRemoveListItemManager {
         
         matchSuccessRoomRef.child("list").queryOrdered(byChild: "storeName").queryEqual(toValue: choosedLocation.storeName).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            print(snapshot.value, "value~~~~~~~~~~")
-            print(snapshot.children, "childern~~~~~~~")
-            
             for item in snapshot.children {
             
             guard let valueSnap = item as? DataSnapshot else {

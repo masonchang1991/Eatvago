@@ -39,6 +39,11 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
     
+    @IBOutlet weak var userInfoTextBackgroundView: UIView!
+    
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
     //set up pager view
     
     @IBOutlet weak var storeImagePagerView: FSPagerView! {
@@ -183,24 +188,18 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         uploadOrDownLoadUserPhotoManager.delegate = self
 
         ref = Database.database().reference()
-        
-        //layout
-        addToListButton.addTarget(self, action: #selector(addToList), for: .touchUpInside)
-        
-        userInfoTextView.layer.borderColor = UIColor.asiSandBrown.cgColor
-        userInfoTextView.layer.borderWidth = 2.0
-        userInfoTextView.backgroundColor = UIColor.clear
-        userInfoTextView.layer.cornerRadius = 20
-        userInfoTextView.clipsToBounds = true
-        userInfoTextView.contentSize = CGSize(width: userInfoTextView.bounds.width * 0.8, height: userInfoTextView.bounds.height * 0.8)
-        
-        userPhotoImageView.layer.cornerRadius = 20
-        userPhotoImageView.clipsToBounds = true
-        
+
         stepUpUserPhotoGesture()
         
         uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
+        //button function
+        addToListButton.addTarget(self, action: #selector(addToList), for: .touchUpInside)
+        
+        
+        //layout
+        setupLayout()
     }
     
     deinit {
@@ -284,7 +283,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             
         } else {
             
-            addToListButton.tintColor = UIColor.asiSeaBlue
+            addToListButton.tintColor = UIColor.white.withAlphaComponent(0.7)
             
         }
         
@@ -302,7 +301,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
 
         } else {
             
-            sender.tintColor = UIColor.asiSeaBlue
+            sender.tintColor = UIColor.white.withAlphaComponent(0.5)
             
             var nowAt = 0
             
@@ -408,7 +407,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     @IBAction func setUpFilter(_ sender: Any) {
     
-        var distancePickerView = UIPickerView()
+        let distancePickerView = UIPickerView()
         
          //建立一個提示框
         let alertController = UIAlertController(

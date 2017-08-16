@@ -71,7 +71,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
 //            //set照片中心
 //            self.userPhotoImageView.center = CGPoint(x: self.userPhotoImageView.frame.width * 0.5, y: self.userPhotoImageView.frame.height * 0.5)
             //放照片啦
-            self.userPhotoImageView.image = image
+//            self.userPhotoImageView.image = image
             
             self.userPhotoImageView.contentMode = .scaleAspectFit
             
@@ -97,7 +97,8 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error) {
         
         print(errorDescription)
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        self.uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {

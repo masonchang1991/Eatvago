@@ -77,7 +77,7 @@ extension LoadingMatchViewController {
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
         titleShadow.shadowColor = UIColor.asiBlack50
         titleShadow.shadowBlurRadius = 2
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkduster", size: UIFont.boldSystemFont(ofSize: 30).pointSize)!, NSShadowAttributeName: titleShadow]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: UIFont.boldSystemFont(ofSize: 30).pointSize)!, NSShadowAttributeName: titleShadow]
         // 設定Bar shadow
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.asiTealish85.cgColor
@@ -91,8 +91,8 @@ extension LoadingMatchViewController {
         
         let viewHalfHeight = self.backgroundView.frame.height / 2
         
-        let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.6).cgColor,
-                                   UIColor.asiSeaBlue.withAlphaComponent(0.2).cgColor]
+        let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.7).cgColor,
+                                   UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
         
         self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
                                                                                 gradientframe: CGRect(x: 0, y: 0, width: viewHalfWidth, height: viewHalfHeight),
@@ -113,6 +113,12 @@ extension LoadingMatchViewController {
                                                                                 gradientframe: CGRect(x: viewHalfWidth, y: viewHalfHeight, width: viewHalfWidth, height: viewHalfHeight),
                                                                                 gradientstartPoint: CGPoint(x: 1, y: 1),
                                                                                 gradientendPoint: CGPoint(x: 0, y: 0)), at: 0)
+        
+        self.myTextView.isUserInteractionEnabled = false
+        self.oppositePeopleInfoTextView.isUserInteractionEnabled = false
+        
+        
+        
         
         
         

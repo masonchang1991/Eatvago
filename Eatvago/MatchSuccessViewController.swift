@@ -279,7 +279,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     func sendMessage() {
         
-        if chatBoxTextField.text?.characters.count == 0 {
+        if chatBoxTextField.text?.characters.count == 0 || chatBoxTextField.text == ""{
             
             return
             
