@@ -52,19 +52,32 @@ extension PrepareToMatchViewController {
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 1
         
+        
+        
+    }
+    
+    func setupLayer() {
+        
+        
+        // greeting textbackground view
+        self.greetingTextBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.greetingTextBackgroundView.layer.shadowColor = UIColor.asiDarkishBlue.cgColor
+        self.greetingTextBackgroundView.layer.opacity = 0.7
+        self.greetingTextBackgroundView.layer.shadowRadius = 3
+        self.greetingTextBackgroundView.clipsToBounds = false
+
+        let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.6).cgColor,
+                                UIColor.asiSeaBlue.withAlphaComponent(0.2).cgColor]
+
+        self.greetingTextBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: greetingGradient,
+                                                                                            gradientframe: self.greetingTextBackgroundView.bounds, gradientstartPoint: CGPoint(x: 0.5, y: 0), gradientendPoint: CGPoint(x: 0.5, y: 1)), at: 0)
+        
         // userPhotoshadow
-        
-        self.userPhotoShadowView.frame = self.userPhotoImageView.bounds
 
-        self.userPhotoShadowView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.userPhotoShadowView.layer.shadowColor = UIColor.asiDarkBlueGrey.withAlphaComponent(0.8).cgColor
-        self.userPhotoShadowView.layer.shadowRadius = self.userPhotoImageView.frame.width
-        self.userPhotoShadowView.layer.shadowOpacity = 1.0
-        self.userPhotoShadowView.clipsToBounds = false
-        
-        // introduce title
+        self.greetingTextView.backgroundColor = UIColor.asiWhiteTwo.withAlphaComponent(0.3)
+        self.greetingTextView.layer.cornerRadius = 15
+        self.greetingTextView.clipsToBounds = true
 
-        
         
         
         

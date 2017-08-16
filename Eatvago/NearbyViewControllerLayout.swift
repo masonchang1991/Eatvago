@@ -68,6 +68,7 @@ extension NearbyViewController {
         
         self.backgroundImageView.blurred(withStyle: .regular)
         self.backgroundImageView.contentMode = .scaleToFill
+        self.backgroundImageView.alpha = 0.6
 
         
         

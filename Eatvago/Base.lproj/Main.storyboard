@@ -841,7 +841,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLc-B3-Ptr">
-                                <rect key="frame" x="60" y="124" width="60" height="60"/>
+                                <rect key="frame" x="40" y="104" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hLc-B3-Ptr" secondAttribute="height" multiplier="60:60" id="L8z-uV-mEe"/>
@@ -873,7 +873,7 @@
                             <constraint firstItem="1dL-sT-RBJ" firstAttribute="top" secondItem="h6g-Xx-Cw6" secondAttribute="top" id="9XV-d6-PAB"/>
                             <constraint firstItem="h6g-Xx-Cw6" firstAttribute="leading" secondItem="uJu-nJ-3B1" secondAttribute="leading" constant="30" id="ACb-cE-aXb"/>
                             <constraint firstItem="hLc-B3-Ptr" firstAttribute="centerY" secondItem="h6g-Xx-Cw6" secondAttribute="centerY" id="CEo-uN-qE8"/>
-                            <constraint firstItem="hLc-B3-Ptr" firstAttribute="width" secondItem="h6g-Xx-Cw6" secondAttribute="width" multiplier="60:120" id="Cgc-YA-yHd"/>
+                            <constraint firstItem="hLc-B3-Ptr" firstAttribute="width" secondItem="h6g-Xx-Cw6" secondAttribute="width" multiplier="100:120" id="Cgc-YA-yHd"/>
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="height" secondItem="1dL-sT-RBJ" secondAttribute="height" id="IAN-wF-ZqR"/>
                             <constraint firstItem="7ym-bM-owk" firstAttribute="top" secondItem="rBK-vd-Pku" secondAttribute="bottom" constant="8" id="ILu-7z-YW6"/>
                             <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="5" id="JfL-xu-x6Q"/>
@@ -970,21 +970,21 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aye-Kk-fhm">
-                                <rect key="frame" x="287.5" y="318" width="55" height="31"/>
+                                <rect key="frame" x="287.5" y="316.5" width="62" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="qA3-14-xtW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <state key="normal" title="Accept">
                                     <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZx-dV-C02">
-                                <rect key="frame" x="28.5" y="318.5" width="59" height="30"/>
+                                <rect key="frame" x="19.5" y="317" width="68" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="Lfe-QS-gi0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
                                 <state key="normal" title="Decline">
                                     <color key="titleColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>

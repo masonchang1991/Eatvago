@@ -95,6 +95,12 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        setupLayer()
+    }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
