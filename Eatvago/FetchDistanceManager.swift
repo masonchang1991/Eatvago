@@ -35,7 +35,7 @@ class FetchDistanceManager {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 
-                let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(nearLocation.latitude),\(nearLocation.longitude)&key=\(googleMapDistanceMatrixAPIKey)"
+                let urlStringForDistance = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destinations=\(nearLocation.latitude),\(nearLocation.longitude)&mode=walking&key=\(googleMapDistanceMatrixAPIKey)"
                 
                 Alamofire.request(urlStringForDistance).responseJSON { (response) in
                     

@@ -12,6 +12,8 @@ import SpriteKit
 import SkyFloatingLabelTextField
 import GooglePlaces
 import FaveButton
+import GoogleMaps
+import GooglePlacePicker
 
 class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -412,7 +414,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 })
                 
             }
-            setRandomView.isHidden = false
+            
+            setRandomView.isHidden = true
             
         }
         

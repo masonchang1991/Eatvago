@@ -45,7 +45,7 @@ extension RandomGameViewController {
         view.addSubview(searchView)
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.searchBar.barStyle = .default
+        searchController?.searchBar.barStyle = .blackOpaque
         
         // outlet fave button bug need to set two times color
         searchButton.isSelected = false
@@ -75,7 +75,7 @@ extension RandomGameViewController {
         
         // background
         self.randomGameBackgorundImageView.contentMode = .scaleAspectFill
-        self.randomGameBackgorundImageView.blur(withStyle: .extraLight)
+        self.randomGameBackgorundImageView.blur(withStyle: .prominent)
         
         
     }

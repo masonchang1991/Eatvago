@@ -30,7 +30,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
             
         }
         
-        callIfFetchNearbyLocations(myLocation: myLocation)
+//        callIfFetchNearbyLocations(myLocation: myLocation)
 
     }
     

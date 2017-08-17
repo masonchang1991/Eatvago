@@ -38,6 +38,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBOutlet weak var mapView: UIView!
     
     @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
+
+    @IBOutlet weak var logoutButton: UIButton!
     
     @IBOutlet weak var userInfoTextBackgroundView: UIView!
     
@@ -407,15 +409,48 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     }
 
     @IBAction func logout(_ sender: UIButton) {
-        // 消去 UserDefaults內使用者的帳號資訊
-        UserDefaults.standard.setValue(nil, forKey: "UserLoginEmail")
-        UserDefaults.standard.setValue(nil, forKey: "UserLoginPassword")
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.makeKeyAndVisible()
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
-        self.window?.rootViewController = nextVC
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+            showCloseButton: false,
+            showCircularIcon: true
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        let alertViewIcon = UIImage(named: "exitIcon")
+        
+
+        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            // 消去 UserDefaults內使用者的帳號資訊
+            UserDefaults.standard.setValue(nil, forKey: "UserLoginEmail")
+            UserDefaults.standard.setValue(nil, forKey: "UserLoginPassword")
+            UserDefaults.standard.setValue(nil, forKey: "UID")
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.makeKeyAndVisible()
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+            self.window?.rootViewController = loginVC
+            
+            
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        alert.showNotice("Logout", subTitle: "Are you sure?", circleIconImage: alertViewIcon)
+ 
+        
+        
+
     }
     
     @IBAction func setUpFilter(_ sender: Any) {
