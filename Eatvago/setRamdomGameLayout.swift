@@ -32,9 +32,7 @@ extension RandomGameViewController {
         titleShadow.shadowColor = UIColor.asiBlack50
         titleShadow.shadowBlurRadius = 2
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: UIFont.boldSystemFont(ofSize: 30).pointSize)!, NSShadowAttributeName: titleShadow]
-        
-        
-        
+
         self.addListPickerView.backgroundColor = UIColor.clear
         
         self.setRandomView.backgroundColor = UIColor.clear
@@ -44,9 +42,8 @@ extension RandomGameViewController {
         searchView.addSubview((searchController?.searchBar)!)
         view.addSubview(searchView)
         searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.searchBar.barStyle = .blackOpaque
-        
+        searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.searchBar.barStyle = .default
         // outlet fave button bug need to set two times color
         searchButton.isSelected = false
         openSetRandomButton.isSelected = false
@@ -76,6 +73,10 @@ extension RandomGameViewController {
         // background
         self.randomGameBackgorundImageView.contentMode = .scaleAspectFill
         self.randomGameBackgorundImageView.blur(withStyle: .prominent)
+        
+        //nivagation button
+//        self.navigationButton.tintColor = UIColor.asiDenimBlue.withAlphaComponent(0.8)
+        
         
         
     }

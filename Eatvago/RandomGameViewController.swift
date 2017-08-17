@@ -14,8 +14,9 @@ import GooglePlaces
 import FaveButton
 import GoogleMaps
 import GooglePlacePicker
+import NVActivityIndicatorView
 
-class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate {
     
     @IBOutlet weak var setSegmentedControl: UISegmentedControl!
     
@@ -40,8 +41,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     @IBOutlet weak var addListPickerView: UIPickerView!
     
     @IBOutlet weak var randomGameBackgorundImageView: UIImageView!
-    
-    
+
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
             magnetic.magneticDelegate = self
@@ -65,7 +65,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     var searchedLocations = [Location]()
     var randomCount = 6
     
-    var resultsViewController: GMSAutocompleteResultsViewController?
+    weak var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
     
@@ -82,7 +82,14 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
          UIColor.asiGreyishBrown.withAlphaComponent(0.6),
          UIColor.asiPaleGold.withAlphaComponent(0.6),
          UIColor.asiCharcoalGrey.withAlphaComponent(0.6)]
-
+    
+     var distancePickOptions = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+     var randomCountPickOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+     var distancePickerView = UIPickerView()
+     var randomCountPickerView = UIPickerView()
+    
+    let activityData = ActivityData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,8 +100,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
         definesPresentationContext = true
 
-        tabBarVC = self.tabBarController as? MainTabBarController ?? MainTabBarController()
-        
+        tabBarVC = self.tabBarController as? MainTabBarController
+
         tabBarVC?.delegate = self
         
         self.addListPickerView.delegate = self
@@ -102,10 +109,22 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
         setLayout()
         
+        // picker view
+        distancePickerView.delegate = self
+        self.distanceTextField.inputView = distancePickerView
+        self.distanceTextField.text = "\(distancePickOptions[0])"
+        randomCountPickerView.delegate = self
+        self.randomCountTextField.inputView = randomCountPickerView
+        self.randomCountTextField.text = "\(randomCountPickOptions[4])"
+        
+        // keyboard 收下去
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+//        self.view.addGestureRecognizer(tap)
+        
     }
     
     deinit {
-        print("LoadingViewController")
+        print("RandomViewController")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,7 +181,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                     text: "\(progressCount)",
                 image: restaurant.photo,
                 color: colorArray[colorProgressCount],
-                radius: 50)
+                radius: 60)
             
             //避免count超過color array長度
             if colorProgressCount == (colorArray.count - 1) {
@@ -220,7 +239,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func addNode(magnetic: Magnetic, text: String, image: UIImage?, color: UIColor, radius: CGFloat) {
         
         let node = Node(text: text, image: image, color: color, radius: radius)
-        
+        node.label.fontSize = 25
         nodes.append(node)
         
         magnetic.addChild(node)
@@ -247,9 +266,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         if nodeDictionary[key] != nil {
         
             node.text = nodeDictionary[key]
+            node.label.fontSize = 15
+            node.label.fontName = "Chalkboard SE"
         }
         
-        for selectedResraurant in self.randomRestaurants where selectedResraurant.name == node.text{
+        for selectedResraurant in self.randomRestaurants where selectedResraurant.name == node.text {
             
                 self.selectedRestaurant = selectedResraurant
              
@@ -262,33 +283,15 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return (tabBarVC?.addLocations.count) ?? 0 + searchedLocations.count 
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if row <= (tabBarVC?.addLocations.count) ?? 0 && (tabBarVC?.addLocations.count) ?? 0 != 0 {
-            
-            return tabBarVC?.addLocations[row].name
-            
-        } else {
-            
-            return searchedLocations[row - ((tabBarVC?.addLocations.count) ?? 0)].name
-            
-        }
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
     @IBAction func randomSearch(_ sender: Any) {
+        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
         if randomCountTextField.text?.characters.count == 0
             || distanceTextField.text?.characters.count == 0
             || keywordTextField.text?.characters.count == 0 {
+            
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 return
         }
         
@@ -296,6 +299,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         guard let distance = distanceTextField.text,
             let keyword = keywordTextField.text else {
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 return
         }
         
@@ -315,6 +319,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             self.tabBarVC?.fetchedLocations = nearbyViewController.locations
             
             self.reloadRandomBallView()
+            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         }
     }
     
@@ -420,6 +425,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
         
     }
+    
+    
+    
     @IBAction func goByNavigation(_ sender: UIButton) {
         
         let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()

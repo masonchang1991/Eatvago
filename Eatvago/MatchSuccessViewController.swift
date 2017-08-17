@@ -12,6 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import FSPagerView
 import NVActivityIndicatorView
+import SCLAlertView
 
 class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate {
     
@@ -258,6 +259,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         //layout
         layoutSet()
+        
+        //keyboard收下去
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
     }
     
     
@@ -289,6 +295,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             sendMessageManager.sendMessageToFireBase(message: message, connectionRoomId: connectionRoomId)
             
+            self.chatBoxTextField.text = ""
+            
         }
         
         
@@ -309,12 +317,63 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     func navigationForList() {
         
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            UIApplication.shared.openURL(URL(string:
-                "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(pickerViewChoosedLocation.locationLat),\(pickerViewChoosedLocation.locationLon)&directionsmode=walking")!)
-        } else {
-            print("Can't use comgooglemaps://")
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        
+        
+        alert.addButton("Walking", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                UIApplication.shared.openURL(URL(string:
+                    "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=walking")!)
+            } else {
+                print("Can't use comgooglemaps://")
+            }
+            
+            alert.dismiss(animated: true, completion: nil)
         }
+        
+        alert.addButton("bicycling", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                UIApplication.shared.openURL(URL(string:
+                    "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=bicycling")!)
+            } else {
+                print("Can't use comgooglemaps://")
+            }
+            
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addButton("driving", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                UIApplication.shared.openURL(URL(string:
+                    "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=driving")!)
+            } else {
+                print("Can't use comgooglemaps://")
+            }
+            
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        
+        
+        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }
+
+        alert.showEdit("Transit Mode", subTitle: "Choose")
         
     }
 
@@ -552,14 +611,44 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         }
         
     }
-    
 
     @IBAction func leaveChatRoom(_ sender: Any) {
         
-        locationManager.stopUpdatingLocation()
-        self.removeFromParentViewController()
-        self.dismiss(animated: true, completion: nil)
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+            showCloseButton: false,
+            showCircularIcon: true
+        )
         
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        let alertViewIcon = UIImage(named: "exitIcon")
+        
+        
+        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            self.locationManager.stopUpdatingLocation()
+            self.removeFromParentViewController()
+            self.dismiss(animated: true, completion: nil)
+
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            alert.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        alert.showNotice("Leave", subTitle: "Are you sure ?", circleIconImage: alertViewIcon)
+        
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
 

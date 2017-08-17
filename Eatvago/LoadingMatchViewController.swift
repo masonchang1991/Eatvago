@@ -33,7 +33,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     @IBOutlet weak var backgroundView: UIView!
     
-
     var matchRoomId = ""
     
     var type = ""
@@ -141,6 +140,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 
             })
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
     }
     
     deinit {
@@ -326,4 +329,11 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         })
         
     }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    
 }

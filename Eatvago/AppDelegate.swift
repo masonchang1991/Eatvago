@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 import IQKeyboardManager
 
-var googleMapAPIKey = ["AIzaSyBivGI2MbdVzOeeGBvZqqhPO0JQ9BdL87g", "AIzaSyC-vTtOFq2MRx29_Dp-UuPlbjc3tA9NA0I", "AIzaSyCgdyuXgEpb2omTocjALBgHi7wsP3OxmX8", "AIzaSyCNvYlOUnIJ7rZ6ikyw2l8z6GIYJgKCGb4", "AIzaSyAzzNQSinBXS1OGKEbSYbmcUQyds1Ep6EE", "AIzaSyCV3ihG-MXQPr5s4_EZgdD45VVgxj3Jmo0"]
+var googleMapAPIKey = ["AIzaSyBaIkDy07ub4iYPhc852JyWeikGgCv8F-0", "AIzaSyBivGI2MbdVzOeeGBvZqqhPO0JQ9BdL87g", "AIzaSyC-vTtOFq2MRx29_Dp-UuPlbjc3tA9NA0I", "AIzaSyCgdyuXgEpb2omTocjALBgHi7wsP3OxmX8", "AIzaSyCNvYlOUnIJ7rZ6ikyw2l8z6GIYJgKCGb4", "AIzaSyAzzNQSinBXS1OGKEbSYbmcUQyds1Ep6EE"]
 var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        GMSServices.provideAPIKey(googleMapAPIKey[2])
+        GMSServices.provideAPIKey(googleMapAPIKey[0])
         GMSPlacesClient.provideAPIKey(googleMapAPIKey[0])
         
         IQKeyboardManager.shared().isEnabled = true
+//        IQKeyboardManager.shared().isEnableAutoToolbar = false
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
        

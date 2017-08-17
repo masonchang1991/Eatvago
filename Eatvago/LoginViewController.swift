@@ -45,6 +45,11 @@ class LoginViewController: UIViewController {
         phonenumberTextField.placeholder = "Your Phone Number"
 
         segmentedHandler()
+        
+        //收keyboard
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
     }
     @IBAction func forgetPassword(_ sender: UIButton) {
@@ -323,6 +328,11 @@ class LoginViewController: UIViewController {
 
         }
 
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
 }

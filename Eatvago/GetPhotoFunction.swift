@@ -73,7 +73,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             //放照片啦
 //            self.userPhotoImageView.image = image
             
-            self.userPhotoImageView.contentMode = .scaleAspectFit
+            self.userPhotoImageView.contentMode = .scaleAspectFill
             
             self.uploadOrDownLoadUserPhotoManager.uploadUserPhoto(userPhoto: image)
             
@@ -82,7 +82,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -95,7 +95,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error) {
-        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         print(errorDescription)
 //        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         self.uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()

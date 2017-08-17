@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 import NVActivityIndicatorView
+import SCLAlertView
 
 class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
     
@@ -33,9 +34,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     var typePickerView = UIPickerView()
 
-    var genderPickOption = ["male", "female"]
+    var genderPickOption = ["Male", "Female"]
     
-    var typePickOption = ["Any", "pizza", "coffee", "bar"]
+    var typePickOption = ["Any", "pizza", "coffee", "bar", "japan", "chinese"]
 
     var ref: DatabaseReference?
     
@@ -56,8 +57,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         //swiftlint:disable force_cast
         
-        tabBarVC = self.tabBarController as! MainTabBarController
-        nearbyViewController = tabBarVC?.nearbyViewController as! NearbyViewController
+        tabBarVC = self.tabBarController as? MainTabBarController
+        nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController
         myLocation = nearbyViewController!.currentLocation
         
         //swiftlint:enable force_cast
@@ -85,6 +86,11 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         // layout
         
         setUpLayout()
+        
+        //收keyboard
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     
     }
     
@@ -159,11 +165,35 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         guard let type = typeTextField.text else {
             return
         }
-
-        self.checkIfRoomExistManager.checkIfRoomExist(type: type)
         
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
-        
+        if nickNameTextField.text?.characters.count == 0 || nickNameTextField.text == "" {
+            
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+                kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+                kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+                showCloseButton: false,
+                showCircularIcon: false
+            )
+            
+            // Initialize SCLAlertView using custom Appearance
+            let alert = SCLAlertView(appearance: appearance)
+            
+            alert.addButton("OK", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+                
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+            alert.showError("Error", subTitle: "you forgot your nick name")
+            
+        } else {
+            
+            
+            self.checkIfRoomExistManager.checkIfRoomExist(type: type)
+            
+            NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+            
+        }
 //      self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         
     }
@@ -283,6 +313,11 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         self.performSegue(withIdentifier: "ownerLoading", sender: matchRoomAutoId)
         
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
 }

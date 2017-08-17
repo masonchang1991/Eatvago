@@ -15,11 +15,11 @@ extension PrepareToMatchViewController {
     
     func setUpUserPhoto() {
         
+        self.userPhotoImageView.contentMode = .scaleAspectFill
         self.userPhotoImageView.image = nearbyViewController?.userPhotoImageView.image
         self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
         self.userPhotoImageView.clipsToBounds = true
 
-        
     }
     
     

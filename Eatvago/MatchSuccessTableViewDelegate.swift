@@ -66,7 +66,8 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             messageCell.chatView.clipsToBounds = false
             
             messageCell.chatLabel.textColor = UIColor.white
-            
+            tableView.estimatedRowHeight = 60.0
+            tableView.rowHeight = UITableViewAutomaticDimension
             
             return messageCell
             
@@ -91,9 +92,11 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             messageCell.chatView.clipsToBounds = false
             
             messageCell.userPhotoImageView.image = self.oppositePeopleImageView?.image
-            messageCell.userPhotoImageView.contentMode = .scaleAspectFit
+            messageCell.userPhotoImageView.contentMode = .scaleAspectFill
             messageCell.userPhotoImageView.layer.cornerRadius = messageCell.userPhotoImageView.frame.width / 2
             
+            tableView.estimatedRowHeight = 60.0
+            tableView.rowHeight = UITableViewAutomaticDimension
             
             return messageCell
             

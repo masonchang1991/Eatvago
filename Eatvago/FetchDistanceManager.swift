@@ -27,9 +27,9 @@ class FetchDistanceManager {
         
         ///google 壞掉 特地加這行
 //        
-//        self.delegate?.manager(self, didGet: nearLocations)
-//        
-//        return
+        self.delegate?.manager(self, didGet: nearLocations)
+        
+        return
         
         for nearLocation in nearLocations {
             

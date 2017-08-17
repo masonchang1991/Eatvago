@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
+
 protocol UploadOrDownLoadUserPhotoDelegate:class {
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion: String, photoURL: String)
@@ -79,13 +80,14 @@ class UploadOrDownLoadUserPhotoManager {
             
             if snapshot.exists() == false {
                 
+               
                 self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 
                 return
             }
             
             guard let photoURLString = snapshot.value as? String else {
-                
+               
                 self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 return
                 

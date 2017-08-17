@@ -50,3 +50,4 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
+

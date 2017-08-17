@@ -13,10 +13,13 @@ extension NearbyViewController: FetchLocationImageDelegate {
     func manager(_ manager: FetchLocationImageManager, didGet locationImage: UIImage, at indexPathRow: Int) {
         
         DispatchQueue.main.async {
-            
+            if self.locations.count > indexPathRow {
+                
             self.locations[indexPathRow].photo = locationImage
             
             self.storeImagePagerView.reloadData()
+                
+            }
         }
         
     }

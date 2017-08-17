@@ -9,15 +9,15 @@
 import UIKit
 
 extension MatchSuccessViewController: ChatObserverDelegate {
-    
-    
-    
+
     func manager(_ manager: ChatObserverManager, didGet messages: [Message]) {
         
        self.chatRoomMessages = messages
        
-        if self.messageSentFromMe == true {
+        if self.messageSentFromMe == true && self.chatRoomMessages.count > 3 {
         
+            self.matchRoomTableView.reloadData()
+            
             self.matchRoomTableView.scrollToBottom(animated: true)
             
             self.messageSentFromMe = false
@@ -33,6 +33,4 @@ extension MatchSuccessViewController: ChatObserverDelegate {
     func manager(_ manager: ChatObserverManager, didFailWith error: Error) {
         
     }
-
-    
 }

@@ -29,8 +29,8 @@ extension NearbyViewController: CLLocationManagerDelegate {
             googleMapView.animate(to: camera)
             
         }
-        
-//        callIfFetchNearbyLocations(myLocation: myLocation)
+
+        callIfFetchNearbyLocations(myLocation: myLocation)
 
     }
     
