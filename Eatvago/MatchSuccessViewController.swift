@@ -256,7 +256,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         //tableview
         self.matchRoomTableView.delegate = self
         self.matchRoomTableView.dataSource = self
-        self.matchRoomTableView.estimatedRowHeight = 150
+        self.matchRoomTableView.estimatedRowHeight = 300
         self.matchRoomTableView.rowHeight = UITableViewAutomaticDimension
         
         //buttonFunction

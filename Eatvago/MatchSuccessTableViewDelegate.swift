@@ -18,14 +18,14 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
-        tableView.estimatedRowHeight = 60.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        return UITableViewAutomaticDimension
-        
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        
+//        tableView.estimatedRowHeight = 60.0
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        return UITableViewAutomaticDimension
+//        
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,8 +66,8 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             messageCell.chatView.clipsToBounds = false
             
             messageCell.chatLabel.textColor = UIColor.white
-            tableView.estimatedRowHeight = 60.0
-            tableView.rowHeight = UITableViewAutomaticDimension
+//            tableView.estimatedRowHeight = 60.0
+//            tableView.rowHeight = UITableViewAutomaticDimension
             
             return messageCell
             
@@ -96,9 +96,9 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             messageCell.userPhotoImageView.layer.cornerRadius = messageCell.userPhotoImageView.frame.width / 2
             messageCell.userPhotoImageView.clipsToBounds = true
             
-            tableView.estimatedRowHeight = 60.0
-            tableView.rowHeight = UITableViewAutomaticDimension
-            
+//            tableView.estimatedRowHeight = 200.0
+//            tableView.rowHeight = UITableViewAutomaticDimension
+//            
             return messageCell
             
         }
