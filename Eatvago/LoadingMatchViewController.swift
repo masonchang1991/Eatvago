@@ -69,6 +69,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     var window: UIWindow?
     
+    var ifLeaveByAccept = false
+    
     // 讓observer 第一次設定時不要run
     var runTime = 0
     
@@ -106,6 +108,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 self.fetchMatchRoomDataManager.getRoomData(by: self.matchRoomRef, isRoomowner: self.isARoomOwner, type: self.type)
                 
                 self.ownerSnapshot = snapshot
+                    
+                self.matchRoomRef.child("isLocked").removeAllObservers()
                     
                 } else {
                     
@@ -149,6 +153,21 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     deinit {
         print("LoadingViewController")
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+            
+            if ifLeaveByAccept == true {
+                
+                // do nothing
+                
+            } else {
+                
+                closeTheRoom()
+                
+            }
+    }
+    
     
     func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String) {
         
@@ -244,6 +263,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     func goToChatRoom(sender: UIButton) {
         
         ifAcceptMatch = true
+        ifLeaveByAccept = true
         
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -267,7 +287,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             matchSuccessVC.connectionRoomId = self.connectionId
             matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
         
-        self.present(matchSuccessVC, animated: true, completion: nil)
+        self.present(matchSuccessVC, animated: false, completion: nil)
         
         self.navigationController?.popToRootViewController(animated: false)
         
@@ -323,6 +343,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             if self.runTime == 1 {
                 
                 self.navigationController?.popViewController(animated: true)
+                self.matchRoomRef.child("isClosed").removeAllObservers()
                 
             }
             

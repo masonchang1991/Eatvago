@@ -37,7 +37,6 @@ extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelega
                                                 locationLon: String(location.longitude)))
             
         }
-        
         self.pickerViewChoosedLocation = listLocation[row]
         
       return listLocation[row].storeName

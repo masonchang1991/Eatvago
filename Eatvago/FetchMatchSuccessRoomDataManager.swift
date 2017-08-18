@@ -62,6 +62,7 @@ class FetchMatchSuccessRoomDataManager {
             let successRoomData = MatchSuccessRoom(ownerUID: ownerUID, attenderUID: attenderUID, attenderLocation: pointAttender, ownerLocation: pointOwner, centerLocation: centerPoint)
             
             self.delegate?.manager(self, didGet: successRoomData)
+            matchSuccessRoomRef.removeAllObservers()
             
         })
         

@@ -94,6 +94,7 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             messageCell.userPhotoImageView.image = self.oppositePeopleImageView?.image
             messageCell.userPhotoImageView.contentMode = .scaleAspectFill
             messageCell.userPhotoImageView.layer.cornerRadius = messageCell.userPhotoImageView.frame.width / 2
+            messageCell.userPhotoImageView.clipsToBounds = true
             
             tableView.estimatedRowHeight = 60.0
             tableView.rowHeight = UITableViewAutomaticDimension

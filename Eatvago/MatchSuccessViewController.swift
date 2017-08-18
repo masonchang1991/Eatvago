@@ -14,6 +14,7 @@ import FSPagerView
 import NVActivityIndicatorView
 import SCLAlertView
 
+//swiftlint:disable type_body_length
 class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, addOrRemoveListItemDelegate {
     
     @IBOutlet weak var mapView: UIView!
@@ -59,6 +60,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var underPagerViewBackgroundView: UIView!
     
     @IBOutlet weak var mainBackgroundView: UIView!
+    
+    
 
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -172,6 +175,9 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     var resultView: UITextView?
     var oppositePeoplePhoto: UIImage = UIImage()
     var window: UIWindow?
+    
+    let activityData = ActivityData()
+    
     override func loadView() {
         super.loadView()
         
@@ -270,6 +276,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
+        
         locationManager.stopUpdatingLocation()
     }
     
@@ -455,6 +462,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                         }
                         self.locationManager.stopUpdatingLocation()
                         self.ref.child("UserHistory").child(uid).child(self.connectionRoomId).removeValue()
+                        self.matchRoomRef.child("isClosed").removeAllObservers()
                         self.performSegue(withIdentifier: "goBackToMain", sender: nil)
                         
                 }
@@ -475,6 +483,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             guard let locations = snapshot.value as? [String: [String: String]] else {
                 self.setupPickerView()
+                self.listPickerView.reloadAllComponents()
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 return
             }
             
@@ -493,9 +503,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             }
             
             self.listPagerView.reloadData()
-            self.listPickerView.reloadAllComponents()
-            self.setupPickerView()
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                
+                self.setupPickerView()
+                self.listPickerView.reloadAllComponents()
+                
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            })
         })
     }
     
@@ -524,6 +538,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                     
                     self.listPickerView.isHidden = false
                     self.navigationButtonForList.isHidden = false
+                    
                 }, completion: { (_) in
                     
                     UIView.animate(withDuration: 0.2, animations: {
@@ -540,9 +555,32 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
 
     func manager(_ manager: AddOrRemoveListItemManager, successAdded: Bool) {
         
+        //successAdded 若 = false 則為remove
+        
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
+        
     }
     
     func manager(_ manager: AddOrRemoveListItemManager, didFail withError: String) {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+            showCloseButton: false,
+            showCircularIcon: false
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        
+        alert.addButton("OK", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.showError("Error", subTitle: withError)
         
     }
     

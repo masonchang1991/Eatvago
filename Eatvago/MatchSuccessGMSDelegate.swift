@@ -31,6 +31,7 @@ extension MatchSuccessViewController: GMSAutocompleteResultsViewControllerDelega
         
         self.searchedLocations.append(location)
         self.listPickerView.isHidden = false
+        self.setupPickerView()
         self.listPickerView.reloadAllComponents()
 
     }

@@ -192,6 +192,7 @@
 			children = (
 				93FD1E691F4198CF003D4EC6 /* SendMessageDelegate.swift */,
 				93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */,
+				93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */,
 				93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */,
 				930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */,
 				930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */,
@@ -342,7 +343,6 @@
 				93FD1E631F418C82003D4EC6 /* MyChatTableViewCell.swift */,
 				93FD1E651F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift */,
 				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
-				93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */,
 				93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */,
 				9391DFC21F3EF43C0014BABD /* Manager */,
 				930119D61F3EA920002822B1 /* DelegateFunction */,

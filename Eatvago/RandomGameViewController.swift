@@ -181,7 +181,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                     text: "\(progressCount)",
                 image: restaurant.photo,
                 color: colorArray[colorProgressCount],
-                radius: 60)
+                radius: 65)
             
             //避免count超過color array長度
             if colorProgressCount == (colorArray.count - 1) {
@@ -239,7 +239,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func addNode(magnetic: Magnetic, text: String, image: UIImage?, color: UIColor, radius: CGFloat) {
         
         let node = Node(text: text, image: image, color: color, radius: radius)
-        node.label.fontSize = 25
+        node.label.fontSize = 35
         nodes.append(node)
         
         magnetic.addChild(node)
@@ -288,8 +288,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
         if randomCountTextField.text?.characters.count == 0
-            || distanceTextField.text?.characters.count == 0
-            || keywordTextField.text?.characters.count == 0 {
+            || distanceTextField.text?.characters.count == 0 {
             
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 return
@@ -303,7 +302,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 return
         }
         
-        let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
+        guard let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController else {
+            return
+        }
         
         nearbyViewController.filterDistance = Double(distance) ?? 0
         nearbyViewController.keywordText = keyword
@@ -320,6 +321,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             self.reloadRandomBallView()
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            nearbyViewController.locationManager.stopUpdatingLocation()
         }
     }
     
@@ -329,7 +331,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             UIView.animate(withDuration: 0.4, animations: {
                 
-                self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height
+                self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height  + 5
                 
                 self.setRandomView.alpha = 1.0
                 
@@ -403,7 +405,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 addListPickerView.isHidden = false
                 
                 UIView.animate(withDuration: 0.4, animations: {
-                    self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height
+                    self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height + 5
                     self.view.layoutIfNeeded()
                     
                 })

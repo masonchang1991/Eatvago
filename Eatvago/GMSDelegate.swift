@@ -30,9 +30,11 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         location.website = place.website?.absoluteString ?? ""
         
         self.searchedLocations.append(location)
-        self.addListPickerView.isHidden = false
+        self.segmentedHandler()
         self.addListPickerView.reloadAllComponents()
         self.reloadRandomBallView()
+        
+   
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

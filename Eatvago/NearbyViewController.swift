@@ -526,6 +526,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                                 self.storeImagePagerView.reloadData()
                                 self.locationManager.startUpdatingLocation()
                                 
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                                    
+                                    self.locationManager.stopUpdatingLocation()
+                                    
+                                })
+                                
+                                
                             })
         }
         
