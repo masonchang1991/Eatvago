@@ -18,7 +18,7 @@ extension MatchSuccessViewController: ChatObserverDelegate {
         
             self.matchRoomTableView.reloadData()
             
-            self.matchRoomTableView.scrollToBottom(animated: true)
+            self.matchRoomTableView.scrollToBottom(animated: false)
             
             self.messageSentFromMe = false
             

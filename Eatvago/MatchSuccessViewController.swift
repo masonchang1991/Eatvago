@@ -270,9 +270,14 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
+        
     }
     
-    
+    //status bar
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
@@ -287,6 +292,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         googleMapView = nil
         placesClient = nil
         ref.removeAllObservers()
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
     
     

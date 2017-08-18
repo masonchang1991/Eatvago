@@ -1078,7 +1078,7 @@
                             <constraint firstAttribute="trailing" secondItem="ymg-gS-Gw2" secondAttribute="trailing" constant="40" id="pPf-my-HWE"/>
                             <constraint firstItem="7ym-bM-owk" firstAttribute="centerX" secondItem="uJu-nJ-3B1" secondAttribute="centerX" id="qz2-1P-YnU"/>
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="width" secondItem="1dL-sT-RBJ" secondAttribute="width" id="tdb-Er-s5W"/>
-                            <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" relation="lessThanOrEqual" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="15" id="uJp-1m-02l"/>
+                            <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" relation="lessThanOrEqual" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="30" id="uJp-1m-02l"/>
                             <constraint firstItem="AgT-0d-o6p" firstAttribute="width" secondItem="1dL-sT-RBJ" secondAttribute="width" id="wRW-wV-DTd"/>
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="bottom" secondItem="h6g-Xx-Cw6" secondAttribute="bottom" id="wVc-7X-pOZ"/>
                         </constraints>
@@ -1571,10 +1571,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq0-Xz-NJz">
-                                                    <rect key="frame" x="65" y="50.5" width="62" height="19"/>
+                                                    <rect key="frame" x="65" y="20" width="62" height="49.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tr0-7L-5J0">
-                                                            <rect key="frame" x="10" y="5" width="42" height="9"/>
+                                                            <rect key="frame" x="10" y="5" width="42" height="39.5"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1623,7 +1623,7 @@
                                             <constraints>
                                                 <constraint firstItem="Ckb-DT-wkD" firstAttribute="top" secondItem="J0y-Zh-ft9" secondAttribute="top" constant="10" id="LTe-Ub-3It"/>
                                                 <constraint firstItem="Oq0-Xz-NJz" firstAttribute="leading" secondItem="Ckb-DT-wkD" secondAttribute="trailing" constant="5" id="Mes-CH-5pK"/>
-                                                <constraint firstItem="Oq0-Xz-NJz" firstAttribute="top" secondItem="Ckb-DT-wkD" secondAttribute="bottom" constant="-9.5" id="RNx-sw-f1l"/>
+                                                <constraint firstItem="Oq0-Xz-NJz" firstAttribute="top" secondItem="Ckb-DT-wkD" secondAttribute="bottom" constant="-40" id="RNx-sw-f1l"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oq0-Xz-NJz" secondAttribute="trailing" constant="10" id="j2O-OR-ggP"/>
                                                 <constraint firstAttribute="bottom" secondItem="Oq0-Xz-NJz" secondAttribute="bottom" constant="10" id="qiY-iJ-Aq9"/>
                                                 <constraint firstItem="Ckb-DT-wkD" firstAttribute="leading" secondItem="J0y-Zh-ft9" secondAttribute="leading" constant="10" id="yfy-Q7-xdw"/>
