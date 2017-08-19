@@ -24,4 +24,6 @@ target 'Eatvago' do
   pod 'IQKeyboardManager'
   pod 'FSPagerView'
   pod 'SwifterSwift'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

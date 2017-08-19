@@ -12,9 +12,13 @@ import FirebaseAuth
 import GoogleMaps
 import GooglePlaces
 import IQKeyboardManager
+import Fabric
+import Crashlytics
 
 var googleMapAPIKey = ["AIzaSyBaIkDy07ub4iYPhc852JyWeikGgCv8F-0", "AIzaSyBivGI2MbdVzOeeGBvZqqhPO0JQ9BdL87g", "AIzaSyC-vTtOFq2MRx29_Dp-UuPlbjc3tA9NA0I", "AIzaSyCgdyuXgEpb2omTocjALBgHi7wsP3OxmX8", "AIzaSyCNvYlOUnIJ7rZ6ikyw2l8z6GIYJgKCGb4", "AIzaSyAzzNQSinBXS1OGKEbSYbmcUQyds1Ep6EE"]
+
 var googleMapDistanceMatrixAPIKey = "AIzaSyAff1FGPRjJM99yVPKacpnbGPjmW_-n820"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -29,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
 //        IQKeyboardManager.shared().isEnableAutoToolbar = false
         UIApplication.shared.statusBarStyle = .lightContent
-        
+        Fabric.with([Crashlytics.self])
+
         return true
        
     }

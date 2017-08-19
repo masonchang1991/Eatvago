@@ -272,6 +272,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         UIApplication.shared.setStatusBarHidden(true, with: .none)
         
+        Analytics.logEvent("MatchSuccessRoom_viewDidLoad", parameters: nil)
+        
     }
     
     //status bar
@@ -317,6 +319,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     func navigationForPagerView() {
         
+        Analytics.logEvent("MatchSuccessRoom_navigationForPagerView", parameters: nil)
+        
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(choosedLocation.locationLat),\(choosedLocation.locationLon)&directionsmode=walking")!)
@@ -329,6 +333,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     
     func navigationForList() {
+        
+        Analytics.logEvent("MatchSuccessRoom_navigationForList", parameters: nil)
         
         let appearance = SCLAlertView.SCLAppearance(
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
@@ -433,6 +439,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             self.addToListButton.imageView?.image = UIImage(named: "addListHeart")
             
         } else {
+            
             self.addToListButton.imageView?.image = UIImage(named: "bigHeart")
             
         }
@@ -441,6 +448,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     }
     
     func ifAnyoneDeclineObserver() {
+        
+        Analytics.logEvent("MatchSuccessRoom_IfAnyoneDeclineObserver", parameters: nil)
         
         matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
             

@@ -193,6 +193,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             
             NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
             
+            Analytics.logEvent("prepareTo_matchbutton", parameters: nil)
+            
         }
 //      self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         

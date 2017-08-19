@@ -50,11 +50,16 @@ class LoginViewController: UIViewController {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        Analytics.logEvent("Login_viewDidLoad", parameters: nil)
 
     }
     @IBAction func forgetPassword(_ sender: UIButton) {
         
          NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
+        Analytics.logEvent("Login_forgetPassword", parameters: nil)
+        
         
         if self.emailTextField.text == "" {
 
@@ -132,11 +137,18 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginOrRegister(_ sender: UIButton) {
         
+        
+        
         if segmentedControl.selectedSegmentIndex == 0 {
+            
+            Analytics.logEvent("Login_login", parameters: nil)
             
             loginHandler()
             
         } else {
+            
+            Analytics.logEvent("Login_register", parameters: nil)
+            
             registerHandler()
         }
         

@@ -28,8 +28,14 @@ extension MatchSuccessViewController: GMSAutocompleteResultsViewControllerDelega
         location.formattedPhoneNumber = place.phoneNumber ?? ""
         
         location.website = place.website?.absoluteString ?? ""
+//        
+//        self.searchedLocations.append(location)
+        let searchedLocation = ChoosedLocation(storeName: location.name,
+                                               locationLat: "\(location.latitude)",
+            locationLon: "\(location.longitude)")
         
-        self.searchedLocations.append(location)
+        self.addOrRemoveListItemManager.addOrRemovelistItem(matchSuccessRoomRef: self.matchSuccessRoomRef, choosedLocation: searchedLocation)
+        
         self.listPickerView.isHidden = false
         self.setupPickerView()
         self.listPickerView.reloadAllComponents()

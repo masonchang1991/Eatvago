@@ -253,8 +253,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchSuccessVC.connectionRoomId = connectionId
         matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
         
-        
-        
     }
     
     
@@ -291,7 +289,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         self.navigationController?.popToRootViewController(animated: false)
         
-        
+        Analytics.logEvent("Loading_accept_goToChatRoom", parameters: nil)
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
 //        self.window?.makeKeyAndVisible()
 //        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -329,9 +327,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
         
         self.ref.child("UserHistory").child(uid).child(self.connectionId).removeValue()
-        //swiftlint:disable force_cast
-        let prepareToMatch = self.navigationController?.viewControllers[0] as! PrepareToMatchViewController
-        //swiftlint:enable force_cast
+        
+        Analytics.logEvent("Loading_closeTheRoom", parameters: nil)
         
         
     }
@@ -345,6 +342,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 self.navigationController?.popViewController(animated: true)
                 self.matchRoomRef.child("isClosed").removeAllObservers()
                 
+                Analytics.logEvent("Loading_observerIsAnyoneDecline", parameters: nil)
             }
             
         })

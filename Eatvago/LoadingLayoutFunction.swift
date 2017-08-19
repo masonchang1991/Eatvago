@@ -83,6 +83,10 @@ extension LoadingMatchViewController {
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.asiTealish85.cgColor
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 1
+        
+        //取消bar button
+        self.navigationItem.hidesBackButton = true
+        
 
 
         //background

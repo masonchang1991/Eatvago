@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+
+
 class LoadingViewController: UIViewController {
 
     @IBOutlet weak var landingBackgroundImageView: UIImageView!
@@ -41,9 +43,7 @@ class LoadingViewController: UIViewController {
         loadingFirstView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         loadingSecondView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         loadingThirdView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
-        
 
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

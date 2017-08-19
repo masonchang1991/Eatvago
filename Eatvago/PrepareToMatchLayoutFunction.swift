@@ -63,7 +63,7 @@ extension PrepareToMatchViewController {
         self.greetingTextBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.greetingTextBackgroundView.layer.shadowColor = UIColor.asiDarkishBlue.cgColor
         self.greetingTextBackgroundView.layer.opacity = 0.7
-        self.greetingTextBackgroundView.layer.shadowRadius = 3
+        self.greetingTextBackgroundView.layer.shadowRadius = 1
         self.greetingTextBackgroundView.clipsToBounds = false
 
         let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.6).cgColor,

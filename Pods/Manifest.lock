@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.5.0)
+  - Crashlytics (3.8.5):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.12)
   - FaveButton (2.0.3)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
@@ -80,6 +83,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Crashlytics
+  - Fabric
   - FaveButton (~> 2.0.3)
   - Firebase/Auth
   - Firebase/Core
@@ -100,6 +105,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
@@ -124,6 +131,6 @@ SPEC CHECKSUMS:
   SwifterSwift: f84eb7308f7742724b3cbf84283ce00f7c06d7fc
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 933f8f3a7c25e609a2cdcbaf3a897601bc33b2d1
+PODFILE CHECKSUM: 0b505f470d836706adbca03eefefbdb8c2956235
 
 COCOAPODS: 1.2.1

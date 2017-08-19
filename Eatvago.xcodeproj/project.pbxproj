@@ -364,6 +364,7 @@
 				0B0B674A2AE3E52748FD3D64 /* [CP] Embed Pods Frameworks */,
 				9D89D39F2EE9494DCC109CDE /* [CP] Copy Pods Resources */,
 				930144441F279A6200CEC11A /* Swiftlint */,
+				93FFE2881F47EA39006BECD3 /* FireBase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -468,6 +469,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		93FFE2881F47EA39006BECD3 /* FireBase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "FireBase Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 68e6686daa5b2f40c367e8c620d67b2b7dad5d7e 8ae12e7b50a2b6091ebaf99c99dbaa65c18e1b0035d0a48f5c1d8caad38f5030";
 		};
 		9D89D39F2EE9494DCC109CDE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
