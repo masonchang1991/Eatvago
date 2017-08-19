@@ -87,24 +87,22 @@ extension NearbyViewController {
         self.functionBarView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: functionBarGradientColors,
                                                                                  gradientframe: self.functionBarView.bounds, gradientstartPoint: CGPoint(x: 0, y: 0), gradientendPoint: CGPoint(x: 1, y: 1.0)), at: 0)
         
-        self.functionBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.functionBarView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
         self.functionBarView.layer.shadowColor = UIColor.asiBlack50.cgColor
-        self.functionBarView.layer.shadowRadius = 3
+        self.functionBarView.layer.shadowRadius = 1
         self.functionBarView.layer.shadowOpacity = 0.4
         
         
         
         // userinfo background
-        self.userInfoBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.userInfoBackgroundView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
         self.userInfoBackgroundView.layer.shadowColor = UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor
-        self.userInfoBackgroundView.layer.shadowOpacity = 1.0
-        self.userInfoBackgroundView.layer.shadowRadius = 3
+        self.userInfoBackgroundView.layer.shadowOpacity = 0.7
+        self.userInfoBackgroundView.layer.shadowRadius = 1
         self.userInfoBackgroundView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         self.userInfoBackgroundView.clipsToBounds = false
 
         let purpleColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 200.0/255.0, alpha: 1.0)
-        
-        let lightBlueColor = UIColor(red: 180.0/255.0, green: 224.0/255.0, blue: 200.0/255.0, alpha: 1.0)
         
         let userInfoBackgroundGradientColors = [UIColor.white.withAlphaComponent(0.1).cgColor,
                                                 purpleColor.withAlphaComponent(0.6).cgColor]
@@ -117,16 +115,12 @@ extension NearbyViewController {
         
         self.userInfoTextBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.userInfoTextBackgroundView.layer.shadowColor = UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor
-        self.userInfoTextBackgroundView.layer.shadowOpacity = 1.0
-        self.userInfoTextBackgroundView.layer.shadowRadius = 3
+        self.userInfoTextBackgroundView.layer.shadowOpacity = 0.7
+        self.userInfoTextBackgroundView.layer.shadowRadius = 1
         self.userInfoTextBackgroundView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         self.userInfoTextBackgroundView.clipsToBounds = false
-        
-        
-        let lightRedColor = UIColor(red: 255.0/255.0, green: 160.0/255.0, blue: 135.0/255.0, alpha: 1.0)
-        
-         let lightPurpleColor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 135.0/255.0, alpha: 1.0)
-        
+        self.userInfoTextBackgroundView.layer.masksToBounds = true
+
         let lightWhiteBlue = UIColor(red: 225.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         
         let userInfoTextBackgroundGradientColors = [UIColor.white.withAlphaComponent(0.5).cgColor,
@@ -147,7 +141,7 @@ extension NearbyViewController {
         
         self.bottomFunctionBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
         self.bottomFunctionBarView.layer.shadowColor = UIColor.asiBlack50.cgColor
-        self.bottomFunctionBarView.layer.shadowRadius = 3
+        self.bottomFunctionBarView.layer.shadowRadius = 2
         self.bottomFunctionBarView.layer.shadowOpacity = 0.4
 
     }

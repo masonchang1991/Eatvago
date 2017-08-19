@@ -201,7 +201,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         oppositePeopleImageView.clipsToBounds = true
         
-        if matchRoomData.oppositePeopleGender == "male" {
+        if matchRoomData.oppositePeopleGender == "man" {
             
             oppositePeopleImageView.layer.borderColor = UIColor.asiSeaBlue.cgColor
             

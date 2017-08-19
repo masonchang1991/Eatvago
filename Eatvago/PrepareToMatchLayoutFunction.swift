@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwifterSwift
 
 
 extension PrepareToMatchViewController {
@@ -65,6 +65,7 @@ extension PrepareToMatchViewController {
         self.greetingTextBackgroundView.layer.opacity = 0.7
         self.greetingTextBackgroundView.layer.shadowRadius = 1
         self.greetingTextBackgroundView.clipsToBounds = false
+        self.greetingTextBackgroundView.layer.masksToBounds = true
 
         let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.6).cgColor,
                                 UIColor.asiSeaBlue.withAlphaComponent(0.2).cgColor]

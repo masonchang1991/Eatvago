@@ -178,9 +178,9 @@
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
-				930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */,
 				9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */,
 				9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */,
+				93FFE2891F48235F006BECD3 /* NearbyLayout */,
 				93729AC31F35CBAE004125C0 /* DelegateFunction */,
 				9380CA911F2DE46200629C0A /* FetchManagers */,
 			);
@@ -348,6 +348,14 @@
 				930119D61F3EA920002822B1 /* DelegateFunction */,
 			);
 			name = MatchSuccess;
+			sourceTree = "<group>";
+		};
+		93FFE2891F48235F006BECD3 /* NearbyLayout */ = {
+			isa = PBXGroup;
+			children = (
+				930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */,
+			);
+			name = NearbyLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -34,7 +34,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     var typePickerView = UIPickerView()
 
-    var genderPickOption = ["Male", "Female"]
+    var genderPickOption = ["Man", "Woman"]
     
     var typePickOption = ["Any", "pizza", "coffee", "bar", "japan", "chinese"]
 
@@ -94,19 +94,12 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         setUpUserPhoto()
-        
+         setupLayer()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        setupLayer()
-    }
-    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)

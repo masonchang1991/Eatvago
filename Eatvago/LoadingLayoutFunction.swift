@@ -17,7 +17,7 @@ extension LoadingMatchViewController {
     func setLayout() {
         
         
-        if myGender == "male" {
+        if myGender == "man" {
             
             myImageView.image = myPhotoImage
             myImageView.contentMode = .scaleAspectFill

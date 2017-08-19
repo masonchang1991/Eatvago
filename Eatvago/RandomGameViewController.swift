@@ -184,7 +184,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                     text: "\(progressCount)",
                 image: restaurant.photo,
                 color: colorArray[colorProgressCount],
-                radius: 65)
+                radius: UIScreen.main.bounds.width / 7)
             
             //避免count超過color array長度
             if colorProgressCount == (colorArray.count - 1) {

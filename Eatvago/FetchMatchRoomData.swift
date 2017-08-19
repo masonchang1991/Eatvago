@@ -67,7 +67,7 @@ class FetchMatchRoomDataManager {
                         
                         let url = URL(string: photoURL!)
                         
-                        if gender == "male" {
+                        if gender == "man" {
                             
                             peopleImageView.sd_setImage(with: url, completed: nil)
                             
@@ -113,7 +113,7 @@ class FetchMatchRoomDataManager {
                         
                         let url = URL(string: photoURL!)
                         
-                        if gender == "male" {
+                        if gender == "man" {
                             
                             peopleImageView.sd_setImage(with: url, completed: nil)
                             
