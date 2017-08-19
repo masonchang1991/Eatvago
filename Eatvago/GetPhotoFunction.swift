@@ -103,7 +103,6 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {
 
-
         tabBarC?.userPhotoURLString = downloadImageURL.absoluteString
 
         DispatchQueue.main.async {

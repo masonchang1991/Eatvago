@@ -93,7 +93,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         let url = URL(string: myPhotoURl)
         
         setLayout()
-        
                 
         observerIsAnyoneDecline()
 
@@ -167,7 +166,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 
             }
     }
-    
     
     func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String) {
         
@@ -255,9 +253,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
     }
     
-    
-    
-    
     func goToChatRoom(sender: UIButton) {
         
         ifAcceptMatch = true
@@ -268,8 +263,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
         
         ref.child("UserHistory").child(uid).child(connectionId).setValue(connectionId)
-        
-        
         
         //swiftlint:disable force_cast
         let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
@@ -312,7 +305,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
 ////        self.tabBarController?.navigationController?.dismiss(animated: true, completion: nil)
 //        self.navigationController?.popToRootViewController(animated: true)
         
-        
 //        self.performSegue(withIdentifier: "matchSuccess", sender: nil)
         
     }
@@ -329,7 +321,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         self.ref.child("UserHistory").child(uid).child(self.connectionId).removeValue()
         
         Analytics.logEvent("Loading_closeTheRoom", parameters: nil)
-        
         
     }
     
@@ -353,6 +344,5 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
     
 }

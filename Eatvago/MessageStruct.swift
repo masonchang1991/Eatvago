@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Message {
     
     var userId: String

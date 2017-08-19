@@ -181,7 +181,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             
         } else {
             
-            
             self.checkIfRoomExistManager.checkIfRoomExist(type: type)
             
             NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)

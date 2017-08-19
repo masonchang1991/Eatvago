@@ -8,16 +8,12 @@
 
 import UIKit
 
-
 extension NearbyViewController {
-    
-    
     
     func setupLayout() {
         
         // hear button
         self.addToListButton.tintColor = UIColor.white.withAlphaComponent(0.7)
-        
         
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
@@ -44,10 +40,8 @@ extension NearbyViewController {
         if UIScreen.main.bounds.width < 340 {
             size = UIFont.boldSystemFont(ofSize: 20).pointSize
         }
-
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
-
         
         //userinfo textview
         self.userInfoTextView.layer.cornerRadius = 10
@@ -55,7 +49,6 @@ extension NearbyViewController {
         self.userInfoTextView.backgroundColor = UIColor.clear
         
         //userinfo background view
-
         
         // user photo
         
@@ -72,9 +65,6 @@ extension NearbyViewController {
         
         //changeToMapbutton
         
-
-
-        
     }
     
     func setupLayer() {
@@ -82,7 +72,6 @@ extension NearbyViewController {
         //function bar 1
         let functionBarGradientColors = [UIColor.asiTealish85.withAlphaComponent(0.4).cgColor,
                                         UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
-
         
         self.functionBarView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: functionBarGradientColors,
                                                                                  gradientframe: self.functionBarView.bounds, gradientstartPoint: CGPoint(x: 0, y: 0), gradientendPoint: CGPoint(x: 1, y: 1.0)), at: 0)
@@ -91,8 +80,6 @@ extension NearbyViewController {
         self.functionBarView.layer.shadowColor = UIColor.asiBlack50.cgColor
         self.functionBarView.layer.shadowRadius = 1
         self.functionBarView.layer.shadowOpacity = 0.4
-        
-        
         
         // userinfo background
         self.userInfoBackgroundView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
@@ -135,7 +122,6 @@ extension NearbyViewController {
         let bottomFunctionBarGradientColors = [UIColor.asiTealish85.withAlphaComponent(0.4).cgColor,
                                          UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
         
-        
         self.bottomFunctionBarView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: bottomFunctionBarGradientColors,
                                                                                  gradientframe: self.bottomFunctionBarView.bounds, gradientstartPoint: CGPoint(x: 0, y: 1), gradientendPoint: CGPoint(x: 1, y: 0)), at: 0)
         
@@ -145,9 +131,5 @@ extension NearbyViewController {
         self.bottomFunctionBarView.layer.shadowOpacity = 0.4
 
     }
-    
-    
-    
-    
     
 }

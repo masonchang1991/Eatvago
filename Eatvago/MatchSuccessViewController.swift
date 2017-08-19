@@ -60,8 +60,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBOutlet weak var underPagerViewBackgroundView: UIView!
     
     @IBOutlet weak var mainBackgroundView: UIView!
-    
-    
 
     @IBOutlet weak var listPagerView: FSPagerView! {
         
@@ -277,7 +275,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     }
     
     //status bar
-    override var prefersStatusBarHidden : Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
     
@@ -287,7 +285,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         locationManager.stopUpdatingLocation()
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         locationManager.stopUpdatingLocation()
@@ -296,7 +293,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         ref.removeAllObservers()
         UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
-    
     
     func sendMessage() {
         
@@ -314,7 +310,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
         }
         
-        
     }
     
     func navigationForPagerView() {
@@ -330,8 +325,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
     }
     
-    
-    
     func navigationForList() {
         
         Analytics.logEvent("MatchSuccessRoom_navigationForList", parameters: nil)
@@ -346,7 +339,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
-        
         
         alert.addButton("Walking", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
@@ -383,8 +375,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             alert.dismiss(animated: true, completion: nil)
         }
-        
-        
         
         alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
@@ -470,7 +460,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 let okAction = UIAlertAction(
                     title: "OK",
                     style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
-                        
                         
                         guard let uid = Auth.auth().currentUser?.uid else {
                             return
@@ -574,7 +563,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
-        
     }
     
     func manager(_ manager: AddOrRemoveListItemManager, didFail withError: String) {
@@ -635,7 +623,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 self.view.layoutIfNeeded()
                 
             }, completion: { (_) in
-                
 
                 self.searchButtonStatus = false
                 DispatchQueue.main.async {
@@ -679,7 +666,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         let alert = SCLAlertView(appearance: appearance)
         let alertViewIcon = UIImage(named: "exitIcon")
         
-        
         alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
             self.locationManager.stopUpdatingLocation()
@@ -703,6 +689,5 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
 
 }

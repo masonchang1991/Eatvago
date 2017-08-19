@@ -33,7 +33,6 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         self.segmentedHandler()
         self.addListPickerView.reloadAllComponents()
         self.reloadRandomBallView()
-        
    
     }
     
@@ -52,4 +51,3 @@ extension RandomGameViewController: GMSAutocompleteResultsViewControllerDelegate
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
-

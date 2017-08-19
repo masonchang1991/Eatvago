@@ -9,10 +9,7 @@
 import UIKit
 import Firebase
 
-
 extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -26,7 +23,6 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
 //        return UITableViewAutomaticDimension
 //        
 //    }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -71,8 +67,6 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             
             return messageCell
             
-            
-            
         } else {
             
             guard let messageCell = tableView.dequeueReusableCell(withIdentifier: "oppositePeopleChat", for: indexPath) as? OppositePeopleChatTableViewCell else {
@@ -82,7 +76,6 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             
             messageCell.chatLabel.text = self.chatRoomMessages[indexPath.row].message
             messageCell.chatLabel.textColor = UIColor.white
-
             
             messageCell.chatView.backgroundColor = UIColor(red: 13.0/255.0, green: 70.0/255.0, blue: 188.0/255.0, alpha: 0.8)
             messageCell.chatView.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -103,10 +96,6 @@ extension MatchSuccessViewController: UITableViewDelegate, UITableViewDataSource
             
         }
         
-        
     }
     
-    
 }
-
-

@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-
 class LoadingViewController: UIViewController {
 
     @IBOutlet weak var landingBackgroundImageView: UIImageView!
@@ -84,7 +83,6 @@ class LoadingViewController: UIViewController {
             
         }) { (_) in
             
-            
             UIView.animate(withDuration: 0.3, animations: {
                 
                 self.loadingFirstView.isHidden = false
@@ -112,7 +110,6 @@ class LoadingViewController: UIViewController {
                             self.loadingThirdView.alpha = 0
                             
                         }, completion: { (_) in
-                            
                             
                             self.loadingThirdView.alpha = 0
                             

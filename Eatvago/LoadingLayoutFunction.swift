@@ -9,13 +9,9 @@
 import UIKit
 import Foundation
 
-
 extension LoadingMatchViewController {
     
-    
-    
     func setLayout() {
-        
         
         if myGender == "man" {
             
@@ -57,7 +53,6 @@ extension LoadingMatchViewController {
             
         }
         
-        
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
         let sizeLength = UIScreen.main.bounds.size.width
@@ -86,8 +81,6 @@ extension LoadingMatchViewController {
         
         //取消bar button
         self.navigationItem.hidesBackButton = true
-        
-
 
         //background
         
@@ -121,13 +114,6 @@ extension LoadingMatchViewController {
         self.myTextView.isUserInteractionEnabled = false
         self.oppositePeopleInfoTextView.isUserInteractionEnabled = false
         
-        
-        
-        
-        
-        
-        
     }
-    
     
 }

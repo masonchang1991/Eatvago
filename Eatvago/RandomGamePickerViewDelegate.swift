@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource  {
+extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -86,14 +86,5 @@ extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource
         }
         
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

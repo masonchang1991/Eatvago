@@ -64,7 +64,6 @@ extension RandomGameViewController {
         let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.6).cgColor,
                                         UIColor.asiSeaBlue.withAlphaComponent(0.3).cgColor]
         
-        
         self.setRandomView.backgroundColor = UIColor.clear
         self.setRandomView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
                                                                                gradientframe: self.setRandomView.frame,
@@ -76,8 +75,6 @@ extension RandomGameViewController {
         
         //nivagation button
 //        self.navigationButton.tintColor = UIColor.asiDenimBlue.withAlphaComponent(0.8)
-        
-        
         
     }
     

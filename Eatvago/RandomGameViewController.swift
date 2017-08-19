@@ -431,8 +431,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
     }
     
-    
-    
     @IBAction func goByNavigation(_ sender: UIButton) {
         
         let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()

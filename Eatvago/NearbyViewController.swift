@@ -206,7 +206,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         //button function
         addToListButton.addTarget(self, action: #selector(addToList), for: .touchUpInside)
         
-        
         //layout
         setupLayout()
         
@@ -216,7 +215,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
         
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -224,7 +222,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         setupLayer()
     }
-    
     
     deinit {
         
@@ -419,7 +416,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
 
     @IBAction func logout(_ sender: UIButton) {
         
-        
         let appearance = SCLAlertView.SCLAppearance(
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
@@ -431,7 +427,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
         let alertViewIcon = UIImage(named: "exitIcon")
-        
 
         alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
@@ -444,7 +439,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
             self.window?.rootViewController = loginVC
-            
             
             alert.dismiss(animated: true, completion: nil)
         }
@@ -461,8 +455,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBAction func setUpFilter(_ sender: Any) {
     
         let distancePickerView = UIPickerView()
-        
-        
         
         let appearance = SCLAlertView.SCLAppearance(
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
@@ -534,7 +526,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                                     
                                 })
                                 
-                                
                             })
         }
         
@@ -571,6 +562,5 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
     
 }

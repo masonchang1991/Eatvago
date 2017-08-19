@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-
 protocol UploadOrDownLoadUserPhotoDelegate:class {
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion: String, photoURL: String)
@@ -28,7 +27,6 @@ enum UploadOrDownloadPhotoError: Error {
     case upload
     
 }
-
 
 class UploadOrDownLoadUserPhotoManager {
     
@@ -79,7 +77,6 @@ class UploadOrDownLoadUserPhotoManager {
         reference.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if snapshot.exists() == false {
-                
                
                 self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
                 

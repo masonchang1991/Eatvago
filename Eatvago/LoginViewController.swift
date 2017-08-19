@@ -60,7 +60,6 @@ class LoginViewController: UIViewController {
         
         Analytics.logEvent("Login_forgetPassword", parameters: nil)
         
-        
         if self.emailTextField.text == "" {
 
             let appearance = SCLAlertView.SCLAppearance(
@@ -75,7 +74,6 @@ class LoginViewController: UIViewController {
             let alert = SCLAlertView(appearance: appearance)
             
             alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
-                
                 
                 alert.dismiss(animated: true, completion: nil)
             }
@@ -114,7 +112,6 @@ class LoginViewController: UIViewController {
                 
                 alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
                     
-                    
                     alert.dismiss(animated: true, completion: nil)
                 }
                 
@@ -136,8 +133,6 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginOrRegister(_ sender: UIButton) {
-        
-        
         
         if segmentedControl.selectedSegmentIndex == 0 {
             
@@ -189,7 +184,6 @@ class LoginViewController: UIViewController {
                 // Initialize SCLAlertView using custom Appearance
                 let alert = SCLAlertView(appearance: appearance)
                 
-                
                 alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
                     
                     alert.dismiss(animated: true, completion: nil)
@@ -237,7 +231,6 @@ class LoginViewController: UIViewController {
                         // Initialize SCLAlertView using custom Appearance
                         let alert = SCLAlertView(appearance: appearance)
                         
-                        
                         alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
                         
                             self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
@@ -273,16 +266,12 @@ class LoginViewController: UIViewController {
                 // Initialize SCLAlertView using custom Appearance
                 let alert = SCLAlertView(appearance: appearance)
                 
-                
                 alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
-
                     
                     alert.dismiss(animated: true, completion: nil)
                 }
                 
                 alert.showNotice("Error", subTitle: error?.localizedDescription ?? "", circleIconImage: nil)
-
-                
                 
             }
 

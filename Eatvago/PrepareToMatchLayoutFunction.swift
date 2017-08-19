@@ -9,9 +9,7 @@
 import UIKit
 import SwifterSwift
 
-
 extension PrepareToMatchViewController {
-    
     
     func setUpUserPhoto() {
         
@@ -21,8 +19,6 @@ extension PrepareToMatchViewController {
         self.userPhotoImageView.clipsToBounds = true
 
     }
-    
-    
     
     func setUpLayout() {
         
@@ -52,12 +48,9 @@ extension PrepareToMatchViewController {
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 1
         
-        
-        
     }
     
     func setupLayer() {
-        
         
         // greeting textbackground view
         self.greetingTextBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -78,19 +71,7 @@ extension PrepareToMatchViewController {
         self.greetingTextView.backgroundColor = UIColor.asiWhiteTwo.withAlphaComponent(0.3)
         self.greetingTextView.layer.cornerRadius = 15
         self.greetingTextView.clipsToBounds = true
-
-        
-        
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

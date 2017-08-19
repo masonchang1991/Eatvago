@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-
-
 protocol ChatObserverDelegate:class {
     
     func manager(_ manager: ChatObserverManager, didGet messages: [Message])
@@ -23,7 +21,6 @@ enum ObserverMessagerError: Error {
     
     case invalidData
     case guardletFail
-    
     
 }
 class ChatObserverManager {
@@ -70,11 +67,5 @@ class ChatObserverManager {
         })
         
     }
-    
-    
-    
-    
-    
-    
     
 }

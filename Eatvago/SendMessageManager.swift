@@ -12,7 +12,6 @@ import Firebase
 protocol SendMessageDelegate:class {
     
     func manager(_ manager: SendMessageManager, success: String)
-
     
     func manager(_ manager: SendMessageManager, didFailwith error: Error)
     
@@ -22,9 +21,7 @@ enum SendMessagerError: Error {
     
     case invalidUser
     
-    
 }
-
 
 class SendMessageManager {
     
@@ -55,7 +52,6 @@ class SendMessageManager {
         ref.child("Chat Room").child(connectionRoomId).child("last message").setValue(messageStruct)
         
         self.delegate?.manager(self, success: "message sent")
-        
         
     }
     

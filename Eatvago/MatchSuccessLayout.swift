@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension UIView {
     
     func generateGradientImage(gradientColors: [CGColor], gradientFrame: CGRect, gradientStartPoint: CGPoint, gradientEndPoint: CGPoint) -> UIImage {
@@ -39,10 +38,7 @@ extension UIView {
     
 }
 
-
 extension MatchSuccessViewController {
-    
-    
     
     func layoutSet() {
         
@@ -70,19 +66,15 @@ extension MatchSuccessViewController {
                                                                                      gradientstartPoint: CGPoint(x: 0.5, y: 0),
                                                                                      gradientendPoint: CGPoint(x: 0.5, y: 1.0)), at: 0)
         
-        
         //pagerView
         self.listPagerView.backgroundColor = UIColor.asiSeaBlue.withAlphaComponent(0.2)
         self.listPagerView.layer.cornerRadius = 8
         self.listPagerView.clipsToBounds = true
         self.underPagerViewBackgroundView.backgroundColor = UIColor.white
         
-        
         //function bar
         let functionBarGradientColors = [UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor,
                                          UIColor.asiTealish85.withAlphaComponent(0.8).cgColor]
-        
-        
         
         self.functionBarBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: functionBarGradientColors,
                                                                                            gradientframe: CGRect(x: 0, y: 0, width: functionBarBackgroundView.frame.width, height: functionBarBackgroundView.frame.height),
@@ -93,7 +85,6 @@ extension MatchSuccessViewController {
         self.functionBarBackgroundView.layer.shadowOpacity = 0.8
         self.functionBarBackgroundView.layer.shadowColor = UIColor.asiBlack50.cgColor
         self.functionBarBackgroundView.layer.masksToBounds = false
-        
         
         //listPicker
         self.listPickerHeightConstraint.constant = 0
@@ -107,7 +98,6 @@ extension MatchSuccessViewController {
         
         let chatBoxGradientColors = [UIColor.asiDarkSalmon.withAlphaComponent(0.8).cgColor,
                                    UIColor.asiBrownish.withAlphaComponent(0.8).cgColor]
-        
         
         self.chatBoxView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: chatBoxGradientColors,
                                                                              gradientframe: self.chatBoxView.frame,
@@ -123,20 +113,7 @@ extension MatchSuccessViewController {
         self.sendMessageButton.layer.shadowOpacity = 0.6
         self.sendMessageButton.layer.shadowRadius = 2
         self.sendMessageButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-    
-        
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
-
-
