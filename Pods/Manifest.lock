@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.5.0)
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
+  - ExpandingMenu (0.3.1)
   - Fabric (1.6.12)
   - FaveButton (2.0.3)
   - Firebase/Auth (4.0.4):
@@ -84,6 +85,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Crashlytics
+  - ExpandingMenu
   - Fabric
   - FaveButton (~> 2.0.3)
   - Firebase/Auth
@@ -106,6 +108,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  ExpandingMenu: 107548f3cb8c04b28a8b6b436983f506849484cc
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
@@ -131,6 +134,6 @@ SPEC CHECKSUMS:
   SwifterSwift: f84eb7308f7742724b3cbf84283ce00f7c06d7fc
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 0b505f470d836706adbca03eefefbdb8c2956235
+PODFILE CHECKSUM: 9d736990c067353dc943fe3989bc991c3e4d3ffa
 
 COCOAPODS: 1.2.1

@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ExpandingMenu-ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FSPagerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,17 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3545AEFF2A873424EA212D063F28319C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>49BECABF431773BFFDD5C3F0DFC25749</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6865FFC40218A9E35A66EFC3403253DE</key>
+		<key>605D1ABC7815102E4AC795436644BD4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7409E312376929E18E79DC1DE95F21FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,17 +122,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7DAB7C817073E3829E53D6DD42576046</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E1679D8778177232587D662868EB3C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>92B2CF6BCDFA321A565BD9694A05F9A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A2D6E54F25028B96CBCA845A57F12C39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +142,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C07D1540B92AACEF16FA22C2A8C5ABC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF012D64631872222F5D48F48D300680</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB3C30C12812E277147F8CAC42660691</key>
 		<dict>
 			<key>primary</key>
 			<true/>

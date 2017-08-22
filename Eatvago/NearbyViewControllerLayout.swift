@@ -63,9 +63,6 @@ extension NearbyViewController {
 
         self.backgroundImageView.alpha = 0
         
-        // logout button
-        self.logoutButton.tintColor = UIColor.white
-        
         //changeToMapbutton
         
     }

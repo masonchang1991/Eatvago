@@ -26,4 +26,5 @@ target 'Eatvago' do
   pod 'SwifterSwift'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'ExpandingMenu'
 end

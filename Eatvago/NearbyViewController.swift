@@ -14,6 +14,7 @@ import FirebaseDatabase
 import Firebase
 import SCLAlertView
 import FSPagerView
+import ExpandingMenu
 
 class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -24,8 +25,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBOutlet weak var userInfoBackgroundView: UIView!
     
     @IBOutlet weak var storeNameLabel: UILabel!
-    
-    @IBOutlet weak var setUpFilterButton: UIButton!
     
     @IBOutlet weak var storeDurationTimeLabel: UILabel!
     
@@ -38,8 +37,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBOutlet weak var mapView: UIView!
     
     @IBOutlet weak var loadingNVAView: NVActivityIndicatorView!
-
-    @IBOutlet weak var logoutButton: UIButton!
     
     @IBOutlet weak var userInfoTextBackgroundView: UIView!
 
@@ -215,6 +212,45 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         UIApplication.shared.statusBarStyle = .lightContent
         
+        //加入menu button
+        
+        let menuButtonSize: CGSize = CGSize(width: 40, height: 40)
+        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: UIImage(named: "menu")!, centerHighlightedImage: UIImage(named: "menu")!)
+        menuButton.center = CGPoint(x: 20.0, y: 20.0)
+        view.addSubview(menuButton)
+        
+        
+        let mapButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
+            self.changTableViewAndMap()
+            
+        }
+        
+        let setupButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "Setup")!, highlightedImage: UIImage(named: "Setup")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
+            self.setUpFilter()
+            
+        }
+        
+        let logoutButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "exitIcon")!, highlightedImage: UIImage(named: "exitIcon")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
+            self.logout()
+            
+        }
+
+
+        
+        
+        
+        menuButton.addMenuItems([mapButton, setupButton, logoutButton])
+        menuButton.expandingDirection = .bottom
+        
+        
+        
+        
+        
+        
+        
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
         
     }
@@ -338,72 +374,26 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         }
     }
     
-    /*
-    func addStoreDetail(_ sender: UIButton) {
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "HelveticaNeue", size: 15)!,
-            kTextFont: UIFont(name: "HelveticaNeue", size: 10)!,
-            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
-            showCloseButton: false
-        )
-        
-        // Initialize SCLAlertView using custom Appearance
-        let alert = SCLAlertView(appearance: appearance)
-        let subTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 216, height: 70))
-        let x = (subTextField.frame.width - 180) / 2
-        
-        let addCommentTextField = UITextField(frame: CGRect(x: x, y: 10, width: 180, height: 50))
-        
-        addCommentTextField.layer.borderColor = UIColor.blue.cgColor
-        addCommentTextField.layer.borderWidth = 1.5
-        addCommentTextField.layer.cornerRadius = 5
-        addCommentTextField.placeholder = " 施工中"
-        subTextField.addSubview(addCommentTextField)
-        alert.customSubview = subTextField
-        
-        alert.addButton("OK") {
-            
-            let text = addCommentTextField.text
-            
-            let autoId = self.ref?.childByAutoId()
-            
-            guard let key = autoId?.key else {
-                return
-            }
-            
-            self.ref?.child("Place Detail").child("\(self.locations[sender.tag].placeId)").child("Comments").child(key).setValue(key)
-            
-            self.ref?.child("Comments").child("\(self.locations[sender.tag].placeId)").child(key).child("Creater").setValue(userId)
-            
-            self.ref?.child("Comments").child("\(self.locations[sender.tag].placeId)").child(key).child("Comment").setValue(text)
-            
-            alert.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.showTitle("評論\(self.locations[sender.tag].name)", subTitle: "", style: .success)
-        
-    }
-    */
-    func showStoreDetail(_ sender: UIButton) {
+       func showStoreDetail(_ sender: UIButton) {
         
         self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
         
     }
 
-    @IBAction func changTableViewAndMap(_ sender: UIButton) {
+    
+    func changTableViewAndMap() {
         if storeImagePagerView.isHidden == true {
             storeImagePagerView.isHidden = false
             storeImagePagerView.reloadData()
             mapView.isHidden = true
-            sender.setTitle("Map", for: .normal)
         } else {
             mapView.isHidden = false
             storeImagePagerView.isHidden = true
             self.storeImagePagerView.isHidden = true
-            sender.setTitle("List", for: .normal)
         }
     }
+    
+    
     
     @IBAction func goToNavigation(_ sender: Any) {
 
@@ -416,7 +406,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
     }
 
-    @IBAction func logout(_ sender: UIButton) {
+    
+    func logout() {
         
         let appearance = SCLAlertView.SCLAppearance(
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
@@ -429,7 +420,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
         let alertViewIcon = UIImage(named: "exitIcon")
-
+        
         alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
             // 消去 UserDefaults內使用者的帳號資訊
@@ -452,10 +443,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         }
         
         alert.showNotice("Logout", subTitle: "Are you sure?", circleIconImage: alertViewIcon)
+
+        
     }
     
-    @IBAction func setUpFilter(_ sender: Any) {
-    
+
+    func setUpFilter() {
+        
         let distancePickerView = UIPickerView()
         
         let appearance = SCLAlertView.SCLAppearance(
@@ -503,7 +497,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         alert.addButton(" OK ",
                         backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
                         textColor: UIColor.white,
-                        showDurationStatus: true) { 
+                        showDurationStatus: true) {
                             
                             self.filterDistance = Double(self.distanceTextField.text ?? "100") ?? 100
                             self.keywordText = (keywordTextField.text ?? "")
@@ -543,6 +537,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         alert.showInfo("SetUp", subTitle: "Define Range")
         
     }
+
+    
+    
+    
+    
+    
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
