@@ -56,6 +56,34 @@ extension MatchSuccessViewController {
         //layout
         self.listPagerView.backgroundColor = UIColor.clear
         self.mainBackgroundView.backgroundColor = UIColor.clear
+       
+        //pagerView
+        self.listPagerView.backgroundColor = UIColor.asiSeaBlue.withAlphaComponent(0.2)
+        self.listPagerView.layer.cornerRadius = 8
+        self.listPagerView.clipsToBounds = true
+        self.underPagerViewBackgroundView.backgroundColor = UIColor.white
+        
+        //listPicker
+        self.listPickerHeightConstraint.constant = 0
+        self.listPickerView.isHidden = true
+        self.navigationButtonForList.isHidden = true
+
+        //tableview
+        self.matchRoomTableView.backgroundColor = UIColor(red: 156.0/255.0, green: 232.0/255.0, blue: 255.0/255.0, alpha: 1.0).withAlphaComponent(0.4)
+        
+        self.chatBoxView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.chatBoxView.layer.shadowRadius = 2
+        self.chatBoxView.layer.shadowOpacity = 0.8
+        self.chatBoxView.layer.shadowColor = UIColor.asiDarkishBlue.cgColor
+        
+        self.sendMessageButton.layer.shadowColor = UIColor.asiSlate.cgColor
+        self.sendMessageButton.layer.shadowOpacity = 0.6
+        self.sendMessageButton.layer.shadowRadius = 2
+        self.sendMessageButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        
+    }
+    
+    func setLayer() {
         
         // title
         let titleGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.8).cgColor,
@@ -65,13 +93,6 @@ extension MatchSuccessViewController {
                                                                                      gradientframe: self.titleBackgroundView.frame,
                                                                                      gradientstartPoint: CGPoint(x: 0.5, y: 0),
                                                                                      gradientendPoint: CGPoint(x: 0.5, y: 1.0)), at: 0)
-        
-        //pagerView
-        self.listPagerView.backgroundColor = UIColor.asiSeaBlue.withAlphaComponent(0.2)
-        self.listPagerView.layer.cornerRadius = 8
-        self.listPagerView.clipsToBounds = true
-        self.underPagerViewBackgroundView.backgroundColor = UIColor.white
-        
         //function bar
         let functionBarGradientColors = [UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor,
                                          UIColor.asiTealish85.withAlphaComponent(0.8).cgColor]
@@ -86,34 +107,17 @@ extension MatchSuccessViewController {
         self.functionBarBackgroundView.layer.shadowColor = UIColor.asiBlack50.cgColor
         self.functionBarBackgroundView.layer.masksToBounds = false
         
-        //listPicker
-        self.listPickerHeightConstraint.constant = 0
-        self.listPickerView.isHidden = true
-        self.navigationButtonForList.isHidden = true
-
-        //tableview
-        self.matchRoomTableView.backgroundColor = UIColor(red: 156.0/255.0, green: 232.0/255.0, blue: 255.0/255.0, alpha: 1.0).withAlphaComponent(0.4)
-        
         //sendmessage box
         
         let chatBoxGradientColors = [UIColor.asiDarkSalmon.withAlphaComponent(0.8).cgColor,
-                                   UIColor.asiBrownish.withAlphaComponent(0.8).cgColor]
+                                     UIColor.asiBrownish.withAlphaComponent(0.8).cgColor]
         
         self.chatBoxView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: chatBoxGradientColors,
                                                                              gradientframe: self.chatBoxView.frame,
                                                                              gradientstartPoint: CGPoint(x: 0, y: 0),
                                                                              gradientendPoint: CGPoint(x: 1, y: 1)), at: 0)
-        
-        self.chatBoxView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.chatBoxView.layer.shadowRadius = 2
-        self.chatBoxView.layer.shadowOpacity = 0.8
-        self.chatBoxView.layer.shadowColor = UIColor.asiDarkishBlue.cgColor
-        
-        self.sendMessageButton.layer.shadowColor = UIColor.asiSlate.cgColor
-        self.sendMessageButton.layer.shadowOpacity = 0.6
-        self.sendMessageButton.layer.shadowRadius = 2
-        self.sendMessageButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        
+
     }
+    
     
 }

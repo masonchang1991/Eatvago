@@ -42,6 +42,9 @@ class LoadingViewController: UIViewController {
         loadingFirstView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         loadingSecondView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
         loadingThirdView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
+        
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
+        UIApplication.shared.statusBarStyle = .default
 
     }
     

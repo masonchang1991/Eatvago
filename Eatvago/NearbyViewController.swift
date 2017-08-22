@@ -213,6 +213,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
         
     }

@@ -22,18 +22,6 @@ extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource
             
         case randomCountPickerView: return randomCountPickOptions.count
             
-        case addListPickerView:
-            
-            var totalLocationCount = 0
-            
-            if let addLocationCount = tabBarVC?.addLocations.count {
-                
-                totalLocationCount = addLocationCount + searchedLocations.count
-                
-            }
-            
-            return totalLocationCount
-            
         default: return 0
         }
 
@@ -46,27 +34,6 @@ extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource
         case distancePickerView: return "\(distancePickOptions[row])"
             
         case randomCountPickerView: return "\(randomCountPickOptions[row])"
-            
-        case addListPickerView:
-            
-            if let addLocationCount = tabBarVC?.addLocations.count {
-                
-                print(row, "rowwwwwww")
-                print(addLocationCount, "adddddddd")
-                
-                if row < addLocationCount && addLocationCount != 0 {
-                    
-                    return tabBarVC?.addLocations[row].name
-                    
-                } else {
-                    
-                    return searchedLocations[row - addLocationCount].name
-                    
-                }
-                
-            }
-            
-            return ""
             
         default: return ""
             

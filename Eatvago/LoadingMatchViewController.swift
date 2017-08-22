@@ -149,6 +149,14 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupBackgroundLayer()
+        
+    }
+    
+    
     deinit {
         print("LoadingViewController")
     }

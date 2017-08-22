@@ -19,12 +19,6 @@ import Firebase
 
 class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarControllerDelegate {
     
-    @IBOutlet weak var setSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet weak var setSegmentControlConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var openSetRandomButton: FaveButton!
-    
     @IBOutlet weak var distanceTextField: SkyFloatingLabelTextFieldWithIcon!
     
     @IBOutlet weak var keywordTextField: SkyFloatingLabelTextFieldWithIcon!
@@ -35,11 +29,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     @IBOutlet weak var setRandomView: UIView!
     
-    @IBOutlet weak var searchView: UIView!
-    
     @IBOutlet weak var navigationButton: FaveButton!
-    
-    @IBOutlet weak var addListPickerView: UIPickerView!
     
     @IBOutlet weak var randomGameBackgorundImageView: UIImageView!
 
@@ -93,22 +83,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
-
-        segmentedHandler()
-
-        definesPresentationContext = true
 
         tabBarVC = self.tabBarController as? MainTabBarController
-
         tabBarVC?.delegate = self
-        
-        self.addListPickerView.delegate = self
-        self.addListPickerView.dataSource = self
 
-        setLayout()
         
         // picker view
         distancePickerView.delegate = self
@@ -133,40 +111,28 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     override func viewWillAppear(_ animated: Bool) {
         
         // UI
-        searchButton.isSelected = false
-        searchButton.normalColor = UIColor.asiSeaBlue
-        
-        openSetRandomButton.isSelected = false
-        openSetRandomButton.normalColor = UIColor.asiSeaBlue
-        
-        navigationButton.isSelected = false
-        navigationButton.normalColor = UIColor.asiBrownish
+        setLayout()
         
         reloadRandomBallView()
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupLayer()
+        
+    }
+    
     func reloadRandomBallView() {
-        
-        self.addListPickerView.reloadAllComponents()
-        
+
         removeAllNode(magnetic: magnetic)
         
         self.randomRestaurants = []
         
         self.nodeDictionary = [:]
-        
-        if setSegmentedControl.selectedSegmentIndex == 0 {
-        
-            totalRestaurants = (tabBarVC?.fetchedLocations) ?? []
-            
-        } else {
-            
-            totalRestaurants = (tabBarVC?.addLocations ?? [])
-            
-            totalRestaurants.append(contentsOf: searchedLocations)
-            
-        }
+
+        totalRestaurants = (tabBarVC?.fetchedLocations) ?? []
         
         randomGameMagneticView.presentScene(magnetic)
 
@@ -328,109 +294,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
     }
     
-    @IBAction func openOrCloseSetRandomView(_ sender: FaveButton) {
-        
-        if setRandomView.isHidden == true {
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                
-                self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height  + 5
-                
-                self.setRandomView.alpha = 1.0
-                
-                self.addListPickerView.alpha = 1.0
-                
-                self.view.layoutIfNeeded()
-                
-            }, completion: { (_) in
-                
-                self.setRandomView.isHidden = false
-                
-                self.addListPickerView.isHidden = false
-                
-            })
-            
-        } else {
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                
-                self.setSegmentControlConstraint.constant = 0
-                
-                self.setRandomView.alpha = 0.0
-                
-                self.addListPickerView.alpha = 0.0
-                
-                self.view.layoutIfNeeded()
-                
-            }, completion: { (_) in
-                
-                self.setRandomView.isHidden = true
-                
-                self.addListPickerView.isHidden = true
-                
-            })
-            
-        }
-        
-    }
-    
-    func segmentedHandler() {
-        
-        //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
-        if setSegmentedControl.selectedSegmentIndex == 0 {
-            
-            reloadRandomBallView()
-            openSetRandomButton.isHidden = false
-            searchView.isHidden = true
-            addListPickerView.isHidden = true
-            setRandomView.isHidden = true
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                
-                self.setSegmentControlConstraint.constant = 0
-                self.view.layoutIfNeeded()
-                
-            })
-            
-        } else {
-            
-            reloadRandomBallView()
-            openSetRandomButton.isHidden = true
-            searchView.isHidden = false
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                self.setSegmentControlConstraint.constant = 0
-                self.view.layoutIfNeeded()
-            })
-            
-            if (tabBarVC?.addLocations.count ?? 0) + searchedLocations.count != 0 {
-                
-                addListPickerView.isHidden = false
-                
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.setSegmentControlConstraint.constant = self.addListPickerView.frame.height + 5
-                    self.view.layoutIfNeeded()
-                    
-                })
-                
-            } else {
-                
-                addListPickerView.isHidden = true
-                
-                UIView.animate(withDuration: 0.4, animations: {
-                    
-                    self.setSegmentControlConstraint.constant = 0
-                    
-                })
-                
-            }
-            
-            setRandomView.isHidden = true
-            
-        }
-        
-    }
-    
     @IBAction func goByNavigation(_ sender: UIButton) {
         
         let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController ?? NearbyViewController()
@@ -449,11 +312,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             print("Can't use comgooglemaps://")
         }
 
-    }
-
-    @IBAction func setSegmentControl(_ sender: UISegmentedControl) {
-        
-        segmentedHandler()
     }
 
 }
