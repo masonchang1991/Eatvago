@@ -46,19 +46,6 @@ extension NearbyViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
         
-        //userinfo textview
-        self.userInfoTextView.layer.cornerRadius = 10
-        self.userInfoTextView.clipsToBounds = true
-        self.userInfoTextView.backgroundColor = UIColor.clear
-        
-        //userinfo background view
-        
-        // user photo
-        
-        self.userPhotoImageView.contentMode = .scaleAspectFill
-        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width / 2
-        self.userPhotoImageView.clipsToBounds = true
-        
         //background image
 
         self.backgroundImageView.alpha = 0

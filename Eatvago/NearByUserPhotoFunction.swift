@@ -53,12 +53,11 @@ extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecogni
         let cameraAction = UIAlertAction(
             title: "Camera",
             style: .default) { (_: UIAlertAction!) -> Void in
-                
                 self.getUserCamera()
                 
         }
         alertController.addAction(cameraAction)
-        self.present(
+        self.userProfileAlertView.present(
             alertController,
             animated: true,
             completion: nil)

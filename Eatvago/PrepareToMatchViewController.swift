@@ -93,11 +93,17 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         view.addGestureRecognizer(tap)
     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        setUpUserPhoto()
+    }
+    
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        setUpUserPhoto()
+        
          setupLayer()
     }
     

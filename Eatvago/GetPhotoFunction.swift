@@ -35,7 +35,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
                 style: .default,
                 handler: nil)
             alertController.addAction(okAction)
-            self.present(
+            self.userProfileAlertView.present(
                 alertController,
                 animated: true,
                 completion: nil)
@@ -52,7 +52,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             picker.allowsEditing = true
             picker.delegate = self
-            self.present(picker, animated: true, completion: nil)
+            self.userProfileAlertView.present(picker, animated: true, completion: nil)
         }
     }
     
@@ -71,7 +71,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
 //            //set照片中心
 //            self.userPhotoImageView.center = CGPoint(x: self.userPhotoImageView.frame.width * 0.5, y: self.userPhotoImageView.frame.height * 0.5)
             //放照片啦
-//            self.userPhotoImageView.image = image
+            self.userPhotoImageView.image = image
             
             self.userPhotoImageView.contentMode = .scaleAspectFill
             

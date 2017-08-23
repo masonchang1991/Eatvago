@@ -17,10 +17,7 @@ import FSPagerView
 import ExpandingMenu
 
 class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-    
-    @IBOutlet weak var userPhotoImageView: UIImageView!
 
-    @IBOutlet weak var userInfoTextView: UITextView!
     
     @IBOutlet weak var userInfoBackgroundView: UIView!
     
@@ -138,6 +135,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     //全螢幕讀取 下載圖片或上傳圖片
     let activityData = ActivityData()
+    //存取user圖片
+    var userPhotoImageView = UIImageView()
+    //userPhoto alert
+    var userProfileAlertView = SCLAlertView()
+    // userImageView In alertview
+    var userImageViewInAlertView = UIImageView()
     
     override func loadView() {
          super.loadView()
@@ -219,6 +222,11 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         menuButton.center = CGPoint(x: 20.0, y: 20.0)
         view.addSubview(menuButton)
         
+        let profileButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
+            self.setUpProfile()
+
+        }
         
         let mapButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
             
@@ -242,7 +250,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         
         
-        menuButton.addMenuItems([mapButton, setupButton, logoutButton])
+        menuButton.addMenuItems([profileButton, mapButton, setupButton, logoutButton])
         menuButton.expandingDirection = .bottom
         
         
@@ -447,7 +455,60 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
     }
     
+    func setUpProfile() {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
+            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
+            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
+            showCloseButton: false,
+            showCircularIcon: true
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        userProfileAlertView = alert
+        // Creat the subview
+        let width = 216
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 115))
 
+        self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50, y: 15, width: 100, height: 100)
+
+        
+        if self.userPhotoImageView.image != nil {
+            
+            
+        } else {
+            
+            self.userPhotoImageView.image = UIImage(named: "UserDefaultIconForMatch")
+            
+        }
+        
+        self.userPhotoImageView.contentMode = .scaleAspectFill
+        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.width / 4
+        self.userPhotoImageView.clipsToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(choosePhotoOrCamera))
+        
+        self.userPhotoImageView.addGestureRecognizer(tap)
+        
+        self.userPhotoImageView.isUserInteractionEnabled = true
+        
+        subview.addSubview(self.userPhotoImageView)
+        
+        alert.customSubview = subview
+        alert.addButton(" BACK ",
+                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white,
+                        showDurationStatus: true) {
+                            
+                            alert.dismiss(animated: true, completion: nil)
+                            
+        }
+        
+        alert.showInfo("Profile Pic", subTitle: "")
+    }
+    
     func setUpFilter() {
         
         let distancePickerView = UIPickerView()
