@@ -101,11 +101,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         // keyboard 收下去
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 //        self.view.addGestureRecognizer(tap)
-        
-        
-        self.navigationButton.isUserInteractionEnabled = false
-        self.navigationButton.tintColor = UIColor.asiBrownish
 
+        
+        
         Analytics.logEvent("RandomGame_viewDidLoad", parameters: nil)
         
     }
@@ -120,6 +118,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         setLayout()
   
         reloadRandomBallView()
+        
+        self.navigationButton.isSelected = true
+        self.navigationButton.isSelected = false
+        self.navigationButton.tintColor = UIColor.white
+        self.navigationButton.isUserInteractionEnabled = false
         
     }
     
@@ -226,8 +229,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
         
         self.navigationButton.isUserInteractionEnabled = true
+        self.navigationButton.normalColor = UIColor.asiSeaBlue.withAlphaComponent(0.6)
         self.navigationButton.isSelected = false
-        self.navigationButton.tintColor = UIColor.white
         //消除其他已經選取的cell外框顏色
         for selectedNode in nodes {
             
@@ -244,9 +247,15 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
         
         if nodeDictionary[key] != nil {
-        
+            
+            if (nodeDictionary[key]?.characters.count)! > 7 {
+                
+                node.label.fontSize = 10
+                
+            } else {
+                node.label.fontSize = 15
+            }
             node.text = nodeDictionary[key]
-            node.label.fontSize = 15
             node.label.fontName = "Chalkboard SE"
         }
         
@@ -261,6 +270,7 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
         self.selectedRestaurant = nil
         self.navigationButton.isUserInteractionEnabled = false
+        self.navigationButton.normalColor = UIColor.white
         self.navigationButton.isSelected = false
     
     }
@@ -318,13 +328,20 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 return
         }
         
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            UIApplication.shared.openURL(URL(string:
-                "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
-        } else {
-            print("Can't use comgooglemaps://")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            
+            if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                UIApplication.shared.openURL(URL(string:
+                    "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
+                
+                self.navigationButton.isSelected = false
+                
+            } else {
+                print("Can't use comgooglemaps://")
+                
+                self.navigationButton.isSelected = false
+            }
+            
         }
-
     }
-
 }

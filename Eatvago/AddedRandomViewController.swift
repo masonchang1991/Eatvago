@@ -125,6 +125,11 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     
     func movePicker() {
         
+        
+        if tabBarVC?.addLocations.count == 0 && searchedLocations.count == 0 {
+            return
+        }
+        
         navigationButton.isEnabled = false
         
         let timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(scrollToRandomRowFirst), userInfo: nil, repeats: true)
