@@ -33,6 +33,8 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     @IBOutlet weak var backgroundView: UIView!
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
     var matchRoomId = ""
     
     var type = ""

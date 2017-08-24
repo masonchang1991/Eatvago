@@ -15,26 +15,6 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-
-//            var totalLocationCount = 0
-//        
-//        if ifAddFavoriteList == true {
-//        
-//        
-//            if let addLocationCount = tabBarVC?.addLocations.count {
-//                
-//                totalLocationCount = addLocationCount + searchedLocations.count
-//                
-//            }
-//            
-//            
-//        } else {
-//            
-//            totalLocationCount = searchedLocations.count
-//            
-//        }
-//        
-//            return totalLocatiovarunt
         
         return self.maxElements
   
@@ -114,6 +94,12 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        print(row)
+        
+        self.currentRow = row
+        
+        self.fetchPickerNowLocation(currentRow: self.currentRow)
         
     }
 }

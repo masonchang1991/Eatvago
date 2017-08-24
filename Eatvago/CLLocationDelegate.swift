@@ -14,7 +14,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let myLocation: CLLocation = locations.last!
-        
+
         let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
                                               longitude: myLocation.coordinate.longitude,
                                               zoom: zoomLevel)

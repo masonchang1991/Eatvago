@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ExpandingMenu
 
 extension NearbyViewController {
     
     func setupLayout() {
         
         // hear button
-        self.addToListButton.tintColor = UIColor.white.withAlphaComponent(0.7)
+        self.addToListButton.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
         
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
@@ -46,77 +47,105 @@ extension NearbyViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
         
-        //background image
-
-        self.backgroundImageView.alpha = 0
+        //設定一開始的限制條件
+        settingTitleLabel.text = " Now Setting : "
+        settingLabel.text = " Radius: \(filterDistance) M\n Keyword: \(keywordText) "
+        settingLabel.textAlignment = .center
         
-        //changeToMapbutton
+        //base background pagerview底下的
+        self.baseBackgroundView.backgroundColor = UIColor(red: 230.0/255.0, green: 220.0/255.0, blue: 210.0/255.0, alpha: 0.5)
+
+        
+        // nearbyInfoBackground set
+        self.nearByInfoBackgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        
+        self.nearbyInfoBackgroundImageView.alpha = 0.5
+        
+        //page control view
+        
+        self.firstPagerViewControlView.layer.cornerRadius = self.firstPagerViewControlView.width / 2
+        self.firstPagerViewControlView.clipsToBounds = true
+        self.secondPagerViewControlView.layer.cornerRadius = self.secondPagerViewControlView.width / 2
+        self.secondPagerViewControlView.clipsToBounds = true
+        self.thirdPagerViewControlView.layer.cornerRadius = self.thirdPagerViewControlView.width / 2
+        self.thirdPagerViewControlView.clipsToBounds = true
+        
+        
+    
         
     }
     
     func setupLayer() {
         
-        //function bar 1
-        let functionBarGradientColors = [UIColor.asiTealish85.withAlphaComponent(0.4).cgColor,
-                                        UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
         
-        self.functionBarView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: functionBarGradientColors,
-                                                                                 gradientframe: self.functionBarView.bounds, gradientstartPoint: CGPoint(x: 0, y: 0), gradientendPoint: CGPoint(x: 1, y: 1.0)), at: 0)
-        
-        self.functionBarView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
-        self.functionBarView.layer.shadowColor = UIColor.asiBlack50.cgColor
-        self.functionBarView.layer.shadowRadius = 1
-        self.functionBarView.layer.shadowOpacity = 0.4
-        
-        // userinfo background
-        self.userInfoBackgroundView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
-        self.userInfoBackgroundView.layer.shadowColor = UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor
-        self.userInfoBackgroundView.layer.shadowOpacity = 0.7
-        self.userInfoBackgroundView.layer.shadowRadius = 1
-        self.userInfoBackgroundView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
-        self.userInfoBackgroundView.clipsToBounds = false
+//        // userinfo background
+//        self.userInfoBackgroundView.layer.shadowOffset = CGSize(width: 0.2, height: 0.8)
+//        self.userInfoBackgroundView.layer.shadowColor = UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor
+//        self.userInfoBackgroundView.layer.shadowOpacity = 0.7
+//        self.userInfoBackgroundView.layer.shadowRadius = 1
+//        self.userInfoBackgroundView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
+//        self.userInfoBackgroundView.clipsToBounds = false
 
-        let purpleColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+//        let purpleColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+//        
+//        let userInfoBackgroundGradientColors = [UIColor.white.withAlphaComponent(0.1).cgColor,
+//                                                purpleColor.withAlphaComponent(0.6).cgColor]
+//        
+//        self.nearbyInfoBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: userInfoBackgroundGradientColors,
+//                                                                                     gradientframe: self.userInfoBackgroundView.bounds,
+//                                                                                     gradientstartPoint: CGPoint(x: 0, y: 0),
+//                                                                                     gradientendPoint: CGPoint(x: 1.0, y: 1.0)), at: 0)
+//        
+//        self.nearbyInfoBackgroundView.layer.masksToBounds = true
         
-        let userInfoBackgroundGradientColors = [UIColor.white.withAlphaComponent(0.1).cgColor,
-                                                purpleColor.withAlphaComponent(0.6).cgColor]
+//        //設定最底層background
+//        let backgroundTopColor = UIColor(red: 60.0/255.0, green: 150.0/255.0, blue: 210.0/255.0, alpha: 0.2)
+//        let backgroundBottomColor = UIColor(red: 115.0/255.0, green: 115.0/255.0, blue: 255.0/255.0, alpha: 0.2)
+//        
+//        let mainBackgroundGradientColors = [backgroundTopColor.cgColor,
+//                                            backgroundBottomColor.cgColor]
+//        
+//        self.baseBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: mainBackgroundGradientColors, gradientframe: self.baseBackgroundView.bounds, gradientstartPoint: CGPoint(x: 0, y: 0), gradientendPoint: CGPoint(x: 1.0, y: 1.2)), at: 0)
+//        
+//        self.baseBackgroundView.layer.masksToBounds = true
         
-        self.userInfoBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: userInfoBackgroundGradientColors,
-                                                                                     gradientframe: self.userInfoBackgroundView.bounds,
-                                                                                     gradientstartPoint: CGPoint(x: 0, y: 0),
-                                                                                     gradientendPoint: CGPoint(x: 1.0, y: 1.0)), at: 0)
-        // userinfo textview background
-        
-        self.userInfoTextBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.userInfoTextBackgroundView.layer.shadowColor = UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor
-        self.userInfoTextBackgroundView.layer.shadowOpacity = 0.7
-        self.userInfoTextBackgroundView.layer.shadowRadius = 1
-        self.userInfoTextBackgroundView.backgroundColor = UIColor.asiTealish85.withAlphaComponent(0.2)
-        self.userInfoTextBackgroundView.clipsToBounds = false
-        self.userInfoTextBackgroundView.layer.masksToBounds = true
 
-        let lightWhiteBlue = UIColor(red: 225.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-        
-        let userInfoTextBackgroundGradientColors = [UIColor.white.withAlphaComponent(0.5).cgColor,
-                                               lightWhiteBlue.withAlphaComponent(0.5).cgColor]
-        
-        self.userInfoTextBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: userInfoTextBackgroundGradientColors,
-                                                                                        gradientframe: self.userInfoTextBackgroundView.bounds,
-                                                                                        gradientstartPoint: CGPoint(x: 0.5, y: 0),
-                                                                                        gradientendPoint: CGPoint(x: 0.5, y: 1.0)), at: 0)
-        
-        //bottom function bar
-        let bottomFunctionBarGradientColors = [UIColor.asiTealish85.withAlphaComponent(0.4).cgColor,
-                                         UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
-        
-        self.bottomFunctionBarView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: bottomFunctionBarGradientColors,
-                                                                                 gradientframe: self.bottomFunctionBarView.bounds, gradientstartPoint: CGPoint(x: 0, y: 1), gradientendPoint: CGPoint(x: 1, y: 0)), at: 0)
-        
-        self.bottomFunctionBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.bottomFunctionBarView.layer.shadowColor = UIColor.asiBlack50.cgColor
-        self.bottomFunctionBarView.layer.shadowRadius = 2
-        self.bottomFunctionBarView.layer.shadowOpacity = 0.4
 
     }
+    
+    func addMenuButton() {
+        
+        //加入menu button
+        let mainMenuButtonSize: CGSize = CGSize(width: 40, height: 40)
+        let menuButtonSize: CGSize = CGSize(width: 40, height: 40)
+        let mainMenuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: mainMenuButtonSize), centerImage: UIImage(named: "menu")!, centerHighlightedImage: UIImage(named: "menu")!)
+        
+        mainMenuButton.center = CGPoint(x: 20.0, y: 20.0)
+        view.addSubview(mainMenuButton)
+        
+        let profileButton = ExpandingMenuItem(size: menuButtonSize, title: "Profile", titleColor: UIColor.white, image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            self.setUpProfile()
+        }
+        
+        let mapButton = ExpandingMenuItem(size: menuButtonSize, title: "View In Map", titleColor: UIColor.white, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            self.changTableViewAndMap()
+        }
+        
+        let setupButton = ExpandingMenuItem(size: menuButtonSize, title: "Search Setting", titleColor: UIColor.white, image: UIImage(named: "Setup")!, highlightedImage: UIImage(named: "Setup")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            self.setUpFilter()
+            
+        }
+        
+        let logoutButton = ExpandingMenuItem(size: menuButtonSize, title: "Log out", titleColor: UIColor.white, image: UIImage(named: "logoutExit")!, highlightedImage: UIImage(named: "logoutExit")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            self.logout()
+        }
+        
+        mainMenuButton.addMenuItems([profileButton, mapButton, setupButton, logoutButton])
+        mainMenuButton.expandingDirection = .bottom
+        mainMenuButton.menuTitleDirection = .right
+
+    }
+    
+    
     
 }

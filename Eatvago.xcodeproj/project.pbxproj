@@ -286,9 +286,9 @@
 			isa = PBXGroup;
 			children = (
 				930086771F2A08C700BEA223 /* CLLocationDelegate.swift */,
+				93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */,
 				93729AC81F35CF51004125C0 /* FetchDistanceDelegate.swift */,
 				93729AC61F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift */,
-				93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */,
 				93729ACC1F35D7BF004125C0 /* FetchLocationImageDelegate.swift */,
 			);
 			name = DelegateFunction;

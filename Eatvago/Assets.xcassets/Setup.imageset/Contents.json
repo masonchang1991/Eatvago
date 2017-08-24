@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "settings (2).png",
+      "filename" : "controller.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "settings (2)-1.png",
+      "filename" : "controller-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "settings (2)-2.png",
+      "filename" : "controller-2.png",
       "scale" : "3x"
     }
   ],

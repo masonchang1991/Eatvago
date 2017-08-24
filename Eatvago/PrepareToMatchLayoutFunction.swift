@@ -13,10 +13,24 @@ extension PrepareToMatchViewController {
     
     func setUpUserPhoto() {
         
-        self.userPhotoImageView.contentMode = .scaleAspectFill
-        self.userPhotoImageView.image = nearbyViewController?.userPhotoImageView.image
-        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
-        self.userPhotoImageView.clipsToBounds = true
+        DispatchQueue.main.async {
+            
+            self.userPhotoImageView.contentMode = .scaleAspectFill
+            
+            if self.nearbyViewController?.userPhotoImageView.image == nil {
+                
+                self.userPhotoImageView.image = UIImage(named: "UserDefaultIconForMatch")
+                
+                return
+                
+            }
+            
+            
+            self.userPhotoImageView.image = self.nearbyViewController?.userPhotoImageView.image
+            self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
+            self.userPhotoImageView.clipsToBounds = true
+            
+        }
 
     }
     
@@ -44,7 +58,7 @@ extension PrepareToMatchViewController {
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
         titleShadow.shadowColor = UIColor.asiBlack50
         titleShadow.shadowBlurRadius = 2
-        var size = UIFont.boldSystemFont(ofSize: 25).pointSize
+        let size = UIFont.boldSystemFont(ofSize: 25).pointSize
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
         // 設定Bar shadow
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)

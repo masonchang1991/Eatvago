@@ -32,13 +32,6 @@ extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecogni
             message: "Choose a way to add photo",
             preferredStyle: .alert)
         
-        // 建立[取消]按鈕
-        let cancelAction = UIAlertAction(
-            title: "cancel",
-            style: .cancel,
-            handler: nil)
-        alertController.addAction(cancelAction)
-        
         // 建立[相簿]按鈕
         let photoAction = UIAlertAction(
             title: "Album",
@@ -57,6 +50,16 @@ extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecogni
                 
         }
         alertController.addAction(cameraAction)
+        
+        // 建立[取消]按鈕
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .default) { (_: UIAlertAction!) -> Void in
+                
+                
+        }
+        alertController.addAction(cancelAction)
+
         self.userProfileAlertView.present(
             alertController,
             animated: true,

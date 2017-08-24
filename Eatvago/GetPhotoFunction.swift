@@ -19,7 +19,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             picker.sourceType = UIImagePickerControllerSourceType.camera
             picker.allowsEditing = true // 可對照片作編輯
             picker.delegate = self
-            self.present(picker, animated: true, completion: nil)
+            self.userProfileAlertView.present(picker, animated: true, completion: nil)
         } else {
             print("沒有相機鏡頭...") // 用alertView.show
             

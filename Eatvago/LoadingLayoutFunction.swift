@@ -83,6 +83,12 @@ extension LoadingMatchViewController {
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
         
+        // background
+        self.backgroundImageView.image = UIImage(named: "matching")
+        self.backgroundImageView.alpha = 0.3
+//        self.backgroundView.backgroundColor = UIColor.
+        
+        
         //取消bar button
         self.navigationItem.hidesBackButton = true
         
@@ -96,35 +102,35 @@ extension LoadingMatchViewController {
         
         //background
         
-        let viewHalfWidth = self.backgroundView.frame.width / 2
-        
-        let viewHalfHeight = self.backgroundView.frame.height / 2
-        
-        let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.4).cgColor,
-                                        UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
-        
-        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
-                                                                                gradientframe: CGRect(x: 0, y: 0, width: viewHalfWidth, height: viewHalfHeight),
-                                                                                gradientstartPoint: CGPoint(x: 0, y: 0),
-                                                                                gradientendPoint: CGPoint(x: 1, y: 1)), at: 0)
-        
-        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
-                                                                                gradientframe: CGRect(x: viewHalfWidth, y: 0, width: viewHalfWidth, height: viewHalfHeight),
-                                                                                gradientstartPoint: CGPoint(x: 1, y: 0),
-                                                                                gradientendPoint: CGPoint(x: 0, y: 1)), at: 0)
-        
-        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
-                                                                                gradientframe: CGRect(x: 0, y: viewHalfHeight, width: viewHalfWidth, height: viewHalfHeight),
-                                                                                gradientstartPoint: CGPoint(x: 0, y: 1),
-                                                                                gradientendPoint: CGPoint(x: 1, y: 0)), at: 0)
-        
-        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
-                                                                                gradientframe: CGRect(x: viewHalfWidth, y: viewHalfHeight, width: viewHalfWidth, height: viewHalfHeight),
-                                                                                gradientstartPoint: CGPoint(x: 1, y: 1),
-                                                                                gradientendPoint: CGPoint(x: 0, y: 0)), at: 0)
-        
-        
-        self.backgroundView.layer.masksToBounds = true
+//        let viewHalfWidth = self.backgroundView.frame.width / 2
+//        
+//        let viewHalfHeight = self.backgroundView.frame.height / 2
+//        
+//        let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.4).cgColor,
+//                                        UIColor.asiSeaBlue.withAlphaComponent(0.1).cgColor]
+//        
+//        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
+//                                                                                gradientframe: CGRect(x: 0, y: 0, width: viewHalfWidth, height: viewHalfHeight),
+//                                                                                gradientstartPoint: CGPoint(x: 0, y: 0),
+//                                                                                gradientendPoint: CGPoint(x: 1, y: 1)), at: 0)
+//        
+//        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
+//                                                                                gradientframe: CGRect(x: viewHalfWidth, y: 0, width: viewHalfWidth, height: viewHalfHeight),
+//                                                                                gradientstartPoint: CGPoint(x: 1, y: 0),
+//                                                                                gradientendPoint: CGPoint(x: 0, y: 1)), at: 0)
+//        
+//        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
+//                                                                                gradientframe: CGRect(x: 0, y: viewHalfHeight, width: viewHalfWidth, height: viewHalfHeight),
+//                                                                                gradientstartPoint: CGPoint(x: 0, y: 1),
+//                                                                                gradientendPoint: CGPoint(x: 1, y: 0)), at: 0)
+//        
+//        self.backgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
+//                                                                                gradientframe: CGRect(x: viewHalfWidth, y: viewHalfHeight, width: viewHalfWidth, height: viewHalfHeight),
+//                                                                                gradientstartPoint: CGPoint(x: 1, y: 1),
+//                                                                                gradientendPoint: CGPoint(x: 0, y: 0)), at: 0)
+//        
+//        
+//        self.backgroundView.layer.masksToBounds = true
         
         
     }

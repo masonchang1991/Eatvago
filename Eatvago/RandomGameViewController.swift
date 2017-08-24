@@ -91,15 +91,21 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         // picker view
         distancePickerView.delegate = self
         self.distanceTextField.inputView = distancePickerView
-        self.distanceTextField.text = "\(distancePickOptions[0])"
+        self.distanceTextField.text = "\(distancePickOptions[4])"
+        distancePickerView.selectRow(4, inComponent: 0, animated: false)
         randomCountPickerView.delegate = self
         self.randomCountTextField.inputView = randomCountPickerView
-        self.randomCountTextField.text = "\(randomCountPickOptions[4])"
+        self.randomCountTextField.text = "\(randomCountPickOptions[5])"
+        self.randomCountPickerView.selectRow(5, inComponent: 0, animated: false)
         
         // keyboard 收下去
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 //        self.view.addGestureRecognizer(tap)
         
+        
+        self.navigationButton.isUserInteractionEnabled = false
+        self.navigationButton.tintColor = UIColor.asiBrownish
+
         Analytics.logEvent("RandomGame_viewDidLoad", parameters: nil)
         
     }
@@ -112,15 +118,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         // UI
         setLayout()
-        
+  
         reloadRandomBallView()
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        setupLayer()
         
     }
     
@@ -133,6 +137,10 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         self.nodeDictionary = [:]
 
         totalRestaurants = (tabBarVC?.fetchedLocations) ?? []
+        
+        if totalRestaurants.count == 0 {
+            return
+        }
         
         randomGameMagneticView.presentScene(magnetic)
 
@@ -217,6 +225,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
         
+        self.navigationButton.isUserInteractionEnabled = true
+        self.navigationButton.isSelected = false
+        self.navigationButton.tintColor = UIColor.white
         //消除其他已經選取的cell外框顏色
         for selectedNode in nodes {
             
@@ -249,6 +260,8 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
 
         self.selectedRestaurant = nil
+        self.navigationButton.isUserInteractionEnabled = false
+        self.navigationButton.isSelected = false
     
     }
 

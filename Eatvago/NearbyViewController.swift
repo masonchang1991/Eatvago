@@ -18,8 +18,7 @@ import ExpandingMenu
 
 class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    
-    @IBOutlet weak var userInfoBackgroundView: UIView!
+    @IBOutlet weak var nearByInfoBackgroundView: UIView!
     
     @IBOutlet weak var storeNameLabel: UILabel!
     
@@ -42,7 +41,15 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     @IBOutlet weak var functionBarView: UIView!
     
     @IBOutlet weak var bottomFunctionBarView: UIView!
-
+    
+    @IBOutlet weak var settingLabel: UILabel!
+    
+    @IBOutlet weak var settingTitleLabel: UILabel!
+    
+    @IBOutlet weak var baseBackgroundView: UIView!
+    
+    @IBOutlet weak var nearbyInfoBackgroundImageView: UIImageView!
+    
     //set up pager view
     
     @IBOutlet weak var storeImagePagerView: FSPagerView! {
@@ -84,6 +91,15 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             }
         }
     }
+    
+    // setup pagerViewControl
+    
+    @IBOutlet weak var firstPagerViewControlView: UIView!
+
+    @IBOutlet weak var secondPagerViewControlView: UIView!
+    
+    @IBOutlet weak var thirdPagerViewControlView: UIView!
+    
 
     var window: UIWindow?
     
@@ -129,10 +145,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     var distancePickOption = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
     var distanceTextField = UITextField()
     
-    //filter text
-    var distanceString = ""
-    var keyword = ""
-    
     //全螢幕讀取 下載圖片或上傳圖片
     let activityData = ActivityData()
     //存取user圖片
@@ -171,6 +183,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         tabBarC = self.tabBarController as? MainTabBarController
         tabBarC?.fetchedLocations = self.locations
         tabBarC?.delegate = self
@@ -189,6 +203,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
 
         self.storeImagePagerView.delegate = self
         self.storeImagePagerView.dataSource = self
+        self.storeImagePagerView.isInfinite = true
+        
         
         fetchNearbyLocationManager.delegate = self
         fetchPlaceIdDetailManager.delegate = self
@@ -208,56 +224,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         //layout
         setupLayout()
+        addMenuButton()
+        
         
         //keyboard 收下去
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
-        
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        //加入menu button
-        
-        let menuButtonSize: CGSize = CGSize(width: 40, height: 40)
-        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: UIImage(named: "menu")!, centerHighlightedImage: UIImage(named: "menu")!)
-        menuButton.center = CGPoint(x: 20.0, y: 20.0)
-        view.addSubview(menuButton)
-        
-        let profileButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
-            
-            self.setUpProfile()
-
-        }
-        
-        let mapButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
-            
-            self.changTableViewAndMap()
-            
-        }
-        
-        let setupButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "Setup")!, highlightedImage: UIImage(named: "Setup")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
-            
-            self.setUpFilter()
-            
-        }
-        
-        let logoutButton = ExpandingMenuItem(size: menuButtonSize, image: UIImage(named: "exitIcon")!, highlightedImage: UIImage(named: "exitIcon")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
-            
-            self.logout()
-            
-        }
-
-
-        
-        
-        
-        menuButton.addMenuItems([profileButton, mapButton, setupButton, logoutButton])
-        menuButton.expandingDirection = .bottom
-        
-        
-        
-        
-        
-        
         
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
         
@@ -305,12 +277,37 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
-        let location = locations[index]
+        let pagerViewControlIndex = index % 3
         
+        switch pagerViewControlIndex {
+        case 0:
+            firstPagerViewControlView.backgroundColor = UIColor.red
+            thirdPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+            secondPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        case 1:
+            secondPagerViewControlView.backgroundColor = UIColor.red
+            firstPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+            thirdPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        case 2:
+            thirdPagerViewControlView.backgroundColor = UIColor.red
+            secondPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+            firstPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        default: break
+        }
+        
+        let location = locations[index]
         if location.photo == nil {
 
             self.loadingNVAView.startAnimating()
             cell.imageView?.isHidden = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+                self.loadingNVAView.stopAnimating()
+                cell.imageView?.isHidden = false
+                cell.imageView?.image = UIImage(named: "notFound")
+                cell.imageView?.contentMode = .center
+            })
+            
 
         } else {
             self.loadingNVAView.stopAnimating()
@@ -350,7 +347,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             
         } else {
             
-            addToListButton.tintColor = UIColor.white.withAlphaComponent(0.7)
+            addToListButton.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
             
         }
         
@@ -368,7 +365,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
 
         } else {
             
-            sender.tintColor = UIColor.white.withAlphaComponent(0.5)
+            sender.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
             
             var nowAt = 0
             
@@ -462,7 +459,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
             showCloseButton: false,
-            showCircularIcon: true
+            showCircularIcon: false
         )
         
         // Initialize SCLAlertView using custom Appearance
@@ -473,14 +470,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 115))
 
         self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50, y: 15, width: 100, height: 100)
-
-        
+ 
         if self.userPhotoImageView.image != nil {
             
             
         } else {
             
-            self.userPhotoImageView.image = UIImage(named: "UserDefaultIconForMatch")
+            self.userPhotoImageView.image = UIImage(named: "UserProfileDefaultPicture")
             
         }
         
@@ -505,8 +501,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                             alert.dismiss(animated: true, completion: nil)
                             
         }
-        
-        alert.showInfo("Profile Pic", subTitle: "")
+    
+        alert.showInfo("Profile Picture", subTitle: "")
     }
     
     func setUpFilter() {
@@ -562,6 +558,9 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                             
                             self.filterDistance = Double(self.distanceTextField.text ?? "100") ?? 100
                             self.keywordText = (keywordTextField.text ?? "")
+                            
+                            self.settingLabel.text = " Radius: \(self.filterDistance) M \n Keyword: \(self.keywordText) "
+
                             self.currentLocation = CLLocation()
                             self.lastLocation = nil
                             self.locations = []

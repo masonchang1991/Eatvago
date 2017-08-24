@@ -31,6 +31,10 @@ extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegat
         self.searchedLocations.append(location)
 
         self.addListPickerView.reloadAllComponents()
+        
+        self.fetchPickerNowLocation(currentRow: self.currentRow)
+        
+        self.canNavigationLocation = true
 
     }
     

@@ -53,18 +53,13 @@ extension RandomGameViewController {
         self.randomGameBackgorundImageView.contentMode = .scaleAspectFill
         self.randomGameBackgorundImageView.alpha = 0.3
         
-    }
-    
-    func setupLayer() {
-        
         // setRandom Background
-        let backgroundGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.4).cgColor,
-                                        UIColor.asiSeaBlue.withAlphaComponent(0.2).cgColor]
+        self.setRandomView.backgroundColor = UIColor(red: 125.0/255.0, green: 100.0/255.0, blue: 255.0/255.0, alpha: 0.5)
         
-        self.setRandomView.backgroundColor = UIColor.clear
-        self.setRandomView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: backgroundGradientColors,
-                                                                               gradientframe: self.setRandomView.frame,
-                                                                               gradientstartPoint: CGPoint(x: 0.5, y: 0), gradientendPoint: CGPoint(x: 0.5, y: 1.0)), at: 0)
+        // fix search button fave button bug
+        
+        searchButton.isSelected = true
+        
         
     }
     
