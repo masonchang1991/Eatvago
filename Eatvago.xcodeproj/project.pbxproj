@@ -73,6 +73,9 @@
 		93FD1E701F41A3C6003D4EC6 /* ChatObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */; };
 		93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */; };
 		93FD1E741F429C1D003D4EC6 /* MatchSuccessLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E731F429C1D003D4EC6 /* MatchSuccessLayout.swift */; };
+		93FEBD401F50062500F1779E /* PagerControlAnimationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEBD3F1F50062500F1779E /* PagerControlAnimationFunction.swift */; };
+		93FEBD431F50078200F1779E /* NearbyMenuFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEBD421F50078200F1779E /* NearbyMenuFunction.swift */; };
+		93FEBD461F5008C200F1779E /* NearbyButtonFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEBD451F5008C200F1779E /* NearbyButtonFunction.swift */; };
 		93FF2A6C1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +148,9 @@
 		93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatObserverDelegate.swift; sourceTree = "<group>"; };
 		93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessTableViewDelegate.swift; sourceTree = "<group>"; };
 		93FD1E731F429C1D003D4EC6 /* MatchSuccessLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessLayout.swift; sourceTree = "<group>"; };
+		93FEBD3F1F50062500F1779E /* PagerControlAnimationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerControlAnimationFunction.swift; sourceTree = "<group>"; };
+		93FEBD421F50078200F1779E /* NearbyMenuFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMenuFunction.swift; sourceTree = "<group>"; };
+		93FEBD451F5008C200F1779E /* NearbyButtonFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyButtonFunction.swift; sourceTree = "<group>"; };
 		93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGamePickerViewDelegate.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,8 +190,9 @@
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
-				9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */,
-				9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */,
+				93FEBD471F50090B00F1779E /* UserPhotoFunction */,
+				93FEBD441F50081700F1779E /* NearbyButtonFunction */,
+				93FEBD411F50076900F1779E /* NearbyMenuFunction */,
 				93FFE2891F48235F006BECD3 /* NearbyLayout */,
 				93729AC31F35CBAE004125C0 /* DelegateFunction */,
 				9380CA911F2DE46200629C0A /* FetchManagers */,
@@ -367,10 +374,36 @@
 			name = MatchSuccess;
 			sourceTree = "<group>";
 		};
+		93FEBD411F50076900F1779E /* NearbyMenuFunction */ = {
+			isa = PBXGroup;
+			children = (
+				93FEBD421F50078200F1779E /* NearbyMenuFunction.swift */,
+			);
+			name = NearbyMenuFunction;
+			sourceTree = "<group>";
+		};
+		93FEBD441F50081700F1779E /* NearbyButtonFunction */ = {
+			isa = PBXGroup;
+			children = (
+				93FEBD451F5008C200F1779E /* NearbyButtonFunction.swift */,
+			);
+			name = NearbyButtonFunction;
+			sourceTree = "<group>";
+		};
+		93FEBD471F50090B00F1779E /* UserPhotoFunction */ = {
+			isa = PBXGroup;
+			children = (
+				9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */,
+				9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */,
+			);
+			name = UserPhotoFunction;
+			sourceTree = "<group>";
+		};
 		93FFE2891F48235F006BECD3 /* NearbyLayout */ = {
 			isa = PBXGroup;
 			children = (
 				930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */,
+				93FEBD3F1F50062500F1779E /* PagerControlAnimationFunction.swift */,
 			);
 			name = NearbyLayout;
 			sourceTree = "<group>";
@@ -542,6 +575,7 @@
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
+				93FEBD431F50078200F1779E /* NearbyMenuFunction.swift in Sources */,
 				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
 				93FD1E6C1F419B7D003D4EC6 /* ChatObserverManager.swift in Sources */,
 				93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */,
@@ -554,7 +588,9 @@
 				93FD1E661F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift in Sources */,
 				9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */,
 				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
+				93FEBD461F5008C200F1779E /* NearbyButtonFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
+				93FEBD401F50062500F1779E /* PagerControlAnimationFunction.swift in Sources */,
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
 				9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */,

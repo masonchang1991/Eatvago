@@ -27,7 +27,7 @@ extension PrepareToMatchViewController {
             
             
             self.userPhotoImageView.image = self.nearbyViewController?.userPhotoImageView.image
-            self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width/2
+            self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width / 2
             self.userPhotoImageView.clipsToBounds = true
             
         }
@@ -53,7 +53,7 @@ extension PrepareToMatchViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         
         // 設定Bar Title
-        self.navigationItem.title = "Match"
+        self.navigationItem.title = "Find Meal Pal"
         let titleShadow = NSShadow()
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
         titleShadow.shadowColor = UIColor.asiBlack50
@@ -65,6 +65,8 @@ extension PrepareToMatchViewController {
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.asiTealish85.cgColor
         self.navigationController?.navigationBar.layer.shadowRadius = 4
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
+        
+        self.matchButton.isSelected = false
         
     }
     
@@ -78,8 +80,8 @@ extension PrepareToMatchViewController {
         self.greetingTextBackgroundView.clipsToBounds = false
         self.greetingTextBackgroundView.layer.masksToBounds = true
 
-        let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.6).cgColor,
-                                UIColor.asiSeaBlue.withAlphaComponent(0.2).cgColor]
+        let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.2).cgColor,
+                                UIColor(red: 60.0/255.0, green: 150.0/255.0, blue: 210.0/255.0, alpha: 0.8).cgColor]
 
         self.greetingTextBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: greetingGradient,
                                                                                             gradientframe: self.greetingTextBackgroundView.bounds, gradientstartPoint: CGPoint(x: 0.5, y: 0), gradientendPoint: CGPoint(x: 0.5, y: 1)), at: 0)

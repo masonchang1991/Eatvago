@@ -35,16 +35,12 @@ extension AddedRandomViewController {
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
         titleShadow.shadowColor = UIColor.asiBlack50
         titleShadow.shadowBlurRadius = 2
-        var size = UIFont.boldSystemFont(ofSize: 25).pointSize
+        let size = UIFont.boldSystemFont(ofSize: 25).pointSize
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
         
         // background
         self.backgroundImageView.contentMode = .scaleAspectFill
         self.backgroundImageView.alpha = 0.1
-
-        
-        
+    
     }
-    
-    
 }

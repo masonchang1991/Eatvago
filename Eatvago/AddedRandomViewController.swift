@@ -71,21 +71,8 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         self.addListPickerView.dataSource = self
         self.addListPickerView.selectRow(maxElements / 2, inComponent: 0, animated: false)
         
-        resultsViewController = GMSAutocompleteResultsViewController()
+                resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-
-        //layout
-        
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
-        searchView.addSubview((searchController?.searchBar)!)
-        view.addSubview(searchView)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = true
-        searchController?.searchBar.barStyle = .default
-        let searchBarColor = UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.8)
-        searchController?.searchBar.barTintColor = searchBarColor
-        definesPresentationContext = true
         
         setLayout()
         
@@ -96,7 +83,8 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        setLayout()
+        
+        
         self.addListPickerView.reloadAllComponents()
         
         if (tabBarVC?.addLocations.count)! > 0 {
@@ -111,6 +99,20 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        
+        //layout
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        searchView.addSubview((searchController?.searchBar)!)
+        view.addSubview(searchView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.searchBar.barStyle = .default
+        let searchBarColor = UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.8)
+        searchController?.searchBar.barTintColor = searchBarColor
+        definesPresentationContext = true
+
         self.fetchPickerNowLocation(currentRow: maxElements / 2)
         
     }
