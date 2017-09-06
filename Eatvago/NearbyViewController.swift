@@ -96,7 +96,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     // setup pagerViewControl
     
-    
     @IBOutlet weak var firstLeftTwoPagerViewControlView: UIView!
     
     @IBOutlet weak var firstLeftOnePagerViewControlView: UIView!
@@ -169,10 +168,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     var tempPagerControlBigPointView = UIView()
     var tempPagerControlLittlePointView = UIView()
     
-    
-    
-    
-    
     override func loadView() {
          super.loadView()
         
@@ -213,7 +208,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 100
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
@@ -245,20 +240,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         setupLayout()
         addMenuButton()
         
-        
         //keyboard 收下去
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
-        
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
 
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
@@ -288,14 +276,17 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
         callPageControlBaseOnIndex(index)
   
         let location = locations[index]
+        
         if location.photo == nil {
 
             self.loadingNVAView.startAnimating()
+            
             cell.imageView?.isHidden = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
@@ -307,9 +298,9 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                     cell.imageView?.contentMode = .center
                 }
             })
-            
 
         } else {
+            
             self.loadingNVAView.stopAnimating()
             self.loadingNVAView.isHidden = true
             cell.imageView?.isHidden = false
@@ -317,12 +308,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             guard let storeImage = location.photo else {
                 return FSPagerViewCell()
             }
+            
             DispatchQueue.main.async {
                 cell.imageView?.image = storeImage
                 cell.imageView?.contentMode = .scaleAspectFill
             }
-            
-            
+
         }
         
         storeDistanceLabel.text = location.distanceText
@@ -331,52 +322,58 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         choosedLocation = location
         
-        var ifInTheList = false
+        addToListButton.tintColor = UIColor(
+            red: 255.0/255.0,
+            green: 235.0/255.0,
+            blue: 245.0/255.0,
+            alpha: 1.0
+        )
         
         for locationInList in (tabBarC?.addLocations) ?? [] {
             
             if locationInList.name == choosedLocation.name {
                 
-                ifInTheList = true
+                addToListButton.tintColor = UIColor.red
                 
-            }
+            } else { }
            
         }
         
-        if ifInTheList == true {
-            
-            addToListButton.tintColor = UIColor.red
-            
-        } else {
-            
-            addToListButton.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-            
-        }
-        
         return cell
-
     }
     
     func showStoreDetail(_ sender: UIButton) {
         
-        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
+        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(
+            locationsWithoutDetail:
+            self.locations[sender.tag],
+            senderTag: sender.tag
+        )
         
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return distancePickOption.count
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         return "\(distancePickOption[row])"
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         distanceTextField.text = "\(distancePickOption[row])"
+        
     }
     
     func dismissKeyboard() {

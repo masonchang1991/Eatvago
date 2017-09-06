@@ -111,6 +111,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
             
             self.currentLocation = myLocation
             
+            
         } else {
             
             locationManager.startUpdatingLocation()
@@ -120,3 +121,25 @@ extension NearbyViewController: CLLocationManagerDelegate {
     }
     
 }
+
+
+extension NearbyViewController: GMSMapViewDelegate {
+    
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        
+    }
+    
+}
+
+
+

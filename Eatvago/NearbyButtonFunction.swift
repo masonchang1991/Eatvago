@@ -17,7 +17,11 @@ extension NearbyViewController {
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(self.currentLocation.coordinate.latitude),\(self.currentLocation.coordinate.longitude)&daddr=\(self.choosedLocation.latitude),\(self.choosedLocation.longitude)&directionsmode=walking")!)
         } else {
+            
+            // -MARK: Alert user
+            
             print("Can't use comgooglemaps://")
+            
         }
         
     }
@@ -39,13 +43,15 @@ extension NearbyViewController {
             for location in (tabBarC?.addLocations) ?? [] {
                 
                 if location.name == choosedLocation.name {
+                    
                     tabBarC?.addLocations.remove(at: nowAt)
+                    
                 }
+                
                 nowAt += 1
+            
             }
         }
     }
-    
-    
-    
+            
 }

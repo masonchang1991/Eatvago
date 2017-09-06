@@ -18,31 +18,57 @@ extension NearbyViewController {
         
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
+        
         let sizeLength = UIScreen.main.bounds.size.width
+        
         let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 64)
+        
         gradient.frame = defaultNavigationBarFrame
-        let barTopColor = UIColor(red: 60.0/255.0, green: 150.0/255.0, blue: 210.0/255.0, alpha: 0.8)
-        let barBottomColor = UIColor(red: 115.0/255.0, green: 115.0/255.0, blue: 255.0/255.0, alpha: 0.8)
+        
+        let barTopColor = UIColor(
+            red: 60.0/255.0,
+            green: 150.0/255.0,
+            blue: 210.0/255.0,
+            alpha: 0.8
+        )
+        
+        let barBottomColor = UIColor(
+            red: 115.0/255.0,
+            green: 115.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.8
+        )
         
         gradient.colors = [barTopColor.cgColor,
                            barBottomColor.cgColor]
+        
         gradient.startPoint = CGPoint(x: 0, y: 0.0)
+        
         gradient.endPoint = CGPoint(x: 1.0, y: 1.2)
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIView().image(fromLayer: gradient), for: .default)
+        
         self.navigationController?.navigationBar.layer.masksToBounds = false
+        
         self.navigationController?.navigationBar.isTranslucent = false
         
         // 設定Bar Title
         self.navigationItem.title = "Nearby Restaurant"
+        
         let titleShadow = NSShadow()
+        
         titleShadow.shadowOffset = CGSize(width: 0, height: 1)
+        
         titleShadow.shadowColor = UIColor.asiBlack50
+        
         titleShadow.shadowBlurRadius = 2
         
         var size = UIFont.boldSystemFont(ofSize: 25).pointSize
         
         if UIScreen.main.bounds.width < 340 {
+            
             size = UIFont.boldSystemFont(ofSize: 20).pointSize
+            
         }
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
@@ -53,7 +79,12 @@ extension NearbyViewController {
         settingLabel.textAlignment = .center
         
         //base background pagerview底下的
-        self.baseBackgroundView.backgroundColor = UIColor(red: 230.0/255.0, green: 220.0/255.0, blue: 210.0/255.0, alpha: 0.5)
+        self.baseBackgroundView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 220.0/255.0,
+            blue: 210.0/255.0,
+            alpha: 0.5
+        )
 
         
         // nearbyInfoBackground set
@@ -63,26 +94,76 @@ extension NearbyViewController {
         
         //page control view
         self.firstLeftTwoPagerViewControlView.layer.cornerRadius = self.firstLeftTwoPagerViewControlView.width / 2
+        
         self.firstLeftTwoPagerViewControlView.clipsToBounds = true
-        self.firstLeftTwoPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.firstLeftTwoPagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
+        
         self.firstLeftOnePagerViewControlView.layer.cornerRadius = self.firstLeftOnePagerViewControlView.width / 2
+        
         self.firstLeftOnePagerViewControlView.clipsToBounds = true
-        self.firstLeftOnePagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.firstLeftOnePagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
+        
         self.firstPagerViewControlView.layer.cornerRadius = self.firstPagerViewControlView.width / 2
+        
         self.firstPagerViewControlView.clipsToBounds = true
-        self.firstPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.firstPagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
+        
         self.secondPagerViewControlView.layer.cornerRadius = self.secondPagerViewControlView.width / 2
+        
         self.secondPagerViewControlView.clipsToBounds = true
+        
         self.secondPagerViewControlView.backgroundColor = UIColor.red
+        
         self.thirdPagerViewControlView.layer.cornerRadius = self.thirdPagerViewControlView.width / 2
+        
         self.thirdPagerViewControlView.clipsToBounds = true
-        self.thirdPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.thirdPagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
+        
         self.thirdRightOnePagerViewControlView.layer.cornerRadius = self.thirdRightOnePagerViewControlView.width / 2
+        
         self.thirdRightOnePagerViewControlView.clipsToBounds = true
-        self.thirdRightOnePagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.thirdRightOnePagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
+        
         self.thirdRightTwoPagerViewControlView.layer.cornerRadius = self.thirdRightTwoPagerViewControlView.width / 2
+        
         self.thirdRightTwoPagerViewControlView.clipsToBounds = true
-        self.thirdRightTwoPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
+        
+        self.thirdRightTwoPagerViewControlView.backgroundColor = UIColor(
+            red: 230.0/255.0,
+            green: 255.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.9
+        )
         
     }
     
@@ -118,7 +199,5 @@ extension NearbyViewController {
         mainMenuButton.menuTitleDirection = .right
 
     }
-    
-    
-    
+
 }

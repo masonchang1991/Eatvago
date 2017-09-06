@@ -133,13 +133,10 @@ extension NearbyViewController {
         
         self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50, y: 15, width: 100, height: 100)
         
-        if self.userPhotoImageView.image != nil {
-            
-            
-        } else {
-            
+        if self.userPhotoImageView.image == nil {
+
             self.userPhotoImageView.image = UIImage(named: "UserProfileDefaultPicture")
-            
+
         }
         
         self.userPhotoImageView.contentMode = .scaleAspectFill
@@ -203,19 +200,22 @@ extension NearbyViewController {
         }
         
         alert.showNotice("Logout", subTitle: "Are you sure?", circleIconImage: alertViewIcon)
-        
-        
+
     }
 
     func changTableViewAndMap() {
-        if storeImagePagerView.isHidden == true {
+        if storeImagePagerView.isHidden {
+            
             storeImagePagerView.isHidden = false
             storeImagePagerView.reloadData()
             mapView.isHidden = true
+            
         } else {
+            
             mapView.isHidden = false
             storeImagePagerView.isHidden = true
             self.storeImagePagerView.isHidden = true
+            
         }
     }
     
