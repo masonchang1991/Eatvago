@@ -285,6 +285,7 @@ open class ExpandingMenuButton: UIView, UIGestureRecognizerDelegate {
             let backwardPoint: CGPoint = self.makeEndPoint(distance + 5.0, angle: currentAngle / 180.0)
             
             let foldAnimation: CAAnimationGroup = self.makeFoldAnimation(startingPoint: item.center, backwardPoint: backwardPoint, endPoint: self.centerButton.center)
+            
             item.layer.add(foldAnimation, forKey: "foldAnimation")
             item.center = self.centerButton.center
             

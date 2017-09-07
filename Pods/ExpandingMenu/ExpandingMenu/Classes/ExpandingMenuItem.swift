@@ -109,9 +109,6 @@ open class ExpandingMenuItem: UIView {
         //
         if let title = title {
             self.titleButton = self.createTitleButton(title, titleColor: titleColor)
-            self.titleButton?.titleLabel?.font = UIFont(name: "Chalkboard SE", size: 16)
-            self.titleButton?.titleLabel?.textAlignment = .left
-            
         }
     }
     
