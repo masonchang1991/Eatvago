@@ -39,11 +39,9 @@ extension RandomGameViewController {
         
         // outlet fave button bug need to set two times color
         searchButton.isSelected = false
-        searchButton.normalColor = UIColor.asiCoolGreyTwo
+        searchButton.normalColor = UIColor.white
         navigationButton.imageView?.contentMode = .scaleAspectFit
-        navigationButton.isSelected = false
         navigationButton.normalColor = UIColor.asiWhiteTwo
-        navigationButton.tintColor = UIColor.asiWhiteTwo
         
         self.randomGameMagneticView.backgroundColor = UIColor.clear
         self.randomGameMagneticView.magnetic.backgroundColor = UIColor.clear

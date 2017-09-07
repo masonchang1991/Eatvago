@@ -16,6 +16,8 @@ import SCLAlertView
 import FSPagerView
 import ExpandingMenu
 
+
+//swiftlint:disable type_body_length
 class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var nearByInfoBackgroundView: UIView!
@@ -94,12 +96,19 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     // setup pagerViewControl
     
+    @IBOutlet weak var firstLeftTwoPagerViewControlView: UIView!
+    
+    @IBOutlet weak var firstLeftOnePagerViewControlView: UIView!
+    
     @IBOutlet weak var firstPagerViewControlView: UIView!
 
     @IBOutlet weak var secondPagerViewControlView: UIView!
     
     @IBOutlet weak var thirdPagerViewControlView: UIView!
     
+    @IBOutlet weak var thirdRightOnePagerViewControlView: UIView!
+    
+    @IBOutlet weak var thirdRightTwoPagerViewControlView: UIView!
 
     var window: UIWindow?
     
@@ -153,6 +162,11 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     var userProfileAlertView = SCLAlertView()
     // userImageView In alertview
     var userImageViewInAlertView = UIImageView()
+    //pagerview用參數控制紅點
+    var pagerViewLastIndex = 0
+    var pagerViewControlRedPoint = 2
+    var tempPagerControlBigPointView = UIView()
+    var tempPagerControlLittlePointView = UIView()
     
     override func loadView() {
          super.loadView()
@@ -194,7 +208,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 100
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
@@ -226,26 +240,13 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         setupLayout()
         addMenuButton()
         
-        
         //keyboard 收下去
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
-        
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupLayer()
-    }
-    
-    deinit {
-        
-        print("LoadingViewController")
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
@@ -275,41 +276,31 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
-        let pagerViewControlIndex = index % 3
-        
-        switch pagerViewControlIndex {
-        case 0:
-            firstPagerViewControlView.backgroundColor = UIColor.red
-            thirdPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-            secondPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-        case 1:
-            secondPagerViewControlView.backgroundColor = UIColor.red
-            firstPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-            thirdPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-        case 2:
-            thirdPagerViewControlView.backgroundColor = UIColor.red
-            secondPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-            firstPagerViewControlView.backgroundColor = UIColor(red: 230.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.9)
-        default: break
-        }
-        
+        callPageControlBaseOnIndex(index)
+  
         let location = locations[index]
+        
         if location.photo == nil {
 
             self.loadingNVAView.startAnimating()
+            
             cell.imageView?.isHidden = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
                 self.loadingNVAView.stopAnimating()
-                cell.imageView?.isHidden = false
-                cell.imageView?.image = UIImage(named: "notFound")
-                cell.imageView?.contentMode = .center
+                self.loadingNVAView.isHidden = true
+                if cell.imageView?.image == nil {
+                    cell.imageView?.isHidden = false
+                    cell.imageView?.image = UIImage(named: "notFound")
+                    cell.imageView?.contentMode = .center
+                }
             })
-            
 
         } else {
+            
             self.loadingNVAView.stopAnimating()
             self.loadingNVAView.isHidden = true
             cell.imageView?.isHidden = false
@@ -318,307 +309,71 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
                 return FSPagerViewCell()
             }
             
-            cell.imageView?.image = storeImage
-            cell.imageView?.contentMode = .scaleAspectFill
-            
+            DispatchQueue.main.async {
+                cell.imageView?.image = storeImage
+                cell.imageView?.contentMode = .scaleAspectFill
+            }
+
         }
         
         storeDistanceLabel.text = location.distanceText
-        storeDurationTimeLabel.text = location.durationText
+        storeDurationTimeLabel.text = location.durationText + "\n (Walking)"
         storeNameLabel.text = location.name
         
         choosedLocation = location
         
-        var ifInTheList = false
+        addToListButton.tintColor = UIColor(
+            red: 255.0/255.0,
+            green: 235.0/255.0,
+            blue: 245.0/255.0,
+            alpha: 1.0
+        )
         
         for locationInList in (tabBarC?.addLocations) ?? [] {
             
             if locationInList.name == choosedLocation.name {
                 
-                ifInTheList = true
+                addToListButton.tintColor = UIColor.red
                 
-            }
+            } else { }
            
         }
         
-        if ifInTheList == true {
-            
-            addToListButton.tintColor = UIColor.red
-            
-        } else {
-            
-            addToListButton.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-            
-        }
-        
         return cell
-
-    }
-
-    func addToList(_ sender: UIButton) {
-        
-        if sender.tintColor != UIColor.red {
-            
-            sender.tintColor = UIColor.red
-            
-            tabBarC?.addLocations.append(choosedLocation)
-
-        } else {
-            
-            sender.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-            
-            var nowAt = 0
-            
-            for location in (tabBarC?.addLocations) ?? [] {
-                
-                if location.name == choosedLocation.name {
-                    tabBarC?.addLocations.remove(at: nowAt)
-                }
-                nowAt += 1
-            }
-        }
     }
     
-       func showStoreDetail(_ sender: UIButton) {
+    func showStoreDetail(_ sender: UIButton) {
         
-        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(locationsWithoutDetail: self.locations[sender.tag], senderTag: sender.tag)
-        
-    }
-
-    
-    func changTableViewAndMap() {
-        if storeImagePagerView.isHidden == true {
-            storeImagePagerView.isHidden = false
-            storeImagePagerView.reloadData()
-            mapView.isHidden = true
-        } else {
-            mapView.isHidden = false
-            storeImagePagerView.isHidden = true
-            self.storeImagePagerView.isHidden = true
-        }
-    }
-    
-    
-    
-    @IBAction func goToNavigation(_ sender: Any) {
-
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            UIApplication.shared.openURL(URL(string:
-                "comgooglemaps://?saddr=\(self.currentLocation.coordinate.latitude),\(self.currentLocation.coordinate.longitude)&daddr=\(self.choosedLocation.latitude),\(self.choosedLocation.longitude)&directionsmode=walking")!)
-        } else {
-            print("Can't use comgooglemaps://")
-        }
-        
-    }
-
-    
-    func logout() {
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
-            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
-            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
-            showCloseButton: false,
-            showCircularIcon: true
+        self.fetchPlaceIdDetailManager.requestPlaceIdDetail(
+            locationsWithoutDetail:
+            self.locations[sender.tag],
+            senderTag: sender.tag
         )
         
-        // Initialize SCLAlertView using custom Appearance
-        let alert = SCLAlertView(appearance: appearance)
-        let alertViewIcon = UIImage(named: "exitIcon")
-        
-        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
-            
-            // 消去 UserDefaults內使用者的帳號資訊
-            UserDefaults.standard.setValue(nil, forKey: "UserLoginEmail")
-            UserDefaults.standard.setValue(nil, forKey: "UserLoginPassword")
-            UserDefaults.standard.setValue(nil, forKey: "UID")
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.makeKeyAndVisible()
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
-            self.window?.rootViewController = loginVC
-            
-            alert.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
-            
-            alert.dismiss(animated: true, completion: nil)
-            
-        }
-        
-        alert.showNotice("Logout", subTitle: "Are you sure?", circleIconImage: alertViewIcon)
-
-        
-    }
-    
-    func setUpProfile() {
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
-            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
-            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
-            showCloseButton: false,
-            showCircularIcon: false
-        )
-        
-        // Initialize SCLAlertView using custom Appearance
-        let alert = SCLAlertView(appearance: appearance)
-        userProfileAlertView = alert
-        // Creat the subview
-        let width = 216
-        let subview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 115))
-
-        self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50, y: 15, width: 100, height: 100)
- 
-        if self.userPhotoImageView.image != nil {
-            
-            
-        } else {
-            
-            self.userPhotoImageView.image = UIImage(named: "UserProfileDefaultPicture")
-            
-        }
-        
-        self.userPhotoImageView.contentMode = .scaleAspectFill
-        self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.width / 4
-        self.userPhotoImageView.clipsToBounds = true
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(choosePhotoOrCamera))
-        
-        self.userPhotoImageView.addGestureRecognizer(tap)
-        
-        self.userPhotoImageView.isUserInteractionEnabled = true
-        
-        subview.addSubview(self.userPhotoImageView)
-        
-        alert.customSubview = subview
-        alert.addButton(" BACK ",
-                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
-                        textColor: UIColor.white,
-                        showDurationStatus: true) {
-                            
-                            alert.dismiss(animated: true, completion: nil)
-                            
-        }
-    
-        alert.showInfo("Profile Picture", subTitle: "")
-    }
-    
-    func setUpFilter() {
-        
-        let distancePickerView = UIPickerView()
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
-            kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
-            kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
-            showCloseButton: false,
-            showCircularIcon: true
-        )
-        
-        // Initialize SCLAlertView using custom Appearance
-        let alert = SCLAlertView(appearance: appearance)
-        // Creat the subview
-        let subview = UIView(frame: CGRect(x: 0, y: 0, width: 180, height: 70))
-        let x = (subview.frame.width - 180) / 2
-        
-        self.distanceTextField.frame = CGRect(x: x, y: 10, width: 108, height: 25)
-        self.distanceTextField.text = String(self.distancePickOption[0])
-        self.distanceTextField.font = UIFont(name: "Chalkboard SE", size: 18)
-        distancePickerView.delegate = self
-        self.distanceTextField.inputView = distancePickerView
-        self.distanceTextField.textAlignment = .right
-        subview.addSubview(distanceTextField)
-        
-        let distanceUnit = UILabel()
-        distanceUnit.frame = CGRect(x: x + 108, y: 10, width: 108, height: 25)
-        distanceUnit.text = "   M "
-        distanceUnit.font = UIFont(name: "Chalkboard SE", size: 18)
-        distanceUnit.textColor = UIColor.black
-        distanceUnit.backgroundColor = UIColor.clear
-        
-        subview.addSubview(distanceUnit)
-        
-        let keywordTextField = UITextField(frame: CGRect(x: x + 15,
-                                                         y: self.distanceTextField.frame.maxY + 10,
-                                                         width: 180,
-                                                         height: 25))
-        keywordTextField.textAlignment = .center
-        keywordTextField.placeholder = "Key words"
-        
-        subview.addSubview(keywordTextField)
-        
-        alert.customSubview = subview
-        
-        alert.addButton(" OK ",
-                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
-                        textColor: UIColor.white,
-                        showDurationStatus: true) {
-                            
-                            self.filterDistance = Double(self.distanceTextField.text ?? "100") ?? 100
-                            self.keywordText = (keywordTextField.text ?? "")
-                            
-                            self.settingLabel.text = " Radius: \(self.filterDistance) M \n Keyword: \(self.keywordText) "
-
-                            self.currentLocation = CLLocation()
-                            self.lastLocation = nil
-                            self.locations = []
-                            self.nearbyLocationDictionary = [:]
-                            self.storeNameLabel.text = ""
-                            self.storeDistanceLabel.text = ""
-                            self.storeDurationTimeLabel.text = ""
-                            self.nextPageToken = ""
-                            NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
-                                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-                                self.googleMapView.clear()
-                                self.storeImagePagerView.reloadData()
-                                self.locationManager.startUpdatingLocation()
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                                    
-                                    self.locationManager.stopUpdatingLocation()
-                                    
-                                })
-                                
-                            })
-        }
-        
-        alert.addButton(" Cancel ",
-                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
-                        textColor: UIColor.white,
-                        showDurationStatus: true) {
-                            
-                            alert.dismiss(animated: true, completion: nil)
-                            
-        }
-        
-        alert.showInfo("SetUp", subTitle: "Define Range")
-        
     }
 
-    
-    
-    
-    
-    
-    
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return distancePickOption.count
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         return "\(distancePickOption[row])"
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         distanceTextField.text = "\(distancePickOption[row])"
+        
     }
     
     func dismissKeyboard() {

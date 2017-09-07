@@ -11,8 +11,10 @@ import Firebase
 import CoreLocation
 import NVActivityIndicatorView
 import SCLAlertView
+import SkyFloatingLabelTextField
+import FaveButton
 
-class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate {
+class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CheckIfRoomExistDelegate, UITextViewDelegate {
     
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
@@ -29,7 +31,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     @IBOutlet weak var userPhotoShadowView: UIView!
     
     @IBOutlet weak var introductTitleLabel: UILabel!
-
+    
+    @IBOutlet weak var matchButton: FaveButton!
+    
     var genderPickerView = UIPickerView()
     
     var typePickerView = UIPickerView()
@@ -79,6 +83,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         typeTextField.text = typePickOption[0]
         
+        greetingTextView.delegate = self
+        
         ref = Database.database().reference()
         
         self.checkIfRoomExistManager.delegate = self
@@ -102,7 +108,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         
          setupLayer()
     }
@@ -183,6 +188,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                 alert.dismiss(animated: true, completion: nil)
             }
             
+            self.matchButton.isSelected = false
+            
             alert.showError("Error", subTitle: "you forgot your nick name")
             
         } else {
@@ -190,6 +197,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             self.checkIfRoomExistManager.checkIfRoomExist(type: type)
             
             NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+            
+            self.matchButton.isSelected = false
             
             Analytics.logEvent("prepareTo_matchbutton", parameters: nil)
             
@@ -319,5 +328,18 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.text == "Say something" {
+            
+            textView.text = ""
+            
+        }
+        
+        
+    }
+    
+    
 
 }

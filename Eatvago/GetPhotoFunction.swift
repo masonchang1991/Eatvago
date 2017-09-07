@@ -16,17 +16,18 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         let picker: UIImagePickerController = UIImagePickerController()
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            
             picker.sourceType = UIImagePickerControllerSourceType.camera
             picker.allowsEditing = true // 可對照片作編輯
             picker.delegate = self
             self.userProfileAlertView.present(picker, animated: true, completion: nil)
+            
         } else {
-            print("沒有相機鏡頭...") // 用alertView.show
             
             // 建立一個提示框
             let alertController = UIAlertController(
-                title: "很抱歉",
-                message: "您的相機是空號請裝了再按",
+                title: "Sorry",
+                message: "Your camera didn't work",
                 preferredStyle: .alert)
             
             // 建立[ok]按鈕
@@ -45,6 +46,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     }
     
     func getUserPhoto() {
+        
         let picker: UIImagePickerController = UIImagePickerController()
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
@@ -54,6 +56,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             picker.delegate = self
             self.userProfileAlertView.present(picker, animated: true, completion: nil)
         }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
@@ -62,14 +65,11 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         self.userPhotoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage //將選取圖片存入我那個imageview中
         
         if let image = self.userPhotoImageView.image {
-            //拿照片比例啦
-            let ratio = image.size.width / image.size.height
-            let newHeight = self.userPhotoImageView.frame.width / ratio
             
             //set照片長寬
-            self.userPhotoImageView.frame.size = CGSize(width: self.userPhotoImageView.frame.width, height: self.userPhotoImageView.frame.height)
-//            //set照片中心
-//            self.userPhotoImageView.center = CGPoint(x: self.userPhotoImageView.frame.width * 0.5, y: self.userPhotoImageView.frame.height * 0.5)
+            self.userPhotoImageView.frame.size =
+                CGSize(width: self.userPhotoImageView.frame.width,
+                       height: self.userPhotoImageView.frame.height)
             //放照片啦
             self.userPhotoImageView.image = image
             
@@ -78,12 +78,15 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
             self.uploadOrDownLoadUserPhotoManager.uploadUserPhoto(userPhoto: image)
             
             NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+            
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         picker.dismiss(animated: true, completion: nil)
+        
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion successNotion: String, photoURL: String) {
@@ -96,9 +99,9 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error) {
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-        print(errorDescription)
-//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+
         self.uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
+        
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, downloadImageURL: URL) {
@@ -106,8 +109,10 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         tabBarC?.userPhotoURLString = downloadImageURL.absoluteString
 
         DispatchQueue.main.async {
+            
             self.userPhotoImageView.sd_setImage(with: downloadImageURL, completed: nil)
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            
         }
         
     }

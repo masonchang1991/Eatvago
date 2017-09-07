@@ -55,8 +55,7 @@ extension NearbyViewController: UINavigationControllerDelegate, UIGestureRecogni
         let cancelAction = UIAlertAction(
             title: "Cancel",
             style: .default) { (_: UIAlertAction!) -> Void in
-                
-                
+
         }
         alertController.addAction(cancelAction)
 

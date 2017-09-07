@@ -9,6 +9,7 @@
 import UIKit
 
 struct Location {
+    
     var latitude: Double
     var longitude: Double
     var name: String

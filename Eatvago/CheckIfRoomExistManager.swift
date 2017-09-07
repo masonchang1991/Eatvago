@@ -24,8 +24,8 @@ class CheckIfRoomExistManager {
     var ref: DatabaseReference =  Database.database().reference()
     
     func checkIfRoomExist(type: String) {
-        
-        findRoom(type: type) { [weak self](finded, key) in
+       
+        findRoom(type: type) { [weak self] (finded, key) in
             
             guard let `weakself` = self else { return }
             
