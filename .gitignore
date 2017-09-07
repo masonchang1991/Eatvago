@@ -28,7 +28,6 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 GoogleService-Info.plist
-Info.plist
 AppDelegate.swift
 
 
