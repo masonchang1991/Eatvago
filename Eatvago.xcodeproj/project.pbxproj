@@ -51,6 +51,7 @@
 		9391DFCC1F4023C40014BABD /* GetPhotoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */; };
 		9391DFCE1F4032CD0014BABD /* UploadUserPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */; };
 		9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */; };
+		939C5A061F61733E006E328C /* GoogleMapKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C5A051F61733E006E328C /* GoogleMapKey.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 		93DB1F7A1F61502B00162895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB1F791F61502B00162895 /* AppDelegate.swift */; };
@@ -126,6 +127,7 @@
 		9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPhotoFunction.swift; sourceTree = "<group>"; };
 		9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPhotoManager.swift; sourceTree = "<group>"; };
 		9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setRamdomGameLayout.swift; sourceTree = "<group>"; };
+		939C5A051F61733E006E328C /* GoogleMapKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapKey.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		93DB1F791F61502B00162895 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				93DB1F791F61502B00162895 /* AppDelegate.swift */,
+				939C5A051F61733E006E328C /* GoogleMapKey.swift */,
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
@@ -607,6 +610,7 @@
 				930A4B401F434AD3008F4E65 /* ExtensionUIView.swift in Sources */,
 				93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */,
 				93FB58021F3DEC660017E460 /* MatchSuccessViewController.swift in Sources */,
+				939C5A061F61733E006E328C /* GoogleMapKey.swift in Sources */,
 				9391DFCE1F4032CD0014BABD /* UploadUserPhotoManager.swift in Sources */,
 				93FD1E681F418FDC003D4EC6 /* SendMessageManager.swift in Sources */,
 				93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */,

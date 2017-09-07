@@ -28,7 +28,7 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 GoogleService-Info.plist
-AppDelegate.swift
+GoogleMapKey.swift
 
 
 ## Playgrounds
