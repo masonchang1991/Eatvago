@@ -9,9 +9,17 @@
 /* Begin PBXBuildFile section */
 		3D618EF2A4B9A4883A992048 /* Pods_Eatvago.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */; };
 		9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300866C1F28ED5000BEA223 /* NearbyViewController.swift */; };
-		930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 930086741F29E9FE00BEA223 /* GoogleService-Info.plist */; };
 		930086781F2A08C700BEA223 /* CLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930086771F2A08C700BEA223 /* CLLocationDelegate.swift */; };
-		9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */; };
+		9300B1041F4AB60D0073FCAF /* AddedRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300B1031F4AB60D0073FCAF /* AddedRandomViewController.swift */; };
+		9300B1061F4AB9CB0073FCAF /* AddedRandomPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300B1051F4AB9CB0073FCAF /* AddedRandomPickerViewDelegate.swift */; };
+		9300B1081F4ABA8E0073FCAF /* AddedRandomGMSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300B1071F4ABA8E0073FCAF /* AddedRandomGMSDelegate.swift */; };
+		9300B10A1F4B098D0073FCAF /* AddedRandomLayoutFuction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9300B1091F4B098D0073FCAF /* AddedRandomLayoutFuction.swift */; };
+		9300B10C1F4BC3C20073FCAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9300B10B1F4BC3C20073FCAF /* GoogleService-Info.plist */; };
+		930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */; };
+		930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */; };
+		930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */; };
+		930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */; };
+		930119E01F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */; };
 		930144331F27986700CEC11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144321F27986700CEC11A /* AppDelegate.swift */; };
 		930144381F27986700CEC11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930144361F27986700CEC11A /* Main.storyboard */; };
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
@@ -20,6 +28,10 @@
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
 		9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F2971F2F215800819B03 /* UIImage+Gif.swift */; };
 		9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9308F29A1F2F21B000819B03 /* loadingGIF.gif */; };
+		930A4B3E1F433DA1008F4E65 /* LoadingLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */; };
+		930A4B401F434AD3008F4E65 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */; };
+		930A4B421F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */; };
+		930A4B441F444790008F4E65 /* NearbyViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */; };
 		9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329D9D11F306A6800415697 /* FetchDistanceManager.swift */; };
 		93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */; };
 		93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93729AC61F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift */; };
@@ -30,18 +42,54 @@
 		9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */; };
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
-		9383D4961F38536E00DAAD56 /* AddListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */; };
-		9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4971F3897E200DAAD56 /* GMSDelegate.swift */; };
+		9383D4BC1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BB1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift */; };
+		9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */; };
+		9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */; };
+		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
+		9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */; };
+		9391DFC61F3F27DD0014BABD /* AddOrRemoveListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC51F3F27DD0014BABD /* AddOrRemoveListItem.swift */; };
+		9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */; };
+		9391DFCA1F4022CE0014BABD /* NearByUserPhotoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */; };
+		9391DFCC1F4023C40014BABD /* GetPhotoFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */; };
+		9391DFCE1F4032CD0014BABD /* UploadUserPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */; };
+		9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
 		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
+		93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */; };
+		93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */; };
+		93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */; };
+		93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */; };
+		93FB58021F3DEC660017E460 /* MatchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */; };
+		93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */; };
+		93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */; };
+		93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */; };
+		93FD1E581F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */; };
+		93FD1E641F418C82003D4EC6 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E631F418C82003D4EC6 /* MyChatTableViewCell.swift */; };
+		93FD1E661F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E651F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift */; };
+		93FD1E681F418FDC003D4EC6 /* SendMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E671F418FDC003D4EC6 /* SendMessageManager.swift */; };
+		93FD1E6A1F4198CF003D4EC6 /* SendMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E691F4198CF003D4EC6 /* SendMessageDelegate.swift */; };
+		93FD1E6C1F419B7D003D4EC6 /* ChatObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */; };
+		93FD1E6E1F41A0D9003D4EC6 /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */; };
+		93FD1E701F41A3C6003D4EC6 /* ChatObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */; };
+		93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */; };
+		93FD1E741F429C1D003D4EC6 /* MatchSuccessLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD1E731F429C1D003D4EC6 /* MatchSuccessLayout.swift */; };
+		93FF2A6C1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2368AA98FF231B9792B4005E /* Pods-Eatvago.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.debug.xcconfig"; sourceTree = "<group>"; };
 		9300866C1F28ED5000BEA223 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
-		930086741F29E9FE00BEA223 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		930086771F2A08C700BEA223 /* CLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationDelegate.swift; sourceTree = "<group>"; };
-		9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMapTableViewCell.swift; sourceTree = "<group>"; };
+		9300B1031F4AB60D0073FCAF /* AddedRandomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedRandomViewController.swift; sourceTree = "<group>"; };
+		9300B1051F4AB9CB0073FCAF /* AddedRandomPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedRandomPickerViewDelegate.swift; sourceTree = "<group>"; };
+		9300B1071F4ABA8E0073FCAF /* AddedRandomGMSDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedRandomGMSDelegate.swift; sourceTree = "<group>"; };
+		9300B1091F4B098D0073FCAF /* AddedRandomLayoutFuction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedRandomLayoutFuction.swift; sourceTree = "<group>"; };
+		9300B10B1F4BC3C20073FCAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCLLocationDelegate.swift; sourceTree = "<group>"; };
+		930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchDistanceDelegate.swift; sourceTree = "<group>"; };
+		930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchLocationDelegate.swift; sourceTree = "<group>"; };
+		930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchLocationImageDelegate.swift; sourceTree = "<group>"; };
+		930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchFetchPlaceDetailDelegate.swift; sourceTree = "<group>"; };
 		9301442F1F27986700CEC11A /* Eatvago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatvago.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930144321F27986700CEC11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		930144371F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +100,10 @@
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		9308F2971F2F215800819B03 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		9308F29A1F2F21B000819B03 /* loadingGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingGIF.gif; sourceTree = "<group>"; };
+		930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayoutFunction.swift; sourceTree = "<group>"; };
+		930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
+		930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchLayoutFunction.swift; sourceTree = "<group>"; };
+		930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewControllerLayout.swift; sourceTree = "<group>"; };
 		9329D9D11F306A6800415697 /* FetchDistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDistanceManager.swift; sourceTree = "<group>"; };
 		93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchLocationsDelegate.swift; sourceTree = "<group>"; };
 		93729AC61F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceDetailDelegate.swift; sourceTree = "<group>"; };
@@ -62,10 +114,38 @@
 		9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNearbyLocationsManager.swift; sourceTree = "<group>"; };
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
-		9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddListCollectionViewCell.swift; sourceTree = "<group>"; };
-		9383D4971F3897E200DAAD56 /* GMSDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSDelegate.swift; sourceTree = "<group>"; };
+		9383D4BB1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionColorsandFonts.swift; sourceTree = "<group>"; };
+		9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchHistoryTableViewController.swift; sourceTree = "<group>"; };
+		9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchViewController.swift; sourceTree = "<group>"; };
+		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
+		9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataDelegate.swift; sourceTree = "<group>"; };
+		9391DFC51F3F27DD0014BABD /* AddOrRemoveListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOrRemoveListItem.swift; sourceTree = "<group>"; };
+		9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessPickerViewDelegate.swift; sourceTree = "<group>"; };
+		9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByUserPhotoFunction.swift; sourceTree = "<group>"; };
+		9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPhotoFunction.swift; sourceTree = "<group>"; };
+		9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPhotoManager.swift; sourceTree = "<group>"; };
+		9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setRamdomGameLayout.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
 		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
+		93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRoomStruct.swift; sourceTree = "<group>"; };
+		93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerMatchSuccessManager.swift; sourceTree = "<group>"; };
+		93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfRoomExistManager.swift; sourceTree = "<group>"; };
+		93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchRoomData.swift; sourceTree = "<group>"; };
+		93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessViewController.swift; sourceTree = "<group>"; };
+		93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculateMidpointBetweenTwoLocation.swift; sourceTree = "<group>"; };
+		93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataManager.swift; sourceTree = "<group>"; };
+		93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessRoomStruct.swift; sourceTree = "<group>"; };
+		93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessGMSDelegate.swift; sourceTree = "<group>"; };
+		93FD1E631F418C82003D4EC6 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
+		93FD1E651F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OppositePeopleChatTableViewCell.swift; sourceTree = "<group>"; };
+		93FD1E671F418FDC003D4EC6 /* SendMessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageManager.swift; sourceTree = "<group>"; };
+		93FD1E691F4198CF003D4EC6 /* SendMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageDelegate.swift; sourceTree = "<group>"; };
+		93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatObserverManager.swift; sourceTree = "<group>"; };
+		93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStruct.swift; sourceTree = "<group>"; };
+		93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatObserverDelegate.swift; sourceTree = "<group>"; };
+		93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessTableViewDelegate.swift; sourceTree = "<group>"; };
+		93FD1E731F429C1D003D4EC6 /* MatchSuccessLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSuccessLayout.swift; sourceTree = "<group>"; };
+		93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGamePickerViewDelegate.swift; sourceTree = "<group>"; };
 		D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatvago.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatvago/Pods-Eatvago.release.xcconfig"; sourceTree = "<group>"; };
 		E1F0ECA0E01F8B951040C583 /* Pods_Eatvago.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatvago.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,12 +183,43 @@
 			isa = PBXGroup;
 			children = (
 				9300866C1F28ED5000BEA223 /* NearbyViewController.swift */,
-				9300867B1F2A110800BEA223 /* NearbyMapTableViewCell.swift */,
 				9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */,
+				9391DFC91F4022CE0014BABD /* NearByUserPhotoFunction.swift */,
+				9391DFCB1F4023C40014BABD /* GetPhotoFunction.swift */,
+				93FFE2891F48235F006BECD3 /* NearbyLayout */,
 				93729AC31F35CBAE004125C0 /* DelegateFunction */,
 				9380CA911F2DE46200629C0A /* FetchManagers */,
 			);
 			name = NearBy;
+			sourceTree = "<group>";
+		};
+		9300B1021F4AB58F0073FCAF /* Add List Random */ = {
+			isa = PBXGroup;
+			children = (
+				9300B1031F4AB60D0073FCAF /* AddedRandomViewController.swift */,
+				9300B1051F4AB9CB0073FCAF /* AddedRandomPickerViewDelegate.swift */,
+				9300B1071F4ABA8E0073FCAF /* AddedRandomGMSDelegate.swift */,
+				9300B1091F4B098D0073FCAF /* AddedRandomLayoutFuction.swift */,
+			);
+			name = "Add List Random";
+			sourceTree = "<group>";
+		};
+		930119D61F3EA920002822B1 /* DelegateFunction */ = {
+			isa = PBXGroup;
+			children = (
+				93FD1E691F4198CF003D4EC6 /* SendMessageDelegate.swift */,
+				93FD1E711F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift */,
+				93FD1E571F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift */,
+				93FD1E6F1F41A3C6003D4EC6 /* ChatObserverDelegate.swift */,
+				930119D71F3EA93E002822B1 /* MatchCLLocationDelegate.swift */,
+				930119D91F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift */,
+				930119DB1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift */,
+				930119DD1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift */,
+				930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */,
+				9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */,
+				9391DFC71F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift */,
+			);
+			name = DelegateFunction;
 			sourceTree = "<group>";
 		};
 		930144261F27986700CEC11A = {
@@ -136,7 +247,12 @@
 				930144511F28A48700CEC11A /* LoadingViewController.swift */,
 				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
+				9383D4BB1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift */,
 				93729ACE1F3631C2004125C0 /* MainTabBarController.swift */,
+				930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */,
+				93FB58031F3DEC6C0017E460 /* MatchSuccess */,
+				9383D4BD1F3AFA5000DAAD56 /* Match */,
+				9300B1021F4AB58F0073FCAF /* Add List Random */,
 				93A10BEA1F31BF3500F69A82 /* Random Game */,
 				930086761F2A089C00BEA223 /* NearBy */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
@@ -144,7 +260,7 @@
 				9308F2991F2F217600819B03 /* Gif */,
 				9301443B1F27986700CEC11A /* LaunchScreen.storyboard */,
 				9301443E1F27986700CEC11A /* Info.plist */,
-				930086741F29E9FE00BEA223 /* GoogleService-Info.plist */,
+				9300B10B1F4BC3C20073FCAF /* GoogleService-Info.plist */,
 			);
 			path = Eatvago;
 			sourceTree = "<group>";
@@ -157,13 +273,22 @@
 			name = Gif;
 			sourceTree = "<group>";
 		};
+		930A4B3C1F433D7F008F4E65 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */,
+				930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
 		93729AC31F35CBAE004125C0 /* DelegateFunction */ = {
 			isa = PBXGroup;
 			children = (
 				930086771F2A08C700BEA223 /* CLLocationDelegate.swift */,
+				93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */,
 				93729AC81F35CF51004125C0 /* FetchDistanceDelegate.swift */,
 				93729AC61F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift */,
-				93729AC41F35CC13004125C0 /* FetchLocationsDelegate.swift */,
 				93729ACC1F35D7BF004125C0 /* FetchLocationImageDelegate.swift */,
 			);
 			name = DelegateFunction;
@@ -172,6 +297,7 @@
 		9380CA911F2DE46200629C0A /* FetchManagers */ = {
 			isa = PBXGroup;
 			children = (
+				9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */,
 				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
 				93729ACA1F35D0E4004125C0 /* FetchLocationImageManager.swift */,
 				9329D9D11F306A6800415697 /* FetchDistanceManager.swift */,
@@ -180,15 +306,73 @@
 			name = FetchManagers;
 			sourceTree = "<group>";
 		};
+		9383D4BD1F3AFA5000DAAD56 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */,
+				9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */,
+				9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */,
+				93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */,
+				930A4B3C1F433D7F008F4E65 /* Layout */,
+				93FB57FE1F3CB6030017E460 /* Manager */,
+			);
+			name = Match;
+			sourceTree = "<group>";
+		};
+		9391DFC21F3EF43C0014BABD /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
+				93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */,
+				9391DFC51F3F27DD0014BABD /* AddOrRemoveListItem.swift */,
+				93FD1E671F418FDC003D4EC6 /* SendMessageManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		93A10BEA1F31BF3500F69A82 /* Random Game */ = {
 			isa = PBXGroup;
 			children = (
 				93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */,
+				93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */,
+				9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */,
 				93A10BED1F31C01F00F69A82 /* CircleFunction.swift */,
-				9383D4951F38536E00DAAD56 /* AddListCollectionViewCell.swift */,
-				9383D4971F3897E200DAAD56 /* GMSDelegate.swift */,
 			);
 			name = "Random Game";
+			sourceTree = "<group>";
+		};
+		93FB57FE1F3CB6030017E460 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */,
+				93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */,
+				93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		93FB58031F3DEC6C0017E460 /* MatchSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				93FB58011F3DEC660017E460 /* MatchSuccessViewController.swift */,
+				93FD1E731F429C1D003D4EC6 /* MatchSuccessLayout.swift */,
+				93FB58061F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift */,
+				93FD1E631F418C82003D4EC6 /* MyChatTableViewCell.swift */,
+				93FD1E651F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift */,
+				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
+				93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */,
+				9391DFC21F3EF43C0014BABD /* Manager */,
+				930119D61F3EA920002822B1 /* DelegateFunction */,
+			);
+			name = MatchSuccess;
+			sourceTree = "<group>";
+		};
+		93FFE2891F48235F006BECD3 /* NearbyLayout */ = {
+			isa = PBXGroup;
+			children = (
+				930A4B431F444790008F4E65 /* NearbyViewControllerLayout.swift */,
+			);
+			name = NearbyLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +389,7 @@
 				0B0B674A2AE3E52748FD3D64 /* [CP] Embed Pods Frameworks */,
 				9D89D39F2EE9494DCC109CDE /* [CP] Copy Pods Resources */,
 				930144441F279A6200CEC11A /* Swiftlint */,
+				93FFE2881F47EA39006BECD3 /* FireBase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -227,7 +412,7 @@
 				TargetAttributes = {
 					9301442E1F27986700CEC11A = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = D9HX74L5M5;
+						DevelopmentTeam = NE9Q8DJEZN;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -256,9 +441,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */,
-				930086751F29E9FE00BEA223 /* GoogleService-Info.plist in Resources */,
 				9301443A1F27986700CEC11A /* Assets.xcassets in Resources */,
 				9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */,
+				9300B10C1F4BC3C20073FCAF /* GoogleService-Info.plist in Resources */,
 				930144381F27986700CEC11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +495,20 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		93FFE2881F47EA39006BECD3 /* FireBase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "FireBase Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 68e6686daa5b2f40c367e8c620d67b2b7dad5d7e 8ae12e7b50a2b6091ebaf99c99dbaa65c18e1b0035d0a48f5c1d8caad38f5030";
+		};
 		9D89D39F2EE9494DCC109CDE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,27 +531,67 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FD1E741F429C1D003D4EC6 /* MatchSuccessLayout.swift in Sources */,
+				93FB58071F3E0B900017E460 /* CalculateMidpointBetweenTwoLocation.swift in Sources */,
+				9300B1041F4AB60D0073FCAF /* AddedRandomViewController.swift in Sources */,
+				93FB58091F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift in Sources */,
+				930119E01F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift in Sources */,
+				9300B1081F4ABA8E0073FCAF /* AddedRandomGMSDelegate.swift in Sources */,
+				9391DFCC1F4023C40014BABD /* GetPhotoFunction.swift in Sources */,
+				9383D4BC1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift in Sources */,
 				93729ACD1F35D7BF004125C0 /* FetchLocationImageDelegate.swift in Sources */,
 				93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */,
-				9383D4961F38536E00DAAD56 /* AddListCollectionViewCell.swift in Sources */,
 				9380CA8C1F2B341500629C0A /* FetchNearbyLocationsManager.swift in Sources */,
+				93FB58001F3D81310017E460 /* FetchMatchRoomData.swift in Sources */,
+				93FD1E6C1F419B7D003D4EC6 /* ChatObserverManager.swift in Sources */,
+				93FD1E721F41AA99003D4EC6 /* MatchSuccessTableViewDelegate.swift in Sources */,
+				9300B1061F4AB9CB0073FCAF /* AddedRandomPickerViewDelegate.swift in Sources */,
 				9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */,
+				930119DE1F3EAAAE002822B1 /* MatchFetchLocationImageDelegate.swift in Sources */,
 				93729AC71F35CDF0004125C0 /* FetchPlaceDetailDelegate.swift in Sources */,
+				93FB57F91F3C36200017E460 /* MatchRoomStruct.swift in Sources */,
+				930A4B441F444790008F4E65 /* NearbyViewControllerLayout.swift in Sources */,
+				93FD1E661F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift in Sources */,
+				9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */,
 				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
+				9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */,
+				930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */,
+				930A4B421F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift in Sources */,
+				9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */,
 				930144331F27986700CEC11A /* AppDelegate.swift in Sources */,
-				9383D4981F3897E200DAAD56 /* GMSDelegate.swift in Sources */,
+				930A4B3E1F433DA1008F4E65 /* LoadingLayoutFunction.swift in Sources */,
+				9300B10A1F4B098D0073FCAF /* AddedRandomLayoutFuction.swift in Sources */,
+				9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */,
+				9391DFC61F3F27DD0014BABD /* AddOrRemoveListItem.swift in Sources */,
+				930A4B401F434AD3008F4E65 /* ExtensionUIView.swift in Sources */,
+				93FB57FB1F3C4E470017E460 /* OwnerMatchSuccessManager.swift in Sources */,
+				93FB58021F3DEC660017E460 /* MatchSuccessViewController.swift in Sources */,
+				9391DFCE1F4032CD0014BABD /* UploadUserPhotoManager.swift in Sources */,
+				93FD1E681F418FDC003D4EC6 /* SendMessageManager.swift in Sources */,
 				93729AC51F35CC13004125C0 /* FetchLocationsDelegate.swift in Sources */,
+				93FD1E6E1F41A0D9003D4EC6 /* MessageStruct.swift in Sources */,
+				9391DFCA1F4022CE0014BABD /* NearByUserPhotoFunction.swift in Sources */,
 				930086781F2A08C700BEA223 /* CLLocationDelegate.swift in Sources */,
 				9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */,
 				9329D9D21F306A6800415697 /* FetchDistanceManager.swift in Sources */,
 				93729ACB1F35D0E4004125C0 /* FetchLocationImageManager.swift in Sources */,
+				93FD1E641F418C82003D4EC6 /* MyChatTableViewCell.swift in Sources */,
+				930119D81F3EA93E002822B1 /* MatchCLLocationDelegate.swift in Sources */,
+				93FD1E701F41A3C6003D4EC6 /* ChatObserverDelegate.swift in Sources */,
+				93FB57FD1F3C80460017E460 /* CheckIfRoomExistManager.swift in Sources */,
+				93FD1E581F409E1A003D4EC6 /* MatchSuccessGMSDelegate.swift in Sources */,
+				9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
 				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
-				9300867C1F2A110800BEA223 /* NearbyMapTableViewCell.swift in Sources */,
+				930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */,
+				9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */,
+				93FD1E6A1F4198CF003D4EC6 /* SendMessageDelegate.swift in Sources */,
+				93FF2A6C1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift in Sources */,
+				93FB580B1F3E17E80017E460 /* MatchSuccessRoomStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,12 +715,13 @@
 			baseConfigurationReference = 2368AA98FF231B9792B4005E /* Pods-Eatvago.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = D9HX74L5M5;
+				DEVELOPMENT_TEAM = NE9Q8DJEZN;
 				INFOPLIST_FILE = Eatvago/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.masonchang.Eatvago;
+				PRODUCT_BUNDLE_IDENTIFIER = com.masonchang1991.Eatvago;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -490,12 +730,13 @@
 			baseConfigurationReference = D8F4C64F1240A3B4463EE2BF /* Pods-Eatvago.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = D9HX74L5M5;
+				DEVELOPMENT_TEAM = NE9Q8DJEZN;
 				INFOPLIST_FILE = Eatvago/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.masonchang.Eatvago;
+				PRODUCT_BUNDLE_IDENTIFIER = com.masonchang1991.Eatvago;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

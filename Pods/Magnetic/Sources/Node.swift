@@ -16,7 +16,7 @@ open class Node: MaskNode {
         label.fontSize = 12
         label.fontColor = .white
         label.verticalAlignmentMode = .center
-        label.width = self.frame.width
+        label.width = self.frame.width * 4/5
         label.separator = " "
         self.mask.addChild(label)
         return label

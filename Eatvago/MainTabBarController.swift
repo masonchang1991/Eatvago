@@ -19,5 +19,9 @@ class MainTabBarController: UITabBarController {
     var keywordText = ""
     
     var nearbyViewController: UIViewController?
+    
+    var userPhoto: UIImageView = UIImageView()
+    
+    var userPhotoURLString: String = ""
 
 }

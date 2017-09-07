@@ -6,53 +6,83 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>ExpandingMenu-ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>FSPagerView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>FaveButton.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Magnetic.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-Eatvago.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>SCLAlertView.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>SwifterSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -62,17 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>279AA6726F52A334C45E85774BD21A3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4BE078E233436F025ED44DA10D77D326</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>51C43C63973241D5CBF086DA9553B106</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,22 +107,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CABD1AF654AB4982FDE18530290B40A</key>
+		<key>605D1ABC7815102E4AC795436644BD4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>634BAA0E7AF02D69F49C6C278F74D85B</key>
+		<key>7409E312376929E18E79DC1DE95F21FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>814662785B65C67979F1F1F793CAF1E4</key>
+		<key>7C08227B6E14D87F0F5B0FD6DFFA1A3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87D8A28CC56165A307D9AD425087151A</key>
+		<key>7DAB7C817073E3829E53D6DD42576046</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E1679D8778177232587D662868EB3C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +137,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B35FE04C9CACA83AD1B39E176FCD85CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D11C9F29B8DB58C3E746D4DCFB6C511B</key>
+		<key>C07D1540B92AACEF16FA22C2A8C5ABC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF012D64631872222F5D48F48D300680</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB3C30C12812E277147F8CAC42660691</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED279AFE7EA745A57B7B9F35AD5F2C9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
