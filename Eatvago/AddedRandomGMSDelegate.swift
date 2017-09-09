@@ -12,6 +12,7 @@ import GooglePlaces
 extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
+        
         searchController?.isActive = false
 
         var location = Location(latitude: place.coordinate.latitude,
@@ -42,6 +43,7 @@ extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegat
                            didFailAutocompleteWithError error: Error) {
 
         print("Error: ", error.localizedDescription)
+        
     }
     
     // Turn the network activity indicator on and off again.

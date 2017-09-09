@@ -46,8 +46,17 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     var maxRows = 10
     var maxElements = 10000
     var currentRow = 5000
-    var currentLocation = Location(latitude: 0.0, longitude: 0.0, name: "", id: "", placeId: "", types: [], priceLevel: nil, rating: nil, photoReference: "")
+    var currentLocation = Location(latitude: 0.0,
+                                   longitude: 0.0,
+                                   name: "",
+                                   id: "",
+                                   placeId: "",
+                                   types: [],
+                                   priceLevel: nil,
+                                   rating: nil,
+                                   photoReference: "")
     var movingTimer = Timer()
+    
     var stepper = 1
     
     var colorArray: [UIColor] =
@@ -65,18 +74,25 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         super.viewDidLoad()
         
         tabBarVC = self.tabBarController as? MainTabBarController
+        
         tabBarVC?.delegate = self
         
         self.addListPickerView.delegate = self
-        self.addListPickerView.dataSource = self
-        self.addListPickerView.selectRow(maxElements / 2, inComponent: 0, animated: false)
         
-                resultsViewController = GMSAutocompleteResultsViewController()
+        self.addListPickerView.dataSource = self
+        
+        self.addListPickerView.selectRow(maxElements / 2,
+                                         inComponent: 0,
+                                         animated: false)
+        
+        resultsViewController = GMSAutocompleteResultsViewController()
+        
         resultsViewController?.delegate = self
         
         setLayout()
 
         self.playButton.addTarget(self, action: #selector(movePicker), for: .touchUpInside)
+        
         self.navigationButton.addTarget(self, action: #selector(goByNavigation), for: .touchUpInside)
     }
     
@@ -85,7 +101,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         
         self.addListPickerView.reloadAllComponents()
         
-        if (tabBarVC?.addLocations.count)! > 0 {
+        guard let tabBarVC = tabBarVC else { return }
+        
+        if tabBarVC.addLocations.count > 0 {
             
             canNavigationLocation = true
             
@@ -99,14 +117,26 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         //layout
         
         searchController = UISearchController(searchResultsController: resultsViewController)
+        
         searchController?.searchResultsUpdater = resultsViewController
+        
         searchView.addSubview((searchController?.searchBar)!)
+        
         view.addSubview(searchView)
+        
         searchController?.searchBar.sizeToFit()
+        
         searchController?.hidesNavigationBarDuringPresentation = true
+        
         searchController?.searchBar.barStyle = .default
-        let searchBarColor = UIColor(red: 255.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.8)
+        
+        let searchBarColor = UIColor(red: 255.0/255.0,
+                                     green: 230.0/255.0,
+                                     blue: 230.0/255.0,
+                                     alpha: 0.8)
+        
         searchController?.searchBar.barTintColor = searchBarColor
+        
         definesPresentationContext = true
 
         self.fetchPickerNowLocation(currentRow: maxElements / 2)
@@ -119,16 +149,20 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         self.searchedLocations = []
         
     }
-    
+
     func movePicker() {
         
-        if tabBarVC?.addLocations.count == 0 && searchedLocations.count == 0 {
-            return
-        }
+        guard let tabBarVC = tabBarVC else { return }
+        
+        if tabBarVC.addLocations.count == 0 && searchedLocations.count == 0 { return }
         
         navigationButton.isEnabled = false
         
-        let timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(scrollToRandomRowFirst), userInfo: nil, repeats: true)
+        let timer1 = Timer.scheduledTimer(timeInterval: 0.1,
+                                          target: self,
+                                          selector: #selector(scrollToRandomRowFirst),
+                                          userInfo: nil,
+                                          repeats: true)
         
         //call the block 3 seconds later
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
@@ -289,8 +323,11 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         let addRow = stepper
         
         self.currentRow += addRow
+        
         self.fetchPickerNowLocation(currentRow: self.currentRow)
+        
         self.addListPickerView.selectRow(self.currentRow, inComponent: 0, animated: true)
+        
         self.addListPickerView.showsSelectionIndicator = true
         
     }
@@ -298,47 +335,48 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     func scrollToRandomRowThird() {
         
         let addRow = 12
+        
         let randomAddRow = Int(arc4random_uniform(2))
         
         self.currentRow += addRow
+        
         self.currentRow += randomAddRow
         
         self.addListPickerView.selectRow(self.currentRow, inComponent: 0, animated: true)
+        
         self.addListPickerView.showsSelectionIndicator = true
         
     }
     
     func fetchPickerNowLocation(currentRow row: Int) {
         
+        guard let tabBarVC = tabBarVC else { return }
+        
         if ifAddFavoriteList == true {
             
-            if (tabBarVC?.addLocations.count)! + searchedLocations.count == 0 {
+            if tabBarVC.addLocations.count + searchedLocations.count == 0 {
                 return
             }
             
-            if let addLocationCount = tabBarVC?.addLocations.count {
+            let addLocationCount = tabBarVC.addLocations.count
+            
+            maxRows = addLocationCount + searchedLocations.count
+            
+            let myRow = row % maxRows
+            
+            if myRow < addLocationCount && addLocationCount != 0 {
                 
-                maxRows = addLocationCount + searchedLocations.count
+                self.currentLocation = tabBarVC.addLocations[myRow]
                 
-                let myRow = row % maxRows
+            } else {
                 
-                if myRow < addLocationCount && addLocationCount != 0 {
-                    
-                    self.currentLocation = tabBarVC?.addLocations[myRow] ?? self.currentLocation
-                    
-                } else {
-                    
-                    self.currentLocation = searchedLocations[myRow - addLocationCount]
-                    
-                }
+                self.currentLocation = searchedLocations[myRow - addLocationCount]
                 
             }
             
         } else {
             
-            if searchedLocations.count == 0 {
-                return
-            }
+            if searchedLocations.count == 0 { return }
             
             maxRows = searchedLocations.count
             
@@ -357,6 +395,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         let startLocation = nearbyViewController.currentLocation
         
         let destinationLat = self.currentLocation.latitude
+        
         let destinationLon = self.currentLocation.longitude
         
         if canNavigationLocation == false {
@@ -381,10 +420,14 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         } else {
             
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                
                 UIApplication.shared.openURL(URL(string:
                     "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
+                
             } else {
+                
                 print("Can't use comgooglemaps://")
+                
             }
             
         }
@@ -398,6 +441,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             self.ifAddFavoriteListButton.imageForNormal = UIImage(named: "uncheck")
             
             ifAddFavoriteList = false
+            
             addListPickerView.reloadAllComponents()
             
             if searchedLocations.count == 0 {
@@ -417,6 +461,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             self.ifAddFavoriteListButton.imageForNormal = UIImage(named: "check")
             
             ifAddFavoriteList = true
+            
             addListPickerView.reloadAllComponents()
             
             if (searchedLocations.count + (tabBarVC?.addLocations.count)!) == 0 {
@@ -431,7 +476,5 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                 
             }
         }
-        
     }
- 
 }

@@ -11,7 +11,9 @@ import UIKit
 extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -22,57 +24,60 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
-        var singlePickerLabel: UILabel
-        if let view = view as? UILabel {
-            singlePickerLabel = view
-        } else {
-            singlePickerLabel = UILabel()
-        }
+        guard let tabBarVC = tabBarVC else { return UILabel() }
+        
+        let singlePickerLabel = UILabel()
         
         singlePickerLabel.textColor = UIColor.white
+        
         singlePickerLabel.textAlignment = .center
-        singlePickerLabel.font = UIFont(name: "Chalkboard SE", size: 20) // or UIFont.boldSystemFont(ofSize: 20)
+        
+        singlePickerLabel.font = UIFont(name: "Chalkboard SE", size: 20)
+        
         singlePickerLabel.adjustsFontSizeToFitWidth = true
+        
         singlePickerLabel.minimumScaleFactor = 0.5
         
         self.currentRow = row
         
         if ifAddFavoriteList == true {
             
-            if (tabBarVC?.addLocations.count)! + searchedLocations.count == 0 {
+            if tabBarVC.addLocations.count + searchedLocations.count == 0 {
+                
                 return UILabel()
-            }
-            
-            if let addLocationCount = tabBarVC?.addLocations.count {
-                
-                maxRows = addLocationCount + searchedLocations.count
-                
-                let myRow = row % maxRows
-                
-                if myRow < addLocationCount && addLocationCount != 0 {
-                    
-                    singlePickerLabel.backgroundColor = colorArray[myRow % colorArray.count]
-                    
-                    singlePickerLabel.text = tabBarVC?.addLocations[myRow].name
-                    
-                    return singlePickerLabel
-                    
-                } else {
-                    
-                    singlePickerLabel.backgroundColor = colorArray[(myRow - addLocationCount) % colorArray.count]
-                    
-                    singlePickerLabel.text = searchedLocations[myRow - addLocationCount].name
-                    
-                    return singlePickerLabel
-                    
-                }
                 
             }
             
+            let addLocationCount = tabBarVC.addLocations.count
+            
+            maxRows = addLocationCount + searchedLocations.count
+            
+            let myRow = row % maxRows
+            
+            if myRow < addLocationCount && addLocationCount != 0 {
+                
+                singlePickerLabel.backgroundColor = colorArray[myRow % colorArray.count]
+                
+                singlePickerLabel.text = tabBarVC.addLocations[myRow].name
+                
+                return singlePickerLabel
+                
+            } else {
+                
+                singlePickerLabel.backgroundColor = colorArray[(myRow - addLocationCount) % colorArray.count]
+                
+                singlePickerLabel.text = searchedLocations[myRow - addLocationCount].name
+                
+                return singlePickerLabel
+                
+            }
+
         } else {
             
             if searchedLocations.count == 0 {
+                
                 return UILabel()
+                
             }
             
             maxRows = searchedLocations.count
@@ -86,14 +91,9 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
             return singlePickerLabel
             
         }
-        
-        return UILabel()
-
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        print(row)
         
         self.currentRow = row
         
