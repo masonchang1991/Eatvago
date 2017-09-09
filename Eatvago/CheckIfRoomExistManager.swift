@@ -49,7 +49,9 @@ class CheckIfRoomExistManager {
                 
                 //回傳沒房間
                 completion(false, "Null")
+                
                 self.ref.removeAllObservers()
+                
                 return
             }
             

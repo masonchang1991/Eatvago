@@ -21,11 +21,7 @@ class OwnerMatchSuccessManager {
     
     func matchSuccess(matchRoomRef: DatabaseReference, ref: DatabaseReference, type: String, matchRoomId: String, snapshot: DataSnapshot) {
         
-        guard let value = snapshot.value as? Bool else {
-            
-            return
-            
-        }
+        guard let value = snapshot.value as? Bool else { return }
         
         if value == true {
 

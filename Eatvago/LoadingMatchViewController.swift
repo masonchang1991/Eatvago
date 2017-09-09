@@ -91,9 +91,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         matchRoomRef = ref.child("Match Room").child(type).child(matchRoomId)
         
         self.fetchMatchRoomDataManager.delegate = self
-        
-        let url = URL(string: myPhotoURl)
-        
+
         setLayout()
                 
         observerIsAnyoneDecline()
@@ -117,7 +115,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                     self.runTime += 1
                     
                 }
-                
             })
             
         } else {
@@ -147,6 +144,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         }
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        
         view.addGestureRecognizer(tap)
         
     }
@@ -156,10 +154,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
         setupBackgroundLayer()
         
-    }
-    
-    deinit {
-        print("LoadingViewController")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -199,6 +193,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         let url = URL(string: photoURL)
 
         oppositePeopleImageView.sd_setImage(with: url, completed: nil)
+        
+        oppositePeopleImageView.sd_setImage(with: url,
+                                            placeholderImage: UIImage(named: "UserDefaultIconForMatch"),
+                                            options: SDWebImageOptions.retryFailed, completed: nil)
         
         oppositePeopleImageView.contentMode = .scaleAspectFill
         
@@ -250,14 +248,23 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         let matchSuccessVC = segue.destination as? MatchSuccessViewController ?? MatchSuccessViewController()
         
         matchSuccessVC.matchRoomRef = self.matchRoomRef
+        
         matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
+        
         matchSuccessVC.myName = self.myName
+        
         matchSuccessVC.myPhotoImageView = self.myImageView
+        
         matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
+        
         matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
+        
         matchSuccessVC.type = self.type
+        
         matchSuccessVC.isRoomOwner = self.isARoomOwner
+        
         matchSuccessVC.connectionRoomId = connectionId
+        
         matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
         
     }
@@ -265,67 +272,51 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     func goToChatRoom(sender: UIButton) {
         
         ifAcceptMatch = true
+        
         ifLeaveByAccept = true
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
         ref.child("UserHistory").child(uid).child(connectionId).setValue(connectionId)
         
         //swiftlint:disable force_cast
         let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
-            
-            matchSuccessVC.matchRoomRef = self.matchRoomRef
-            matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
-            matchSuccessVC.myName = self.myName
-            matchSuccessVC.myPhotoImageView = self.myImageView
-            matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
-            matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
-            matchSuccessVC.type = self.type
-            matchSuccessVC.isRoomOwner = self.isARoomOwner
-            matchSuccessVC.connectionRoomId = self.connectionId
-            matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
+        
+        matchSuccessVC.matchRoomRef = self.matchRoomRef
+        
+        matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
+        
+        matchSuccessVC.myName = self.myName
+        
+        matchSuccessVC.myPhotoImageView = self.myImageView
+        
+        matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
+        
+        matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
+        
+        matchSuccessVC.type = self.type
+        
+        matchSuccessVC.isRoomOwner = self.isARoomOwner
+        
+        matchSuccessVC.connectionRoomId = self.connectionId
+        
+        matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
         
         self.present(matchSuccessVC, animated: false, completion: nil)
         
         self.navigationController?.popToRootViewController(animated: false)
         
         Analytics.logEvent("Loading_accept_goToChatRoom", parameters: nil)
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        self.window?.makeKeyAndVisible()
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let matchSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "matchSuccess") as! MatchSuccessViewController
-//        //swiftlint:enable force_cast
-//        
-//        matchSuccessVC.matchRoomRef = self.matchRoomRef
-//        matchSuccessVC.matchSuccessRoomRef = self.matchSuccessRoomRef
-//        matchSuccessVC.myName = self.myName
-//        matchSuccessVC.myPhotoImageView = self.myImageView
-//        matchSuccessVC.oppositePeopleName = self.oppositePeopleNameLabel.text ?? ""
-//        matchSuccessVC.oppositePeopleImageView = self.oppositePeopleImageView
-//        matchSuccessVC.type = self.type
-//        matchSuccessVC.isRoomOwner = self.isARoomOwner
-//        matchSuccessVC.connectionRoomId = connectionId
-//        matchSuccessVC.oppositePeoplePhoto = self.oppositePeopleImageView.image ?? UIImage()
-//        
-//        self.window?.rootViewController = matchSuccessVC
-////        self.tabBarController?.dismiss(animated: false, completion: nil)
-////        self.tabBarController?.navigationController?.dismiss(animated: true, completion: nil)
-//        self.navigationController?.popToRootViewController(animated: true)
-        
-//        self.performSegue(withIdentifier: "matchSuccess", sender: nil)
-        
+
     }
     
     func closeTheRoom() {
         
         self.matchRoomRef.child("isLocked").setValue(true)
+        
         self.matchRoomRef.child("isClosed").setValue(true)
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
         self.ref.child("UserHistory").child(uid).child(self.connectionId).removeValue()
         
@@ -340,6 +331,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             if self.runTime == 1 {
                 
                 self.navigationController?.popViewController(animated: true)
+                
                 self.matchRoomRef.child("isClosed").removeAllObservers()
                 
                 Analytics.logEvent("Loading_observerIsAnyoneDecline", parameters: nil)

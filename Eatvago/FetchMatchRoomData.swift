@@ -31,31 +31,15 @@ class FetchMatchRoomDataManager {
         self.type = type
         
         matchRoomRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let roomData = snapshot.value as? [String: Any] else { return }
-            
-            guard let owner = roomData["owner"] as? String,
-                let ownerLocationLat = roomData["ownerLocationLat"] as? String,
-                let ownerLocationLon = roomData["ownerLocationLon"] as? String,
+
+            guard
+                let roomData = snapshot.value as? [String: Any],
                 let ownerMatchInfo = roomData["ownerMatchInfo"] as? String,
-                let attender = roomData["attender"] as? String,
-                let attenderLocationLat = roomData["attenderLocationLat"] as? String,
-                let attenderLocationLon = roomData["attenderLocationLon"] as? String,
                 let attenderMatchInfo = roomData["attenderMatchInfo"] as? String else {
                     
                     self.delegate?.manager(self, didFail: "JSON FAIL")
                     return
             }
-
-            let matchRoom = MatchRoom(owner: owner,
-                                      ownerLocationLat: ownerLocationLat,
-                                      ownerLocationLon: ownerLocationLon,
-                                      ownerMatchInfo: ownerMatchInfo,
-                                      attender: attender,
-                                      attenderLocationLat: attenderLocationLat,
-                                      attenderLocationLon: attenderLocationLon,
-                                      attenderMatchInfo: attenderMatchInfo,
-                                      connection: nil)
             
             if isRoomowner == true {
                 
@@ -66,34 +50,25 @@ class FetchMatchRoomDataManager {
                     if photoURL != nil {
                         
                         let url = URL(string: photoURL!)
+
+                        peopleImageView.sd_setImage(with: url,
+                                                    placeholderImage: UIImage(named: "UserDefaultIconForMatch"),
+                                                    options: SDWebImageOptions.retryFailed,
+                                                    completed: nil)
                         
-                        if gender == "man" {
-                            
-                            peopleImageView.sd_setImage(with: url, completed: nil)
-                            
-                        } else {
-                            
-                            peopleImageView.sd_setImage(with: url, completed: nil)
-                            
-                        }
-                        
-                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
+                         let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name,
+                                                               oppositePeopleGender: gender,
+                                                               oppositePeopleText: greetingText,
+                                                               oppositePeoplePhotoURL: photoURL)
                         
                          self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         
                     } else {
                         
-//                        if gender == "male" {
-//                            
-//                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "boy"), options: SDWebImageOptions.refreshCached, completed: nil)
-//                            
-//                        } else {
-//                            
-//                            peopleImageView.sd_setImage(with: nil, placeholderImage: UIImage(named: "girl"), options: SDWebImageOptions.refreshCached, completed: nil)
-//                            
-//                        }
-                        
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name,
+                                                              oppositePeopleGender: gender,
+                                                              oppositePeopleText: greetingText,
+                                                              oppositePeoplePhotoURL: photoURL)
                         
                         self.delegate?.manager(self, matchRoomData: matchPeopleInfo)
                         
@@ -113,54 +88,46 @@ class FetchMatchRoomDataManager {
                         
                         let url = URL(string: photoURL!)
                         
-                        if gender == "man" {
-                            
-                            peopleImageView.sd_setImage(with: url, completed: nil)
-                            
-                        } else {
-                            
-                            peopleImageView.sd_setImage(with: url, completed: nil)
-                        }
+                        peopleImageView.sd_setImage(with: url,
+                                                    placeholderImage: UIImage(named: "UserDefaultIconForMatch"),
+                                                    options: SDWebImageOptions.retryFailed,
+                                                    completed: nil)
                         
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name,
+                                                              oppositePeopleGender: gender,
+                                                              oppositePeopleText: greetingText,
+                                                              oppositePeoplePhotoURL: photoURL)
                         
                         weakself.delegate?.manager(weakself, matchRoomData: matchPeopleInfo)
                         
                     } else {
                         
-                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name, oppositePeopleGender: gender, oppositePeopleText: greetingText, oppositePeoplePhotoURL: photoURL)
+                        let matchPeopleInfo = MatchPeopleInfo(oppositePeopleName: name,
+                                                              oppositePeopleGender: gender,
+                                                              oppositePeopleText: greetingText,
+                                                              oppositePeoplePhotoURL: photoURL)
                         
                         weakself.delegate?.manager(weakself, matchRoomData: matchPeopleInfo)
                         
                     }
-                    
                 })
-                
             }
-            
         })
-        
     }
     
     func getOppositePeopleInfo(oppositePeopleMatchInfoId: String, completion: @escaping ((String, String, String, String?) -> Void)) {
         
         ref.child("Match Info").child(type).child(oppositePeopleMatchInfoId).observe(.value, with: { (snapshot) in
             
-            guard let peopleData = snapshot.value as? [String: Any] else {
-                
-                self.delegate?.manager(self, didFail: "getOppositePeopleInfo fail")
-                
-                return
-            }
-            
-            guard let name = peopleData["nickName"] as? String,
+            guard
+                let peopleData = snapshot.value as? [String: Any],
+                let name = peopleData["nickName"] as? String,
                 let gender = peopleData["gender"] as? String,
                 let greetingText = peopleData["greetingText"] as? String else {
-                    
+                
                     self.delegate?.manager(self, didFail: "getOppositePeopleInfo fail")
-                    
+                
                     return
-                    
             }
             
             if let photoURL = peopleData["UserPhotoURL"] as? String {
@@ -174,9 +141,6 @@ class FetchMatchRoomDataManager {
                 completion(name, gender, greetingText, nil)
                 
             }
-            
         })
-        
     }
-
 }

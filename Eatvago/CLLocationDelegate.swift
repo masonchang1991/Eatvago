@@ -16,6 +16,8 @@ extension NearbyViewController: CLLocationManagerDelegate {
         let myLocation: CLLocation = locations.last!
         
         self.currentLocation = myLocation
+        
+        print(self.currentLocation.coordinate.longitude)
 
         let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
                                               longitude: myLocation.coordinate.longitude,
@@ -33,6 +35,21 @@ extension NearbyViewController: CLLocationManagerDelegate {
             
         }
 
+        guard let lastLocation = self.lastLocation else {
+            
+            callIfFetchNearbyLocations(myLocation: myLocation)
+            
+            print("第一次定位")
+            
+            return
+        }
+        
+        if Double(myLocation.distance(from: lastLocation)) < 10 {
+            
+            return
+            
+        }
+
         callIfFetchNearbyLocations(myLocation: myLocation)
 
     }
@@ -42,27 +59,27 @@ extension NearbyViewController: CLLocationManagerDelegate {
         
         switch status {
             
-        case .restricted:
+            case .restricted:
             
-            print("Location access was restricted.")
+                print("Location access was restricted.")
             
-        case .denied:
+            case .denied:
             
-            print("User denied access to location.")
-            // Display the map using the default location.
-            googleMapView.isHidden = false
+                print("User denied access to location.")
+                // Display the map using the default location.
+                googleMapView.isHidden = false
             
-        case .notDetermined:
+            case .notDetermined:
             
-            print("Location status not determined.")
+                print("Location status not determined.")
             
-        case .authorizedAlways:
+            case .authorizedAlways:
             
-            fallthrough
+                fallthrough
             
-        case .authorizedWhenInUse:
+            case .authorizedWhenInUse:
             
-            print("Location status is OK.")
+                print("Location status is OK.")
             
         }
     }
@@ -73,6 +90,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         
         print("Error: \(error)")
+        
     }
     
     func callIfFetchNearbyLocations(myLocation: CLLocation) {
@@ -82,24 +100,11 @@ extension NearbyViewController: CLLocationManagerDelegate {
             //與前次地點相同則不摳
             if self.lastLocation != nil {
                 
-                guard let lastLocation = self.lastLocation else {
-                    
-                    print("lastLocation or current location guard let fail")
-                    
-                    return
-                }
-                //1公尺約0.00000900900901度
-                // 如果超過一定範圍則重置字典
-
-                if Double(myLocation.distance(from: lastLocation)) > 10 {
-                    
-                    self.nearbyLocationDictionary = [:]
-                    
-                    self.locations = []
-                    
-                    self.googleMapView.clear()
-                    
-                } else { return }
+                self.nearbyLocationDictionary = [:]
+                
+                self.locations = []
+                
+                self.googleMapView.clear()
                 
             }
 
@@ -112,10 +117,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
                                                                   radius: self.filterDistance,
                                                                   keywordText: self.keywordText)
 
-        } else {
-            
-            locationManager.startUpdatingLocation()
-            
         }
 
     }

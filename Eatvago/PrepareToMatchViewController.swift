@@ -58,19 +58,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //swiftlint:disable force_cast
-        
-        tabBarVC = self.tabBarController as? MainTabBarController
-        nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController
-        myLocation = nearbyViewController!.currentLocation
-        
-        //swiftlint:enable force_cast
-        
-        self.userPhotoURLString = (tabBarVC?.userPhotoURLString) ?? ""
-        
-        myLocation = nearbyViewController!.currentLocation
-        
+
         genderPickerView.delegate = self
         
         genderTextField.inputView = genderPickerView
@@ -97,12 +85,24 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
-    
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
+        
+        guard
+            let tabBarVC = self.tabBarController as? MainTabBarController,
+            let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController else {
+                    return
+        }
+        
+        myLocation = nearbyViewController.currentLocation
+        
+        self.userPhotoURLString = tabBarVC.userPhotoURLString
+        
         setUpUserPhoto()
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -124,17 +124,25 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         switch pickerView {
-        case genderPickerView:
-            return genderPickOption.count
-        case typePickerView:
-            return typePickOption.count
-        default: return 0
+            
+            case genderPickerView:
+                
+                return genderPickOption.count
+            
+            case typePickerView:
+                
+                return typePickOption.count
+            
+            default: return 0
+            
         }
 
     }
@@ -142,11 +150,17 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         switch pickerView {
-        case genderPickerView:
-            return genderPickOption[row]
-        case typePickerView:
-            return typePickOption[row]
-        default: return "default"
+            
+            case genderPickerView:
+                
+                return genderPickOption[row]
+            
+            case typePickerView:
+                
+                return typePickOption[row]
+            
+            default: return "default"
+            
         }
 
     }
@@ -154,22 +168,26 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerView {
+            
         case genderPickerView:
+            
             genderTextField.text = genderPickOption[row]
+            
         case typePickerView:
+            
             typeTextField.text = typePickOption[row]
+            
         default: print("default")
+            
         }
 
     }
     
     @IBAction func matchButton(_ sender: Any) {
         
-        guard let type = typeTextField.text else {
-            return
-        }
+        guard let type = typeTextField.text else { return }
         
-        if nickNameTextField.text?.characters.count == 0 || nickNameTextField.text == "" {
+        if nickNameTextField.text?.characters.count == 0 {
             
             let appearance = SCLAlertView.SCLAppearance(
                 kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
@@ -236,10 +254,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
     }
     
-    deinit {
-        print("LoadingViewController")
-    }
-    
     func manager(_ manager: CheckIfRoomExistManager, didGet roomId: String) {
         
         let userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
@@ -276,7 +290,11 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     func manager(_ manager: CheckIfRoomExistManager, be roomOwner: String) {
         
-        var userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
+        guard let userId = UserDefaults.standard.value(forKey: "UID") as? String else {
+            
+            fatalError("userId didn't get")
+
+        }
         
         let todayUnformate = Date()
         
@@ -286,7 +304,10 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         let today = dateFormatter.string(from: todayUnformate)
         
-        guard let type = typeTextField.text,
+        
+        
+        guard
+            let type = typeTextField.text,
             let gender = genderTextField.text,
             let nickName = nickNameTextField.text,
             let greetingText = greetingTextView.text,
@@ -294,6 +315,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             let matchInfoAutoId = self.ref?.childByAutoId().key,
             let myLocationLat = myLocation.coordinate.latitude as? Double,
             let myLocationLon = myLocation.coordinate.longitude as? Double else {
+                
                 return
         }
         
@@ -301,14 +323,15 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                                           "isLocked": false,
                                           "owner": userId,
                                           "ownerLocationLat": "\(myLocationLat)",
-            "ownerLocationLon": "\(myLocationLon)",
-            "ownerMatchInfo": matchInfoAutoId,
-            "attender": "nil",
-            "attenderLocationLat": "nil",
-            "attenderLocationLon": "nil",
-            "attenderMatchInfo": "nil",
-            "createdDate": today,
-            "Connection": "nil"]
+                                          "ownerLocationLon": "\(myLocationLon)",
+                                          "ownerMatchInfo": matchInfoAutoId,
+                                          "attender": "nil",
+                                          "attenderLocationLat": "nil",
+                                          "attenderLocationLon": "nil",
+                                          "attenderMatchInfo": "nil",
+                                          "createdDate": today,
+                                          "Connection": "nil"
+                                         ]
         
         let ownerMatchInfoData: [String: String] = ["nickName": nickName,
                                                     "gender": gender,
