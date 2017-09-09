@@ -270,6 +270,8 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
+        self.locationManager.stopUpdatingLocation()
+        
         tabBarC?.fetchedLocations = self.locations
         
         tabBarC?.userPhoto = self.userPhotoImageView

@@ -11,18 +11,20 @@ import UIKit
 extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         switch pickerView {
             
-        case distancePickerView: return distancePickOptions.count
+            case distancePickerView: return distancePickOptions.count
             
-        case randomCountPickerView: return randomCountPickOptions.count
+            case randomCountPickerView: return randomCountPickOptions.count
             
-        default: return 0
+            default: return 0
         }
 
     }
@@ -31,11 +33,11 @@ extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         switch pickerView {
             
-        case distancePickerView: return "\(distancePickOptions[row])"
+            case distancePickerView: return "\(distancePickOptions[row])"
             
-        case randomCountPickerView: return "\(randomCountPickOptions[row])"
+            case randomCountPickerView: return "\(randomCountPickOptions[row])"
             
-        default: return ""
+            default: return ""
             
         }
     }
@@ -44,11 +46,11 @@ extension RandomGameViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         switch pickerView {
             
-        case distancePickerView: distanceTextField.text = "\(distancePickOptions[row])"
+            case distancePickerView: distanceTextField.text = "\(distancePickOptions[row])"
             
-        case randomCountPickerView: randomCountTextField.text = "\(randomCountPickOptions[row])"
+            case randomCountPickerView: randomCountTextField.text = "\(randomCountPickOptions[row])"
             
-        default: break 
+            default: break 
             
         }
         

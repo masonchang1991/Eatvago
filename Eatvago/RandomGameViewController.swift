@@ -35,17 +35,22 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
     @IBOutlet weak var randomGameMagneticView: MagneticView! {
         didSet {
+            
             magnetic.magneticDelegate = self
+            
             #if DEBUG
                 randomGameMagneticView.showsFPS = false
                 randomGameMagneticView.showsDrawCount = false
                 randomGameMagneticView.showsQuadCount = false
             #endif
+            
         }
     }
     
     var magnetic: Magnetic {
+        
         return randomGameMagneticView.magnetic
+        
     }
     
     weak var tabBarVC: MainTabBarController?
@@ -85,28 +90,28 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         super.viewDidLoad()
 
         tabBarVC = self.tabBarController as? MainTabBarController
+        
         tabBarVC?.delegate = self
         
         // picker view
         distancePickerView.delegate = self
-        self.distanceTextField.inputView = distancePickerView
-        self.distanceTextField.text = "\(distancePickOptions[4])"
-        distancePickerView.selectRow(4, inComponent: 0, animated: false)
-        randomCountPickerView.delegate = self
-        self.randomCountTextField.inputView = randomCountPickerView
-        self.randomCountTextField.text = "\(randomCountPickOptions[5])"
-        self.randomCountPickerView.selectRow(5, inComponent: 0, animated: false)
         
-        // keyboard 收下去
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-//        self.view.addGestureRecognizer(tap)
+        self.distanceTextField.inputView = distancePickerView
+        
+        self.distanceTextField.text = "\(distancePickOptions[4])"
+        
+        distancePickerView.selectRow(4, inComponent: 0, animated: false)
+        
+        randomCountPickerView.delegate = self
+        
+        self.randomCountTextField.inputView = randomCountPickerView
+        
+        self.randomCountTextField.text = "\(randomCountPickOptions[5])"
+        
+        self.randomCountPickerView.selectRow(5, inComponent: 0, animated: false)
         
         Analytics.logEvent("RandomGame_viewDidLoad", parameters: nil)
         
-    }
-    
-    deinit {
-        print("RandomViewController")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,14 +122,12 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         reloadRandomBallView()
         
         self.navigationButton.isSelected = true
-        self.navigationButton.isSelected = false
-        self.navigationButton.tintColor = UIColor.white
-        self.navigationButton.isUserInteractionEnabled = false
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+        self.navigationButton.isSelected = false
+        
+        self.navigationButton.tintColor = UIColor.white
+        
+        self.navigationButton.isUserInteractionEnabled = false
         
     }
     
@@ -139,7 +142,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         totalRestaurants = (tabBarVC?.fetchedLocations) ?? []
         
         if totalRestaurants.count == 0 {
+            
             return
+            
         }
         
         randomGameMagneticView.presentScene(magnetic)
@@ -147,7 +152,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         generateRandomRetaurant(randomCounts: randomCount, totalRestaurants: totalRestaurants)
         
         var progressCount = 0
+        
         var colorProgressCount = 0
+        
         for restaurant in self.randomRestaurants {
             
             progressCount += 1
@@ -156,9 +163,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             addNode(magnetic: magnetic,
                     text: "\(progressCount)",
-                image: restaurant.photo,
-                color: colorArray[colorProgressCount],
-                radius: UIScreen.main.bounds.width / 7)
+                    image: restaurant.photo,
+                    color: colorArray[colorProgressCount],
+                    radius: UIScreen.main.bounds.width / 7)
             
             //避免count超過color array長度
             if colorProgressCount == (colorArray.count - 1) {
@@ -215,8 +222,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     
     func addNode(magnetic: Magnetic, text: String, image: UIImage?, color: UIColor, radius: CGFloat) {
         
-        let node = Node(text: text, image: image, color: color, radius: radius)
+        let node = Node(text: text,
+                        image: image,
+                        color: color,
+                        radius: radius)
+        
         node.label.fontSize = 35
+        
         nodes.append(node)
         
         magnetic.addChild(node)
@@ -226,8 +238,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
         
         self.navigationButton.isUserInteractionEnabled = true
+        
         self.navigationButton.normalColor = UIColor.asiSeaBlue.withAlphaComponent(0.6)
+        
         self.navigationButton.isSelected = false
+        
         //消除其他已經選取的cell外框顏色
         for selectedNode in nodes {
             
@@ -236,12 +251,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         }
         
         magnetic.allowsMultipleSelection = false
+        
         //加入外框顏色
         node.strokeColor = UIColor.red
         
-        guard let key = node.text else {
-            return
-        }
+        guard let key = node.text else { return }
         
         if nodeDictionary[key] != nil {
             
@@ -250,9 +264,13 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
                 node.label.fontSize = 10
                 
             } else {
+                
                 node.label.fontSize = 15
+                
             }
+            
             node.text = nodeDictionary[key]
+            
             node.label.fontName = "Chalkboard SE"
         }
         
@@ -266,8 +284,11 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
 
         self.selectedRestaurant = nil
+        
         self.navigationButton.isUserInteractionEnabled = false
+        
         self.navigationButton.normalColor = UIColor.white
+        
         self.navigationButton.isSelected = false
     
     }
@@ -276,40 +297,51 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
-        if randomCountTextField.text?.characters.count == 0
-            || distanceTextField.text?.characters.count == 0 {
-            
+        if randomCountTextField.text?.characters.count == 0 || distanceTextField.text?.characters.count == 0 {
+
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-                return
+            
+            return
         }
         
         randomCount = Int(randomCountTextField.text ?? "0") ?? 0
         
-        guard let distance = distanceTextField.text,
+        guard
+            let distance = distanceTextField.text,
             let keyword = keywordTextField.text else {
+                
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-                return
+                
+            return
+                
         }
         
-        guard let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController else {
-            return
-        }
+        guard let nearbyViewController = tabBarVC?.nearbyViewController as? NearbyViewController else { return }
         
         nearbyViewController.filterDistance = Double(distance) ?? 0
+        
         nearbyViewController.keywordText = keyword
+        
         nearbyViewController.locations = []
+        
         nearbyViewController.nearbyLocationDictionary = [:]
+        
         nearbyViewController.lastLocation = nil
+        
         nearbyViewController.locationManager.stopUpdatingLocation()
+        
         nearbyViewController.locationManager.startUpdatingLocation()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             
             nearbyViewController.storeImagePagerView.reloadData()
+            
             self.tabBarVC?.fetchedLocations = nearbyViewController.locations
             
             self.reloadRandomBallView()
+            
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            
             nearbyViewController.locationManager.stopUpdatingLocation()
         }
     }
@@ -320,20 +352,24 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         
         let startLocation = nearbyViewController.currentLocation
         
-        guard let destinationLat = selectedRestaurant?.latitude,
-                let destinationLon = selectedRestaurant?.longitude else {
+        guard
+            let destinationLat = selectedRestaurant?.latitude,
+            let destinationLon = selectedRestaurant?.longitude else {
                 return
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-                UIApplication.shared.openURL(URL(string:
-                    "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!)
+                
+                UIApplication.shared.openURL(
+                    URL(string: "comgooglemaps://?saddr=\(startLocation.coordinate.latitude),\(startLocation.coordinate.longitude)&daddr=\(destinationLat),\(destinationLon)&directionsmode=walking")!
+                )
                 
                 self.navigationButton.isSelected = false
                 
             } else {
+                
                 print("Can't use comgooglemaps://")
                 
                 self.navigationButton.isSelected = false

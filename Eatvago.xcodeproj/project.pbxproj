@@ -53,7 +53,6 @@
 		9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */; };
 		939C5A061F61733E006E328C /* GoogleMapKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C5A051F61733E006E328C /* GoogleMapKey.swift */; };
 		93A10BEC1F31BF7100F69A82 /* RandomGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */; };
-		93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A10BED1F31C01F00F69A82 /* CircleFunction.swift */; };
 		93DB1F7A1F61502B00162895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB1F791F61502B00162895 /* AppDelegate.swift */; };
 		93DB1F7D1F61508B00162895 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DB1F7B1F61508B00162895 /* GoogleService-Info.plist */; };
 		93DB1F7E1F61508B00162895 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DB1F7C1F61508B00162895 /* Info.plist */; };
@@ -129,7 +128,6 @@
 		9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setRamdomGameLayout.swift; sourceTree = "<group>"; };
 		939C5A051F61733E006E328C /* GoogleMapKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapKey.swift; sourceTree = "<group>"; };
 		93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGameViewController.swift; sourceTree = "<group>"; };
-		93A10BED1F31C01F00F69A82 /* CircleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleFunction.swift; sourceTree = "<group>"; };
 		93DB1F791F61502B00162895 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DB1F7B1F61508B00162895 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93DB1F7C1F61508B00162895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 				93A10BEB1F31BF7100F69A82 /* RandomGameViewController.swift */,
 				93FF2A6B1F45E760009FA1A5 /* RandomGamePickerViewDelegate.swift */,
 				9391DFCF1F404D550014BABD /* setRamdomGameLayout.swift */,
-				93A10BED1F31C01F00F69A82 /* CircleFunction.swift */,
 			);
 			name = "Random Game";
 			sourceTree = "<group>";
@@ -593,7 +590,6 @@
 				930A4B441F444790008F4E65 /* NearbyViewControllerLayout.swift in Sources */,
 				93FD1E661F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift in Sources */,
 				9391DFC81F3F66220014BABD /* MatchSuccessPickerViewDelegate.swift in Sources */,
-				93A10BEE1F31C01F00F69A82 /* CircleFunction.swift in Sources */,
 				93FEBD461F5008C200F1779E /* NearbyButtonFunction.swift in Sources */,
 				930144461F279DA100CEC11A /* LoginViewController.swift in Sources */,
 				93FEBD401F50062500F1779E /* PagerControlAnimationFunction.swift in Sources */,
