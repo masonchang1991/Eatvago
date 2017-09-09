@@ -38,7 +38,7 @@ class UploadOrDownLoadUserPhotoManager {
             return
         }
         
-        let reference: DatabaseReference! = Database.database().reference().child("UserAccount").child(userID).child("UserPhotoURL")
+        let reference: DatabaseReference = Database.database().reference().child("UserAccount").child(userID).child("UserPhotoURL")
         
         let storageRef = Storage.storage().reference().child("UserAccount").child(userID).child("UserPhoto")
         
@@ -49,6 +49,7 @@ class UploadOrDownLoadUserPhotoManager {
                 if error != nil {
                     
                     self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.upload)
+                    
                     return
                     
                 }
@@ -56,6 +57,7 @@ class UploadOrDownLoadUserPhotoManager {
                 if let uploadImageUrl = data?.downloadURL()?.absoluteString {
                     
                     reference.setValue(uploadImageUrl)
+                    
                     self.delegate?.manager(self, uploadSuccessNotion: "uploadImage Success", photoURL: uploadImageUrl)
                     
                 }
@@ -68,8 +70,11 @@ class UploadOrDownLoadUserPhotoManager {
     func downLoadUserPhoto() {
         
         guard let userID = Auth.auth().currentUser?.uid else {
+            
             self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
+            
             return
+            
         }
         
         let reference: DatabaseReference! = Database.database().reference().child("UserAccount").child(userID).child("UserPhotoURL")
@@ -86,6 +91,7 @@ class UploadOrDownLoadUserPhotoManager {
             guard let photoURLString = snapshot.value as? String else {
                
                 self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
+                
                 return
                 
             }
@@ -93,16 +99,13 @@ class UploadOrDownLoadUserPhotoManager {
             guard let photoURL = URL(string: photoURLString) else {
                 
                 self.delegate?.manager(self, errorDescription: UploadOrDownloadPhotoError.download)
+                
                 return
                 
             }
             
-            print(photoURL)
-            
             self.delegate?.manager(self, downloadImageURL: photoURL)
             
             })
-        
     }
-    
 }

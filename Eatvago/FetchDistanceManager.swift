@@ -23,13 +23,8 @@ class FetchDistanceManager {
     func fetchDistance(myLocation: CLLocation, nearLocations: [Location]) {
         
         var fetchCount = 0
-        locations = []
         
-        ///google 壞掉 特地加這行
-//        
-//        self.delegate?.manager(self, didGet: nearLocations)
-//        
-//        return
+        locations = []
         
         for nearLocation in nearLocations {
             
@@ -45,51 +40,31 @@ class FetchDistanceManager {
                     
                     let jsonOfDistance = response.result.value
                     
-                    guard let localJsonOfDistance = jsonOfDistance as? [String: Any] else {
-                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                        return
-                    }
-                    
-                    guard let rowsOfElements = localJsonOfDistance["rows"] as? [[String:Any]] else {
-                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                        return
-                    }
-                    
-                    print(rowsOfElements.description)
-                    
-                    if rowsOfElements.count == 0 {
-                        print("distance rowOfElements equal 0")
-                        return
-                    }
-                    
-                    let rowOfElement = rowsOfElements[0]
-                    guard let elements = rowOfElement["elements"] as? [[String:Any]] else {
-                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                        return
-                    }
-                    let element = elements[0]
-                    
-                    guard let distance = element["distance"] as? [String: Any],
-                        let duration = element["duration"] as? [String:Any] else {
-                            self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                            return
-                    }
-                    
-                    guard let distanceText = distance["text"] as? String,
+                    guard
+                        let localJsonOfDistance = jsonOfDistance as? [String: Any],
+                        let rowsOfElements = localJsonOfDistance["rows"] as? [[String:Any]],
+                        let elements = rowsOfElements[0]["elements"] as? [[String:Any]],
+                        let distance = elements[0]["distance"] as? [String: Any],
+                        let duration = elements[0]["duration"] as? [String:Any],
+                        let distanceText = distance["text"] as? String,
                         let durationText = duration["text"] as? String else {
-                            self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
-                            return
+                        self.delegate?.manager(self, didFailWith: FetchError.invalidFormatted)
+                        return
                     }
-                    
+
                     location.distanceText = distanceText
+                    
                     location.durationText = durationText
-                    //
+
                     self.locations.append(location)
                     
                     //直到fetch到最後一個才delegate回去
                     fetchCount += 1
+                    
                     if fetchCount == nearLocations.count {
+                        
                         self.delegate?.manager(self, didGet: self.locations)
+                        
                     }
                 }
             })

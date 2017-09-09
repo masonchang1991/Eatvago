@@ -25,7 +25,6 @@ extension PrepareToMatchViewController {
                 
             }
             
-            
             self.userPhotoImageView.image = self.nearbyViewController?.userPhotoImageView.image
             self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.frame.width / 2
             self.userPhotoImageView.clipsToBounds = true

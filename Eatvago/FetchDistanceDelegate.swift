@@ -27,13 +27,16 @@ extension NearbyViewController: FetchDistanceDelegate {
                 
                 marker.map = self.googleMapView
                 
-                //self.googleMapView.animate(toLocation: coordinates)
-                
                 nearbyLocationDictionary["\(location.placeId)"] = location
                 
                 self.locations.append(location)
                 
-                self.fetchLocationImageManager.loadFirstPhotoForLocation(placeID: location.placeId, indexPathRow: (self.locations.count - 1))
+                self.fetchLocationImageManager.loadFirstPhotoForLocation(
+                    
+                    placeID: location.placeId,
+                    indexPathRow: (self.locations.count - 1)
+                    
+                )
                 
             } else {
                 
@@ -54,13 +57,20 @@ extension NearbyViewController: FetchDistanceDelegate {
             
             self.lastPageToken = self.nextPageToken
             
-            self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken, keywordText: self.keywordText)
-            
+            self.fetchNearbyLocationManager.fetchRequestHandler(
+                
+                urlString: "",
+                nextPageToken: self.nextPageToken,
+                keywordText: self.keywordText
+                
+            )
         }
-        
     }
     
     func manager(_ manager: FetchDistanceManager, didFailWith error: Error) {
+        
+        //Todo - Alert
+        print(error)
         
     }
     

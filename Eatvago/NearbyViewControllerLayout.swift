@@ -14,7 +14,10 @@ extension NearbyViewController {
     func setupLayout() {
         
         // hear button
-        self.addToListButton.tintColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 245.0/255.0, alpha: 1.0)
+        self.addToListButton.tintColor = UIColor(red: 255.0/255.0,
+                                                 green: 235.0/255.0,
+                                                 blue: 245.0/255.0,
+                                                 alpha: 1.0)
         
         // 設定Bar漸層 ＆ call func
         let gradient = CAGradientLayer()
@@ -65,17 +68,22 @@ extension NearbyViewController {
         
         var size = UIFont.boldSystemFont(ofSize: 25).pointSize
         
-        if UIScreen.main.bounds.width < 340 {
+        if UIScreen.main.bounds.width < 340.0 {
             
             size = UIFont.boldSystemFont(ofSize: 20).pointSize
             
         }
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!, NSShadowAttributeName: titleShadow]
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.white,
+             NSFontAttributeName: UIFont(name: "Chalkboard SE", size: size)!,
+             NSShadowAttributeName: titleShadow]
         
         //設定一開始的限制條件
         settingTitleLabel.text = " Searching By : "
+        
         settingLabel.text = " Radius: \(filterDistance) M\n Keyword: None "
+        
         settingLabel.textAlignment = .center
         
         //base background pagerview底下的
@@ -85,7 +93,6 @@ extension NearbyViewController {
             blue: 210.0/255.0,
             alpha: 0.5
         )
-
         
         // nearbyInfoBackground set
         self.nearByInfoBackgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
@@ -171,31 +178,43 @@ extension NearbyViewController {
         
         //加入menu button
         let mainMenuButtonSize: CGSize = CGSize(width: 40, height: 40)
+        
         let menuButtonSize: CGSize = CGSize(width: 40, height: 40)
+        
         let mainMenuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: mainMenuButtonSize), centerImage: UIImage(named: "menu")!, centerHighlightedImage: UIImage(named: "menu")!)
         
         mainMenuButton.center = CGPoint(x: 20.0, y: 20.0)
+        
         view.addSubview(mainMenuButton)
         
         let profileButton = ExpandingMenuItem(size: menuButtonSize, title: "Profile", titleColor: UIColor.white, image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
             self.setUpProfile()
+            
         }
         
         let mapButton = ExpandingMenuItem(size: menuButtonSize, title: "View In Map", titleColor: UIColor.white, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
             self.changTableViewAndMap()
+            
         }
         
         let setupButton = ExpandingMenuItem(size: menuButtonSize, title: "Search Setting", titleColor: UIColor.white, image: UIImage(named: "Setup")!, highlightedImage: UIImage(named: "Setup")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
             self.setUpFilter()
             
         }
         
         let logoutButton = ExpandingMenuItem(size: menuButtonSize, title: "Log out", titleColor: UIColor.white, image: UIImage(named: "logoutExit")!, highlightedImage: UIImage(named: "logoutExit")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            
             self.logout()
+            
         }
         
         mainMenuButton.addMenuItems([profileButton, mapButton, setupButton, logoutButton])
+        
         mainMenuButton.expandingDirection = .bottom
+        
         mainMenuButton.menuTitleDirection = .right
 
     }

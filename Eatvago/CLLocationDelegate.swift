@@ -14,6 +14,8 @@ extension NearbyViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let myLocation: CLLocation = locations.last!
+        
+        self.currentLocation = myLocation
 
         let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
                                               longitude: myLocation.coordinate.longitude,
@@ -22,6 +24,7 @@ extension NearbyViewController: CLLocationManagerDelegate {
         if googleMapView.isHidden {
             
             googleMapView.isHidden = false
+            
             googleMapView.camera = camera
             
         } else {
@@ -36,7 +39,9 @@ extension NearbyViewController: CLLocationManagerDelegate {
     
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
         switch status {
+            
         case .restricted:
             
             print("Location access was restricted.")
@@ -85,33 +90,28 @@ extension NearbyViewController: CLLocationManagerDelegate {
                 }
                 //1公尺約0.00000900900901度
                 // 如果超過一定範圍則重置字典
-                if Double((lastLocation.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
-                    || Double((lastLocation.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
-                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
-                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
+
+                if Double(myLocation.distance(from: lastLocation)) > 10 {
                     
                     self.nearbyLocationDictionary = [:]
                     
                     self.locations = []
                     
-                    self.lastLocation = myLocation
+                    self.googleMapView.clear()
                     
-                    self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance, keywordText: self.keywordText)
-                    
-                }
+                } else { return }
                 
-            } else {
-                // 第一個進來的location設為 currentLocation
-                self.lastLocation = myLocation
-                // 座標更新後呼叫拿取附近的地點
-                self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance, keywordText: self.keywordText)
             }
+
+            self.lastLocation = myLocation
             
-            locationManager.stopUpdatingLocation()
+            let myLocationCoordinate = CLLocationCoordinate2DMake(myLocation.coordinate.latitude,
+                                                                  myLocation.coordinate.longitude)
             
-            self.currentLocation = myLocation
-            
-            
+            self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: myLocationCoordinate,
+                                                                  radius: self.filterDistance,
+                                                                  keywordText: self.keywordText)
+
         } else {
             
             locationManager.startUpdatingLocation()
@@ -121,25 +121,3 @@ extension NearbyViewController: CLLocationManagerDelegate {
     }
     
 }
-
-
-extension NearbyViewController: GMSMapViewDelegate {
-    
-    
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        
-    }
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        
-    }
-    
-    
-    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-        
-    }
-    
-}
-
-
-

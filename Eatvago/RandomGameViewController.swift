@@ -86,7 +86,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
 
         tabBarVC = self.tabBarController as? MainTabBarController
         tabBarVC?.delegate = self
-
         
         // picker view
         distancePickerView.delegate = self
@@ -101,8 +100,6 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
         // keyboard 收下去
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
 //        self.view.addGestureRecognizer(tap)
-
-        
         
         Analytics.logEvent("RandomGame_viewDidLoad", parameters: nil)
         

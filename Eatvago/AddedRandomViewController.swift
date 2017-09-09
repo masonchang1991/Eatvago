@@ -75,7 +75,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         resultsViewController?.delegate = self
         
         setLayout()
-        
 
         self.playButton.addTarget(self, action: #selector(movePicker), for: .touchUpInside)
         self.navigationButton.addTarget(self, action: #selector(goByNavigation), for: .touchUpInside)
@@ -83,7 +82,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        
         
         self.addListPickerView.reloadAllComponents()
         
@@ -93,12 +91,10 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             
         }
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         
         //layout
         
@@ -124,9 +120,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         
     }
     
-    
     func movePicker() {
-        
         
         if tabBarVC?.addLocations.count == 0 && searchedLocations.count == 0 {
             return
@@ -188,7 +182,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                     
                                     timer7.invalidate()
-                                    
                                     
                                     let timer8 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowThird), userInfo: nil, repeats: true)
                                     
@@ -255,69 +248,43 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                                     
                                                                 }
                                                                 
-                                                                
                                                             }
-                                                            
-                                                            
                                                             
                                                         }
                                                         
-                                                        
-                                                        
                                                     }
-                                                    
                                                     
                                                 }
                                                 
                                             }
                                             
-                                            
                                         }
-                                        
-                                        
                                         
                                     }
                                     
-                                    
                                 }
-                                
-                                
                                 
                             }
                             
-                            
-                            
-                            
                         }
                         
-                        
-                        
-                        
                     }
-                    
-                    
                     
                 }
                 
             }
             
-            
         }
-        
-        
         
     }
     
-    
     func scrollToRandomRowFirst() {
-        
         
         if currentRow + 3000 > maxElements {
             
             maxElements += maxElements
             
         }
-        
         
         let addRow = stepper
         
@@ -348,7 +315,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             if (tabBarVC?.addLocations.count)! + searchedLocations.count == 0 {
                 return
             }
-            
             
             if let addLocationCount = tabBarVC?.addLocations.count {
                 
@@ -383,8 +349,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         }
         
     }
-    
-    
 
     func goByNavigation() {
         
@@ -394,8 +358,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         
         let destinationLat = self.currentLocation.latitude
         let destinationLon = self.currentLocation.longitude
-    
-        
         
         if canNavigationLocation == false {
             
@@ -415,8 +377,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             }
             
             alert.showError("Error", subTitle: "No Location to Navigate")
-
-            
             
         } else {
             
@@ -430,8 +390,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         }
 
     }
-    
-    
 
     @IBAction func changAddFavoriteState(_ sender: Any) {
         
@@ -441,7 +399,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             
             ifAddFavoriteList = false
             addListPickerView.reloadAllComponents()
-            
             
             if searchedLocations.count == 0 {
                 
@@ -454,8 +411,6 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                 canNavigationLocation = true
                 
             }
-            
-            
             
         } else {
             
@@ -478,6 +433,5 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         }
         
     }
-    
  
 }

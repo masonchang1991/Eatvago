@@ -88,7 +88,6 @@ extension LoadingMatchViewController {
         self.backgroundImageView.alpha = 0.3
 //        self.backgroundView.backgroundColor = UIColor.
         
-        
         //取消bar button
         self.navigationItem.hidesBackButton = true
         
@@ -96,7 +95,6 @@ extension LoadingMatchViewController {
         self.oppositePeopleInfoTextView.isUserInteractionEnabled = false
         
     }
-    
     
     func setupBackgroundLayer() {
         
@@ -131,7 +129,6 @@ extension LoadingMatchViewController {
 //        
 //        
 //        self.backgroundView.layer.masksToBounds = true
-        
         
     }
     

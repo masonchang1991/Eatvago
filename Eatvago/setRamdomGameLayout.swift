@@ -58,7 +58,6 @@ extension RandomGameViewController {
         
         searchButton.isSelected = true
         
-        
     }
     
 }

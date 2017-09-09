@@ -104,7 +104,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         super.viewWillAppear(false)
         setUpUserPhoto()
     }
-    
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -337,9 +336,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             
         }
         
-        
     }
-    
-    
 
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension NearbyViewController {
     
     @IBAction func goToNavigation(_ sender: Any) {
@@ -18,7 +17,7 @@ extension NearbyViewController {
                 "comgooglemaps://?saddr=\(self.currentLocation.coordinate.latitude),\(self.currentLocation.coordinate.longitude)&daddr=\(self.choosedLocation.latitude),\(self.choosedLocation.longitude)&directionsmode=walking")!)
         } else {
             
-            // -MARK: Alert user
+            // MARK: Alert user
             
             print("Can't use comgooglemaps://")
             

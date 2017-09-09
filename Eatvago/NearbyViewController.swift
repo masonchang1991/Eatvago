@@ -16,7 +16,6 @@ import SCLAlertView
 import FSPagerView
 import ExpandingMenu
 
-
 //swiftlint:disable type_body_length
 class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelegate, NVActivityIndicatorViewable, UITabBarControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
@@ -156,12 +155,16 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     
     //全螢幕讀取 下載圖片或上傳圖片
     let activityData = ActivityData()
+    
     //存取user圖片
     var userPhotoImageView = UIImageView()
+    
     //userPhoto alert
     var userProfileAlertView = SCLAlertView()
+    
     // userImageView In alertview
     var userImageViewInAlertView = UIImageView()
+    
     //pagerview用參數控制紅點
     var pagerViewLastIndex = 0
     var pagerViewControlRedPoint = 2
@@ -219,7 +222,6 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         self.storeImagePagerView.dataSource = self
         self.storeImagePagerView.isInfinite = true
         
-        
         fetchNearbyLocationManager.delegate = self
         fetchPlaceIdDetailManager.delegate = self
         fetchDistanceManager.delegate = self
@@ -231,6 +233,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         stepUpUserPhotoGesture()
         
         uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
+        
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
         //button function
@@ -238,10 +241,12 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         
         //layout
         setupLayout()
+        
         addMenuButton()
         
         //keyboard 收下去
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        
         self.view.addGestureRecognizer(tap)
         
         Analytics.logEvent("Nearby_viewDidLoad", parameters: nil)
@@ -251,6 +256,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
         super.viewWillAppear(false)
         
         tabBarC?.fetchedLocations = self.locations
+        
         tabBarC?.delegate = self
         
     }
@@ -265,6 +271,7 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         tabBarC?.fetchedLocations = self.locations
+        
         tabBarC?.userPhoto = self.userPhotoImageView
         
     }
@@ -290,34 +297,50 @@ class NearbyViewController: UIViewController, FSPagerViewDataSource, FSPagerView
             cell.imageView?.isHidden = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+                
                 self.loadingNVAView.stopAnimating()
+                
                 self.loadingNVAView.isHidden = true
+                
                 if cell.imageView?.image == nil {
+                    
                     cell.imageView?.isHidden = false
+                    
                     cell.imageView?.image = UIImage(named: "notFound")
+                    
                     cell.imageView?.contentMode = .center
+                    
                 }
             })
 
         } else {
             
             self.loadingNVAView.stopAnimating()
+            
             self.loadingNVAView.isHidden = true
+            
             cell.imageView?.isHidden = false
             
             guard let storeImage = location.photo else {
+                
                 return FSPagerViewCell()
+                
             }
             
             DispatchQueue.main.async {
+                
                 cell.imageView?.image = storeImage
+                
                 cell.imageView?.contentMode = .scaleAspectFill
+                
             }
 
         }
         
         storeDistanceLabel.text = location.distanceText
+        
         storeDurationTimeLabel.text = location.durationText + "\n (Walking)"
+        
         storeNameLabel.text = location.name
         
         choosedLocation = location

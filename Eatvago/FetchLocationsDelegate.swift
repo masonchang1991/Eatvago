@@ -12,22 +12,20 @@ extension NearbyViewController: FetchLocationDelegate {
     
     func manager(_ manager: FetchNearbyLocationManager, didGet nearLocations: [Location], nextPageToken: String?) {
         
-        print(nearLocations.count)
-        
-        let myLocation = currentLocation
-        
-        fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
+        fetchDistanceManager.fetchDistance(myLocation: self.currentLocation, nearLocations: nearLocations)
         
         if nextPageToken != nil && nextPageToken != "" {
             
-            guard let pageToken = nextPageToken else {
-                return
+            if let pageToken = nextPageToken {
+                
+                self.nextPageToken = pageToken
+            
             }
             
-            self.nextPageToken = pageToken
-            
         } else {
+            
             print("there is no other page")
+            
         }
     }
     
@@ -38,9 +36,13 @@ extension NearbyViewController: FetchLocationDelegate {
     }
     
     func manager(_ manager: FetchNearbyLocationManager, didFailWith noDataIn: String) {
+        
         if locations.count == 0 {
+            
             locationManager.stopUpdatingLocation()
+            
             locationManager.startUpdatingLocation()
+            
         }
     }
     

@@ -43,9 +43,7 @@ class FetchLocationImageManager {
     
     func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata, indexPathRow: Int) {
         
-        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
-            
-            (photo, error) -> Void in
+        GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
             
             if let error = error {
                 // TODO: handle the error.
@@ -56,9 +54,7 @@ class FetchLocationImageManager {
                 
             } else {
                 
-                guard let locationImage = photo else {
-                    return
-                }
+                guard let locationImage = photo else { return }
                 
                 self.delegate?.manager(self, didGet: locationImage, at: indexPathRow)
 

@@ -35,7 +35,6 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         singlePickerLabel.adjustsFontSizeToFitWidth = true
         singlePickerLabel.minimumScaleFactor = 0.5
         
-        
         self.currentRow = row
         
         if ifAddFavoriteList == true {
@@ -43,7 +42,6 @@ extension AddedRandomViewController: UIPickerViewDelegate, UIPickerViewDataSourc
             if (tabBarVC?.addLocations.count)! + searchedLocations.count == 0 {
                 return UILabel()
             }
-            
             
             if let addLocationCount = tabBarVC?.addLocations.count {
                 

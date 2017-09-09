@@ -13,6 +13,7 @@ extension NearbyViewController: FetchLocationImageDelegate {
     func manager(_ manager: FetchLocationImageManager, didGet locationImage: UIImage, at indexPathRow: Int) {
         
         DispatchQueue.main.async {
+            
             if self.locations.count > indexPathRow {
                 
             self.locations[indexPathRow].photo = locationImage
@@ -21,10 +22,13 @@ extension NearbyViewController: FetchLocationImageDelegate {
                 
             }
         }
-        
     }
     
     func manager(_ manager: FetchLocationImageManager, didFailWith error: Error) {
+        
+        //Todo - tell view controller there is no photo
+        
+        print(error)
         
     }
     

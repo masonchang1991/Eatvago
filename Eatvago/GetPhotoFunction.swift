@@ -18,8 +18,11 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             
             picker.sourceType = UIImagePickerControllerSourceType.camera
+            
             picker.allowsEditing = true // 可對照片作編輯
+            
             picker.delegate = self
+            
             self.userProfileAlertView.present(picker, animated: true, completion: nil)
             
         } else {
@@ -52,8 +55,11 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            
             picker.allowsEditing = true
+            
             picker.delegate = self
+            
             self.userProfileAlertView.present(picker, animated: true, completion: nil)
         }
         
@@ -85,6 +91,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        
         picker.dismiss(animated: true, completion: nil)
         
     }
@@ -92,12 +99,15 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, uploadSuccessNotion successNotion: String, photoURL: String) {
         
         print(successNotion)
+        
         tabBarC?.userPhotoURLString = photoURL
+        
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
         
     }
     
     func manager(_ manager: UploadOrDownLoadUserPhotoManager, errorDescription: Error) {
+        
         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 
         self.uploadOrDownLoadUserPhotoManager.downLoadUserPhoto()
@@ -111,6 +121,7 @@ extension NearbyViewController: UIImagePickerControllerDelegate, UploadOrDownLoa
         DispatchQueue.main.async {
             
             self.userPhotoImageView.sd_setImage(with: downloadImageURL, completed: nil)
+            
             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
             
         }

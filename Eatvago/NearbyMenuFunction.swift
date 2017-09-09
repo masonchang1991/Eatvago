@@ -27,23 +27,36 @@ extension NearbyViewController {
         
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
+        
         // Creat the subview
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: 180, height: 70))
+        
         let x = (subview.frame.width - 180) / 2
         
         self.distanceTextField.frame = CGRect(x: x, y: 10, width: 108, height: 25)
+        
         self.distanceTextField.text = String(self.distancePickOption[4])
+        
         self.distanceTextField.font = UIFont(name: "Chalkboard SE", size: 18)
+        
         distancePickerView.delegate = self
+        
         self.distanceTextField.inputView = distancePickerView
+        
         self.distanceTextField.textAlignment = .right
+        
         subview.addSubview(distanceTextField)
         
         let distanceUnit = UILabel()
+        
         distanceUnit.frame = CGRect(x: x + 108, y: 10, width: 108, height: 25)
+        
         distanceUnit.text = "   M "
+        
         distanceUnit.font = UIFont(name: "Chalkboard SE", size: 18)
+        
         distanceUnit.textColor = UIColor.black
+        
         distanceUnit.backgroundColor = UIColor.clear
         
         subview.addSubview(distanceUnit)
@@ -52,7 +65,9 @@ extension NearbyViewController {
                                                          y: self.distanceTextField.frame.maxY + 10,
                                                          width: 180,
                                                          height: 25))
+        
         keywordTextField.textAlignment = .center
+        
         keywordTextField.placeholder = "Key words"
         
         subview.addSubview(keywordTextField)
@@ -78,18 +93,31 @@ extension NearbyViewController {
                             }
                             
                             self.currentLocation = CLLocation()
+                            
                             self.lastLocation = nil
+                            
                             self.locations = []
+                            
                             self.nearbyLocationDictionary = [:]
+                            
                             self.storeNameLabel.text = ""
+                            
                             self.storeDistanceLabel.text = ""
+                            
                             self.storeDurationTimeLabel.text = ""
+                            
                             self.nextPageToken = ""
+                            
                             NVActivityIndicatorPresenter.sharedInstance.startAnimating(self.activityData)
+                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                                
                                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                                
                                 self.googleMapView.clear()
+                                
                                 self.storeImagePagerView.reloadData()
+                                
                                 self.locationManager.startUpdatingLocation()
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
@@ -97,7 +125,6 @@ extension NearbyViewController {
                                     self.locationManager.stopUpdatingLocation()
                                     
                                 })
-                                
                             })
         }
         
@@ -126,7 +153,9 @@ extension NearbyViewController {
         
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
+        
         userProfileAlertView = alert
+        
         // Creat the subview
         let width = 216
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 115))
@@ -152,6 +181,7 @@ extension NearbyViewController {
         subview.addSubview(self.userPhotoImageView)
         
         alert.customSubview = subview
+        
         alert.addButton(" BACK ",
                         backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
                         textColor: UIColor.white,
@@ -182,12 +212,19 @@ extension NearbyViewController {
             
             // 消去 UserDefaults內使用者的帳號資訊
             UserDefaults.standard.setValue(nil, forKey: "UserLoginEmail")
+            
             UserDefaults.standard.setValue(nil, forKey: "UserLoginPassword")
+            
             UserDefaults.standard.setValue(nil, forKey: "UID")
+            
             self.window = UIWindow(frame: UIScreen.main.bounds)
+            
             self.window?.makeKeyAndVisible()
+            
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+            
             self.window?.rootViewController = loginVC
             
             alert.dismiss(animated: true, completion: nil)
@@ -204,6 +241,7 @@ extension NearbyViewController {
     }
 
     func changTableViewAndMap() {
+        
         if storeImagePagerView.isHidden {
             
             storeImagePagerView.isHidden = false
@@ -218,6 +256,5 @@ extension NearbyViewController {
             
         }
     }
-    
-    
+
 }

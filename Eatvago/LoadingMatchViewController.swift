@@ -158,7 +158,6 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         
     }
     
-    
     deinit {
         print("LoadingViewController")
     }

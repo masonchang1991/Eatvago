@@ -292,7 +292,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
     }
     
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         locationManager.stopUpdatingLocation()
