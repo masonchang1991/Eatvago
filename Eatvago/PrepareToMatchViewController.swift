@@ -304,8 +304,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         let today = dateFormatter.string(from: todayUnformate)
         
-        
-        
         guard
             let type = typeTextField.text,
             let gender = genderTextField.text,

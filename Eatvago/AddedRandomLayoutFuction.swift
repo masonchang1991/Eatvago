@@ -64,7 +64,6 @@ extension AddedRandomViewController {
              NSShadowAttributeName: titleShadow
             ]
         
-        
         // background
         self.backgroundImageView.contentMode = .scaleAspectFill
         
