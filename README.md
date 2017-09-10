@@ -11,7 +11,7 @@ App Store: https://itunes.apple.com/us/app/eatvago/id1273533366
 ＊ 使用 Swiftlint 管理code的撰寫 <br/>
 ＊ 使用 Firebase Analytics 跟 Fabric Crashlytics <br/>
 
-Note: 如果要下載專案，請自行申請 Google MAP API 金鑰，並在依照 AppDelegate 使用的參數名稱加入金鑰的值。 <br/> 
+### Note: 如果要下載專案，請自行申請 Google MAP API 金鑰，並在依照 AppDelegate 使用的參數名稱加入金鑰的值。 <br/> 
       另外請自行下載 Firebase 的 GoogleService-Info.plist。
 
 ## 畫面截圖
