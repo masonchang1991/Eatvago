@@ -28,8 +28,5 @@ Note: 如果要下載專案，請自行申請 Google MAP API 金鑰，並在依�
 
 根據使用者位置找到鄰近的餐廳，並提供店家的相關資訊以及距離，也提供導航與加入我的最愛List的功能。
 也能設定使用者頭像以及搜尋條件。
-<img src="https://github.com/masonchang1991/Eatvago/blob/main/nearbyViewcontroller%20screen.png
-" width = "375" height = "667" alt="Nearby" align=center />
 
-<img src="https://github.com/masonchang1991/Eatvago/blob/main/nearbySetupFilterScreen.png
-" width = "375" height = "667" alt="NearbyMenu" align=center />
+<img src="https://github.com/masonchang1991/Eatvago/blob/main/nearbyViewcontroller%20screen.png" width = "375" height = "667" align=center />                    <img src="https://github.com/masonchang1991/Eatvago/blob/main/nearbySetupFilterScreen.png" width = "375" height = "667" align=center />
