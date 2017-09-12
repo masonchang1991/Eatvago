@@ -1,8 +1,6 @@
-# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center />
+# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center />   [<img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/DownloadAppStoreBadge.png" width = "160" height = "50" alt="Eatvago" align=center />](https://itunes.apple.com/us/app/eatvago/id1273533366)
 
-## 簡介 
 讓使用者能快速知道附近有什麼餐廳，並提供隨機的方式幫助使用者快速決定吃什麼，也能透過配對機制找到飯友。<br />
-App Store: https://itunes.apple.com/us/app/eatvago/id1273533366
 
 ＊ 串接 Google Map API取得附近店家資訊 <br/>
 ＊ 呼叫 Google Map 進行導航 <br/>
@@ -11,11 +9,34 @@ App Store: https://itunes.apple.com/us/app/eatvago/id1273533366
 ＊ 使用 Swiftlint 管理code的撰寫 <br/>
 ＊ 使用 Firebase Analytics 跟 Fabric Crashlytics <br/>
 
-### Note: 
+### Notes: 
       如果要下載專案，請自行申請 Google MAP API 金鑰，並在依照 AppDelegate 使用的參數名稱加入金鑰的值。
       另外請自行下載 Firebase 的 GoogleService-Info.plist。
 
-## 畫面截圖
+## Requirements
+ - iOS 10.3 +
+ - Xcode 8.3.3
+
+## Libraries
+ - SwiftLint
+ - SWebImage
+ - SwifterSwift
+ - Firebase
+    - Core
+    - Database
+    - Auth
+    - Storage
+ - GoogleMaps
+ - GooglePlaces
+ - Alamofire
+ - NVActivityIndicatorView
+ - Magnetic
+ - QKeyboardManager
+ - Fabric
+ - Crashlytics
+
+
+## Screen Shots
 
 
 ### 登入畫面
@@ -68,3 +89,13 @@ App Store: https://itunes.apple.com/us/app/eatvago/id1273533366
 <br />
 
 <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/MapScreen.PNG" width = "275" height = "500" align=center />    <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatNavigationItem.png" width = "275" height = "500" align=center /> 
+
+
+## Contacts
+
+   #### Mason Chang<br/>
+   :email: masonchang1991@gmail.com <br/>
+   :busts_in_silhouette: https://www.linkedin.com/in/chang-mason-53b76a14a/ <br/>
+
+
+
