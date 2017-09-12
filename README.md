@@ -1,4 +1,4 @@
-# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center />   <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/DownloadAppStoreBadge.png" width = "160" height = "50" alt="Eatvago" align=center />
+# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center />   [<img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/DownloadAppStoreBadge.png" width = "160" height = "50" alt="Eatvago" align=center />](https://itunes.apple.com/us/app/eatvago/id1273533366)
 
 讓使用者能快速知道附近有什麼餐廳，並提供隨機的方式幫助使用者快速決定吃什麼，也能透過配對機制找到飯友。<br />
 
@@ -93,9 +93,9 @@
 
 ## Contacts
 
-   Mason Chang<br/>
-   [[Email]](masonchang1991@gmail.com)<br/>
-   [[Linkedin]](https://www.linkedin.com/in/chang-mason-53b76a14a/)<br/>
+   #### Mason Chang<br/>
+   :email: masonchang1991@gmail.com <br/>
+   :busts_in_silhouette: https://www.linkedin.com/in/chang-mason-53b76a14a/ <br/>
 
 
 
