@@ -15,7 +15,7 @@
 
 ## Requirements
  - iOS 10.3 +
- - XCode 8.3.3
+ - Xcode 8.3.3
 
 ## Libraries
  - SwiftLint
