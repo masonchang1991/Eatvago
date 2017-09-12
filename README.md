@@ -13,29 +13,6 @@
       如果要下載專案，請自行申請 Google MAP API 金鑰，並在依照 AppDelegate 使用的參數名稱加入金鑰的值。
       另外請自行下載 Firebase 的 GoogleService-Info.plist。
 
-## Requirements
- - iOS 10.3 +
- - Xcode 8.3.3
-
-## Libraries
- - SwiftLint
- - SWebImage
- - SwifterSwift
- - Firebase
-    - Core
-    - Database
-    - Auth
-    - Storage
- - GoogleMaps
- - GooglePlaces
- - Alamofire
- - NVActivityIndicatorView
- - Magnetic
- - QKeyboardManager
- - Fabric
- - Crashlytics
-
-
 ## Screen Shots
 
 
@@ -90,6 +67,27 @@
 
 <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/MapScreen.PNG" width = "275" height = "500" align=center />    <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatNavigationItem.png" width = "275" height = "500" align=center /> 
 
+## Requirements
+ - iOS 10.3 +
+ - Xcode 8.3.3
+
+## Libraries
+ - SwiftLint
+ - SWebImage
+ - SwifterSwift
+ - Firebase
+    - Core
+    - Database
+    - Auth
+    - Storage
+ - GoogleMaps
+ - GooglePlaces
+ - Alamofire
+ - NVActivityIndicatorView
+ - Magnetic
+ - QKeyboardManager
+ - Fabric
+ - Crashlytics
 
 ## Contacts
 
