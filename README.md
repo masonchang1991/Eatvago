@@ -52,7 +52,7 @@
  - 可以根據飯友的自我介紹決定是否要與他一起用餐。 <br />
 
 
-<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/preMatchScreen.png" width = "275" height = "500" align=center /></kbd>    <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/match%20screen.png" width = "275" height = "500" align=center /></kbd>
+<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/preMatchScreen.png" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/match%20screen.png" width = "275" height = "500" align=center /></kbd>
 
 ### 與飯友的聊天室畫面
 
@@ -61,11 +61,11 @@
  - 使用者可以透過導航知道該用什麼交通工具到達該地點。 <br />
  - 使用這與飯友可以將喜愛的餐廳加入共同的 List 中，讓對方知道自己想要去的餐廳是哪一家。 <br />
 
-<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A%20first.PNG" width = "275" height = "500" align=center /></kbd>    <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20B.png" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A.PNG" width = "275" height = "500" align=center /></kbd>
+<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A%20first.PNG" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20B.png" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A.PNG" width = "275" height = "500" align=center /></kbd>
 
 <br />
 
-<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/MapScreen.PNG" width = "275" height = "500" align=center /></kbd>    <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatNavigationItem.png" width = "275" height = "500" align=center /></kbd>
+<kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/MapScreen.PNG" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatNavigationItem.png" width = "275" height = "500" align=center /></kbd>
 
 ## Requirements
  - iOS 10.3 +
