@@ -2,11 +2,11 @@
 
 讓使用者能快速知道附近有什麼餐廳，並提供隨機的方式幫助使用者快速決定吃什麼，也能透過配對機制找到飯友。<br />
 
-＊ 串接 Google Map API取得附近店家資訊 <br/>
+＊ 串接 Google Map API 取得附近店家資訊 <br/>
 ＊ 呼叫 Google Map 進行導航 <br/>
 ＊ 使用 Core Location 判斷使用者位置 <br/>
 ＊ 使用 Firebase 作為後端資料庫 <br/>
-＊ 使用 Swiftlint 管理code的撰寫 <br/>
+＊ 使用 Swiftlint 管理 Code 的撰寫 <br/>
 ＊ 使用 Firebase Analytics 跟 Fabric Crashlytics <br/>
 
 ### Notes: 
@@ -25,7 +25,7 @@
 
 ### 鄰近使用者附近店家畫面
 
- - 根據使用者位置找到鄰近的餐廳，並提供店家的相關資訊以及距離，也提供導航與加入我的最愛List的功能。<br/>
+ - 根據使用者位置找到鄰近的餐廳，並提供店家的相關資訊以及距離，也提供導航與加入我的最愛 List 的功能。<br/>
  - 也能設定使用者頭像以及搜尋條件。<br/>
 
 <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/nearbyViewcontroller%20screen.png" width = "275" height = "500" align=center /></kbd>                    <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/nearbySetupFilterScreen.png" width = "275" height = "500" align=center /></kbd>
@@ -38,7 +38,7 @@
 
 <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/randomScreen.png" width = "275" height = "500" align=center /></kbd>
 
-### 提供使用者加入最愛List畫面
+### 提供使用者加入最愛 List 畫面
 
  - 使用者可以加入自己想去吃的餐廳選項。
  - 透過輪盤的旋轉提供隨機選取的功能，餐廳選到後可以使用導航功能。
@@ -59,7 +59,7 @@
  - 根據使用者與飯友的位置，根據使用者選擇的餐廳類型搜尋在這兩個位置中間有的餐廳。 <br />
  - 使用者與飯友能相互聊天，共同決定要一起去哪裡吃飯。 <br />
  - 使用者可以透過導航知道該用什麼交通工具到達該地點。 <br />
- - 使用這與飯友可以將喜愛的餐廳加入共同的List中，讓對方知道自己想要去的餐廳是哪一家。 <br />
+ - 使用這與飯友可以將喜愛的餐廳加入共同的 List 中，讓對方知道自己想要去的餐廳是哪一家。 <br />
 
 <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A%20first.PNG" width = "275" height = "500" align=center /></kbd>    <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20B.png" width = "275" height = "500" align=center /></kbd>  <kbd><img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/ChatScreen%20A.PNG" width = "275" height = "500" align=center /></kbd>
 
