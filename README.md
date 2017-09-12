@@ -1,7 +1,6 @@
-# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center /> <br />
+# Eatvago<img src="https://github.com/masonchang1991/Eatvago/blob/main/iTunesArtwork%402x.png" width = "50" height = "50" alt="Eatvago" align=center />   <img src="https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/DownloadAppStoreBadge.png" width = "160" height = "50" alt="Eatvago" align=center />
 
 讓使用者能快速知道附近有什麼餐廳，並提供隨機的方式幫助使用者快速決定吃什麼，也能透過配對機制找到飯友。<br />
-[![Eatvago](https://github.com/masonchang1991/Eatvago/blob/main/Demo%20Screen%20Shot/DownloadAppStoreBadge.png)](https://itunes.apple.com/us/app/eatvago/id1273533366)<br/>
 
 ＊ 串接 Google Map API取得附近店家資訊 <br/>
 ＊ 呼叫 Google Map 進行導航 <br/>
