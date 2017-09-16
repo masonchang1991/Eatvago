@@ -12,8 +12,11 @@ import UIKit
 // Color palette
 
 extension UIColor {
+    
     class var asiSandBrown: UIColor {
+        
         return UIColor(red: 211.0 / 255.0, green: 150.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0)
+        
     }
 
     class var asiBrownish: UIColor {

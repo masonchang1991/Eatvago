@@ -16,19 +16,27 @@ import SCLAlertView
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var adjustHeightConstrain: NSLayoutConstraint!
+    
     @IBOutlet weak var adjustButtonHeightView: UIView!
 
     @IBOutlet weak var emailTextField: UITextField!
+    
     @IBOutlet weak var passwordTextField: UITextField!
  
     @IBOutlet weak var nameTextField: UITextField!
+    
     @IBOutlet weak var phonenumberTextField: UITextField!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     @IBOutlet weak var loginAndRegisterButton: UIButton!
+    
     var ref: DatabaseReference!
+    
     var changSegmentCount = 0
+    
     var changButtonPosition: NSLayoutConstraint?
+    
     let activityData = ActivityData()
     
     override func viewDidLoad() {
@@ -48,10 +56,12 @@ class LoginViewController: UIViewController {
         
         //收keyboard
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         UIApplication.shared.setStatusBarHidden(false, with: .none)
+        
         UIApplication.shared.statusBarStyle = .default
         
         Analytics.logEvent("Login_viewDidLoad", parameters: nil)
@@ -66,19 +76,24 @@ class LoginViewController: UIViewController {
         if self.emailTextField.text == "" {
 
             let appearance = SCLAlertView.SCLAppearance(
+                
                 kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                 kTextFont: UIFont(name: "Chalkboard SE", size: 14)!,
                 kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                 showCloseButton: false,
                 showCircularIcon: false
+                
             )
             
             // Initialize SCLAlertView using custom Appearance
             let alert = SCLAlertView(appearance: appearance)
             
-            alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                            textColor: UIColor.white,
+                            showDurationStatus: false) {
                 
                 alert.dismiss(animated: true, completion: nil)
+                                
             }
             
             alert.showWarning("Oops!", subTitle: "Please enter your email.")
@@ -86,49 +101,60 @@ class LoginViewController: UIViewController {
              NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
             
         } else {
-            Auth.auth().sendPasswordReset(withEmail: self.emailTextField.text!, completion: { (error) in
+            
+            Auth.auth().sendPasswordReset(withEmail: self.emailTextField.text!,
+                                          completion: { (error) in
                 
-                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 
                 var title = ""
+                                            
                 var message = ""
                 
                 if error != nil {
+                    
                     title = "Error!"
+                    
                     message = (error?.localizedDescription)!
+                    
                 } else {
+                    
                     title = "Success!"
+                    
                     message = "Password reset email sent."
+                    
                     self.emailTextField.text = ""
+                    
                 }
                 
                 let appearance = SCLAlertView.SCLAppearance(
+                    
                     kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                     kTextFont: UIFont(name: "Chalkboard SE", size: 14)!,
                     kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                     showCloseButton: false,
                     showCircularIcon: false
+                    
                 )
                 
                 // Initialize SCLAlertView using custom Appearance
                 let alert = SCLAlertView(appearance: appearance)
                 
-                alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+                alert.addButton("ok",
+                                backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                                textColor: UIColor.white,
+                                showDurationStatus: false) {
                     
                     alert.dismiss(animated: true, completion: nil)
+                                    
                 }
                 
                 alert.showSuccess(title, subTitle: message)
 
             })
         }
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     @IBAction func segmented(_ sender: UISegmentedControl) {
         
         segmentedHandler()
@@ -153,57 +179,75 @@ class LoginViewController: UIViewController {
     }
     
     func loginHandler() {
-        guard let email = emailTextField.text,
-              let password = passwordTextField.text else {
+        
+        guard
+            let email = emailTextField.text,
+            let password = passwordTextField.text else {
+                
                 print("Form is not valid")
+                
                 return
         }
         
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
             if error == nil {
+                
                 print("Success Login")
-                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                
                 UserDefaults.standard.setValue(user?.uid, forKey: "UID")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+                
                 self.present(nextVC, animated: true, completion: nil)
                 
             } else {
                 
-                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                 
-                // 提示用戶從 firebase 返回了一個錯誤。
                 let appearance = SCLAlertView.SCLAppearance(
+                    
                     kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                     kTextFont: UIFont(name: "Chalkboard SE", size: 14)!,
                     kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                     showCloseButton: false,
                     showCircularIcon: false
+                    
                 )
-                
-                // Initialize SCLAlertView using custom Appearance
+
                 let alert = SCLAlertView(appearance: appearance)
                 
-                alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+                alert.addButton("ok",
+                                backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                                textColor: UIColor.white,
+                                showDurationStatus: false) {
                     
                     alert.dismiss(animated: true, completion: nil)
+                                    
                 }
                 
                 alert.showWarning("Error", subTitle: error?.localizedDescription ?? "")
+                
             }
         }
-        
     }
     
     func registerHandler() {
-        guard let email = emailTextField.text,
-                let password = passwordTextField.text,
-                let name = nameTextField.text,
-                let phone = phonenumberTextField.text else {
+        
+        guard
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let name = nameTextField.text,
+            let phone = phonenumberTextField.text else {
+                
                 print("Form is not valid")
+                
                 return
         }
         
@@ -248,7 +292,9 @@ class LoginViewController: UIViewController {
                     }
                     
                     if let error = error {
+                        
                         print(error)
+                        
                     }
                 }
                 
@@ -259,22 +305,29 @@ class LoginViewController: UIViewController {
                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
 
                 let appearance = SCLAlertView.SCLAppearance(
+                    
                     kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                     kTextFont: UIFont(name: "Chalkboard SE", size: 14)!,
                     kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                     showCloseButton: false,
                     showCircularIcon: false
+                    
                 )
-                
-                // Initialize SCLAlertView using custom Appearance
+
                 let alert = SCLAlertView(appearance: appearance)
                 
-                alert.addButton("ok", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+                alert.addButton("ok",
+                                backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                                textColor: UIColor.white,
+                                showDurationStatus: false) {
                     
                     alert.dismiss(animated: true, completion: nil)
+                                    
                 }
                 
-                alert.showNotice("Error", subTitle: error?.localizedDescription ?? "", circleIconImage: nil)
+                alert.showNotice("Error",
+                                 subTitle: error?.localizedDescription ?? "",
+                                 circleIconImage: nil)
                 
             }
 
@@ -282,61 +335,84 @@ class LoginViewController: UIViewController {
     }
     
     func segmentedHandler() {
+        
         let title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
+        
         guard let titleString = title else { return }
+        
         loginAndRegisterButton.setTitle("   \(titleString)   ", for: .normal)
         
         //如果selectedSegment有變更則用動畫的方式調整name 跟 phone的ishidden狀態
         if segmentedControl.selectedSegmentIndex == 0 {
             //開啟APP時不要有動畫延遲
             adjustHeightConstrain.constant = 0
+            
             var durationTime = 0.0
+            
             if changSegmentCount == 0 {
+                
                 durationTime = 0.0
+                
             } else {
+                
                 durationTime = 1.0
+                
             }
             
             UIView.animate(withDuration: durationTime, animations: {
                 //每次切換segment時洗掉文字
                 self.emailTextField.text = ""
+                
                 self.passwordTextField.text = ""
 
                 self.nameTextField.alpha = 0.0
+                
                 self.phonenumberTextField.alpha = 0.0
+                
                 self.view.layoutIfNeeded()
+                
             }, completion: { (_) in
+                
                 self.nameTextField.isHidden = true
+                
                 self.phonenumberTextField.isHidden = true
+                
                 self.changSegmentCount += 1
+                
             })
 
         } else {
 
             adjustHeightConstrain.constant = 80
+            
             self.nameTextField.isHidden = false
+            
             self.phonenumberTextField.isHidden = false
+            
             UIView.animate(withDuration: 1.0, animations: {
                 //每次切換segment時洗掉文字
                 self.emailTextField.text = ""
+                
                 self.passwordTextField.text = ""
+                
                 self.nameTextField.text = ""
+                
                 self.phonenumberTextField.text = ""
   
                 self.nameTextField.alpha = 1.0
+                
                 self.phonenumberTextField.alpha = 1.0
+                
                 self.view.layoutIfNeeded()
+                
             }, completion: { (_) in
                 
             })
-
         }
-
     }
     
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-
 }

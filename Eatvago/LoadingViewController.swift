@@ -54,15 +54,6 @@ class LoadingViewController: UIViewController {
         landingImage.alpha = 0.0
         loading()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    deinit {
-        print("LoadingViewController")
-    }
     
     func loading() {
         
@@ -119,20 +110,31 @@ class LoadingViewController: UIViewController {
                             if self.loginSuccess {
                                 
                                 self.window = UIWindow(frame: UIScreen.main.bounds)
+                                
                                 self.window?.makeKeyAndVisible()
-                                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                                
+                                let storyBoard = UIStoryboard(name: "Main",
+                                                              bundle: nil)
                                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+                                
                                 self.window?.rootViewController = nextVC
+                                
                                 self.removeFromParentViewController()
+                                
                                 self.dismiss(animated: false, completion: nil)
                                 
                             } else {
                                 
                                 self.window = UIWindow(frame: UIScreen.main.bounds)
+                                
                                 self.window?.makeKeyAndVisible()
+                                
                                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                                
                                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+                                
                                 self.window?.rootViewController = nextVC
+                                
                                 self.dismiss(animated: false, completion: nil)
                                 
                             }
