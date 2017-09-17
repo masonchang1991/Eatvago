@@ -226,17 +226,17 @@ extension NearbyViewController {
             
             UserDefaults.standard.setValue(nil, forKey: "UID")
             
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            
-            self.window?.makeKeyAndVisible()
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            
+            let window = UIApplication.shared.windows[0] as UIWindow
+                            
+            window.makeKeyAndVisible()
+                            
+            let storyBoard = UIStoryboard(name: "Main",
+                                          bundle: nil)
+                            
             let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
-            
-            self.window?.rootViewController = loginVC
-            
-            alert.dismiss(animated: true, completion: nil)
+                            
+            window.rootViewController = loginVC
+
         }
         
         alert.addButton("Cancel",

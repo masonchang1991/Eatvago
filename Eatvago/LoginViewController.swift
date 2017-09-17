@@ -196,15 +196,20 @@ class LoginViewController: UIViewController {
                 
                 print("Success Login")
                 
-                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-                
                 UserDefaults.standard.setValue(user?.uid, forKey: "UID")
                 
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                
+                let window = UIApplication.shared.windows[0] as UIWindow
+                
+                window.makeKeyAndVisible()
+                
+                let storyBoard = UIStoryboard(name: "Main",
+                                              bundle: nil)
                 
                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                 
-                self.present(nextVC, animated: true, completion: nil)
+                window.rootViewController = nextVC
                 
             } else {
                 
@@ -255,17 +260,17 @@ class LoginViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             
             if error == nil {
-                // 計算認證信, 細部過程待補 note
-                user?.sendEmailVerification { error in
-                    
-                    if error == nil {
-                        
+//                // 計算認證信, 細部過程待補 note
+//                user?.sendEmailVerification { error in
+//                    
+//                    if error == nil {
+            
                         self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
-                            self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
+                
+                        self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
+                
                         self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
-                        
-                        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-                        
+
                         let appearance = SCLAlertView.SCLAppearance(
                             
                             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
@@ -279,7 +284,10 @@ class LoginViewController: UIViewController {
                         // Initialize SCLAlertView using custom Appearance
                         let alert = SCLAlertView(appearance: appearance)
                         
-                        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+                        alert.addButton("Sure",
+                                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                                        textColor: UIColor.white,
+                                        showDurationStatus: false) {
                         
                             self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
                             
@@ -288,14 +296,48 @@ class LoginViewController: UIViewController {
                             self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
                             
                             alert.dismiss(animated: true, completion: nil)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                
+                                UserDefaults.standard.setValue(user?.uid, forKey: "UID")
+                            
+                                let window = UIApplication.shared.windows[0] as UIWindow
+                                
+                                window.makeKeyAndVisible()
+                                
+                                let storyBoard = UIStoryboard(name: "Main",
+                                                              bundle: nil)
+                                
+                                let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+                                
+                                window.rootViewController = nextVC
+
+                            }
+                            
                         }
-    
-                        alert.showNotice("Verification", subTitle: "Your have to check your email", circleIconImage: nil)
 
-                    }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
 
-                }
+                            NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+
+                            alert.showNotice("Done",
+                                            subTitle: "Welcome to Eatvago!",
+                                            circleIconImage: nil)
+                                
+                            }
+                            
+                        }
                 
+//                        alert.showNotice("Verification",
+//                                         subTitle: "Your have to check your email",
+//                                         circleIconImage: nil)
+
+//                    }
+
+//                }
+            
                 print("Successfully register")
                 
             } else {

@@ -97,6 +97,38 @@
             endingLineNumber = "306"
             landmarkName = "manager(_:be:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Dead, Arg[1] = Dead&gt; of Eatvago.PrepareToMatchViewController.manager (Eatvago.CheckIfRoomExistManager, be : Swift.String) -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/PrepareToMatchViewController.swift"
+                  timestampString = "527342676.576472"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Dead, Arg[1] = Dead&gt; of Eatvago.PrepareToMatchViewController.manager (Eatvago.CheckIfRoomExistManager, be : Swift.String) -&gt; ()"
+                  moduleName = "Eatvago"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/PrepareToMatchViewController.swift"
+                  timestampString = "527342676.578094"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -25,8 +25,6 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var loadingSecondView: UIView!
     
     @IBOutlet weak var loadingThirdView: UIView!
-
-    var window: UIWindow?
     
     var loginSuccess: Bool = false
     
@@ -125,35 +123,30 @@ class LoadingViewController: UIViewController {
                             self.loadingThirdView.alpha = 0
                             
                             if self.loginSuccess {
+
+                                let window = UIApplication.shared.windows[0] as UIWindow
                                 
-                                self.window = UIWindow(frame: UIScreen.main.bounds)
-                                
-                                self.window?.makeKeyAndVisible()
+                                window.makeKeyAndVisible()
                                 
                                 let storyBoard = UIStoryboard(name: "Main",
                                                               bundle: nil)
                                 
                                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
                                 
-                                self.window?.rootViewController = nextVC
-                                
-                                self.removeFromParentViewController()
-                                
-                                self.dismiss(animated: false, completion: nil)
+                                window.rootViewController = nextVC
                                 
                             } else {
                                 
-                                self.window = UIWindow(frame: UIScreen.main.bounds)
+                                let window = UIApplication.shared.windows[0] as UIWindow
                                 
-                                self.window?.makeKeyAndVisible()
+                                window.makeKeyAndVisible()
                                 
-                                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                                let storyBoard = UIStoryboard(name: "Main",
+                                                              bundle: nil)
                                 
                                 let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
                                 
-                                self.window?.rootViewController = nextVC
-                                
-                                self.dismiss(animated: false, completion: nil)
+                                window.rootViewController = nextVC
                                 
                             }
                         })
