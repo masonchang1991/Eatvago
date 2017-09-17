@@ -95,6 +95,16 @@ extension PrepareToMatchViewController {
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.3
         
         self.matchButton.isSelected = false
+
+        // greetingTextView
+        self.greetingTextView.backgroundColor = UIColor(red: 250/255.0,
+                                                        green: 250/255.0,
+                                                        blue: 250/255.0,
+                                                        alpha: 0.6)
+        
+        self.greetingTextView.layer.cornerRadius = 15
+        
+        self.greetingTextView.clipsToBounds = true
         
     }
     
@@ -113,19 +123,12 @@ extension PrepareToMatchViewController {
         
         self.greetingTextBackgroundView.layer.masksToBounds = true
 
-        let greetingGradient = [UIColor.asiTealish85.withAlphaComponent(0.2).cgColor,
-                                UIColor(red: 60.0/255.0, green: 150.0/255.0, blue: 210.0/255.0, alpha: 0.8).cgColor]
+        let greetingGradient = [
+                    UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 180.0/255.0, alpha: 0.8).cgColor,
+                    UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 210.0/255.0, alpha: 0.8).cgColor]
 
         self.greetingTextBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: greetingGradient,
                                                                                             gradientframe: self.greetingTextBackgroundView.bounds, gradientstartPoint: CGPoint(x: 0.5, y: 0), gradientendPoint: CGPoint(x: 0.5, y: 1)), at: 0)
-        
-        // userPhotoshadow
-
-        self.greetingTextView.backgroundColor = UIColor.asiWhiteTwo.withAlphaComponent(0.3)
-        
-        self.greetingTextView.layer.cornerRadius = 15
-        
-        self.greetingTextView.clipsToBounds = true
         
     }
     

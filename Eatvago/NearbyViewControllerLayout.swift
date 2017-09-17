@@ -193,7 +193,7 @@ extension NearbyViewController {
             
         }
         
-        let mapButton = ExpandingMenuItem(size: menuButtonSize, title: "View In Map", titleColor: UIColor.white, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+        let mapButton = ExpandingMenuItem(size: menuButtonSize, title: "View In Map or Store", titleColor: UIColor.white, image: UIImage(named: "Map")!, highlightedImage: UIImage(named: "Map")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
             
             self.changTableViewAndMap()
             

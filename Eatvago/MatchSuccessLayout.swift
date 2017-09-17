@@ -162,7 +162,7 @@ extension MatchSuccessViewController {
             red: 60.0/255.0,
             green: 150.0/255.0,
             blue: 210.0/255.0,
-            alpha: 0.4
+            alpha: 0.6
         )
         
         let functionBarBottomColor = UIColor(
@@ -171,8 +171,6 @@ extension MatchSuccessViewController {
             blue: 255.0/255.0,
             alpha: 0.4
         )
-        
-        
         
         let functionBarGradientColors = [functionBarTopColor.cgColor,
                                          functionBarBottomColor.cgColor]

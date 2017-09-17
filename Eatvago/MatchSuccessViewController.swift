@@ -345,6 +345,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         ref.removeAllObservers()
         
         UIApplication.shared.setStatusBarHidden(false, with: .none)
+        
+        self.ref.removeAllObservers()
     }
     
     func sendMessage() {

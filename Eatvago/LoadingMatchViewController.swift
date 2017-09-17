@@ -157,7 +157,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-            
+        
+            self.ref.removeAllObservers()
+        
             if ifLeaveByAccept == true {
                 
                 // do nothing
@@ -167,6 +169,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 closeTheRoom()
                 
             }
+        
     }
     
     func manager(_ manager: OwnerMatchSuccessManager, matchSuccessRoomRef: DatabaseReference, connectionRoomId: String) {

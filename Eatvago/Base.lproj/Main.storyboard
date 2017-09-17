@@ -1140,19 +1140,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="1dL-sT-RBJ">
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prepareToMatchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rcF-QA-ekI">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="1dL-sT-RBJ">
                                 <rect key="frame" x="200" y="94" width="145" height="30"/>
-                                <color key="backgroundColor" red="0.90223524310000003" green="1" blue="0.78317599826388884" alpha="0.053242722602739725" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.94132486979166663" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ym-bM-owk">
-                                <rect key="frame" x="37.5" y="297" width="300" height="274"/>
+                                <rect key="frame" x="37.5" y="297" width="300" height="264"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Say something" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xpf-Nn-8Sq">
-                                        <rect key="frame" x="10" y="10" width="280" height="254"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="10" y="10" width="280" height="244"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.70478450589709807" alpha="0.81169734589041098" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -1194,9 +1197,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="AgT-0d-o6p">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="AgT-0d-o6p">
                                 <rect key="frame" x="200" y="139" width="145" height="30"/>
-                                <color key="backgroundColor" red="0.90223524310000003" green="1" blue="0.78317599829999995" alpha="0.0532427226" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.92325846349999996" blue="0.96272786460000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1215,9 +1218,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-gS-Gw2">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ymg-gS-Gw2">
                                 <rect key="frame" x="200" y="184" width="145" height="30"/>
-                                <color key="backgroundColor" red="0.90223524310000003" green="1" blue="0.78317599829999995" alpha="0.0532427226" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.92325846349999996" blue="0.96272786460000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1239,7 +1242,7 @@
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLc-B3-Ptr">
                                 <rect key="frame" x="40" y="104" width="100" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hLc-B3-Ptr" secondAttribute="height" multiplier="60:60" id="L8z-uV-mEe"/>
                                 </constraints>
@@ -1251,18 +1254,18 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QM-Ds-u0e" customClass="FaveButton" customModule="FaveButton">
-                                <rect key="frame" x="167.5" y="583" width="40" height="30"/>
+                                <rect key="frame" x="162.5" y="573" width="50" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="TOX-7Q-lgk"/>
-                                    <constraint firstAttribute="height" constant="30" id="XFc-QI-hQW"/>
+                                    <constraint firstAttribute="width" constant="50" id="TOX-7Q-lgk"/>
+                                    <constraint firstAttribute="height" constant="40" id="XFc-QI-hQW"/>
                                 </constraints>
                                 <state key="normal" title="Match" image="GoToMatch"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" red="0.0" green="0.0" blue="1" alpha="0.6954730308219178" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.3225097656" green="0.81868489580000003" blue="0.25778537330000001" alpha="0.75371896400000005" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                        <color key="value" red="0.0" green="0.0" blue="1" alpha="0.6954730308" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.3225097656" green="0.81868489584444448" blue="0.25778537327222223" alpha="0.75371896400000005" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
                                         <color key="value" red="1" green="0.90150282120000003" blue="0.90074327259999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1308,6 +1311,7 @@
                             <constraint firstItem="7ym-bM-owk" firstAttribute="top" secondItem="rBK-vd-Pku" secondAttribute="bottom" constant="8" id="ILu-7z-YW6"/>
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="top" secondItem="eOg-0M-MkQ" secondAttribute="bottom" id="JGq-Kk-hJ1"/>
                             <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="1" id="JfL-xu-x6Q"/>
+                            <constraint firstItem="rcF-QA-ekI" firstAttribute="leading" secondItem="uJu-nJ-3B1" secondAttribute="leading" id="KfD-Fe-jeA"/>
                             <constraint firstItem="0QM-Ds-u0e" firstAttribute="top" secondItem="7ym-bM-owk" secondAttribute="bottom" constant="12" id="L47-aB-IVE"/>
                             <constraint firstItem="AgT-0d-o6p" firstAttribute="centerY" secondItem="h6g-Xx-Cw6" secondAttribute="centerY" id="La9-oS-Hzb"/>
                             <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="5" id="O0H-pG-Yq8"/>
@@ -1316,6 +1320,7 @@
                             <constraint firstItem="0QM-Ds-u0e" firstAttribute="centerX" secondItem="uJu-nJ-3B1" secondAttribute="centerX" id="TDx-Tz-k8B"/>
                             <constraint firstItem="h6g-Xx-Cw6" firstAttribute="top" secondItem="EBb-JW-y4H" secondAttribute="bottom" id="ViW-Zh-5Pm"/>
                             <constraint firstItem="hLc-B3-Ptr" firstAttribute="centerX" secondItem="h6g-Xx-Cw6" secondAttribute="centerX" id="YEo-xn-ZT8"/>
+                            <constraint firstItem="rcF-QA-ekI" firstAttribute="top" secondItem="Y6T-to-jvu" secondAttribute="bottom" id="bPc-T8-SbQ"/>
                             <constraint firstItem="EBb-JW-y4H" firstAttribute="width" secondItem="uJu-nJ-3B1" secondAttribute="width" multiplier="30:375" id="ce1-7f-aZZ"/>
                             <constraint firstItem="AgT-0d-o6p" firstAttribute="leading" secondItem="1dL-sT-RBJ" secondAttribute="leading" id="eDZ-il-NOo"/>
                             <constraint firstItem="h6g-Xx-Cw6" firstAttribute="width" secondItem="uJu-nJ-3B1" secondAttribute="width" multiplier="120:375" id="f4V-cA-1IK"/>
@@ -1327,7 +1332,9 @@
                             <constraint firstItem="ymg-gS-Gw2" firstAttribute="trailing" secondItem="1dL-sT-RBJ" secondAttribute="trailing" id="me2-fc-uXX"/>
                             <constraint firstItem="7ym-bM-owk" firstAttribute="centerX" secondItem="uJu-nJ-3B1" secondAttribute="centerX" id="qz2-1P-YnU"/>
                             <constraint firstItem="EBb-JW-y4H" firstAttribute="top" secondItem="Y6T-to-jvu" secondAttribute="bottom" id="sKy-EQ-Lll"/>
+                            <constraint firstAttribute="trailing" secondItem="rcF-QA-ekI" secondAttribute="trailing" id="tAG-sw-a0z"/>
                             <constraint firstItem="AgT-0d-o6p" firstAttribute="trailing" secondItem="1dL-sT-RBJ" secondAttribute="trailing" id="tpx-wl-2CT"/>
+                            <constraint firstAttribute="bottom" secondItem="rcF-QA-ekI" secondAttribute="bottom" id="txJ-uz-U2T"/>
                             <constraint firstItem="8Mq-rb-BBD" firstAttribute="top" relation="lessThanOrEqual" secondItem="0QM-Ds-u0e" secondAttribute="bottom" constant="30" id="uJp-1m-02l"/>
                             <constraint firstItem="h6g-Xx-Cw6" firstAttribute="leading" secondItem="EBb-JW-y4H" secondAttribute="trailing" id="uyK-nv-war"/>
                             <constraint firstItem="EBb-JW-y4H" firstAttribute="leading" secondItem="uJu-nJ-3B1" secondAttribute="leading" id="wHF-Kk-6aG"/>
@@ -2143,7 +2150,7 @@
         <image name="Map" width="32" height="32"/>
         <image name="Navigation" width="32" height="32"/>
         <image name="NearBySearchIcon" width="25" height="25"/>
-        <image name="NearbyInfoBackground" width="3072" height="2034"/>
+        <image name="NearbyInfoBackground" width="6144" height="4069"/>
         <image name="SlotIcon" width="25" height="25"/>
         <image name="UserDefaultIconForMatch" width="64" height="64"/>
         <image name="bigHeart" width="32" height="32"/>
@@ -2158,6 +2165,7 @@
         <image name="matchGO" width="64" height="64"/>
         <image name="matchIcon" width="32" height="32"/>
         <image name="openSearch" width="32" height="32"/>
+        <image name="prepareToMatchBackground" width="4592" height="3448"/>
         <image name="randomGameImage" width="3992" height="2242"/>
         <image name="search" width="294" height="296"/>
     </resources>

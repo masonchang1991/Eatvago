@@ -52,6 +52,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     
     var userPhotoURLString = ""
     
+    var layerSetupTimes = 0
+    
     weak var nearbyViewController: NearbyViewController?
     
     let activityData = ActivityData()
@@ -97,7 +99,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController else {
                 
                     return
-                
         }
         
         myLocation = nearbyViewController.currentLocation
@@ -107,13 +108,18 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         setUpUserPhoto()
 
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-         setupLayer()
-    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        
+        if layerSetupTimes == 0 {
+        
+            setupLayer()
+        
+            layerSetupTimes += 1
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         
@@ -172,15 +178,15 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         switch pickerView {
             
-        case genderPickerView:
+            case genderPickerView:
             
-            genderTextField.text = genderPickOption[row]
+                genderTextField.text = genderPickOption[row]
             
-        case typePickerView:
+            case typePickerView:
             
-            typeTextField.text = typePickOption[row]
+                typeTextField.text = typePickOption[row]
             
-        default: print("default")
+            default: print("default")
             
         }
 

@@ -9,7 +9,6 @@
 import UIKit
 import GooglePlaces
 
-
 extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {

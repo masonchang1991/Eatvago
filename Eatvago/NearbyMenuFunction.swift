@@ -158,9 +158,11 @@ extension NearbyViewController {
         
         // Creat the subview
         let width = 216
+        
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 115))
         
-        self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50, y: 15, width: 100, height: 100)
+        self.userPhotoImageView.frame = CGRect(x: subview.frame.width / 2 - 50,
+                                               y: 15, width: 100, height: 100)
         
         if self.userPhotoImageView.image == nil {
 
@@ -169,7 +171,9 @@ extension NearbyViewController {
         }
         
         self.userPhotoImageView.contentMode = .scaleAspectFill
+        
         self.userPhotoImageView.layer.cornerRadius = self.userPhotoImageView.width / 4
+        
         self.userPhotoImageView.clipsToBounds = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(choosePhotoOrCamera))
@@ -197,18 +201,23 @@ extension NearbyViewController {
     func logout() {
         
         let appearance = SCLAlertView.SCLAppearance(
+            
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
             showCloseButton: false,
             showCircularIcon: true
+            
         )
         
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
+        
         let alertViewIcon = UIImage(named: "exitIcon")
         
-        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Sure",
+                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white, showDurationStatus: false) {
             
             // 消去 UserDefaults內使用者的帳號資訊
             UserDefaults.standard.setValue(nil, forKey: "UserLoginEmail")
@@ -230,7 +239,10 @@ extension NearbyViewController {
             alert.dismiss(animated: true, completion: nil)
         }
         
-        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Cancel",
+                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white,
+                        showDurationStatus: false) {
             
             alert.dismiss(animated: true, completion: nil)
             
