@@ -106,12 +106,12 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/PrepareToMatchViewController.swift"
-                  timestampString = "527342676.576472"
+                  timestampString = "527347637.499053"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "306"
                   endingLineNumber = "306"
-                  offsetFromSymbolStart = "40">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -121,12 +121,12 @@
                   moduleName = "Eatvago"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mason/Project%202/Eatvago/Eatvago/PrepareToMatchViewController.swift"
-                  timestampString = "527342676.578094"
+                  timestampString = "527347637.501428"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "306"
                   endingLineNumber = "306"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
