@@ -16,8 +16,6 @@ extension NearbyViewController: CLLocationManagerDelegate {
         let myLocation: CLLocation = locations.last!
         
         self.currentLocation = myLocation
-        
-        print(self.currentLocation.coordinate.longitude)
 
         let camera = GMSCameraPosition.camera(withLatitude: myLocation.coordinate.latitude,
                                               longitude: myLocation.coordinate.longitude,

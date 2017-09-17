@@ -60,13 +60,12 @@ class LoginViewController: UIViewController {
                                                                  action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        UIApplication.shared.setStatusBarHidden(false, with: .none)
-        
         UIApplication.shared.statusBarStyle = .default
         
         Analytics.logEvent("Login_viewDidLoad", parameters: nil)
 
     }
+    
     @IBAction func forgetPassword(_ sender: UIButton) {
         
          NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
@@ -262,17 +261,19 @@ class LoginViewController: UIViewController {
                     if error == nil {
                         
                         self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
-                        self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
+                            self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
                         self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
                         
                         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
                         
                         let appearance = SCLAlertView.SCLAppearance(
+                            
                             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                             kTextFont: UIFont(name: "Chalkboard SE", size: 14)!,
                             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                             showCloseButton: false,
                             showCircularIcon: false
+                            
                         )
                         
                         // Initialize SCLAlertView using custom Appearance
@@ -281,7 +282,9 @@ class LoginViewController: UIViewController {
                         alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
                         
                             self.ref?.child("UserAccount").child((user?.uid)!).child("Email").setValue(email)
+                            
                             self.ref?.child("UserAccount").child((user?.uid)!).child("Name").setValue(name)
+                            
                             self.ref?.child("UserAccount").child((user?.uid)!).child("phone").setValue(phone)
                             
                             alert.dismiss(animated: true, completion: nil)
@@ -290,12 +293,7 @@ class LoginViewController: UIViewController {
                         alert.showNotice("Verification", subTitle: "Your have to check your email", circleIconImage: nil)
 
                     }
-                    
-                    if let error = error {
-                        
-                        print(error)
-                        
-                    }
+
                 }
                 
                 print("Successfully register")

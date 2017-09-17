@@ -29,7 +29,10 @@ class OwnerMatchSuccessManager {
             
             matchRoomRef.child("Connection").setValue(connectionRoomId)
             
-            self.fetchMatchRoom(ref: ref, type: type, matchRoomId: matchRoomId, completion: { [weak self] (matchRoom) in
+            self.fetchMatchRoom(ref: ref,
+                                type: type,
+                                matchRoomId: matchRoomId,
+                                completion: { [weak self] (matchRoom) in
                 
                 guard let `weakself` = self else { return }
                 
@@ -44,7 +47,9 @@ class OwnerMatchSuccessManager {
                 
                 ref.child("Connection").child(connectionRoomId).setValue(connectionRoom)
     
-                weakself.delegate?.manager(weakself, matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId), connectionRoomId: connectionRoomId)
+                weakself.delegate?.manager(weakself,
+                                           matchSuccessRoomRef: ref.child("Connection").child(connectionRoomId),
+                                           connectionRoomId: connectionRoomId)
                 
             })
             
@@ -65,7 +70,8 @@ class OwnerMatchSuccessManager {
                 return
             }
             
-            guard let owner = matchRoomInfo["owner"] as? String,
+            guard
+                let owner = matchRoomInfo["owner"] as? String,
                 let ownerLocationLat = matchRoomInfo["ownerLocationLat"] as? String,
                 let ownerLocationLon = matchRoomInfo["ownerLocationLon"] as? String,
                 let ownerMatchInfo = matchRoomInfo["ownerMatchInfo"] as? String,
@@ -75,6 +81,7 @@ class OwnerMatchSuccessManager {
                 let attenderMatchInfo = matchRoomInfo["attenderMatchInfo"] as? String else {
                     
                     print("JSON fail")
+                    
                     return
                     
             }

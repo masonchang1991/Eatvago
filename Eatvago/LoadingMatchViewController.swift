@@ -82,6 +82,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
         self.tabBarController?.tabBar.isHidden = true
         
         acceptButton.isHidden = true
+        
         declineButton.addTarget(self, action: #selector(closeTheRoom), for: .touchUpInside)
         
         matchLoadingView.startAnimating()
@@ -104,7 +105,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 
                 if self.runTime == 1 {
                 
-                self.fetchMatchRoomDataManager.getRoomData(by: self.matchRoomRef, isRoomowner: self.isARoomOwner, type: self.type)
+                self.fetchMatchRoomDataManager.getRoomData(by: self.matchRoomRef,
+                                                           isRoomowner: self.isARoomOwner,
+                                                           type: self.type)
                 
                 self.ownerSnapshot = snapshot
                     
@@ -132,7 +135,9 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     
                 self.ref.child("Match Room").child(self.type).child(self.matchRoomId).child("Connection").removeAllObservers()
                 
-                self.fetchMatchRoomDataManager.getRoomData(by: self.matchRoomRef, isRoomowner: self.isARoomOwner, type: self.type)
+                self.fetchMatchRoomDataManager.getRoomData(by: self.matchRoomRef,
+                                                           isRoomowner: self.isARoomOwner,
+                                                           type: self.type)
                     
                 } else {
                     
@@ -143,16 +148,10 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
             })
         }
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(self.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupBackgroundLayer()
         
     }
     
@@ -335,6 +334,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
                 self.matchRoomRef.child("isClosed").removeAllObservers()
                 
                 Analytics.logEvent("Loading_observerIsAnyoneDecline", parameters: nil)
+                
             }
             
         })
@@ -344,6 +344,7 @@ class LoadingMatchViewController: UIViewController, OwnerMatchSuccessDelegate, F
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+        
     }
     
 }

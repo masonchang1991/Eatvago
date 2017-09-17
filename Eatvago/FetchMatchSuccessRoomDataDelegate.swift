@@ -15,15 +15,20 @@ extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
     func manager(_ manager: FetchMatchSuccessRoomDataManager, didGet successRoomData: MatchSuccessRoom) {
         
         if type == "Any" {
+            
             type = ""
+            
         }
         
-        self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: successRoomData.centerLocation, radius: 1000, keywordText: type)
+        self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: successRoomData.centerLocation,
+                                                              radius: 1000,
+                                                              keywordText: type)
         
         // 將使用者座標釘上
         if isRoomOwner == true {
             
-            self.myLocation = CLLocation(latitude: successRoomData.ownerLocation.latitude, longitude: successRoomData.ownerLocation.longitude)
+            self.myLocation = CLLocation(latitude: successRoomData.ownerLocation.latitude,
+                                         longitude: successRoomData.ownerLocation.longitude)
             
             let myMarker = GMSMarker(position: successRoomData.ownerLocation)
             
@@ -45,7 +50,8 @@ extension MatchSuccessViewController: FetchMatchSuccessRoomDataDelegate {
             
         } else {
             
-            self.myLocation = CLLocation(latitude: successRoomData.attenderLocation.latitude, longitude: successRoomData.attenderLocation.longitude)
+            self.myLocation = CLLocation(latitude: successRoomData.attenderLocation.latitude,
+                                         longitude: successRoomData.attenderLocation.longitude)
             
             let myMarker = GMSMarker(position: successRoomData.attenderLocation)
             

@@ -11,17 +11,21 @@ import UIKit
 extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return self.choosedLocations.count + self.searchedLocations.count
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var listLocation: [ChoosedLocation] = []
+        
         for (_, value) in self.choosedLocations {
             
             listLocation.append(ChoosedLocation(storeName: value.storeName,
@@ -37,6 +41,7 @@ extension MatchSuccessViewController: UIPickerViewDataSource, UIPickerViewDelega
                                                 locationLon: String(location.longitude)))
             
         }
+        
         self.pickerViewChoosedLocation = listLocation[row]
         
       return listLocation[row].storeName

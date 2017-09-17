@@ -23,6 +23,7 @@ extension MatchSuccessViewController: CLLocationManagerDelegate {
         if googleMapView.isHidden {
             
             googleMapView.isHidden = false
+            
             googleMapView.camera = camera
             
         } else {
@@ -31,93 +32,42 @@ extension MatchSuccessViewController: CLLocationManagerDelegate {
             
         }
         
-//        callIfFetchNearbyLocations(myLocation: myLocation)
-        
     }
     
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .restricted:
             
-            print("Location access was restricted.")
+            case .restricted:
             
-        case .denied:
+                print("Location access was restricted.")
             
-            print("User denied access to location.")
-            // Display the map using the default location.
-            googleMapView.isHidden = false
+            case .denied:
             
-        case .notDetermined:
+                print("User denied access to location.")
+                
+                googleMapView.isHidden = false
             
-            print("Location status not determined.")
+            case .notDetermined:
             
-        case .authorizedAlways:
+                print("Location status not determined.")
             
-            fallthrough
+            case .authorizedAlways:
             
-        case .authorizedWhenInUse:
+                fallthrough
             
-            print("Location status is OK.")
+            case .authorizedWhenInUse:
+            
+                print("Location status is OK.")
             
         }
     }
-    
-    // Handle location manager errors.
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         locationManager.stopUpdatingLocation()
         
         print("Error: \(error)")
     }
-    
-    func callIfFetchNearbyLocations(myLocation: CLLocation) {
-        
-        //做了一些限制條件讓他只會在真正需要的時候call
-        if myLocation != CLLocation() {
-            //與前次地點相同則不摳
-            if self.lastLocation != nil {
-                
-                guard let lastLocation = self.lastLocation else {
-                    
-                    print("lastLocation or current location guard let fail")
-                    
-                    return
-                }
-                //1公尺約0.00000900900901度
-                // 如果超過一定範圍則重置字典
-                if Double((lastLocation.coordinate.latitude)) + 0.00001 < Double((myLocation.coordinate.latitude))
-                    || Double((lastLocation.coordinate.latitude)) - 0.00001 > Double((myLocation.coordinate.latitude))
-                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude))
-                    || Double((lastLocation.coordinate.longitude)) + 0.00001 < Double((myLocation.coordinate.longitude)) {
-                    
-                    self.nearbyLocationDictionary = [:]
-                    
-                    self.locations = []
-                    
-                    self.lastLocation = myLocation
-                    
-                    self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance, keywordText: self.keywordText)
-                    
-                }
-                
-            } else {
-                // 第一個進來的location設為 currentLocation
-                self.lastLocation = myLocation
-                // 座標更新後呼叫拿取附近的地點
-                self.fetchNearbyLocationManager.requestNearbyLocation(coordinate: CLLocationCoordinate2DMake(myLocation.coordinate.latitude, myLocation.coordinate.longitude), radius: self.filterDistance, keywordText: self.keywordText)
-            }
-            
-            locationManager.stopUpdatingLocation()
-            
-            self.currentLocation = myLocation
-            
-        } else {
-            
-            locationManager.startUpdatingLocation()
-            
-        }
-        
-    }
-    
+
 }

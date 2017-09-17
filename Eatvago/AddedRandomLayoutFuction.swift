@@ -17,7 +17,10 @@ extension AddedRandomViewController {
         
         let sizeLength = UIScreen.main.bounds.size.width
         
-        let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 64)
+        let defaultNavigationBarFrame = CGRect(x: 0,
+                                               y: 0,
+                                               width: sizeLength,
+                                               height: 64)
         
         gradient.frame = defaultNavigationBarFrame
         

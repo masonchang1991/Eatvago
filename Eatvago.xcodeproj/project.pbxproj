@@ -21,11 +21,8 @@
 		930119E01F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930119DF1F3EAAE3002822B1 /* MatchFetchPlaceDetailDelegate.swift */; };
 		930144381F27986700CEC11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930144361F27986700CEC11A /* Main.storyboard */; };
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
-		9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9301443B1F27986700CEC11A /* LaunchScreen.storyboard */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
-		9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308F2971F2F215800819B03 /* UIImage+Gif.swift */; };
-		9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9308F29A1F2F21B000819B03 /* loadingGIF.gif */; };
 		930A4B3E1F433DA1008F4E65 /* LoadingLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */; };
 		930A4B401F434AD3008F4E65 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */; };
 		930A4B421F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */; };
@@ -41,7 +38,6 @@
 		9380CA8E1F2B63BC00629C0A /* LocationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */; };
 		9380CA901F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */; };
 		9383D4BC1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BB1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift */; };
-		9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */; };
 		9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */; };
 		9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */; };
 		9391DFC41F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */; };
@@ -96,11 +92,8 @@
 		9301442F1F27986700CEC11A /* Eatvago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatvago.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930144371F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		930144391F27986700CEC11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9301443C1F27986700CEC11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		9308F2971F2F215800819B03 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
-		9308F29A1F2F21B000819B03 /* loadingGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingGIF.gif; sourceTree = "<group>"; };
 		930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayoutFunction.swift; sourceTree = "<group>"; };
 		930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchLayoutFunction.swift; sourceTree = "<group>"; };
@@ -116,7 +109,6 @@
 		9380CA8D1F2B63BC00629C0A /* LocationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStruct.swift; sourceTree = "<group>"; };
 		9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPlaceIdDetailManager.swift; sourceTree = "<group>"; };
 		9383D4BB1F3AD74900DAAD56 /* ExtensionColorsandFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionColorsandFonts.swift; sourceTree = "<group>"; };
-		9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchHistoryTableViewController.swift; sourceTree = "<group>"; };
 		9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchViewController.swift; sourceTree = "<group>"; };
 		9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingMatchViewController.swift; sourceTree = "<group>"; };
 		9391DFC31F3EF4620014BABD /* FetchMatchSuccessRoomDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMatchSuccessRoomDataDelegate.swift; sourceTree = "<group>"; };
@@ -253,32 +245,20 @@
 			children = (
 				93DB1F791F61502B00162895 /* AppDelegate.swift */,
 				939C5A051F61733E006E328C /* GoogleMapKey.swift */,
-				930144511F28A48700CEC11A /* LoadingViewController.swift */,
-				930144451F279DA100CEC11A /* LoginViewController.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
 				93729ACE1F3631C2004125C0 /* MainTabBarController.swift */,
 				93FFA9551F6D5AC0006F8106 /* ExtensionUIKit */,
-				93FB58031F3DEC6C0017E460 /* MatchSuccess */,
-				9383D4BD1F3AFA5000DAAD56 /* Match */,
-				9300B1021F4AB58F0073FCAF /* Add List Random */,
-				93A10BEA1F31BF3500F69A82 /* Random Game */,
+				9343854E1F6E4876005B2DCE /* LoginAndLoading */,
 				930086761F2A089C00BEA223 /* NearBy */,
+				93A10BEA1F31BF3500F69A82 /* Random Game */,
+				9300B1021F4AB58F0073FCAF /* Add List Random */,
+				9383D4BD1F3AFA5000DAAD56 /* Match */,
+				93FB58031F3DEC6C0017E460 /* MatchSuccess */,
 				930144391F27986700CEC11A /* Assets.xcassets */,
 				93DB1F7B1F61508B00162895 /* GoogleService-Info.plist */,
 				93DB1F7C1F61508B00162895 /* Info.plist */,
-				9308F2971F2F215800819B03 /* UIImage+Gif.swift */,
-				9308F2991F2F217600819B03 /* Gif */,
-				9301443B1F27986700CEC11A /* LaunchScreen.storyboard */,
 			);
 			path = Eatvago;
-			sourceTree = "<group>";
-		};
-		9308F2991F2F217600819B03 /* Gif */ = {
-			isa = PBXGroup;
-			children = (
-				9308F29A1F2F21B000819B03 /* loadingGIF.gif */,
-			);
-			name = Gif;
 			sourceTree = "<group>";
 		};
 		930A4B3C1F433D7F008F4E65 /* Layout */ = {
@@ -288,6 +268,15 @@
 				930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */,
 			);
 			name = Layout;
+			sourceTree = "<group>";
+		};
+		9343854E1F6E4876005B2DCE /* LoginAndLoading */ = {
+			isa = PBXGroup;
+			children = (
+				930144511F28A48700CEC11A /* LoadingViewController.swift */,
+				930144451F279DA100CEC11A /* LoginViewController.swift */,
+			);
+			name = LoginAndLoading;
 			sourceTree = "<group>";
 		};
 		93729AC31F35CBAE004125C0 /* DelegateFunction */ = {
@@ -317,7 +306,6 @@
 		9383D4BD1F3AFA5000DAAD56 /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				9383D4BE1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift */,
 				9383D4C01F3AFB3400DAAD56 /* PrepareToMatchViewController.swift */,
 				9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */,
 				93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */,
@@ -482,11 +470,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9301443D1F27986700CEC11A /* LaunchScreen.storyboard in Resources */,
 				9301443A1F27986700CEC11A /* Assets.xcassets in Resources */,
 				93DB1F7E1F61508B00162895 /* Info.plist in Resources */,
 				93DB1F7D1F61508B00162895 /* GoogleService-Info.plist in Resources */,
-				9308F29B1F2F21B000819B03 /* loadingGIF.gif in Resources */,
 				930144381F27986700CEC11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,7 +589,6 @@
 				93FEBD401F50062500F1779E /* PagerControlAnimationFunction.swift in Sources */,
 				93729AC91F35CF51004125C0 /* FetchDistanceDelegate.swift in Sources */,
 				9300866D1F28ED5000BEA223 /* NearbyViewController.swift in Sources */,
-				9383D4BF1F3AFA8D00DAAD56 /* MatchHistoryTableViewController.swift in Sources */,
 				930119DA1F3EAA1B002822B1 /* MatchFetchDistanceDelegate.swift in Sources */,
 				930A4B421F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift in Sources */,
 				9383D4C51F3C0D1700DAAD56 /* LoadingMatchViewController.swift in Sources */,
@@ -632,7 +617,6 @@
 				9391DFD01F404D550014BABD /* setRamdomGameLayout.swift in Sources */,
 				93729ACF1F3631C2004125C0 /* MainTabBarController.swift in Sources */,
 				930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */,
-				9308F2981F2F215800819B03 /* UIImage+Gif.swift in Sources */,
 				930119DC1F3EAA76002822B1 /* MatchFetchLocationDelegate.swift in Sources */,
 				9383D4C11F3AFB3400DAAD56 /* PrepareToMatchViewController.swift in Sources */,
 				93FD1E6A1F4198CF003D4EC6 /* SendMessageDelegate.swift in Sources */,
@@ -650,14 +634,6 @@
 				930144371F27986700CEC11A /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9301443B1F27986700CEC11A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9301443C1F27986700CEC11A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

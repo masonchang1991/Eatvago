@@ -16,7 +16,8 @@ extension MatchSuccessViewController: FetchLocationDelegate {
         
         let myLocation = self.myLocation
         
-        fetchDistanceManager.fetchDistance(myLocation: myLocation, nearLocations: nearLocations)
+        fetchDistanceManager.fetchDistance(myLocation: myLocation,
+                                           nearLocations: nearLocations)
         
         if nextPageToken != nil {
             
@@ -27,7 +28,9 @@ extension MatchSuccessViewController: FetchLocationDelegate {
             self.nextPageToken = pageToken
             
         } else {
+            
             print("there is no other page")
+            
         }
     }
     
@@ -38,9 +41,13 @@ extension MatchSuccessViewController: FetchLocationDelegate {
     }
     
     func manager(_ manager: FetchNearbyLocationManager, didFailWith noDataIn: String) {
+        
         if locations.count == 0 {
+            
             locationManager.stopUpdatingLocation()
+            
             locationManager.startUpdatingLocation()
+            
         }
     }
     

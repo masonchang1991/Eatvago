@@ -26,9 +26,9 @@ class FetchMatchSuccessRoomDataManager {
     
         matchSuccessRoomRef.observe(.value, with: { (snapshot) in
             
-            guard let roomData = snapshot.value as? [String: String] else { return }
-            
-            guard let attenderUID = roomData["attender"],
+            guard
+                let roomData = snapshot.value as? [String: String],
+                let attenderUID = roomData["attender"],
                 let attenderLocationLatString = roomData["attenderLocationLat"],
                 let attenderLocationLonString = roomData["attenderLocationLon"],
                 let ownerUID = roomData["owner"],
@@ -39,7 +39,8 @@ class FetchMatchSuccessRoomDataManager {
                     return
             }
             
-            guard let attenderLocationLat = Double(attenderLocationLatString),
+            guard
+                let attenderLocationLat = Double(attenderLocationLatString),
                 let attenderLocationLon = Double(attenderLocationLonString),
                 let ownerLocationLat = Double(ownerLocationLatString),
                 let ownerLocationLon = Double(ownerLocationLonString) else {
@@ -59,7 +60,11 @@ class FetchMatchSuccessRoomDataManager {
             
             let centerPoint = middlePointOfListMarkers(listCoords: collectionPiont)
             
-            let successRoomData = MatchSuccessRoom(ownerUID: ownerUID, attenderUID: attenderUID, attenderLocation: pointAttender, ownerLocation: pointOwner, centerLocation: centerPoint)
+            let successRoomData = MatchSuccessRoom(ownerUID: ownerUID,
+                                                   attenderUID: attenderUID,
+                                                   attenderLocation: pointAttender,
+                                                   ownerLocation: pointOwner,
+                                                   centerLocation: centerPoint)
             
             self.delegate?.manager(self, didGet: successRoomData)
             matchSuccessRoomRef.removeAllObservers()

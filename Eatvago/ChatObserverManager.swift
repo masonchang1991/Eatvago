@@ -36,24 +36,18 @@ class ChatObserverManager {
         ref.child("Chat Room").child(connectionRoomId).observe(.value, with: { (snapshot) in
 
             var messages: [Message] = []
+            
             for messageStruct in snapshot.children {
-                
-                guard let messageStructSnapshot = messageStruct as? DataSnapshot else {
-                    
-                    return
-                }
 
-                guard let messageDictionary = messageStructSnapshot.value as? [String: String] else {
+                guard
+                    let messageStructSnapshot = messageStruct as? DataSnapshot,
+                    let messageDictionary = messageStructSnapshot.value as? [String: String],
+                    let userId = messageDictionary["userId"],
+                    let message = messageDictionary["message"],
+                    let createdTime = messageDictionary["createdTime"] else {
                     self.delegate?.manager(self, didFailWith: ObserverMessagerError.guardletFail)
                     
                     return
-                }
-
-                guard let userId = messageDictionary["userId"],
-                    let message = messageDictionary["message"],
-                    let createdTime = messageDictionary["createdTime"] else {
-                        self.delegate?.manager(self, didFailWith: ObserverMessagerError.guardletFail)
-                        return
                 }
 
                 let singleMessage = Message(userId: userId, message: message, createdTime: createdTime)
@@ -65,7 +59,5 @@ class ChatObserverManager {
             self.delegate?.manager(self, didGet: messages)
             
         })
-        
     }
-    
 }

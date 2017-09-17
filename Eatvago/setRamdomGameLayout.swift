@@ -17,7 +17,10 @@ extension RandomGameViewController {
         
         let sizeLength = UIScreen.main.bounds.size.width
         
-        let defaultNavigationBarFrame = CGRect(x: 0, y: 0, width: sizeLength, height: 64)
+        let defaultNavigationBarFrame = CGRect(x: 0,
+                                               y: 0,
+                                               width: sizeLength,
+                                               height: 64)
         
         gradient.frame = defaultNavigationBarFrame
         
@@ -38,7 +41,8 @@ extension RandomGameViewController {
         
         gradient.endPoint = CGPoint(x: 1.0, y: 1.2)
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIView().image(fromLayer: gradient), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIView().image(fromLayer: gradient),
+                                                                    for: .default)
         
         self.navigationController?.navigationBar.layer.masksToBounds = false
         

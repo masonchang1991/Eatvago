@@ -83,7 +83,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         //收keyboard
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
 
     }
@@ -94,7 +95,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         guard
             let tabBarVC = self.tabBarController as? MainTabBarController,
             let nearbyViewController = tabBarVC.nearbyViewController as? NearbyViewController else {
+                
                     return
+                
         }
         
         myLocation = nearbyViewController.currentLocation
@@ -190,17 +193,21 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         if nickNameTextField.text?.characters.count == 0 {
             
             let appearance = SCLAlertView.SCLAppearance(
+                
                 kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                 kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
                 kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                 showCloseButton: false,
                 showCircularIcon: false
+                
             )
             
             // Initialize SCLAlertView using custom Appearance
             let alert = SCLAlertView(appearance: appearance)
             
-            alert.addButton("OK", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            alert.addButton("OK",
+                            backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                            textColor: UIColor.white, showDurationStatus: false) {
                 
                 alert.dismiss(animated: true, completion: nil)
             }
@@ -220,7 +227,6 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
             Analytics.logEvent("prepareTo_matchbutton", parameters: nil)
             
         }
-//      self.performSegue(withIdentifier: "matchLoading", sender: matchRoomAutoId)
         
     }
     
@@ -258,7 +264,8 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
         
         let userId = UserDefaults.standard.value(forKey: "UID") as? String ?? ""
         
-        guard let type = typeTextField.text,
+        guard
+            let type = typeTextField.text,
             let gender = genderTextField.text,
             let nickName = nickNameTextField.text,
             let greetingText = greetingTextView.text,
@@ -296,13 +303,13 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
 
         }
         
-        let todayUnformate = Date()
+        let nowTimeUnformate = Date()
         
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss"
         
-        let today = dateFormatter.string(from: todayUnformate)
+        let nowTimeString = dateFormatter.string(from: nowTimeUnformate)
         
         guard
             let type = typeTextField.text,
@@ -327,7 +334,7 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
                                           "attenderLocationLat": "nil",
                                           "attenderLocationLon": "nil",
                                           "attenderMatchInfo": "nil",
-                                          "createdDate": today,
+                                          "createdDate": nowTimeString,
                                           "Connection": "nil"
                                          ]
         
@@ -345,8 +352,9 @@ class PrepareToMatchViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+
         view.endEditing(true)
+        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

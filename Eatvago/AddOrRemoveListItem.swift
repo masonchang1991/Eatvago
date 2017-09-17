@@ -53,8 +53,8 @@ class AddOrRemoveListItemManager {
                 let locationLon = location["locationLon"]
                 
                 choosedLocations[storeName ?? ""] = ChoosedLocation(storeName: storeName ?? "",
-                                                                         locationLat: locationLat ?? "",
-                                                                         locationLon: locationLon ?? "")
+                                                                    locationLat: locationLat ?? "",
+                                                                    locationLon: locationLon ?? "")
                 
             }
             
@@ -104,9 +104,6 @@ class AddOrRemoveListItemManager {
                 completion(true)
                 
             }
-
         })
-            
-        }
-        
     }
+}

@@ -8,7 +8,8 @@
 
 import UIKit
 import GooglePlaces
-// Handle the user's selection.
+
+
 extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
@@ -46,7 +47,6 @@ extension AddedRandomViewController: GMSAutocompleteResultsViewControllerDelegat
         
     }
     
-    // Turn the network activity indicator on and off again.
     func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

@@ -18,13 +18,14 @@ extension MatchSuccessViewController: FetchPlaceIdDetailDelegate {
         self.locations[senderTag] = locationWithDetail
         
         let appearance = SCLAlertView.SCLAppearance(
+            
             kTitleFont: UIFont(name: "HelveticaNeue", size: 15)!,
             kTextFont: UIFont(name: "HelveticaNeue", size: 10)!,
             kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
             showCloseButton: false
+            
         )
-        
-        // Initialize SCLAlertView using custom Appearance
+
         let alert = SCLAlertView(appearance: appearance)
         
         alert.addButton("OK") {

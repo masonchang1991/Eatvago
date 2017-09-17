@@ -40,7 +40,9 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
             
             #if DEBUG
                 randomGameMagneticView.showsFPS = false
+                
                 randomGameMagneticView.showsDrawCount = false
+                
                 randomGameMagneticView.showsQuadCount = false
             #endif
             
@@ -56,16 +58,23 @@ class RandomGameViewController: UIViewController, MagneticDelegate, UITabBarCont
     weak var tabBarVC: MainTabBarController?
     
     var totalRestaurants = [Location]()
+    
     var randomRestaurants = [Location]()
+    
     var selectedRestaurant: Location?
+    
     var searchedLocations = [Location]()
+    
     var randomCount = 6
     
     weak var resultsViewController: GMSAutocompleteResultsViewController?
+    
     var searchController: UISearchController?
+    
     var resultView: UITextView?
     
     var nodeDictionary = [String: String]()
+    
     var nodes = [Node]()
 
     var colorArray: [UIColor] =

@@ -26,7 +26,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     
     // google autocomplete search
     var resultsViewController: GMSAutocompleteResultsViewController?
+    
     var searchController: UISearchController?
+    
     var resultView: UITextView?
     
     //if 沒有加入任何list 則顯示view提示
@@ -40,12 +42,16 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
     
     // 判斷是否加入FavoriteList進入button
     var ifAddFavoriteList = true
+    
     var canNavigationLocation = false
     
     //讓pickerview能旋轉一定大的數量
     var maxRows = 10
+    
     var maxElements = 10000
+    
     var currentRow = 5000
+    
     var currentLocation = Location(latitude: 0.0,
                                    longitude: 0.0,
                                    name: "",
@@ -55,6 +61,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                    priceLevel: nil,
                                    rating: nil,
                                    photoReference: "")
+    
     var movingTimer = Timer()
     
     var stepper = 1
@@ -94,6 +101,7 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         self.playButton.addTarget(self, action: #selector(movePicker), for: .touchUpInside)
         
         self.navigationButton.addTarget(self, action: #selector(goByNavigation), for: .touchUpInside)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -171,7 +179,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
             
             self.stepper = 2
             
-            let timer2 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+            let timer2 = Timer.scheduledTimer(timeInterval: 0.1,
+                                              target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                              userInfo: nil, repeats: true)
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                 
@@ -179,7 +189,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                 
                 self.stepper = 4
                 
-                let timer3 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                let timer3 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                  target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                  userInfo: nil, repeats: true)
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                     
@@ -187,7 +199,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                     
                     self.stepper = 6
                     
-                    let timer4 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                    let timer4 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                      target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                      userInfo: nil, repeats: true)
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                         
@@ -195,7 +209,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                         
                         self.stepper = 8
                         
-                        let timer5 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                        let timer5 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                          target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                          userInfo: nil, repeats: true)
                         
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                             
@@ -203,7 +219,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                             
                             self.stepper = 10
                             
-                            let timer6 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                            let timer6 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                              target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                              userInfo: nil, repeats: true)
                             
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                 
@@ -211,13 +229,17 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                 
                                 self.stepper = 12
                                 
-                                let timer7 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                let timer7 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                  target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                  userInfo: nil, repeats: true)
                                 
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                     
                                     timer7.invalidate()
                                     
-                                    let timer8 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowThird), userInfo: nil, repeats: true)
+                                    let timer8 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                      target: self, selector: #selector(self.scrollToRandomRowThird),
+                                                                      userInfo: nil, repeats: true)
                                     
                                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                         
@@ -225,7 +247,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                         
                                         self.stepper = 12
                                         
-                                        let timer9 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                        let timer9 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                          target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                          userInfo: nil, repeats: true)
                                         
                                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                             
@@ -233,7 +257,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                             
                                             self.stepper = 10
                                             
-                                            let timer10 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                            let timer10 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                               target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                               userInfo: nil, repeats: true)
                                             
                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 / 2*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                 
@@ -241,7 +267,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                 
                                                 self.stepper = 8
                                                 
-                                                let timer11 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                                let timer11 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                                   target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                                   userInfo: nil, repeats: true)
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 / 2*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                     
@@ -249,7 +277,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                     
                                                     self.stepper = 6
                                                     
-                                                    let timer11 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                                    let timer11 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                                       target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                                       userInfo: nil, repeats: true)
                                                     
                                                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 / 2*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                         
@@ -257,7 +287,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                         
                                                         self.stepper = 4
                                                         
-                                                        let timer12 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                                        let timer12 = Timer.scheduledTimer(timeInterval: 0.1, target: self,
+                                                                                           selector: #selector(self.scrollToRandomRowFirst),
+                                                                                           userInfo: nil, repeats: true)
                                                         
                                                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                             
@@ -265,7 +297,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                             
                                                             self.stepper = 2
                                                             
-                                                            let timer13 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                                            let timer13 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                                               target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                                               userInfo: nil, repeats: true)
                                                             
                                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                                 
@@ -273,11 +307,14 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
                                                                 
                                                                 self.stepper = 1
                                                                 
-                                                                let timer14 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.scrollToRandomRowFirst), userInfo: nil, repeats: true)
+                                                                let timer14 = Timer.scheduledTimer(timeInterval: 0.1,
+                                                                                                   target: self, selector: #selector(self.scrollToRandomRowFirst),
+                                                                                                   userInfo: nil, repeats: true)
                                                                 
                                                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
                                                                     
                                                                     timer14.invalidate()
+                                                                    
                                                                     self.navigationButton.isEnabled = true
                                                                     
                                                                 }
@@ -355,7 +392,9 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         if ifAddFavoriteList == true {
             
             if tabBarVC.addLocations.count + searchedLocations.count == 0 {
+                
                 return
+                
             }
             
             let addLocationCount = tabBarVC.addLocations.count
@@ -401,18 +440,22 @@ class AddedRandomViewController: UIViewController, UITabBarControllerDelegate {
         if canNavigationLocation == false {
             
             let appearance = SCLAlertView.SCLAppearance(
+                
                 kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
                 kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
                 kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
                 showCloseButton: false,
                 showCircularIcon: false
+                
             )
             
             let alert = SCLAlertView(appearance: appearance)
             
-            alert.addButton("OK", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+            alert.addButton("OK", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                            textColor: UIColor.white, showDurationStatus: false) {
                 
                 alert.dismiss(animated: true, completion: nil)
+                                
             }
             
             alert.showError("Error", subTitle: "No Location to Navigate")

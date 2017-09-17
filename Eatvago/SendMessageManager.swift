@@ -36,19 +36,23 @@ class SendMessageManager {
         guard let userId = Auth.auth().currentUser?.uid else {
             
             self.delegate?.manager(self, didFailwith: SendMessagerError.invalidUser)
+            
             return
         }
-        let todayUnformate = Date()
+        let nowTimeUnformate = Date()
         
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss"
         
-        let today = dateFormatter.string(from: todayUnformate)
+        let nowTimeString = dateFormatter.string(from: nowTimeUnformate)
         
-        let messageStruct = ["userId": userId, "message": message, "createdTime": today]
+        let messageStruct = ["userId": userId,
+                             "message": message,
+                             "createdTime": nowTimeString]
         
         ref.child("Chat Room").child(connectionRoomId).childByAutoId().setValue(messageStruct)
+        
         ref.child("Chat Room").child(connectionRoomId).child("last message").setValue(messageStruct)
         
         self.delegate?.manager(self, success: "message sent")

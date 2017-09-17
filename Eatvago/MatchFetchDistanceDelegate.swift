@@ -54,7 +54,9 @@ extension MatchSuccessViewController: FetchDistanceDelegate {
             
             self.lastPageToken = self.nextPageToken
             
-            self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "", nextPageToken: self.nextPageToken, keywordText: self.keywordText)
+            self.fetchNearbyLocationManager.fetchRequestHandler(urlString: "",
+                                                                nextPageToken: self.nextPageToken,
+                                                                keywordText: self.keywordText)
             
         }
         

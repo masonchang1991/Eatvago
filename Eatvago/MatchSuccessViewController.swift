@@ -137,11 +137,17 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     
     //Declare the location manager, current location, map view, places client, and default zoom level at the class level
     var locationManager = CLLocationManager()
+    
     var currentLocation = CLLocation()
+    
     var googleMapView: GMSMapView!
+    
     var placesClient: GMSPlacesClient!
+    
     var zoomLevel: Float = 18.0
+    
     var filterDistance = 100.0
+    
     var keywordText = ""
     //附近的地點 base on mylocation
     var locations: [Location] = []
@@ -162,16 +168,23 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     let addOrRemoveListItemManager = AddOrRemoveListItemManager()
     let sendMessageManager = SendMessageManager()
     let chatObserverManager = ChatObserverManager()
-    var nextPageToken = ""
-    var lastPageToken = ""
-    var fetchPageCount = 0
-    var myLocation = CLLocation()
     
-    //
+    var nextPageToken = ""
+    
+    var lastPageToken = ""
+    
+    var fetchPageCount = 0
+    
+    var myLocation = CLLocation()
+
     var resultsViewController: GMSAutocompleteResultsViewController?
+    
     var searchController: UISearchController?
+    
     var resultView: UITextView?
+    
     var oppositePeoplePhoto: UIImage = UIImage()
+    
     var window: UIWindow?
     
     let activityData = ActivityData()
@@ -208,6 +221,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         ref = Database.database().reference()
         
         ifAnyoneDeclineObserver()
+        
         ifAnyoneAddToList()
         
         self.fetchRoomDataManager.delegate = self
@@ -215,15 +229,21 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         self.fetchRoomDataManager.fetchRoomData(matchSuccessRoomRef: matchSuccessRoomRef)
         
         resultsViewController = GMSAutocompleteResultsViewController()
+        
         resultsViewController?.delegate = self
     
         // 配置 locationManager
         
         locationManager.requestWhenInUseAuthorization()
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         locationManager.distanceFilter = 50
+        
         locationManager.startUpdatingLocation()
+        
         locationManager.delegate = self
+        
         placesClient = GMSPlacesClient.shared()
         
         fetchNearbyLocationManager.delegate = self
@@ -237,67 +257,79 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         //配置pagerView
         
         self.listPagerView.delegate = self
+        
         self.listPagerView.dataSource = self
         
         //配置pickerview
         
         self.listPickerView.delegate = self
+        
         self.listPickerView.dataSource = self
         
         //配置navigation button action
-        self.navigationButtonForPagerView.addTarget(self, action: #selector(navigationForPagerView), for: .touchUpInside)
-        self.navigationButtonForList.addTarget(self, action: #selector(navigationForList), for: .touchUpInside)
+        self.navigationButtonForPagerView.addTarget(self,
+                                                    action: #selector(navigationForPagerView),
+                                                    for: .touchUpInside)
+        
+        self.navigationButtonForList.addTarget(self,
+                                               action: #selector(navigationForList),
+                                               for: .touchUpInside)
         
         //設置聊天室observer
         chatObserverManager.setObserver(connectionRoomId: connectionRoomId)
         
         //tableview
         self.matchRoomTableView.delegate = self
+        
         self.matchRoomTableView.dataSource = self
+        
         self.matchRoomTableView.estimatedRowHeight = 300
+        
         self.matchRoomTableView.rowHeight = UITableViewAutomaticDimension
         
         //buttonFunction
         self.changSearchStatusButton.addTarget(self, action: #selector(searchStatusHandler), for: .touchUpInside)
+        
         self.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
         //layout
         layoutSet()
         
         //keyboard收下去
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(self.dismissKeyboard))
+        
         view.addGestureRecognizer(tap)
         
-        UIApplication.shared.setStatusBarHidden(true, with: .none)
+        UIApplication.shared.isStatusBarHidden = true
         
         Analytics.logEvent("MatchSuccessRoom_viewDidLoad", parameters: nil)
         
     }
-    
-    //status bar
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
         locationManager.stopUpdatingLocation()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
         setLayer()
         
     }
     
+
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
+        
         locationManager.stopUpdatingLocation()
+        
         googleMapView = nil
+        
         placesClient = nil
+        
         ref.removeAllObservers()
+        
         UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
     
@@ -311,7 +343,8 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             
             guard let message = chatBoxTextField.text else { return }
             
-            sendMessageManager.sendMessageToFireBase(message: message, connectionRoomId: connectionRoomId)
+            sendMessageManager.sendMessageToFireBase(message: message,
+                                                     connectionRoomId: connectionRoomId)
             
             self.chatBoxTextField.text = ""
             
@@ -324,10 +357,16 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         Analytics.logEvent("MatchSuccessRoom_navigationForPagerView", parameters: nil)
         
         if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+            
             UIApplication.shared.openURL(URL(string:
                 "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(choosedLocation.locationLat),\(choosedLocation.locationLon)&directionsmode=walking")!)
+            
         } else {
+            
             print("Can't use comgooglemaps://")
+            
+            //Todo: Error handling
+            
         }
         
     }
@@ -337,11 +376,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         Analytics.logEvent("MatchSuccessRoom_navigationForList", parameters: nil)
         
         let appearance = SCLAlertView.SCLAppearance(
+            
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
             showCloseButton: false,
             showCircularIcon: false
+            
         )
         
         // Initialize SCLAlertView using custom Appearance
@@ -350,10 +391,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         alert.addButton("Walking", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                
                 UIApplication.shared.openURL(URL(string:
                     "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=walking")!)
+                
             } else {
+                
                 print("Can't use comgooglemaps://")
+                //Todo: Error handling
+                
             }
             
             alert.dismiss(animated: true, completion: nil)
@@ -362,10 +408,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         alert.addButton("bicycling", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                
                 UIApplication.shared.openURL(URL(string:
                     "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=bicycling")!)
+                
             } else {
+                
                 print("Can't use comgooglemaps://")
+                //Todo: Error handling
+                
             }
             
             alert.dismiss(animated: true, completion: nil)
@@ -374,10 +425,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         alert.addButton("driving", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
             
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                
                 UIApplication.shared.openURL(URL(string:
                     "comgooglemaps://?saddr=\(self.myLocation.coordinate.latitude),\(self.myLocation.coordinate.longitude)&daddr=\(self.pickerViewChoosedLocation.locationLat),\(self.pickerViewChoosedLocation.locationLon)&directionsmode=driving")!)
+                
             } else {
+                
                 print("Can't use comgooglemaps://")
+                //Todo: Error handling
+                
             }
             
             alert.dismiss(animated: true, completion: nil)
@@ -394,10 +450,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     }
 
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
+        
         return locations.count
+        
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         
         let location = locations[index]
@@ -405,19 +464,25 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         if location.photo == nil {
             
             self.loadingNVAView.startAnimating()
+            
             cell.imageView?.isHidden = true
             
         } else {
             
             self.loadingNVAView.stopAnimating()
+            
             self.loadingNVAView.isHidden = true
+            
             cell.imageView?.isHidden = false
             
             guard let storeImage = location.photo else {
+                
                 return FSPagerViewCell()
+                
             }
             
             cell.imageView?.image = storeImage
+            
             cell.imageView?.contentMode = .scaleAspectFill
             
         }
@@ -428,7 +493,9 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         storeNameLabel.text = location.name
         
-        choosedLocation = ChoosedLocation(storeName: location.name, locationLat: String(location.latitude), locationLon: String(location.longitude))
+        choosedLocation = ChoosedLocation(storeName: location.name,
+                                          locationLat: String(location.latitude),
+                                          locationLon: String(location.longitude))
         //將location存入
         
         if self.choosedLocations[self.choosedLocation.storeName] != nil {
@@ -450,34 +517,33 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         matchRoomRef.child("isClosed").observe(.value, with: { (snapshot) in
             
-            guard let isClosed = snapshot.value as? Bool else {
-                return
-            }
+            guard let isClosed = snapshot.value as? Bool else { return }
             
             if isClosed == true {
                 
-                //跳出alert
-                // 建立一個提示框
                 let alertController = UIAlertController(
                     title: "Sorry",
                     message: "You have been declined",
                     preferredStyle: .alert)
                 
-                // 建立[OK]按鈕
                 let okAction = UIAlertAction(
                     title: "OK",
                     style: UIAlertActionStyle.default) { (_: UIAlertAction!) -> Void in
                         
-                        guard let uid = Auth.auth().currentUser?.uid else {
-                            return
-                        }
+                        guard let uid = Auth.auth().currentUser?.uid else { return }
+
                         self.locationManager.stopUpdatingLocation()
+                        
                         self.ref.child("UserHistory").child(uid).child(self.connectionRoomId).removeValue()
+                        
                         self.matchRoomRef.child("isClosed").removeAllObservers()
+                        
                         self.performSegue(withIdentifier: "goBackToMain", sender: nil)
                         
                 }
+                
                 alertController.addAction(okAction)
+                
                 self.present(
                     alertController,
                     animated: true,
@@ -493,9 +559,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             self.choosedLocations = [:]
             
             guard let locations = snapshot.value as? [String: [String: String]] else {
+                
                 self.setupPickerView()
+                
                 self.listPickerView.reloadAllComponents()
+                
                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                
                 return
             }
             
@@ -514,12 +584,15 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             }
             
             self.listPagerView.reloadData()
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 
                 self.setupPickerView()
+                
                 self.listPickerView.reloadAllComponents()
                 
                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                
             })
         })
     }
@@ -537,8 +610,11 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 }, completion: { (_) in
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                        
                         self.listPickerView.isHidden = true
+                        
                         self.navigationButtonForList.isHidden = true
+                        
                     })
                     
                 })
@@ -548,6 +624,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                 UIView.animate(withDuration: 0.01, animations: {
                     
                     self.listPickerView.isHidden = false
+                    
                     self.navigationButtonForList.isHidden = false
                     
                 }, completion: { (_) in
@@ -575,11 +652,13 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     func manager(_ manager: AddOrRemoveListItemManager, didFail withError: String) {
         
         let appearance = SCLAlertView.SCLAppearance(
+            
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
             showCloseButton: false,
             showCircularIcon: false
+            
         )
         
         // Initialize SCLAlertView using custom Appearance
@@ -609,31 +688,44 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             UIView.animate(withDuration: 0.4, animations: {
                 
                 self.searchBarHeightConstraint.constant = 0
+                
                 self.view.layoutIfNeeded()
+                
                 self.searchBarView.alpha = 0.0
                 
             }, completion: { (_) in
                 
                 self.searchBarView.isHidden = true
+                
                 self.searchButtonStatus = true
+                
                 DispatchQueue.main.async {
+                    
                     self.changSearchStatusButton.imageView?.image = UIImage(named: "openSearch")
+                    
                 }
             })
             
         } else {
+            
             self.searchBarView.isHidden = false
             
             UIView.animate(withDuration: 0.4, animations: {
+                
                 self.searchBarView.alpha = 1.0
+                
                 self.searchBarHeightConstraint.constant = 40
+                
                 self.view.layoutIfNeeded()
                 
             }, completion: { (_) in
 
                 self.searchButtonStatus = false
+                
                 DispatchQueue.main.async {
+                    
                     self.changSearchStatusButton.imageView?.image = UIImage(named: "closeSearch")
+                    
                 }
             })
             
@@ -646,13 +738,17 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         if mapView.isHidden == true {
             
             mapView.isHidden = false
+            
             listPagerView.isHidden = true
+            
             loadingNVAView.isHidden = true
             
         } else {
             
             mapView.isHidden = true
+            
             listPagerView.isHidden = false
+            
             loadingNVAView.isHidden = false
             
         }
@@ -662,27 +758,34 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
     @IBAction func leaveChatRoom(_ sender: Any) {
         
         let appearance = SCLAlertView.SCLAppearance(
+            
             kTitleFont: UIFont(name: "Chalkboard SE", size: 25)!,
             kTextFont: UIFont(name: "Chalkboard SE", size: 16)!,
             kButtonFont: UIFont(name: "Chalkboard SE", size: 18)!,
             showCloseButton: false,
             showCircularIcon: true
+            
         )
         
         // Initialize SCLAlertView using custom Appearance
         let alert = SCLAlertView(appearance: appearance)
+        
         let alertViewIcon = UIImage(named: "exitIcon")
         
-        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white, showDurationStatus: false) {
             
             self.locationManager.stopUpdatingLocation()
+            
             self.removeFromParentViewController()
+            
             self.dismiss(animated: true, completion: nil)
 
             alert.dismiss(animated: true, completion: nil)
         }
         
-        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6), textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white, showDurationStatus: false) {
             
             alert.dismiss(animated: true, completion: nil)
             

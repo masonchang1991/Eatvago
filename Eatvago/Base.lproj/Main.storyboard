@@ -1128,37 +1128,6 @@
             </objects>
             <point key="canvasLocation" x="2439" y="1620"/>
         </scene>
-        <!--Match History View Controller-->
-        <scene sceneID="D3T-pF-4eU">
-            <objects>
-                <viewController id="hiJ-jA-yu0" customClass="MatchHistoryViewController" customModule="Eatvago" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="h2n-uL-yIu"/>
-                        <viewControllerLayoutGuide type="bottom" id="65C-hl-rTv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6D9-dk-PRG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2Q-5z-ooe">
-                                <rect key="frame" x="263" y="101" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMg-m6-iEr">
-                                <rect key="frame" x="64" y="101" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="1ca-ia-VI8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MO8-he-lb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3708" y="1867"/>
-        </scene>
         <!--Prepare To Match View Controller-->
         <scene sceneID="2Lx-ZF-Tqi">
             <objects>
@@ -2182,14 +2151,14 @@
         <image name="dice" width="32" height="32"/>
         <image name="eatvago landing" width="502" height="274"/>
         <image name="favorite list" width="32" height="32"/>
-        <image name="favoriteBackground" width="1312" height="2042"/>
+        <image name="favoriteBackground" width="2624" height="4084"/>
         <image name="heart" width="32" height="32"/>
-        <image name="landingBackground" width="1766" height="2649"/>
+        <image name="landingBackground" width="3533" height="5299"/>
         <image name="leave Chat Room" width="32" height="32"/>
         <image name="matchGO" width="64" height="64"/>
         <image name="matchIcon" width="32" height="32"/>
         <image name="openSearch" width="32" height="32"/>
-        <image name="randomGameImage" width="1996" height="1121"/>
+        <image name="randomGameImage" width="3992" height="2242"/>
         <image name="search" width="294" height="296"/>
     </resources>
     <inferredMetricsTieBreakers>
