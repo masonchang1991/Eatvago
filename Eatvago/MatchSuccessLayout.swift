@@ -69,21 +69,31 @@ extension MatchSuccessViewController {
         
         searchController?.hidesNavigationBarDuringPresentation = false
         
-        searchController?.searchBar.barStyle = .blackTranslucent
+        searchController?.searchBar.barStyle = .default
         
-        self.searchBarView.backgroundColor = UIColor.clear
+        let searchBarColor = UIColor(red: 255.0/255.0,
+                                     green: 230.0/255.0,
+                                     blue: 230.0/255.0,
+                                     alpha: 0.8)
+        
+        searchController?.searchBar.barTintColor = searchBarColor
         
         searchBarView.isHidden = true
         
         searchBarHeightConstraint.constant = 0
-        
-        //layout
-        self.listPagerView.backgroundColor = UIColor.clear
-        
-        self.mainBackgroundView.backgroundColor = UIColor.clear
        
+        // background
+        
+        self.mainBackgroundView.backgroundColor = UIColor(red: 220/255.0,
+                                                          green: 255/255.0,
+                                                          blue: 255/255.0,
+                                                          alpha: 0.4)
+        
         //pagerView
-        self.listPagerView.backgroundColor = UIColor.asiSeaBlue.withAlphaComponent(0.2)
+        self.listPagerView.backgroundColor = UIColor(red: 200/255.0,
+                                                     green: 255/255.0,
+                                                     blue: 255/255.0,
+                                                     alpha: 0.3)
         
         self.listPagerView.layer.cornerRadius = 8
         
@@ -99,14 +109,14 @@ extension MatchSuccessViewController {
         self.navigationButtonForList.isHidden = true
 
         //tableview
-        self.matchRoomTableView.backgroundColor = UIColor(red: 156.0/255.0,
-                                                          green: 232.0/255.0,
-                                                          blue: 255.0/255.0,
-                                                          alpha: 1.0).withAlphaComponent(0.4)
+        self.matchRoomTableView.backgroundColor = UIColor(red: 220/255.0,
+                                                          green: 255/255.0,
+                                                          blue: 255/255.0,
+                                                          alpha: 0.4)
         
         self.chatBoxView.layer.shadowOffset = CGSize(width: 0, height: 1)
         
-        self.chatBoxView.layer.shadowRadius = 2
+        self.chatBoxView.layer.shadowRadius = 1
         
         self.chatBoxView.layer.shadowOpacity = 0.8
         
@@ -125,16 +135,47 @@ extension MatchSuccessViewController {
     func setLayer() {
         
         // title
-        let titleGradientColors = [UIColor.asiDarkishBlue.withAlphaComponent(0.8).cgColor,
-                                   UIColor.asiSeaBlue.withAlphaComponent(0.8).cgColor]
+        let titleTopColor = UIColor(
+            red: 60.0/255.0,
+            green: 150.0/255.0,
+            blue: 210.0/255.0,
+            alpha: 0.8
+        )
+        
+        let titleBottomColor = UIColor(
+            red: 115.0/255.0,
+            green: 115.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.8
+        )
+
+        let titleGradientColors = [titleTopColor.cgColor,
+                                   titleBottomColor.cgColor]
         
         self.titleBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: titleGradientColors,
                                                                                      gradientframe: self.titleBackgroundView.frame,
                                                                                      gradientstartPoint: CGPoint(x: 0.5, y: 0),
                                                                                      gradientendPoint: CGPoint(x: 0.5, y: 1.0)), at: 0)
         //function bar
-        let functionBarGradientColors = [UIColor.asiDenimBlue.withAlphaComponent(0.8).cgColor,
-                                         UIColor.asiTealish85.withAlphaComponent(0.8).cgColor]
+        
+        let functionBarTopColor = UIColor(
+            red: 60.0/255.0,
+            green: 150.0/255.0,
+            blue: 210.0/255.0,
+            alpha: 0.4
+        )
+        
+        let functionBarBottomColor = UIColor(
+            red: 150.0/255.0,
+            green: 150.0/255.0,
+            blue: 255.0/255.0,
+            alpha: 0.4
+        )
+        
+        
+        
+        let functionBarGradientColors = [functionBarTopColor.cgColor,
+                                         functionBarBottomColor.cgColor]
         
         self.functionBarBackgroundView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: functionBarGradientColors,
                                                                                            gradientframe: CGRect(x: 0, y: 0, width: functionBarBackgroundView.frame.width, height: functionBarBackgroundView.frame.height),
@@ -150,16 +191,6 @@ extension MatchSuccessViewController {
         
         self.functionBarBackgroundView.layer.masksToBounds = false
         
-        //sendmessage box
-        
-        let chatBoxGradientColors = [UIColor.asiDarkSalmon.withAlphaComponent(0.8).cgColor,
-                                     UIColor.asiBrownish.withAlphaComponent(0.8).cgColor]
-        
-        self.chatBoxView.layer.insertSublayer(UIView().generateGradientLayer(gradientcolors: chatBoxGradientColors,
-                                                                             gradientframe: self.chatBoxView.frame,
-                                                                             gradientstartPoint: CGPoint(x: 0, y: 0),
-                                                                             gradientendPoint: CGPoint(x: 1, y: 1)), at: 0)
-
     }
     
 }

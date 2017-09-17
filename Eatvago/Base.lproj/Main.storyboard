@@ -352,7 +352,7 @@
                     <tabBarItem key="tabBarItem" title="Favorite" image="favorite list" id="KHz-dP-Fbn">
                         <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="1"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PT0-Fy-Pd7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PT0-Fy-Pd7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -506,7 +506,7 @@
             <objects>
                 <navigationController storyboardIdentifier="mainNavigationController" id="WMi-GW-DTz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NearBy" image="NearBySearchIcon" selectedImage="NearBySearchIcon" id="GLG-by-9w0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uaz-bb-teN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uaz-bb-teN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1659,7 +1659,7 @@
                                         </pickerView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySR-cC-yXQ" customClass="FSPagerView" customModule="FSPagerView">
                                             <rect key="frame" x="1" y="81" width="373" height="248"/>
-                                            <color key="backgroundColor" red="0.0" green="0.26118025183677673" blue="0.76458340883255005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.78559027777777779" green="1" blue="1" alpha="0.60089362157534243" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t18-tw-jkF">
                                             <rect key="frame" x="0.0" y="80" width="375" height="250"/>
@@ -1792,7 +1792,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="0.99293144030000002" blue="0.77587041590000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" red="0.86178927951388884" green="0.99293144030000002" blue="1" alpha="0.8047945205479452" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="ySR-cC-yXQ" firstAttribute="leading" secondItem="4xY-Ke-i7P" secondAttribute="leading" constant="1" id="4iw-Jl-xYy"/>
                                         <constraint firstItem="ySR-cC-yXQ" firstAttribute="top" secondItem="KRJ-FZ-VKk" secondAttribute="bottom" constant="1" id="BE5-M1-tg5"/>
@@ -2084,7 +2084,7 @@
             <objects>
                 <navigationController id="aPR-Bn-iuF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Match" image="matchIcon" id="moK-N5-vw1"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IMc-hc-LBx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IMc-hc-LBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2123,7 +2123,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MrV-NV-chH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" image="SlotIcon" selectedImage="SlotIcon" id="UYC-Ho-WCi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ic1-by-IDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ic1-by-IDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

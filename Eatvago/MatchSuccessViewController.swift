@@ -66,6 +66,7 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         didSet {
             
             self.listPagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            
             self.typeIndex = 1
             
         }
@@ -81,21 +82,37 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
                                                                       .coverFlow,
                                                                       .cubic]
     fileprivate var typeIndex = 0 {
+        
         didSet {
+            
             let type = self.transformerTypes[typeIndex]
+            
             self.listPagerView.transformer = FSPagerViewTransformer(type:type)
+            
             switch type {
+                
             case .crossFading, .zoomOut, .depth:
+                
                 self.listPagerView.itemSize = .zero // 'Zero' means fill the size of parent
+                
             case .linear, .overlap:
+                
                 let transform = CGAffineTransform(scaleX: 0.6, y: 0.75)
+                
                 self.listPagerView.itemSize = self.listPagerView.frame.size.applying(transform)
+                
             case .ferrisWheel, .invertedFerrisWheel:
+                
                 self.listPagerView.itemSize = CGSize(width: 180, height: 140)
+                
             case .coverFlow:
+                
                 self.listPagerView.itemSize = CGSize(width: 220, height: 170)
+                
             case .cubic:
+                
                 let transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                
                 self.listPagerView.itemSize = self.listPagerView.frame.size.applying(transform)
             }
         }
@@ -307,7 +324,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
     }
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
@@ -316,8 +332,6 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         setLayer()
         
     }
-    
-
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
@@ -772,8 +786,10 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
         
         let alertViewIcon = UIImage(named: "exitIcon")
         
-        alert.addButton("Sure", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
-                        textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Sure",
+                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white,
+                        showDurationStatus: false) {
             
             self.locationManager.stopUpdatingLocation()
             
@@ -784,8 +800,10 @@ class MatchSuccessViewController: UIViewController, FSPagerViewDataSource, FSPag
             alert.dismiss(animated: true, completion: nil)
         }
         
-        alert.addButton("Cancel", backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
-                        textColor: UIColor.white, showDurationStatus: false) {
+        alert.addButton("Cancel",
+                        backgroundColor: UIColor.asiSeaBlue.withAlphaComponent(0.6),
+                        textColor: UIColor.white,
+                        showDurationStatus: false) {
             
             alert.dismiss(animated: true, completion: nil)
             
