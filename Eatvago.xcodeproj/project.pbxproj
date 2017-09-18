@@ -23,6 +23,7 @@
 		9301443A1F27986700CEC11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930144391F27986700CEC11A /* Assets.xcassets */; };
 		930144461F279DA100CEC11A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144451F279DA100CEC11A /* LoginViewController.swift */; };
 		930144521F28A48700CEC11A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930144511F28A48700CEC11A /* LoadingViewController.swift */; };
+		93021FF61F6EB41D00A503EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93021FF51F6EB41D00A503EE /* LaunchScreen.storyboard */; };
 		930A4B3E1F433DA1008F4E65 /* LoadingLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */; };
 		930A4B401F434AD3008F4E65 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */; };
 		930A4B421F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */; };
@@ -94,6 +95,7 @@
 		930144391F27986700CEC11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		930144451F279DA100CEC11A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		930144511F28A48700CEC11A /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		93021FF51F6EB41D00A503EE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		930A4B3D1F433DA1008F4E65 /* LoadingLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayoutFunction.swift; sourceTree = "<group>"; };
 		930A4B3F1F434AD3008F4E65 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		930A4B411F434B1A008F4E65 /* PrepareToMatchLayoutFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareToMatchLayoutFunction.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				93DB1F791F61502B00162895 /* AppDelegate.swift */,
 				939C5A051F61733E006E328C /* GoogleMapKey.swift */,
 				930144361F27986700CEC11A /* Main.storyboard */,
+				93021FF51F6EB41D00A503EE /* LaunchScreen.storyboard */,
 				93729ACE1F3631C2004125C0 /* MainTabBarController.swift */,
 				93FFA9551F6D5AC0006F8106 /* ExtensionUIKit */,
 				9343854E1F6E4876005B2DCE /* LoginAndLoading */,
@@ -473,6 +476,7 @@
 				9301443A1F27986700CEC11A /* Assets.xcassets in Resources */,
 				93DB1F7E1F61508B00162895 /* Info.plist in Resources */,
 				93DB1F7D1F61508B00162895 /* GoogleService-Info.plist in Resources */,
+				93021FF61F6EB41D00A503EE /* LaunchScreen.storyboard in Resources */,
 				930144381F27986700CEC11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
