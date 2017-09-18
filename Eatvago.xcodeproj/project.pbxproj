@@ -250,6 +250,8 @@
 				930144361F27986700CEC11A /* Main.storyboard */,
 				93021FF51F6EB41D00A503EE /* LaunchScreen.storyboard */,
 				93729ACE1F3631C2004125C0 /* MainTabBarController.swift */,
+				93021FF81F6F605700A503EE /* FirebaseManger */,
+				93021FF71F6F600F00A503EE /* LocationAPIManager */,
 				93FFA9551F6D5AC0006F8106 /* ExtensionUIKit */,
 				9343854E1F6E4876005B2DCE /* LoginAndLoading */,
 				930086761F2A089C00BEA223 /* NearBy */,
@@ -262,6 +264,31 @@
 				93DB1F7C1F61508B00162895 /* Info.plist */,
 			);
 			path = Eatvago;
+			sourceTree = "<group>";
+		};
+		93021FF71F6F600F00A503EE /* LocationAPIManager */ = {
+			isa = PBXGroup;
+			children = (
+				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
+				93729ACA1F35D0E4004125C0 /* FetchLocationImageManager.swift */,
+				9329D9D11F306A6800415697 /* FetchDistanceManager.swift */,
+				9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */,
+			);
+			name = LocationAPIManager;
+			sourceTree = "<group>";
+		};
+		93021FF81F6F605700A503EE /* FirebaseManger */ = {
+			isa = PBXGroup;
+			children = (
+				93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */,
+				93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */,
+				93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */,
+				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
+				93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */,
+				9391DFC51F3F27DD0014BABD /* AddOrRemoveListItem.swift */,
+				93FD1E671F418FDC003D4EC6 /* SendMessageManager.swift */,
+			);
+			name = FirebaseManger;
 			sourceTree = "<group>";
 		};
 		930A4B3C1F433D7F008F4E65 /* Layout */ = {
@@ -298,10 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				9391DFCD1F4032CD0014BABD /* UploadUserPhotoManager.swift */,
-				9380CA8F1F2DD05B00629C0A /* FetchPlaceIdDetailManager.swift */,
-				93729ACA1F35D0E4004125C0 /* FetchLocationImageManager.swift */,
-				9329D9D11F306A6800415697 /* FetchDistanceManager.swift */,
-				9380CA8B1F2B341500629C0A /* FetchNearbyLocationsManager.swift */,
 			);
 			name = FetchManagers;
 			sourceTree = "<group>";
@@ -313,20 +336,8 @@
 				9383D4C41F3C0D1700DAAD56 /* LoadingMatchViewController.swift */,
 				93FB57F81F3C36200017E460 /* MatchRoomStruct.swift */,
 				930A4B3C1F433D7F008F4E65 /* Layout */,
-				93FB57FE1F3CB6030017E460 /* Manager */,
 			);
 			name = Match;
-			sourceTree = "<group>";
-		};
-		9391DFC21F3EF43C0014BABD /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				93FB58081F3E0FBF0017E460 /* FetchMatchSuccessRoomDataManager.swift */,
-				93FD1E6B1F419B7D003D4EC6 /* ChatObserverManager.swift */,
-				9391DFC51F3F27DD0014BABD /* AddOrRemoveListItem.swift */,
-				93FD1E671F418FDC003D4EC6 /* SendMessageManager.swift */,
-			);
-			name = Manager;
 			sourceTree = "<group>";
 		};
 		93A10BEA1F31BF3500F69A82 /* Random Game */ = {
@@ -339,16 +350,6 @@
 			name = "Random Game";
 			sourceTree = "<group>";
 		};
-		93FB57FE1F3CB6030017E460 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				93FB57FA1F3C4E470017E460 /* OwnerMatchSuccessManager.swift */,
-				93FB57FC1F3C80460017E460 /* CheckIfRoomExistManager.swift */,
-				93FB57FF1F3D81310017E460 /* FetchMatchRoomData.swift */,
-			);
-			name = Manager;
-			sourceTree = "<group>";
-		};
 		93FB58031F3DEC6C0017E460 /* MatchSuccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,7 +360,6 @@
 				93FD1E651F418CB1003D4EC6 /* OppositePeopleChatTableViewCell.swift */,
 				93FB580A1F3E17E80017E460 /* MatchSuccessRoomStruct.swift */,
 				93FD1E6D1F41A0D9003D4EC6 /* MessageStruct.swift */,
-				9391DFC21F3EF43C0014BABD /* Manager */,
 				930119D61F3EA920002822B1 /* DelegateFunction */,
 			);
 			name = MatchSuccess;
